@@ -11,4 +11,5 @@
         <maven.compiler.target>21</maven.compiler.target>
         <exec.mainClass>com.sistemanegocioinfraestructura.SistemaNegocioInfraestructura</exec.mainClass>
     </properties>
+    <name>SistemaGimnasioInfraestructura</name>
 </project>
