@@ -11,7 +11,7 @@ public class SistemaGimnasioPresentacion {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        RegistrarCliente rc = new RegistrarCliente();
-        rc.setVisible(true);
+        ControlNavegacionCompraMembresia CNCM = new ControlNavegacionCompraMembresia();
+        CNCM.openFormRegistrarCliente();
     }
 }
