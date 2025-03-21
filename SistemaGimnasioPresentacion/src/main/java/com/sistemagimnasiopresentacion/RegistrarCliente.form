@@ -58,70 +58,85 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="campoNombres5" max="32767" attributes="0"/>
-                      <Component id="campoApellidos" alignment="1" max="32767" attributes="0"/>
-                      <Component id="campoNumeroTelefono" alignment="0" max="32767" attributes="0"/>
-                      <Component id="campoEmail" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="26" max="32767" attributes="0"/>
-                          <Component id="btnAceptar" min="-2" pref="76" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="campoNombres" alignment="0" max="32767" attributes="0"/>
+                              <Component id="campoApellidos" alignment="1" max="32767" attributes="0"/>
+                              <Component id="campoNumeroTelefono" alignment="0" pref="178" max="32767" attributes="0"/>
+                              <Component id="campoEmail" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="btnCancelar" min="-2" pref="82" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btnAceptar" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="etiquetaPantalla" min="-2" max="-2" attributes="0"/>
+                              <Component id="etiquetaNombres" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <Component id="etiquetaApellidos" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="etiquetaEmail" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                              <Component id="etiquetaCelular" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="campoNombres5" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="campoApellidos" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Component id="etiquetaPantalla" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="etiquetaNombres" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="campoNombres" min="-2" pref="31" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="etiquetaApellidos" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                  <Component id="campoApellidos" min="-2" pref="33" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="etiquetaEmail" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   <Component id="campoEmail" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="campoNumeroTelefono" min="-2" pref="39" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="etiquetaCelular" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="campoNumeroTelefono" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="35" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="campoNumeroTelefono">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="N&#xfa;mero de Tel&#xe9;fono"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoNumeroTelefonoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoNombres5">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre(s)"/>
-          </Properties>
+        <Component class="javax.swing.JTextField" name="campoNombres">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoNombres5ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoNombresActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="campoApellidos">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Apellido(s)"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoApellidosActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="campoEmail">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Email"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoEmailActionPerformed"/>
           </Events>
@@ -141,6 +156,34 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="etiquetaPantalla">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="24" style="3"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Registrar Cliente"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="etiquetaEmail">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Correo Electr&#xf3;nico"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="etiquetaNombres">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nombre(s)"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="etiquetaApellidos">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Apellido(s)"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="etiquetaCelular">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="N&#xfa;mero de Tel&#xe9;fono"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

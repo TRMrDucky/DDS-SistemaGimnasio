@@ -8,12 +8,12 @@ package com.sistemagimnasiopresentacion;
  *
  * @author 52644
  */
-public class RegistrarUsuario extends javax.swing.JFrame {
+public class RegistrarCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form RegistrarUsuario
      */
-    public RegistrarUsuario() {
+    public RegistrarCliente() {
         initComponents();
         
     }
@@ -32,11 +32,16 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         campoNombres3 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         campoNumeroTelefono = new javax.swing.JTextField();
-        campoNombres5 = new javax.swing.JTextField();
+        campoNombres = new javax.swing.JTextField();
         campoApellidos = new javax.swing.JTextField();
         campoEmail = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
+        etiquetaPantalla = new javax.swing.JLabel();
+        etiquetaEmail = new javax.swing.JLabel();
+        etiquetaNombres = new javax.swing.JLabel();
+        etiquetaApellidos = new javax.swing.JLabel();
+        etiquetaCelular = new javax.swing.JLabel();
 
         EtiquetaSuperior.setText("jLabel1");
 
@@ -49,28 +54,24 @@ public class RegistrarUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        campoNumeroTelefono.setText("Número de Teléfono");
         campoNumeroTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoNumeroTelefonoActionPerformed(evt);
             }
         });
 
-        campoNombres5.setText("Nombre(s)");
-        campoNombres5.addActionListener(new java.awt.event.ActionListener() {
+        campoNombres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNombres5ActionPerformed(evt);
+                campoNombresActionPerformed(evt);
             }
         });
 
-        campoApellidos.setText("Apellido(s)");
         campoApellidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoApellidosActionPerformed(evt);
             }
         });
 
-        campoEmail.setText("Email");
         campoEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoEmailActionPerformed(evt);
@@ -91,6 +92,17 @@ public class RegistrarUsuario extends javax.swing.JFrame {
             }
         });
 
+        etiquetaPantalla.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
+        etiquetaPantalla.setText("Registrar Cliente");
+
+        etiquetaEmail.setText("Correo Electrónico");
+
+        etiquetaNombres.setText("Nombre(s)");
+
+        etiquetaApellidos.setText("Apellido(s)");
+
+        etiquetaCelular.setText("Número de Teléfono");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -98,32 +110,54 @@ public class RegistrarUsuario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(111, 111, 111)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoNombres5)
-                    .addComponent(campoApellidos, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(campoNumeroTelefono)
-                    .addComponent(campoEmail)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(campoNombres, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campoApellidos)
+                            .addComponent(campoNumeroTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                            .addComponent(campoEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(111, 111, 111))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(111, 111, 111))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etiquetaPantalla)
+                            .addComponent(etiquetaNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(etiquetaApellidos))
+                            .addComponent(etiquetaEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etiquetaCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(campoNombres5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(campoApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(etiquetaPantalla)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(etiquetaNombres)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(etiquetaApellidos)
+                .addGap(2, 2, 2)
+                .addComponent(campoApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(etiquetaEmail)
+                .addGap(8, 8, 8)
                 .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(campoNumeroTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(etiquetaCelular)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoNumeroTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnAceptar))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,9 +182,9 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoNumeroTelefonoActionPerformed
 
-    private void campoNombres5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNombres5ActionPerformed
+    private void campoNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNombresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoNombres5ActionPerformed
+    }//GEN-LAST:event_campoNombresActionPerformed
 
     private void campoApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoApellidosActionPerformed
         // TODO add your handling code here:
@@ -161,7 +195,13 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_campoEmailActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
+     
+        String nombres = campoNombres.getText();
+        String apellidos = campoApellidos.getText();
+        String email = campoEmail.getText();
+        String numeroTelefono = campoNumeroTelefono.getText();
+        
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -185,20 +225,21 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistrarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistrarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistrarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistrarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistrarUsuario().setVisible(true);
+                new RegistrarCliente().setVisible(true);
             }
         });
     }
@@ -209,9 +250,14 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JTextField campoApellidos;
     private javax.swing.JTextField campoEmail;
+    private javax.swing.JTextField campoNombres;
     private javax.swing.JTextField campoNombres3;
-    private javax.swing.JTextField campoNombres5;
     private javax.swing.JTextField campoNumeroTelefono;
+    private javax.swing.JLabel etiquetaApellidos;
+    private javax.swing.JLabel etiquetaCelular;
+    private javax.swing.JLabel etiquetaEmail;
+    private javax.swing.JLabel etiquetaNombres;
+    private javax.swing.JLabel etiquetaPantalla;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

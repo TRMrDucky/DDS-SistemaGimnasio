@@ -11,7 +11,7 @@ public class SistemaGimnasioPresentacion {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        RegistrarUsuario ru = new RegistrarUsuario();
-        ru.setVisible(true);
+        RegistrarCliente rc = new RegistrarCliente();
+        rc.setVisible(true);
     }
 }
