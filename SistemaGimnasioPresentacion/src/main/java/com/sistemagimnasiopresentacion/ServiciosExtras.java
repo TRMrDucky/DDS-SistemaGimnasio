@@ -8,7 +8,7 @@ package com.sistemagimnasiopresentacion;
  *
  * @author Ramón Zamudio
  */
-import DTOs.ServicioExtraDTO;
+import dtos.ServicioExtraDTO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

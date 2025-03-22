@@ -4,7 +4,7 @@
  */
 package com.sistemagimnasiopresentacion;
 
-import DTOs.ServicioExtraDTO;
+import dtos.ServicioExtraDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.SwingUtilities;
