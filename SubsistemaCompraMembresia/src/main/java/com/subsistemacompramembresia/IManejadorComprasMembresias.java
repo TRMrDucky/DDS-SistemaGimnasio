@@ -7,6 +7,7 @@ package com.subsistemacompramembresia;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
 import excepciones.RegistroClienteException;
+import java.util.List;
 
 /**
  *
@@ -15,4 +16,7 @@ import excepciones.RegistroClienteException;
 public interface IManejadorComprasMembresias {
     
     public abstract ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) throws RegistroClienteException;
+    
+
+    public abstract List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono);
 }
