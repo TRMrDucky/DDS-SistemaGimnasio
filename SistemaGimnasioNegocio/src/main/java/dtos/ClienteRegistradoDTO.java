@@ -47,6 +47,11 @@ public class ClienteRegistradoDTO {
         this.numeroTelefono = numeroTelefono;
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "ClienteRegistradoDTO{" + "nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email + ", numeroTelefono=" + numeroTelefono + ", id=" + id + '}';
+    }
     
     
 }

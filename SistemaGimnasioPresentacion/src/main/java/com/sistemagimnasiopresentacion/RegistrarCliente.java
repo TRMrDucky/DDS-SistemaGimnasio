@@ -4,8 +4,13 @@
  */
 package com.sistemagimnasiopresentacion;
 
+import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
+import excepciones.RegistroClienteException;
 import implementaciones.SubsistemaComprarMembresia;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,7 +19,7 @@ import implementaciones.SubsistemaComprarMembresia;
 public class RegistrarCliente extends javax.swing.JFrame {
 
     private SubsistemaComprarMembresia subsistema;
-    
+
     /**
      * Creates new form RegistrarUsuario
      */
@@ -200,17 +205,26 @@ public class RegistrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_campoEmailActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-     
+
         String nombres = campoNombres.getText();
         String apellidos = campoApellidos.getText();
         String email = campoEmail.getText();
         String numeroTelefono = campoNumeroTelefono.getText();
-        
+
         RegistrarClienteDTO registrarClienteDTO = new RegistrarClienteDTO(nombres, apellidos,
-        email, numeroTelefono);
-        
-        subsistema.registrarCliente(registrarClienteDTO);
-        
+                email, numeroTelefono);
+
+        try {
+            ClienteRegistradoDTO clienteRegistrado = subsistema.registrarCliente(registrarClienteDTO);
+            JOptionPane.showMessageDialog(this, clienteRegistrado.toString(),
+                    "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            
+        } catch (RegistroClienteException ex) {
+            Logger.getLogger(RegistrarCliente.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
