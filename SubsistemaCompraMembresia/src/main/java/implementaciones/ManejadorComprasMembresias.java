@@ -30,7 +30,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     @Override
     public ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) throws RegistroClienteException {
-        keyCliente = (int) Math.random();
+        keyCliente = (int) Math.random()*100000;
         if (registrarClienteDTO.getNombre().isBlank() || registrarClienteDTO.getApellidos().isBlank()
                 || registrarClienteDTO.getEmail().isBlank() || registrarClienteDTO.getNumeroTelefono().isBlank()) {
             throw new RegistroClienteException("Ningun campo puede permanecer vacio");
@@ -87,6 +87,10 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
                 .map(Cliente::getNumeroTelefono)
                 .filter(Objects::nonNull)
                 .anyMatch(e -> e.equals(numeroTelefono));
+    }
+    
+    public LinkedHashMap getListaClientes(){
+        return listaClientes;
     }
     
     public List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono) {

@@ -13,4 +13,9 @@ public class ControlNavegacionCompraMembresia {
         RegistrarCliente rc = new RegistrarCliente();
         rc.setVisible(true);
     }
+    
+   public void openFormBuscarCliente(){
+       BuscarCliente bc = new BuscarCliente();
+       bc.setVisible(true);
+   }
 }
