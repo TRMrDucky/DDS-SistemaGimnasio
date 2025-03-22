@@ -27,7 +27,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     @Override
     public ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) throws RegistroClienteException {
-        keyCliente = (int) Math.random();
+        keyCliente = (int)  (Math.random()*10000000);
         if (registrarClienteDTO.getNombre().isBlank() || registrarClienteDTO.getApellidos().isBlank()
                 || registrarClienteDTO.getEmail().isBlank() || registrarClienteDTO.getNumeroTelefono().isBlank()) {
             throw new RegistroClienteException("Ningun campo puede permanecer vacio");
@@ -64,6 +64,10 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
                 "pedro.sola@hotmail.com", "6442878593", 3));
     }
 
+    public LinkedHashMap getListaClientes(){
+        return listaClientes;
+    }
+    
     private boolean validarFormatoCorreo(String email) {
         Pattern patronEmail = Pattern.compile(
                 "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
