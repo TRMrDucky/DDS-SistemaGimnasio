@@ -70,8 +70,8 @@ public class ClienteRegistradoDTO {
 
     @Override
     public String toString() {
-        return "{Cliente Registrado:" + "\nNombre=" + nombre + "\nApellidos=" + apellidos + "\nEmail=" + email
-                + "\nNumeroTelefono=" + numeroTelefono + "\nId=" + id + '}';
+        return "Cliente Registrado:" + "\nNombre=" + nombre + "\nApellidos=" + apellidos + "\nEmail=" + email
+                + "\nNumeroTelefono=" + numeroTelefono + "\nId=" + id;
     }
     
     
