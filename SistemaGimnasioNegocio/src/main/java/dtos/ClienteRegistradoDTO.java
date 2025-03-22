@@ -14,6 +14,7 @@ public class ClienteRegistradoDTO {
     String apellidos;
     String email;
     String numeroTelefono;
+    boolean activo;
     int id;
 
     public String getNombre() {
@@ -40,6 +41,15 @@ public class ClienteRegistradoDTO {
         this.id = id;
     }
 
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+    
+
     public ClienteRegistradoDTO(String nombre, String apellidos, String email, String numeroTelefono, int id) {
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -47,6 +57,16 @@ public class ClienteRegistradoDTO {
         this.numeroTelefono = numeroTelefono;
         this.id = id;
     }
+
+    public ClienteRegistradoDTO(String nombre, String apellidos, String email, String numeroTelefono, boolean activo, int id) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.numeroTelefono = numeroTelefono;
+        this.activo = activo;
+        this.id = id;
+    }
+    
 
     @Override
     public String toString() {
