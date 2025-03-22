@@ -10,9 +10,11 @@ import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
 import excepciones.RegistroClienteException;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * a
@@ -85,5 +87,20 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
                 .filter(Objects::nonNull)
                 .anyMatch(e -> e.equals(numeroTelefono));
     }
+    
+    
+    public List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono) {
+    return listaClientes.values().stream()
+            .filter(cliente -> cliente.getNombres().equalsIgnoreCase(nombre) && 
+                    cliente.getNumeroTelefono().equals(numeroTelefono))
+            .map(cliente -> new ClienteRegistradoDTO(
+                    cliente.getNombres(), 
+                    cliente.getApellidos(), 
+                    cliente.getEmail(), 
+                    cliente.getNumeroTelefono(), 
+                    cliente.getId()))
+            .collect(Collectors.toList());
+}
+    
 
 }
