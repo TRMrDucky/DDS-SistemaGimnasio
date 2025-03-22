@@ -43,7 +43,7 @@ public class ServiciosExtras extends JFrame {
 
         checkBoxes = new ArrayList<>();
         for (ServicioExtraDTO servicio : servicios) {
-            JCheckBox checkBox = new JCheckBox(servicio.getNombreServicio() + " - Costo $" + servicio.getPrecio());
+            JCheckBox checkBox = new JCheckBox(servicio.getNombreServicio() + " - $" + servicio.getPrecio());
             checkBoxes.add(checkBox);
             serviciosPanel.add(checkBox);
         }
@@ -103,7 +103,7 @@ public class ServiciosExtras extends JFrame {
     private void mostrarSeleccionados(List<ServicioExtraDTO> seleccionados) {
         StringBuilder mensaje = new StringBuilder("Servicios seleccionados:\n");
         for (ServicioExtraDTO servicio : seleccionados) {
-            mensaje.append(servicio.getNombreServicio()).append(" - Costo $").append(servicio.getPrecio()).append("\n");
+            mensaje.append(servicio.getNombreServicio()).append(" - $").append(servicio.getPrecio()).append("\n");
         }
         JOptionPane.showMessageDialog(this, mensaje.toString(), "Selección de Servicios", JOptionPane.INFORMATION_MESSAGE);
     }
