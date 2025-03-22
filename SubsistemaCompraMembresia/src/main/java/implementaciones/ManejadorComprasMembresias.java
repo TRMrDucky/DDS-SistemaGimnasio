@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
  *
  * @author 52644
  */
-public class SubsistemaComprarMembresia implements IManejadorComprasMembresias {
+public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     private int keyCliente;
     private LinkedHashMap<Integer, Cliente> listaClientes;
@@ -54,7 +54,7 @@ public class SubsistemaComprarMembresia implements IManejadorComprasMembresias {
                 registrarClienteDTO.getEmail(), registrarClienteDTO.getNumeroTelefono(), keyCliente);
     }
 
-    public SubsistemaComprarMembresia() {
+    public ManejadorComprasMembresias() {
         listaClientes = new LinkedHashMap<>();
         listaClientes.put(1, new Cliente("Pedro", "Sola Meza",
                 "pedro.sola@hotmail.com", "6441348130", 1));
