@@ -29,6 +29,13 @@ public class RegistrarClienteDTO {
     public String getNumeroTelefono() {
         return numeroTelefono;
     }
+
+    public RegistrarClienteDTO(String nombre, String apellidos, String email, String numeroTelefono) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.numeroTelefono = numeroTelefono;
+    }
     
     
 }

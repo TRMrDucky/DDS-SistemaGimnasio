@@ -4,18 +4,23 @@
  */
 package com.sistemagimnasiopresentacion;
 
+import dtos.RegistrarClienteDTO;
+import implementaciones.SubsistemaComprarMembresia;
+
 /**
  *
  * @author 52644
  */
 public class RegistrarCliente extends javax.swing.JFrame {
 
+    private SubsistemaComprarMembresia subsistema;
+    
     /**
      * Creates new form RegistrarUsuario
      */
     public RegistrarCliente() {
         initComponents();
-        
+        subsistema = new SubsistemaComprarMembresia();
     }
 
     /**
@@ -201,6 +206,10 @@ public class RegistrarCliente extends javax.swing.JFrame {
         String email = campoEmail.getText();
         String numeroTelefono = campoNumeroTelefono.getText();
         
+        RegistrarClienteDTO registrarClienteDTO = new RegistrarClienteDTO(nombres, apellidos,
+        email, numeroTelefono);
+        
+        subsistema.registrarCliente(registrarClienteDTO);
         
     }//GEN-LAST:event_btnAceptarActionPerformed
 

@@ -9,6 +9,7 @@ package dtos;
  * @author 52644
  */
 public class ClienteRegistradoDTO {
+
     String nombre;
     String apellidos;
     String email;
@@ -30,8 +31,22 @@ public class ClienteRegistradoDTO {
     public String getNumeroTelefono() {
         return numeroTelefono;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public ClienteRegistradoDTO(String nombre, String apellidos, String email, String numeroTelefono, int id) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.numeroTelefono = numeroTelefono;
+        this.id = id;
+    }
     
-    public int getId(){
-    return id;
-}
+    
 }
