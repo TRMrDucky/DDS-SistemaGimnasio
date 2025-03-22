@@ -4,10 +4,11 @@
  */
 package com.sistemagimnasiopresentacion;
 
+import com.subsistemacompramembresia.IManejadorComprasMembresias;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
 import excepciones.RegistroClienteException;
-import implementaciones.SubsistemaComprarMembresia;
+import implementaciones.ManejadorComprasMembresias;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -18,14 +19,14 @@ import javax.swing.JOptionPane;
  */
 public class RegistrarCliente extends javax.swing.JFrame {
 
-    private SubsistemaComprarMembresia subsistema;
+    private IManejadorComprasMembresias subsistema;
 
     /**
      * Creates new form RegistrarUsuario
      */
     public RegistrarCliente() {
         initComponents();
-        subsistema = new SubsistemaComprarMembresia();
+        subsistema = new ManejadorComprasMembresias();
     }
 
     /**
