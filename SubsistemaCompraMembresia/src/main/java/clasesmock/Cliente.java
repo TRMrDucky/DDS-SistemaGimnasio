@@ -9,11 +9,11 @@ package clasesmock;
  * @author 52644
  */
 public class Cliente {
-    String nombres;
-    String Apellidos;
-    String email;
-    String numeroTelefono;
-    int id;
+    private String nombres;
+    private String Apellidos;
+    private String email;
+    private String numeroTelefono;
+    private int id;
 
     public String getNombres() {
         return nombres;
