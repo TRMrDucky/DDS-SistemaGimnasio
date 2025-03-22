@@ -9,6 +9,7 @@ import com.subsistemacompramembresia.IManejadorComprasMembresias;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
 import excepciones.RegistroClienteException;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
@@ -88,11 +89,20 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
                 .anyMatch(e -> e.equals(numeroTelefono));
     }
     
-    
     public List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono) {
+    // Validar que los parámetros no sean null
+    if (nombre == null || numeroTelefono == null) {
+        return Collections.emptyList();
+    }
+
+    // Limpiar espacios extra y convertir a minúsculas para evitar errores de formato
+    String nombreLimpio = nombre.trim().toLowerCase();
+    String telefonoLimpio = numeroTelefono.trim();
+
     return listaClientes.values().stream()
-            .filter(cliente -> cliente.getNombres().equalsIgnoreCase(nombre) && 
-                    cliente.getNumeroTelefono().equals(numeroTelefono))
+            .filter(cliente -> cliente.getNombres() != null && cliente.getNumeroTelefono() != null)
+            .filter(cliente -> cliente.getNombres().toLowerCase().contains(nombreLimpio) && 
+                               cliente.getNumeroTelefono().equals(telefonoLimpio))
             .map(cliente -> new ClienteRegistradoDTO(
                     cliente.getNombres(), 
                     cliente.getApellidos(), 
@@ -101,6 +111,8 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
                     cliente.getId()))
             .collect(Collectors.toList());
 }
-    
 
 }
+    
+
+
