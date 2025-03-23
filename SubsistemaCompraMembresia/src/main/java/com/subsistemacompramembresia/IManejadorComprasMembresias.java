@@ -5,8 +5,10 @@
 package com.subsistemacompramembresia;
 
 import clasesmock.Cliente;
+import clasesmock.ServicioExtra;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
+import dtos.ServicioExtraDTO;
 import excepciones.RegistroClienteException;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -24,4 +26,6 @@ public interface IManejadorComprasMembresias {
     
     
     public abstract LinkedHashMap<Integer, Cliente> getListaClientes();
+    
+    public LinkedHashMap<Long, ServicioExtraDTO> obtenerServiciosExtrasDTO();
 }

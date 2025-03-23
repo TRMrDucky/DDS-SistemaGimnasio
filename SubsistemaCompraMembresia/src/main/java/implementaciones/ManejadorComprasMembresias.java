@@ -9,6 +9,7 @@ import clasesmock.ServicioExtra;
 import com.subsistemacompramembresia.IManejadorComprasMembresias;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
+import dtos.ServicioExtraDTO;
 import excepciones.RegistroClienteException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -127,6 +128,19 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
                     cliente.getNumeroTelefono(), 
                     cliente.getId()))
             .collect(Collectors.toList());
+}
+
+    @Override
+    public LinkedHashMap<Long, ServicioExtraDTO> obtenerServiciosExtrasDTO() {
+    return serviciosExtras.entrySet().stream()
+            .collect(Collectors.toMap(
+                    entry -> entry.getKey().longValue(), // Convertir la clave de Integer a Long
+                    entry -> new ServicioExtraDTO(entry.getValue().getId(), 
+                                                  entry.getValue().getNombreServicio(), 
+                                                  entry.getValue().getPrecio()),
+                    (oldValue, newValue) -> oldValue, // Manejo de colisiones (no debería haber)
+                    LinkedHashMap::new // Especificar que queremos un LinkedHashMap
+            ));
 }
     
     

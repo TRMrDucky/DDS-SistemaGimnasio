@@ -25,7 +25,7 @@ public class ServiciosExtras extends JFrame {
     private JLabel lblCostoTotal;
     
 
-    public ServiciosExtras( List<ServicioExtraDTO> seleccionados) {
+    public ServiciosExtras(List<ServicioExtraDTO> seleccionados) {
         subsistema = new ManejadorComprasMembresias();
         serviciosExtras = subsistema.obtenerServiciosExtrasDTO();
         this.costoTotal = 0.0;
