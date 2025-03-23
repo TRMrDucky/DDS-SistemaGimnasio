@@ -219,6 +219,10 @@ public class RegistrarCliente extends javax.swing.JFrame {
             ClienteRegistradoDTO clienteRegistrado = subsistema.registrarCliente(registrarClienteDTO);
             JOptionPane.showMessageDialog(this, clienteRegistrado.toString(),
                     "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            campoNombres.setText(null);
+            campoApellidos.setText(null);
+            campoEmail.setText(null);
+            campoNumeroTelefono.setText(null);
             
         } catch (RegistroClienteException ex) {
             Logger.getLogger(RegistrarCliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -226,6 +230,9 @@ public class RegistrarCliente extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
         }
 
+        
+        //Aqui se debe llamar a ControlNavegacionCompraMembresia y pasar como parametro 
+        //ClienteRegistradoDTO
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

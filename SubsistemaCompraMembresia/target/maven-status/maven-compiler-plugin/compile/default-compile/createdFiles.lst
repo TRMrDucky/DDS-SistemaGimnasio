@@ -1,4 +1,4 @@
+implementaciones\ManejadorComprasMembresias.class
 clasesmock\Cliente.class
-implementaciones\SubsistemaComprarMembresia.class
 com\subsistemacompramembresia\IManejadorComprasMembresias.class
 excepciones\RegistroClienteException.class
