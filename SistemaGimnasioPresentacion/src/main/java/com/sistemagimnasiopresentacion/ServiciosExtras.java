@@ -14,36 +14,49 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ServiciosExtras extends JFrame {
     private List<JCheckBox> checkBoxes;
-    private List<ServicioExtraDTO> servicios;
+    private LinkedHashMap<Long, ServicioExtraDTO> serviciosExtras;
+    private double costoTotal;
+    private JLabel lblCostoTotal;
 
-    public ServiciosExtras(List<ServicioExtraDTO> servicios) {
-        this.servicios = servicios;
+    public ServiciosExtras(LinkedHashMap<Long, ServicioExtraDTO> serviciosExtras, List<ServicioExtraDTO> seleccionados) {
+        this.serviciosExtras = serviciosExtras;
+        this.costoTotal = 0.0;
         setTitle("Servicios Extras");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
+        // Panel principal
         JPanel panel = new JPanel();
         panel.setBackground(new Color(100, 149, 237));
         panel.setLayout(new BorderLayout());
 
+        // Título
         JLabel lblTitulo = new JLabel("Servicios Extras", SwingConstants.CENTER);
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 24));
         lblTitulo.setForeground(Color.MAGENTA);
         panel.add(lblTitulo, BorderLayout.NORTH);
 
+        // Panel de servicios con scroll
         JPanel serviciosPanel = new JPanel();
         serviciosPanel.setLayout(new GridLayout(0, 1, 10, 10));
         serviciosPanel.setBackground(new Color(100, 149, 237));
 
         checkBoxes = new ArrayList<>();
-        for (ServicioExtraDTO servicio : servicios) {
-            JCheckBox checkBox = new JCheckBox(servicio.getNombreServicio() + " - $" + servicio.getPrecio());
+        for (ServicioExtraDTO servicio : serviciosExtras.values()) {
+            JCheckBox checkBox = new JCheckBox(servicio.getNombreServicio() + " - Costo $" + servicio.getPrecio());
+            checkBox.setActionCommand(String.valueOf(servicio.getId()));
+            if (seleccionados.contains(servicio.getId())) {
+                checkBox.setSelected(true);
+                costoTotal += servicio.getPrecio();
+            }
+            checkBox.addActionListener(e -> actualizarCosto(checkBox, servicio.getPrecio()));
             checkBoxes.add(checkBox);
             serviciosPanel.add(checkBox);
         }
@@ -59,9 +72,14 @@ public class ServiciosExtras extends JFrame {
 
         panel.add(centerPanel, BorderLayout.CENTER);
 
+        // Panel de botones
         JPanel botonesPanel = new JPanel();
         botonesPanel.setLayout(new FlowLayout());
         botonesPanel.setBackground(new Color(100, 149, 237));
+
+        lblCostoTotal = new JLabel("Costo Total: $" + costoTotal);
+        lblCostoTotal.setFont(new Font("Arial", Font.BOLD, 16));
+        botonesPanel.add(lblCostoTotal);
 
         JButton btnCancelar = new JButton("Cancelar");
         JButton btnLimpiar = new JButton("Limpiar");
@@ -74,27 +92,22 @@ public class ServiciosExtras extends JFrame {
         panel.add(botonesPanel, BorderLayout.SOUTH);
         add(panel);
 
-        btnContinuar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                List<ServicioExtraDTO> seleccionados = getServiciosSeleccionados();
-                mostrarSeleccionados(seleccionados);
-            }
+        // Acción del botón Continuar
+        btnContinuar.addActionListener(e -> {
+            List<ServicioExtraDTO> seleccionadosList = getServiciosSeleccionados();
+            mostrarSeleccionados(seleccionadosList);
         });
-        btnLimpiar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                limpiarSeleccion();
-            }
-        });
-    
+
+        // Acción del botón Limpiar
+        btnLimpiar.addActionListener(e -> limpiarSeleccion());
     }
 
     public List<ServicioExtraDTO> getServiciosSeleccionados() {
         List<ServicioExtraDTO> seleccionados = new ArrayList<>();
-        for (int i = 0; i < checkBoxes.size(); i++) {
-            if (checkBoxes.get(i).isSelected()) {
-                seleccionados.add(servicios.get(i));
+        for (JCheckBox checkBox : checkBoxes) {
+            if (checkBox.isSelected()) {
+                long id = Long.parseLong(checkBox.getActionCommand());
+                seleccionados.add(serviciosExtras.get(id));
             }
         }
         return seleccionados;
@@ -103,14 +116,27 @@ public class ServiciosExtras extends JFrame {
     private void mostrarSeleccionados(List<ServicioExtraDTO> seleccionados) {
         StringBuilder mensaje = new StringBuilder("Servicios seleccionados:\n");
         for (ServicioExtraDTO servicio : seleccionados) {
-            mensaje.append(servicio.getNombreServicio()).append(" - $").append(servicio.getPrecio()).append("\n");
+            mensaje.append(servicio.getNombreServicio()).append(" - Costo $").append(servicio.getPrecio()).append("\n");
         }
         JOptionPane.showMessageDialog(this, mensaje.toString(), "Selección de Servicios", JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
+    private void actualizarCosto(JCheckBox checkBox, double precio) {
+        if (checkBox.isSelected()) {
+            costoTotal += precio;
+        } else {
+            costoTotal -= precio;
+        }
+        lblCostoTotal.setText("Costo Total: $" + costoTotal);
+    }
+
     private void limpiarSeleccion() {
         for (JCheckBox checkBox : checkBoxes) {
-            checkBox.setSelected(false);
+            if (checkBox.isSelected()) {
+                checkBox.setSelected(false);
+            }
         }
+        costoTotal = 0;
+        lblCostoTotal.setText("Costo Total: $" + costoTotal);
     }
 }

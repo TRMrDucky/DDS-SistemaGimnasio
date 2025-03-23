@@ -5,6 +5,7 @@
 package implementaciones;
 
 import clasesmock.Cliente;
+import clasesmock.ServicioExtra;
 import com.subsistemacompramembresia.IManejadorComprasMembresias;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
@@ -27,6 +28,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     private int keyCliente;
     private LinkedHashMap<Integer, Cliente> listaClientes;
+    private LinkedHashMap<Integer, ServicioExtra> serviciosExtras;
 
     @Override
     public ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) throws RegistroClienteException {
@@ -65,7 +67,15 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
                 "vapo23@gmail.com", "6441385760", 2));
         listaClientes.put(3, new Cliente("Alondra Lizeth", "Aviles",
                 "pedro.sola@hotmail.com", "6442878593", 3));
+        serviciosExtras = new LinkedHashMap<>();
+        serviciosExtras.put(1, new ServicioExtra(1, "Entrenador", 150));
+        serviciosExtras.put(2, new ServicioExtra(2, "Plan Alimenticio", 150));
+        serviciosExtras.put(3, new ServicioExtra(3, "Clases de yoga (Lu, Mi, Vi 6-7:30 AM)", 100));
+        serviciosExtras.put(4, new ServicioExtra(4, "Spinning (Ma, Ju 6-7:30 AM)", 50));
+        serviciosExtras.put(5, new ServicioExtra(5, "Masaje relajante", 200));
+        serviciosExtras.put(6, new ServicioExtra(6, "Asesoría Nutricional", 180));
     }
+    
 
     private boolean validarFormatoCorreo(String email) {
         Pattern patronEmail = Pattern.compile(
@@ -93,6 +103,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
         return listaClientes;
     }
     
+    @Override
     public List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono) {
     // Validar que los parámetros no sean null
     if (nombre == null || numeroTelefono == null) {
