@@ -23,5 +23,5 @@ public interface IManejadorComprasMembresias {
     public abstract List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono);
     
     
-    public abstract LinkedHashMap<Integer, Cliente> getListaClientes();
+     public abstract List<Cliente> getListaClientes(); 
 }
