@@ -8,58 +8,61 @@ package com.sistemagimnasiopresentacion;
  *
  * @author Ramón Zamudio
  */
+import com.subsistemacompramembresia.IManejadorComprasMembresias;
 import dtos.ServicioExtraDTO;
+import implementaciones.ManejadorComprasMembresias;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ServiciosExtras extends JFrame {
+    private IManejadorComprasMembresias subsistema;
     private List<JCheckBox> checkBoxes;
     private LinkedHashMap<Long, ServicioExtraDTO> serviciosExtras;
     private double costoTotal;
     private JLabel lblCostoTotal;
+    
 
-    public ServiciosExtras(LinkedHashMap<Long, ServicioExtraDTO> serviciosExtras, List<ServicioExtraDTO> seleccionados) {
-        this.serviciosExtras = serviciosExtras;
+    public ServiciosExtras( List<ServicioExtraDTO> seleccionados) {
+        subsistema = new ManejadorComprasMembresias();
+        serviciosExtras = subsistema.obtenerServiciosExtrasDTO();
         this.costoTotal = 0.0;
+        this.checkBoxes = new ArrayList<>();
         setTitle("Servicios Extras");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // Panel principal
         JPanel panel = new JPanel();
         panel.setBackground(new Color(100, 149, 237));
         panel.setLayout(new BorderLayout());
 
-        // Título
         JLabel lblTitulo = new JLabel("Servicios Extras", SwingConstants.CENTER);
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 24));
         lblTitulo.setForeground(Color.MAGENTA);
         panel.add(lblTitulo, BorderLayout.NORTH);
 
-        // Panel de servicios con scroll
         JPanel serviciosPanel = new JPanel();
         serviciosPanel.setLayout(new GridLayout(0, 1, 10, 10));
         serviciosPanel.setBackground(new Color(100, 149, 237));
 
-        checkBoxes = new ArrayList<>();
         for (ServicioExtraDTO servicio : serviciosExtras.values()) {
             JCheckBox checkBox = new JCheckBox(servicio.getNombreServicio() + " - Costo $" + servicio.getPrecio());
             checkBox.setActionCommand(String.valueOf(servicio.getId()));
-            if (seleccionados.contains(servicio.getId())) {
+
+            // Verificar si el ID del servicio está en la lista de seleccionados
+            if (seleccionados.stream().anyMatch(s -> s.getId() == servicio.getId())) {
                 checkBox.setSelected(true);
                 costoTotal += servicio.getPrecio();
             }
-            checkBox.addActionListener(e -> actualizarCosto(checkBox, servicio.getPrecio()));
-            checkBoxes.add(checkBox);
-            serviciosPanel.add(checkBox);
-        }
+
+        checkBox.addActionListener(e -> actualizarCosto(checkBox, servicio.getPrecio()));
+        checkBoxes.add(checkBox);
+        serviciosPanel.add(checkBox);
+}
 
         JScrollPane scrollPane = new JScrollPane(serviciosPanel);
         scrollPane.setPreferredSize(new Dimension(300, 200));
@@ -72,7 +75,6 @@ public class ServiciosExtras extends JFrame {
 
         panel.add(centerPanel, BorderLayout.CENTER);
 
-        // Panel de botones
         JPanel botonesPanel = new JPanel();
         botonesPanel.setLayout(new FlowLayout());
         botonesPanel.setBackground(new Color(100, 149, 237));
@@ -92,13 +94,11 @@ public class ServiciosExtras extends JFrame {
         panel.add(botonesPanel, BorderLayout.SOUTH);
         add(panel);
 
-        // Acción del botón Continuar
         btnContinuar.addActionListener(e -> {
             List<ServicioExtraDTO> seleccionadosList = getServiciosSeleccionados();
             mostrarSeleccionados(seleccionadosList);
         });
 
-        // Acción del botón Limpiar
         btnLimpiar.addActionListener(e -> limpiarSeleccion());
     }
 
