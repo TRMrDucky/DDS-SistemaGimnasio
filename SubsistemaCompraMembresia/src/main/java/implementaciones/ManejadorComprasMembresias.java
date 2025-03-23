@@ -103,6 +103,17 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
         return listaClientes;
     }
     
+    public List<ClienteRegistradoDTO> obtenerTodosClientes() {
+        return listaClientes.values().stream()
+                .map(cliente -> new ClienteRegistradoDTO(
+                        cliente.getNombres(),
+                        cliente.getApellidos(),
+                        cliente.getEmail(),
+                        cliente.getNumeroTelefono(),
+                        cliente.getId()))
+                .collect(Collectors.toList());
+    }
+    
     @Override
     public List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono) {
     // Validar que los parámetros no sean null
