@@ -1,3 +1,4 @@
+clasesmock\ServicioExtra.class
 implementaciones\ManejadorComprasMembresias.class
 clasesmock\Cliente.class
 com\subsistemacompramembresia\IManejadorComprasMembresias.class

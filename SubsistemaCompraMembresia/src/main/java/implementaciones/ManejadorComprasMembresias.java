@@ -10,6 +10,7 @@ import com.subsistemacompramembresia.IManejadorComprasMembresias;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
 import excepciones.RegistroClienteException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -102,8 +103,8 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     public LinkedHashMap getListaClientes(){
         return listaClientes;
     }
-   
     
+
     @Override
     public List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono) {
     // Validar que los parámetros no sean null
@@ -127,8 +128,12 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
                     cliente.getId()))
             .collect(Collectors.toList());
 }
-
+    
+    
+    
 }
+
+
     
 
 
