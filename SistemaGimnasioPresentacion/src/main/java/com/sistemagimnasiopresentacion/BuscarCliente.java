@@ -4,6 +4,7 @@
  */
 package com.sistemagimnasiopresentacion;
 
+import clasesmock.Cliente;
 import com.subsistemacompramembresia.IManejadorComprasMembresias;
 import dtos.ClienteRegistradoDTO;
 import implementaciones.ManejadorComprasMembresias;
@@ -24,82 +25,83 @@ import javax.swing.SwingUtilities;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Jose
  */
+
 public class BuscarCliente extends JFrame {
-    private JTextField txtNombre;
-    private JTextField txtTelefono;
-    private JButton btnBuscar;
-    
+
+    private JTextField txtBusqueda;
+    private JTable tablaClientes;
+    private DefaultTableModel modeloTabla;
+    private JButton btnRegistrar;
     private IManejadorComprasMembresias subsistema;
 
     public BuscarCliente() {
-        setTitle("Búsqueda de Cliente");
-        setSize(400, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        this.subsistema = new ManejadorComprasMembresias(); // Inicialización
         
-        subsistema = new ManejadorComprasMembresias(); // Inicialización
+        setTitle("Búsqueda de Cliente");
+        setSize(500, 300);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(3, 2));
+        // Campo de búsqueda
+        txtBusqueda = new JTextField();
+        txtBusqueda.setToolTipText("Escriba el nombre del cliente...");
+        add(txtBusqueda, BorderLayout.NORTH);
 
-        panel.add(new JLabel("Nombre:"));
-        txtNombre = new JTextField();
-        panel.add(txtNombre);
+        // Tabla para mostrar clientes
+        modeloTabla = new DefaultTableModel(new String[]{"ID", "Nombre", "Teléfono", "Correo"}, 0);
+        tablaClientes = new JTable(modeloTabla);
+        add(new JScrollPane(tablaClientes), BorderLayout.CENTER);
 
-        panel.add(new JLabel("Teléfono:"));
-        txtTelefono = new JTextField();
-        panel.add(txtTelefono);
+        // Botón de registro
+        btnRegistrar = new JButton("Registrar Cliente");
+        add(btnRegistrar, BorderLayout.SOUTH);
 
-        btnBuscar = new JButton("Buscar");
-        panel.add(btnBuscar);
+        // Cargar todos los clientes al inicio
+        actualizarTabla(subsistema.getListaClientes().values().stream().toList());
 
-        add(panel, BorderLayout.CENTER);
-
-        btnBuscar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                buscarCliente();
+        // Evento de búsqueda en vivo
+        txtBusqueda.addKeyListener(new KeyAdapter() {
+         
+            public void keyReleased(KeyEvent e) {
+                String nombre = txtBusqueda.getText().trim().toLowerCase();
+                actualizarTabla(subsistema.getListaClientes().values().stream()
+                    .filter(cliente -> cliente.getNombres().toLowerCase().contains(nombre))
+                    .collect(Collectors.toList()));
             }
+        });
+
+        // Evento del botón para registrar cliente
+        btnRegistrar.addActionListener(e -> {
+            ControlNavegacionCompraMembresia controlNavegacion = new ControlNavegacionCompraMembresia();
+            controlNavegacion.openFormRegistrarCliente();
         });
     }
 
-    private void buscarCliente() {
-        String nombre = txtNombre.getText().trim();
-        String telefono = txtTelefono.getText().trim();
-
-        if (nombre.isEmpty() || telefono.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar nombre y teléfono.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (!telefono.matches("\\d{10}")) {
-            JOptionPane.showMessageDialog(this, "El teléfono debe tener 10 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        List<ClienteRegistradoDTO> clientes = subsistema.buscarCliente(nombre, telefono);
-
-        if (!clientes.isEmpty()) {
-            // Mostrar los resultados
-            StringBuilder mensaje = new StringBuilder("Clientes encontrados:\n");
-            for (ClienteRegistradoDTO cliente : clientes) {
-                mensaje.append("Nombre: ").append(cliente.getNombre()).append("\n")
-                       .append("Teléfono: ").append(cliente.getNumeroTelefono()).append("\n")
-                       .append("Correo: ").append(cliente.getEmail()).append("\n\n");
-            }
-            JOptionPane.showMessageDialog(this, mensaje.toString(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Cliente no encontrado.", "Información", JOptionPane.INFORMATION_MESSAGE);
+    private void actualizarTabla(List<Cliente> clientes) {
+        modeloTabla.setRowCount(0); // Limpiar la tabla
+        for (Cliente cliente : clientes) {
+            modeloTabla.addRow(new Object[]{
+                cliente.getId(),
+                cliente.getNombres(),
+                cliente.getNumeroTelefono(),
+                cliente.getEmail()
+            });
         }
     }
 }
+
 
 
 
