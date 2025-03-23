@@ -102,17 +102,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     public LinkedHashMap getListaClientes(){
         return listaClientes;
     }
-    
-    public List<ClienteRegistradoDTO> obtenerTodosClientes() {
-        return listaClientes.values().stream()
-                .map(cliente -> new ClienteRegistradoDTO(
-                        cliente.getNombres(),
-                        cliente.getApellidos(),
-                        cliente.getEmail(),
-                        cliente.getNumeroTelefono(),
-                        cliente.getId()))
-                .collect(Collectors.toList());
-    }
+   
     
     @Override
     public List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono) {
