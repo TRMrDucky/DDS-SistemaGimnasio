@@ -4,13 +4,15 @@
  */
 package com.sistemagimnasiopresentacion;
 
+import com.subsistemacompramembresia.IManejadorComprasMembresias;
+
 /**
  *
  * @author 52644
  */
 public class ControlNavegacionCompraMembresia {
-    public void openFormRegistrarCliente(){
-        RegistrarCliente rc = new RegistrarCliente();
+    public void openFormRegistrarCliente(IManejadorComprasMembresias subsistema){
+        RegistrarCliente rc = new RegistrarCliente(subsistema);
         rc.setVisible(true);
     }
     

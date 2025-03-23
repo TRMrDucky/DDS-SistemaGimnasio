@@ -19,14 +19,21 @@ import javax.swing.JOptionPane;
  */
 public class RegistrarCliente extends javax.swing.JFrame {
 
-    private IManejadorComprasMembresias subsistema;
+    private final IManejadorComprasMembresias subsistema;
 
     /**
      * Creates new form RegistrarUsuario
      */
-    public RegistrarCliente() {
+    public RegistrarCliente(IManejadorComprasMembresias subsistema) {
+        this.subsistema = subsistema;
         initComponents();
-        subsistema = new ManejadorComprasMembresias();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+    }
+    
+    public RegistrarCliente(){
+        this(new ManejadorComprasMembresias());
     }
 
     /**
@@ -223,7 +230,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
             campoApellidos.setText(null);
             campoEmail.setText(null);
             campoNumeroTelefono.setText(null);
-            
+
         } catch (RegistroClienteException ex) {
             Logger.getLogger(RegistrarCliente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR",
@@ -232,7 +239,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
 
         
         //Aqui se debe llamar a ControlNavegacionCompraMembresia y pasar como parametro 
-        //ClienteRegistradoDTO
+        //ClienteRegistradoDTO y Subsistema
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -271,7 +278,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new RegistrarCliente().setVisible(true);
-            }
+    }
         });
     }
 
