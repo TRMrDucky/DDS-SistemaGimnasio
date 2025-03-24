@@ -20,4 +20,9 @@ public class ControlNavegacionCompraMembresia {
        BuscarCliente bc = new BuscarCliente();
        bc.setVisible(true);
    }
+
+		public void seleccionarMembresia(IManejadorComprasMembresias subsistema){
+			SeleccionarMembresia sm = new SeleccionarMembresia(subsistema);
+			sm.setVisible(true);
+ }
 }
