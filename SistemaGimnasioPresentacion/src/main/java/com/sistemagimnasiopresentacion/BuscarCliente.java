@@ -49,10 +49,11 @@ public class BuscarCliente extends JFrame {
     private DefaultTableModel modeloTabla;
     private JButton btnRegistrar;
     private IManejadorComprasMembresias subsistema;
+			private IManejadorComprasMembresias subsistema;
 
-    public BuscarCliente() {
+    public BuscarCliente(IManejadorComprasMembresias subsistema) {
   
-        this.subsistema = new ManejadorComprasMembresias();
+        this.subsistema = subsistema;
 
         setTitle("Búsqueda de Cliente");
         setSize(500, 300);
