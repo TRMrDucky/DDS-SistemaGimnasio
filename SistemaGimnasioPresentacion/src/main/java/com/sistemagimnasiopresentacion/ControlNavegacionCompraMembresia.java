@@ -16,8 +16,8 @@ public class ControlNavegacionCompraMembresia {
         rc.setVisible(true);
     }
     
-   public void openFormBuscarCliente(){
-       BuscarCliente bc = new BuscarCliente();
+   public void openFormBuscarCliente(IManejadorComprasMembresias subsistema){
+       BuscarCliente bc = new BuscarCliente(subsistema);
        bc.setVisible(true);
    }
 
