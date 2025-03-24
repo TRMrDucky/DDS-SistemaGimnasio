@@ -4,6 +4,8 @@
  */
 package dtos;
 
+import java.util.List;
+
 /**
  *
  * @author Ramón Zamudio
@@ -11,6 +13,7 @@ package dtos;
 public class TipoMembresiaDTO {
     private String tipoMembresia;
     private double precio;
+        private List<ServicioExtraDTO> serviciosextras;
 
     public TipoMembresiaDTO() {
     }
@@ -35,5 +38,21 @@ public class TipoMembresiaDTO {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
+    public TipoMembresiaDTO(String tipoMembresia, double precio, List<ServicioExtraDTO> serviciosextras) {
+        this.tipoMembresia = tipoMembresia;
+        this.precio = precio;
+        this.serviciosextras = serviciosextras;
+    }
+
+    public List<ServicioExtraDTO> getServiciosextras() {
+        return serviciosextras;
+    }
+
+    public void setServiciosextras(List<ServicioExtraDTO> serviciosextras) {
+        this.serviciosextras = serviciosextras;
+    }
+    
+    
     
 }

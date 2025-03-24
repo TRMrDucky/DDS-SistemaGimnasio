@@ -10,6 +10,7 @@ import com.subsistemacompramembresia.IManejadorComprasMembresias;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
 import dtos.ServicioExtraDTO;
+import dtos.TipoMembresiaDTO;
 import excepciones.RegistroClienteException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,6 +32,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     private int keyCliente;
     private LinkedHashMap<Integer, Cliente> listaClientes;
     private LinkedHashMap<Integer, ServicioExtra> serviciosExtras;
+    private LinkedHashMap<Integer, TipoMembresiaDTO> tiposMembresia;
 
     @Override
     public ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) throws RegistroClienteException {
@@ -76,6 +78,25 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
         serviciosExtras.put(4, new ServicioExtra(4, "Spinning (Ma, Ju 6-7:30 AM)", 50));
         serviciosExtras.put(5, new ServicioExtra(5, "Masaje relajante", 200));
         serviciosExtras.put(6, new ServicioExtra(6, "Asesoría Nutricional", 180));
+        
+        
+         List<ServicioExtraDTO> servicios= new ArrayList();
+         tiposMembresia = new LinkedHashMap<>();
+         servicios.add(new ServicioExtraDTO(1, "Entrenador", 150));
+
+
+        
+        
+        tiposMembresia.put(1, new TipoMembresiaDTO("Day Pass", 15));
+         tiposMembresia.put(2, new TipoMembresiaDTO("7 dias", 105, servicios));
+        
+        tiposMembresia.put(3, new TipoMembresiaDTO("10 dias", 150, servicios));
+        
+        tiposMembresia.put(4, new TipoMembresiaDTO("15 dias", 225, servicios));
+        
+        tiposMembresia.put(5, new TipoMembresiaDTO("Mensual", 300));
+        
+        tiposMembresia.put(6, new TipoMembresiaDTO("Por visita", 13));
     }
     
 
@@ -105,6 +126,9 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
         return listaClientes;
     }
     
+    public LinkedHashMap<Integer, TipoMembresiaDTO> getTiposMembresia() {
+        return tiposMembresia;
+    }
 
     @Override
     public List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono) {

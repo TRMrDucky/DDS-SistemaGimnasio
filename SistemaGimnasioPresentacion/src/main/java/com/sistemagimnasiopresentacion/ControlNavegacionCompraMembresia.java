@@ -25,4 +25,11 @@ public class ControlNavegacionCompraMembresia {
 			SeleccionarMembresia sm = new SeleccionarMembresia(subsistema);
 			sm.setVisible(true);
  }
+                
+                
+   public void openFormSeleccionarMembresia(IManejadorComprasMembresias subsistema){
+       SeleccionarMembresia em= new SeleccionarMembresia(subsistema);
+       em.setVisible(true);
+       
+   }
 }
