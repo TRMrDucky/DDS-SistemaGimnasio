@@ -88,12 +88,12 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
         
         
         tiposMembresia.put(1, new TipoMembresiaDTO("Day Pass", 15));
-         tiposMembresia.put(2, new TipoMembresiaDTO("7 dias", 105, servicios));
-        
+        tiposMembresia.put(2, new TipoMembresiaDTO("7 dias", 105, servicios));
+
         tiposMembresia.put(3, new TipoMembresiaDTO("10 dias", 150, servicios));
-        
+
         tiposMembresia.put(4, new TipoMembresiaDTO("15 dias", 225, servicios));
-        
+
         tiposMembresia.put(5, new TipoMembresiaDTO("Mensual", 300));
         
         tiposMembresia.put(6, new TipoMembresiaDTO("Por visita", 13));

@@ -1,9 +1,7 @@
-     /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
-
 package com.sistemagimnasiopresentacion;
 
 import clasesmock.Cliente;
@@ -23,7 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
- import javax.swing.*;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,17 +40,16 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Jose
  */
-
 public class BuscarCliente extends JFrame {
+
     private JTextField txtBusqueda;
     private JTable tablaClientes;
     private DefaultTableModel modeloTabla;
     private JButton btnRegistrar;
     private IManejadorComprasMembresias subsistema;
-			private IManejadorComprasMembresias subsistema;
 
     public BuscarCliente(IManejadorComprasMembresias subsistema) {
-  
+
         this.subsistema = subsistema;
 
         setTitle("Búsqueda de Cliente");
@@ -84,8 +81,8 @@ public class BuscarCliente extends JFrame {
             public void keyReleased(KeyEvent e) {
                 String nombre = txtBusqueda.getText().trim().toLowerCase();
                 actualizarTabla(subsistema.getListaClientes().values().stream()
-                    .filter(cliente -> cliente.getNombres().toLowerCase().contains(nombre))
-                    .collect(Collectors.toList()));
+                        .filter(cliente -> cliente.getNombres().toLowerCase().contains(nombre))
+                        .collect(Collectors.toList()));
             }
         });
 
@@ -109,15 +106,5 @@ public class BuscarCliente extends JFrame {
         }
     }
 
-    // prueba
-    public static void main(String[] args) {
-        
-        SwingUtilities.invokeLater(() -> {
-           
-            BuscarCliente buscarClienteFrame = new BuscarCliente();
-            buscarClienteFrame.setVisible(true);
-        });
-    }
+  
 }
-
-
