@@ -2,4 +2,5 @@ clasesmock\ServicioExtra.class
 implementaciones\ManejadorComprasMembresias.class
 clasesmock\Cliente.class
 com\subsistemacompramembresia\IManejadorComprasMembresias.class
+clasesmock\Membresia.class
 excepciones\RegistroClienteException.class

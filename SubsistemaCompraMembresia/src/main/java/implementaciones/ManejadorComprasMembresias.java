@@ -15,6 +15,7 @@ import excepciones.RegistroClienteException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -30,9 +31,9 @@ import java.util.stream.Collectors;
 public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     private int keyCliente;
-    private LinkedHashMap<Integer, Cliente> listaClientes;
-    private LinkedHashMap<Integer, ServicioExtra> serviciosExtras;
-    private LinkedHashMap<Integer, TipoMembresiaDTO> tiposMembresia;
+    private LinkedList<Cliente> listaClientes;
+    private LinkedList<ServicioExtra> serviciosExtras;
+    private LinkedList<TipoMembresiaDTO> tiposMembresia;
 
     @Override
     public ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) throws RegistroClienteException {
