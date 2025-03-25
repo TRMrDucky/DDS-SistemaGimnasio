@@ -9,25 +9,26 @@ package com.sistemagimnasiopresentacion;
  * @author Ramón Zamudio
  */
 import com.subsistemacompramembresia.IManejadorComprasMembresias;
+import dtos.ClienteRegConMembDTO;
 import dtos.ServicioExtraDTO;
 import implementaciones.ManejadorComprasMembresias;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ServiciosExtras extends JFrame {
     private IManejadorComprasMembresias subsistema;
     private List<JCheckBox> checkBoxes;
-    private LinkedHashMap<Long, ServicioExtraDTO> serviciosExtras;
+    private LinkedList<ServicioExtraDTO> serviciosExtras;
     private double costoTotal;
     private JLabel lblCostoTotal;
-    
 
-    public ServiciosExtras(List<ServicioExtraDTO> seleccionados) {
-        subsistema = new ManejadorComprasMembresias();
-        serviciosExtras = subsistema.obtenerServiciosExtrasDTO();
+    public ServiciosExtras(IManejadorComprasMembresias subsistema, ClienteRegConMembDTO cliente) {
+        this.subsistema = subsistema;
+        this.serviciosExtras = subsistema.obtenerServiciosExtrasDTO();
         this.costoTotal = 0.0;
         this.checkBoxes = new ArrayList<>();
         setTitle("Servicios Extras");
@@ -49,20 +50,19 @@ public class ServiciosExtras extends JFrame {
         serviciosPanel.setLayout(new GridLayout(0, 1, 10, 10));
         serviciosPanel.setBackground(new Color(100, 149, 237));
 
-        for (ServicioExtraDTO servicio : serviciosExtras.values()) {
+        for (ServicioExtraDTO servicio : serviciosExtras) {
             JCheckBox checkBox = new JCheckBox(servicio.getNombreServicio() + " - Costo $" + servicio.getPrecio());
             checkBox.setActionCommand(String.valueOf(servicio.getId()));
 
-            // Verificar si el ID del servicio está en la lista de seleccionados
-            if (seleccionados.stream().anyMatch(s -> s.getId() == servicio.getId())) {
+            if (cliente.getServicios().contains(servicio.getId())) {
                 checkBox.setSelected(true);
                 costoTotal += servicio.getPrecio();
             }
 
-        checkBox.addActionListener(e -> actualizarCosto(checkBox, servicio.getPrecio()));
-        checkBoxes.add(checkBox);
-        serviciosPanel.add(checkBox);
-}
+            checkBox.addActionListener(e -> actualizarCosto(checkBox, servicio.getPrecio()));
+            checkBoxes.add(checkBox);
+            serviciosPanel.add(checkBox);
+        }
 
         JScrollPane scrollPane = new JScrollPane(serviciosPanel);
         scrollPane.setPreferredSize(new Dimension(300, 200));
@@ -103,13 +103,17 @@ public class ServiciosExtras extends JFrame {
     }
 
     public List<ServicioExtraDTO> getServiciosSeleccionados() {
-        List<ServicioExtraDTO> seleccionados = new ArrayList<>();
+        List<ServicioExtraDTO> seleccionados = new LinkedList<>();
         for (JCheckBox checkBox : checkBoxes) {
             if (checkBox.isSelected()) {
                 long id = Long.parseLong(checkBox.getActionCommand());
-                seleccionados.add(serviciosExtras.get(id));
+                seleccionados.add(serviciosExtras.stream()
+                        .filter(servicio -> servicio.getId() == id)
+                        .findFirst()
+                        .orElse(null));
             }
         }
+        seleccionados.removeIf(s -> s == null);
         return seleccionados;
     }
 

@@ -153,7 +153,7 @@ public class SeleccionarMembresia extends javax.swing.JFrame {
             serviciosExtras = new ArrayList<>();
         }
 
-        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
+        ServiciosExtras se = new ServiciosExtras();
         se.setVisible(true);
 
     }//GEN-LAST:event_MEMB6ActionPerformed

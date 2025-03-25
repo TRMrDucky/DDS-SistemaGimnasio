@@ -4,6 +4,8 @@
  */
 package com.sistemagimnasiopresentacion;
 
+import com.subsistemacompramembresia.IManejadorComprasMembresias;
+import dtos.ClienteRegConMembDTO;
 import dtos.ServicioExtraDTO;
 import implementaciones.ManejadorComprasMembresias;
 import java.util.ArrayList;
@@ -21,18 +23,9 @@ public class PruebaServiciosExtra {
      * @param args the command line arguments
      */
    public static void main(String[] args) {
-       ManejadorComprasMembresias mane = new ManejadorComprasMembresias();
-       
-       LinkedHashMap<Long, ServicioExtraDTO> mapa = mane.obtenerServiciosExtrasDTO();
-       List<ServicioExtraDTO> serviciosSeleccionados = new ArrayList<>();
-       if (mapa.containsKey(1L)) {
-            serviciosSeleccionados.add(mapa.get(1L));
-        }
-        if (mapa.containsKey(3L)) {
-            serviciosSeleccionados.add(mapa.get(3L));
-        }
-       
-        new ServiciosExtras(serviciosSeleccionados).setVisible(true);
+       IManejadorComprasMembresias mane = new ManejadorComprasMembresias();
+       ClienteRegConMembDTO cliente = new ClienteRegConMembDTO("mensual", 150, null, null);
+        new ServiciosExtras(mane, cliente).setVisible(true);
         
     }
     

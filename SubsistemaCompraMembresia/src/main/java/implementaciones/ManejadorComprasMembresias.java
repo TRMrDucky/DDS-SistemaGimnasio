@@ -156,17 +156,15 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 }
 
     @Override
-    public LinkedList<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
-    return serviciosExtras.entrySet().stream()
-            .collect(Collectors.toMap(
-                    entry -> entry.getKey().longValue(), // Convertir la clave de Integer a Long
-                    entry -> new ServicioExtraDTO(entry.getValue().getId(), 
-                                                  entry.getValue().getNombreServicio(), 
-                                                  entry.getValue().getPrecio()),
-                    (oldValue, newValue) -> oldValue, // Manejo de colisiones (no debería haber)
-                    LinkedHashMap::new // Especificar que queremos un LinkedHashMap
-            ));
+   public LinkedList<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
+    return serviciosExtras.stream()
+            .map(servicio -> new ServicioExtraDTO(
+                    servicio.getId(),
+                    servicio.getNombreServicio(),
+                    servicio.getPrecio()))
+            .collect(Collectors.toCollection(LinkedList::new)); // Convertimos directamente a LinkedList
 }
+
     
     
     
