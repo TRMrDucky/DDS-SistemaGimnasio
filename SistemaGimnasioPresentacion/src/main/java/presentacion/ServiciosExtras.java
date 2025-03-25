@@ -18,6 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ServiciosExtras extends JFrame {
+
     private IManejadorComprasMembresias subsistema;
     private List<JCheckBox> checkBoxes;
     private LinkedList<ServicioExtraDTO> serviciosExtras;
@@ -100,7 +101,7 @@ public class ServiciosExtras extends JFrame {
         btnLimpiar.addActionListener(e -> limpiarSeleccion());
     }
 
-    ServiciosExtras() {
+    public ServiciosExtras() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

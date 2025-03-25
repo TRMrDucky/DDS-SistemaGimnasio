@@ -31,8 +31,8 @@ public class RegistrarCliente extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }
-    
-    public RegistrarCliente(){
+
+    public RegistrarCliente() {
         this(new ManejadorComprasMembresias());
     }
 
@@ -222,27 +222,19 @@ public class RegistrarCliente extends javax.swing.JFrame {
         RegistrarClienteDTO registrarClienteDTO = new RegistrarClienteDTO(nombres, apellidos,
                 email, numeroTelefono);
 
-        try {
-            ClienteRegistradoDTO clienteRegistrado = subsistema.registrarCliente(registrarClienteDTO);
-            JOptionPane.showMessageDialog(this, clienteRegistrado.toString(),
-                    "Aviso", JOptionPane.INFORMATION_MESSAGE);
-            campoNombres.setText(null);
-            campoApellidos.setText(null);
-            campoEmail.setText(null);
-            campoNumeroTelefono.setText(null);
+        ControlNavegacionCompraMembresia CNCM = new ControlNavegacionCompraMembresia();
 
-        } catch (RegistroClienteException ex) {
-            Logger.getLogger(RegistrarCliente.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR",
-                    JOptionPane.WARNING_MESSAGE);
-        }
+        CNCM.registrarCliente(subsistema, registrarClienteDTO);
+        campoNombres.setText(null);
+        campoApellidos.setText(null);
+        campoEmail.setText(null);
+        campoNumeroTelefono.setText(null);
 
-        
         //Aqui se debe llamar a ControlNavegacionCompraMembresia y pasar como parametro 
         //ClienteRegistradoDTO y Subsistema
-//       ControlNavegacionCompraMembresia control= new ControlNavegacionCompraMembresia();
-       ControlNavegacionCompraMembresia.openFormSeleccionarMembresia(subsistema);
-       
+        //ControlNavegacionCompraMembresia control= new ControlNavegacionCompraMembresia();
+        ControlNavegacionCompraMembresia.openFormSeleccionarMembresia(subsistema);
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -281,7 +273,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new RegistrarCliente().setVisible(true);
-    }
+            }
         });
     }
 
