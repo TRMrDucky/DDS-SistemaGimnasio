@@ -21,6 +21,7 @@ public class ClienteRegConMembDTO {
         this.tipoMembresia = tipoMembresia;
         this.precio = precio;
         this.servicios = servicios;
+        this.idCliente = idCliente;
     }
 
     public String getTipoMembresia() {
