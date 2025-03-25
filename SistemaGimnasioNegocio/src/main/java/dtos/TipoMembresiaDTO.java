@@ -45,7 +45,7 @@ public class TipoMembresiaDTO {
         this.serviciosextras = serviciosextras;
     }
 
-    public List<ServicioExtraDTO> getServiciosextras() {
+    public List<ServicioExtraDTO> getServiciosExtras() {
         return serviciosextras;
     }
 

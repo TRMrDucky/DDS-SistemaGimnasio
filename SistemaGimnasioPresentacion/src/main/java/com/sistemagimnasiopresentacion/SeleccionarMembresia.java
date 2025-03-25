@@ -17,25 +17,21 @@ import java.util.List;
  * @author janethcristinagalvanquinonez
  */
 public class SeleccionarMembresia extends javax.swing.JFrame {
-    
-     private final IManejadorComprasMembresias subsistema;
-     
+
+    private final IManejadorComprasMembresias subsistema;
 
     /**
      * Creates new form SeleccionarMembresia
      */
     public SeleccionarMembresia(IManejadorComprasMembresias subsistema) {
-         this.subsistema = subsistema;
+        this.subsistema = subsistema;
         initComponents();
     }
-    
-     public SeleccionarMembresia() {
-         this.subsistema = new ManejadorComprasMembresias();
-         initComponents();
+
+    public SeleccionarMembresia() {
+        this.subsistema = new ManejadorComprasMembresias();
+        initComponents();
     }
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -150,86 +146,80 @@ public class SeleccionarMembresia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MEMB6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MEMB6ActionPerformed
- TipoMembresiaDTO tipoMembresia = subsistema.getTiposMembresia().get(6); 
-    List<ServicioExtraDTO> serviciosExtras = tipoMembresia.getServiciosextras(); 
-    
-    if (serviciosExtras == null) {
-        serviciosExtras = new ArrayList<>();
-    }
-    
-   
-    ServiciosExtras se = new ServiciosExtras(serviciosExtras);
-    se.setVisible(true);
-            
+        TipoMembresiaDTO tipoMembresia = subsistema.getTiposMembresia().get(6);
+        List<ServicioExtraDTO> serviciosExtras = tipoMembresia.getServiciosExtras();
+
+        if (serviciosExtras == null) {
+            serviciosExtras = new ArrayList<>();
+        }
+
+        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
+        se.setVisible(true);
+
     }//GEN-LAST:event_MEMB6ActionPerformed
 
     private void MEMB5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MEMB5ActionPerformed
- TipoMembresiaDTO tipoMembresia = subsistema.getTiposMembresia().get(5); 
-    List<ServicioExtraDTO> serviciosExtras = tipoMembresia.getServiciosextras(); 
-    
-    if (serviciosExtras == null) {
-        serviciosExtras = new ArrayList<>();
-    }
-    
-   
-    ServiciosExtras se = new ServiciosExtras(serviciosExtras);
-    se.setVisible(true);
-           
+        TipoMembresiaDTO tipoMembresia = subsistema.getTiposMembresia().get(5);
+        List<ServicioExtraDTO> serviciosExtras = tipoMembresia.getServiciosExtras();
+
+        if (serviciosExtras == null) {
+            serviciosExtras = new ArrayList<>();
+        }
+
+        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
+        se.setVisible(true);
+
     }//GEN-LAST:event_MEMB5ActionPerformed
 
     private void MEMB4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MEMB4ActionPerformed
- TipoMembresiaDTO tipoMembresia = subsistema.getTiposMembresia().get(4); 
-    List<ServicioExtraDTO> serviciosExtras = tipoMembresia.getServiciosextras(); 
-    
-    if (serviciosExtras == null) {
-        serviciosExtras = new ArrayList<>();
-    }
-    
-   
-    ServiciosExtras se = new ServiciosExtras(serviciosExtras);
-    se.setVisible(true);
-           
+        TipoMembresiaDTO tipoMembresia = subsistema.getTiposMembresia().get(4);
+        List<ServicioExtraDTO> serviciosExtras = tipoMembresia.getServiciosExtras();
+
+        if (serviciosExtras == null) {
+            serviciosExtras = new ArrayList<>();
+        }
+
+        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
+        se.setVisible(true);
+
     }//GEN-LAST:event_MEMB4ActionPerformed
 
     private void MEMB3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MEMB3ActionPerformed
- TipoMembresiaDTO tipoMembresia = subsistema.getTiposMembresia().get(3); 
-    List<ServicioExtraDTO> serviciosExtras = tipoMembresia.getServiciosextras(); 
-    
-    if (serviciosExtras == null) {
-        serviciosExtras = new ArrayList<>();
-    }
-    
-   
-    ServiciosExtras se = new ServiciosExtras(serviciosExtras);
-    se.setVisible(true);
-           
+        TipoMembresiaDTO tipoMembresia = subsistema.getTiposMembresia().get(3);
+        List<ServicioExtraDTO> serviciosExtras = tipoMembresia.getServiciosExtras();
+
+        if (serviciosExtras == null) {
+            serviciosExtras = new ArrayList<>();
+        }
+
+        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
+        se.setVisible(true);
+
     }//GEN-LAST:event_MEMB3ActionPerformed
 
     private void memb2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memb2ActionPerformed
- TipoMembresiaDTO tipoMembresia = subsistema.getTiposMembresia().get(2); 
-    List<ServicioExtraDTO> serviciosExtras = tipoMembresia.getServiciosextras(); 
-    
-    if (serviciosExtras == null) {
-        serviciosExtras = new ArrayList<>();
-    }
-    
-   
-    ServiciosExtras se = new ServiciosExtras(serviciosExtras);
-    se.setVisible(true);
-           
+        TipoMembresiaDTO tipoMembresia = subsistema.getTiposMembresia().get(2);
+        List<ServicioExtraDTO> serviciosExtras = tipoMembresia.getServiciosExtras();
+
+        if (serviciosExtras == null) {
+            serviciosExtras = new ArrayList<>();
+        }
+
+        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
+        se.setVisible(true);
+
     }//GEN-LAST:event_memb2ActionPerformed
 
     private void MEMB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MEMB1ActionPerformed
-    TipoMembresiaDTO tipoMembresia = subsistema.getTiposMembresia().get(1); 
-    List<ServicioExtraDTO> serviciosExtras = tipoMembresia.getServiciosextras(); 
-    
-    if (serviciosExtras == null) {
-        serviciosExtras = new ArrayList<>();
-    }
-    
-   
-    ServiciosExtras se = new ServiciosExtras(serviciosExtras);
-    se.setVisible(true);
+        TipoMembresiaDTO tipoMembresia = subsistema.getTiposMembresia().get(1);
+        List<ServicioExtraDTO> serviciosExtras = tipoMembresia.getServiciosExtras();
+
+        if (serviciosExtras == null) {
+            serviciosExtras = new ArrayList<>();
+        }
+
+        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
+        se.setVisible(true);
     }//GEN-LAST:event_MEMB1ActionPerformed
 
     /**
