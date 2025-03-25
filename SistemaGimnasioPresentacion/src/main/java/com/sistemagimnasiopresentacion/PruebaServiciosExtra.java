@@ -24,7 +24,7 @@ public class PruebaServiciosExtra {
      */
    public static void main(String[] args) {
        IManejadorComprasMembresias mane = new ManejadorComprasMembresias();
-       ClienteRegConMembDTO cliente = new ClienteRegConMembDTO("mensual", 150, null, null);
+       ClienteRegConMembDTO cliente = new ClienteRegConMembDTO("entrenador", 150, null, 1);
         new ServiciosExtras(mane, cliente).setVisible(true);
         
     }
