@@ -12,6 +12,7 @@ import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
 import excepciones.RegistroClienteException;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -24,9 +25,9 @@ public interface IManejadorComprasMembresias {
 
     public abstract List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono);
 
-    public abstract LinkedHashMap<Integer, Cliente> getListaClientes();
+    public abstract LinkedList<Cliente> getListaClientes();
 
-    public LinkedHashMap<Long, ServicioExtraDTO> obtenerServiciosExtrasDTO();
+    public abstract LinkedList<ServicioExtraDTO> obtenerServiciosExtrasDTO();
 
-    public abstract LinkedHashMap<Integer, TipoMembresiaDTO> getTiposMembresia();
+    public abstract LinkedList<TipoMembresiaDTO> getTiposMembresia();
 }

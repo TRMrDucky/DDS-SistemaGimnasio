@@ -58,46 +58,46 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
         Cliente cliente = new Cliente(registrarClienteDTO.getNombre(), registrarClienteDTO.getApellidos(),
                 registrarClienteDTO.getEmail(), registrarClienteDTO.getNumeroTelefono(), keyCliente);
 
-        listaClientes.put(keyCliente, cliente);
+        listaClientes.add(cliente);
 
         return new ClienteRegistradoDTO(registrarClienteDTO.getNombre(), registrarClienteDTO.getApellidos(),
                 registrarClienteDTO.getEmail(), registrarClienteDTO.getNumeroTelefono(), keyCliente);
     }
 
     public ManejadorComprasMembresias() {
-        listaClientes = new LinkedHashMap<>();
-        listaClientes.put(1, new Cliente("Pedro", "Sola Meza",
+        listaClientes = new LinkedList<>();
+        listaClientes.add(1, new Cliente("Pedro", "Sola Meza",
                 "pedro.sola@hotmail.com", "6441348130", 1));
-        listaClientes.put(2, new Cliente("Vanessa Paola", "Solano Lopez",
+        listaClientes.add(2, new Cliente("Vanessa Paola", "Solano Lopez",
                 "vapo23@gmail.com", "6441385760", 2));
-        listaClientes.put(3, new Cliente("Alondra Lizeth", "Aviles",
+        listaClientes.add(3, new Cliente("Alondra Lizeth", "Aviles",
                 "pedro.sola@hotmail.com", "6442878593", 3));
-        serviciosExtras = new LinkedHashMap<>();
-        serviciosExtras.put(1, new ServicioExtra(1, "Entrenador", 150));
-        serviciosExtras.put(2, new ServicioExtra(2, "Plan Alimenticio", 150));
-        serviciosExtras.put(3, new ServicioExtra(3, "Clases de yoga (Lu, Mi, Vi 6-7:30 AM)", 100));
-        serviciosExtras.put(4, new ServicioExtra(4, "Spinning (Ma, Ju 6-7:30 AM)", 50));
-        serviciosExtras.put(5, new ServicioExtra(5, "Masaje relajante", 200));
-        serviciosExtras.put(6, new ServicioExtra(6, "Asesoría Nutricional", 180));
+        serviciosExtras = new LinkedList<>();
+        serviciosExtras.add(1, new ServicioExtra(1, "Entrenador", 150));
+        serviciosExtras.add(2, new ServicioExtra(2, "Plan Alimenticio", 150));
+        serviciosExtras.add(3, new ServicioExtra(3, "Clases de yoga (Lu, Mi, Vi 6-7:30 AM)", 100));
+        serviciosExtras.add(4, new ServicioExtra(4, "Spinning (Ma, Ju 6-7:30 AM)", 50));
+        serviciosExtras.add(5, new ServicioExtra(5, "Masaje relajante", 200));
+        serviciosExtras.add(6, new ServicioExtra(6, "Asesoría Nutricional", 180));
         
         
          List<ServicioExtraDTO> servicios= new ArrayList();
-         tiposMembresia = new LinkedHashMap<>();
+         tiposMembresia = new LinkedList<>();
          servicios.add(new ServicioExtraDTO(1, "Entrenador", 150));
 
 
         
         
-        tiposMembresia.put(1, new TipoMembresiaDTO("Day Pass", 15));
-        tiposMembresia.put(2, new TipoMembresiaDTO("7 dias", 105, servicios));
+        tiposMembresia.add(1, new TipoMembresiaDTO("Day Pass", 15));
+        tiposMembresia.add(2, new TipoMembresiaDTO("7 dias", 105, servicios));
 
-        tiposMembresia.put(3, new TipoMembresiaDTO("10 dias", 150, servicios));
+        tiposMembresia.add(3, new TipoMembresiaDTO("10 dias", 150, servicios));
 
-        tiposMembresia.put(4, new TipoMembresiaDTO("15 dias", 225, servicios));
+        tiposMembresia.add(4, new TipoMembresiaDTO("15 dias", 225, servicios));
 
-        tiposMembresia.put(5, new TipoMembresiaDTO("Mensual", 300));
+        tiposMembresia.add(5, new TipoMembresiaDTO("Mensual", 300));
         
-        tiposMembresia.put(6, new TipoMembresiaDTO("Por visita", 13));
+        tiposMembresia.add(6, new TipoMembresiaDTO("Por visita", 13));
     }
     
 
@@ -110,24 +110,24 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     }
 
     private boolean validarRegistroCorreo(String email) {
-        return listaClientes.values().stream()
+        return listaClientes.stream()
                 .map(Cliente::getEmail)
                 .filter(Objects::nonNull)
                 .anyMatch(e -> e.equalsIgnoreCase(email));
     }
 
     private boolean validarRegistroNumeroTelefonico(String numeroTelefono) {
-        return listaClientes.values().stream()
+        return listaClientes.stream()
                 .map(Cliente::getNumeroTelefono)
                 .filter(Objects::nonNull)
                 .anyMatch(e -> e.equals(numeroTelefono));
     }
     
-    public LinkedHashMap getListaClientes(){
+    public LinkedList getListaClientes(){
         return listaClientes;
     }
     
-    public LinkedHashMap<Integer, TipoMembresiaDTO> getTiposMembresia() {
+    public LinkedList<TipoMembresiaDTO> getTiposMembresia() {
         return tiposMembresia;
     }
 
@@ -142,7 +142,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     String nombreLimpio = nombre.trim().toLowerCase();
     String telefonoLimpio = numeroTelefono.trim();
 
-    return listaClientes.values().stream()
+    return listaClientes.stream()
             .filter(cliente -> cliente.getNombres() != null && cliente.getNumeroTelefono() != null)
             .filter(cliente -> cliente.getNombres().toLowerCase().contains(nombreLimpio) && 
                                cliente.getNumeroTelefono().equals(telefonoLimpio))
@@ -156,7 +156,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 }
 
     @Override
-    public LinkedHashMap<Long, ServicioExtraDTO> obtenerServiciosExtrasDTO() {
+    public LinkedList<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
     return serviciosExtras.entrySet().stream()
             .collect(Collectors.toMap(
                     entry -> entry.getKey().longValue(), // Convertir la clave de Integer a Long
