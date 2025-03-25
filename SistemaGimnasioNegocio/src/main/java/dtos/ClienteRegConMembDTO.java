@@ -14,15 +14,14 @@ public class ClienteRegConMembDTO {
     private String tipoMembresia;
     private double precio;
     private List<String>servicios;
-    private String nombre;
-    private String apellidos;
-    private String email;
-    private String numeroTelefono;
+    private int idCliente;
+    
     //todo
-    public ClienteRegConMembDTO(String tipoMembresia, double precio, List<String> servicios, ClienteRegistradoDTO clienteRegistrado) {
+    public ClienteRegConMembDTO(String tipoMembresia, double precio, List<String> servicios, int idCliente) {
         this.tipoMembresia = tipoMembresia;
         this.precio = precio;
         this.servicios = servicios;
+        this.idCliente = idCliente;
     }
 
     public String getTipoMembresia() {

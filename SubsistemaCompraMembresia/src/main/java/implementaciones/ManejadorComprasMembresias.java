@@ -80,7 +80,6 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
         serviciosExtras.add(5, new ServicioExtra(5, "Masaje relajante", 200));
         serviciosExtras.add(6, new ServicioExtra(6, "Asesoría Nutricional", 180));
         
-        
          List<ServicioExtraDTO> servicios= new ArrayList();
          tiposMembresia = new LinkedList<>();
          servicios.add(new ServicioExtraDTO(1, "Entrenador", 150));
