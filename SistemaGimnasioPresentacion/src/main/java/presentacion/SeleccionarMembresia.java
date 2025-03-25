@@ -25,6 +25,7 @@ public class SeleccionarMembresia extends javax.swing.JFrame {
     public SeleccionarMembresia(IManejadorComprasMembresias subsistema) {
         this.subsistema = subsistema;
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     public SeleccionarMembresia(){

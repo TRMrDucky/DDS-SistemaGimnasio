@@ -29,14 +29,13 @@ import java.util.stream.Collectors;
  */
 public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
-    private int keyCliente;
+    private int keyCliente = 4;
     private LinkedList<Cliente> listaClientes;
     private LinkedList<ServicioExtra> serviciosExtras;
     private LinkedList<TipoMembresiaDTO> tiposMembresia;
 
     @Override
     public ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) throws RegistroClienteException {
-        keyCliente = (int) Math.random()*100000;
         if (registrarClienteDTO.getNombre().isBlank() || registrarClienteDTO.getApellidos().isBlank()
                 || registrarClienteDTO.getEmail().isBlank() || registrarClienteDTO.getNumeroTelefono().isBlank()) {
             throw new RegistroClienteException("Ningun campo puede permanecer vacio");
@@ -58,9 +57,13 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
                 registrarClienteDTO.getEmail(), registrarClienteDTO.getNumeroTelefono(), keyCliente);
 
         listaClientes.add(cliente);
-
-        return new ClienteRegistradoDTO(registrarClienteDTO.getNombre(), registrarClienteDTO.getApellidos(),
+        
+        ClienteRegistradoDTO clienteRegistrado = new ClienteRegistradoDTO(registrarClienteDTO.getNombre(), registrarClienteDTO.getApellidos(),
                 registrarClienteDTO.getEmail(), registrarClienteDTO.getNumeroTelefono(), keyCliente);
+        
+        keyCliente++;
+        
+        return clienteRegistrado;
     }
 
     public ManejadorComprasMembresias() {

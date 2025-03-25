@@ -36,7 +36,7 @@ public class BuscarCliente extends JFrame {
 
         setTitle("Búsqueda de Cliente");
         setSize(500, 300);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
