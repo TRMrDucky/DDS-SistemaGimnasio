@@ -73,14 +73,14 @@ public class BuscarCliente extends JFrame {
         add(btnRegistrar, BorderLayout.SOUTH);
 
         // Cargar todos los clientes al inicio
-        actualizarTabla(subsistema.getListaClientes().values().stream().toList());
+        actualizarTabla(subsistema.getListaClientes().stream().toList());
 
         //  búsqueda en vivo
         txtBusqueda.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 String nombre = txtBusqueda.getText().trim().toLowerCase();
-                actualizarTabla(subsistema.getListaClientes().values().stream()
+                actualizarTabla(subsistema.getListaClientes().stream()
                         .filter(cliente -> cliente.getNombres().toLowerCase().contains(nombre))
                         .collect(Collectors.toList()));
             }

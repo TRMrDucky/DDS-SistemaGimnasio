@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
- */
+
 package implementaciones;
 
 import clasesmock.Cliente;
@@ -33,7 +30,7 @@ public class ManejadorComprasMembresiasTest {
         RegistrarClienteDTO rcDTO = new RegistrarClienteDTO("Jose", "Reynaga", "vv65454524@gmail.com", "6541254298");
         mcm.registrarCliente(rcDTO);
 
-        assertEquals(4, mcm.getListaClientes().values().size());
+        assertEquals(4, mcm.getListaClientes().size());
 
     }
 

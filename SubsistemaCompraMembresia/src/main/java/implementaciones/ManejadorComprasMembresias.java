@@ -66,19 +66,19 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     public ManejadorComprasMembresias() {
         listaClientes = new LinkedList<>();
-        listaClientes.add(1, new Cliente("Pedro", "Sola Meza",
+        listaClientes.add(new Cliente("Pedro", "Sola Meza",
                 "pedro.sola@hotmail.com", "6441348130", 1));
-        listaClientes.add(2, new Cliente("Vanessa Paola", "Solano Lopez",
+        listaClientes.add(new Cliente("Vanessa Paola", "Solano Lopez",
                 "vapo23@gmail.com", "6441385760", 2));
-        listaClientes.add(3, new Cliente("Alondra Lizeth", "Aviles",
+        listaClientes.add(new Cliente("Alondra Lizeth", "Aviles",
                 "pedro.sola@hotmail.com", "6442878593", 3));
         serviciosExtras = new LinkedList<>();
-        serviciosExtras.add(1, new ServicioExtra(1, "Entrenador", 150));
-        serviciosExtras.add(2, new ServicioExtra(2, "Plan Alimenticio", 150));
-        serviciosExtras.add(3, new ServicioExtra(3, "Clases de yoga (Lu, Mi, Vi 6-7:30 AM)", 100));
-        serviciosExtras.add(4, new ServicioExtra(4, "Spinning (Ma, Ju 6-7:30 AM)", 50));
-        serviciosExtras.add(5, new ServicioExtra(5, "Masaje relajante", 200));
-        serviciosExtras.add(6, new ServicioExtra(6, "Asesoría Nutricional", 180));
+        serviciosExtras.add(new ServicioExtra(1, "Entrenador", 150));
+        serviciosExtras.add(new ServicioExtra(2, "Plan Alimenticio", 150));
+        serviciosExtras.add(new ServicioExtra(3, "Clases de yoga (Lu, Mi, Vi 6-7:30 AM)", 100));
+        serviciosExtras.add(new ServicioExtra(4, "Spinning (Ma, Ju 6-7:30 AM)", 50));
+        serviciosExtras.add(new ServicioExtra(5, "Masaje relajante", 200));
+        serviciosExtras.add(new ServicioExtra(6, "Asesoría Nutricional", 180));
         
          List<ServicioExtraDTO> servicios= new ArrayList();
          tiposMembresia = new LinkedList<>();
@@ -87,16 +87,16 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
         
         
-        tiposMembresia.add(1, new TipoMembresiaDTO("Day Pass", 15));
-        tiposMembresia.add(2, new TipoMembresiaDTO("7 dias", 105, servicios));
+        tiposMembresia.add(new TipoMembresiaDTO("Day Pass", 15));
+        tiposMembresia.add(new TipoMembresiaDTO("7 dias", 105, servicios));
 
-        tiposMembresia.add(3, new TipoMembresiaDTO("10 dias", 150, servicios));
+        tiposMembresia.add(new TipoMembresiaDTO("10 dias", 150, servicios));
 
-        tiposMembresia.add(4, new TipoMembresiaDTO("15 dias", 225, servicios));
+        tiposMembresia.add(new TipoMembresiaDTO("15 dias", 225, servicios));
 
-        tiposMembresia.add(5, new TipoMembresiaDTO("Mensual", 300));
+        tiposMembresia.add(new TipoMembresiaDTO("Mensual", 300));
         
-        tiposMembresia.add(6, new TipoMembresiaDTO("Por visita", 13));
+        tiposMembresia.add(new TipoMembresiaDTO("Por visita", 13));
     }
     
 

@@ -28,11 +28,10 @@ public class SeleccionarMembresia extends javax.swing.JFrame {
         initComponents();
     }
 
-    public SeleccionarMembresia() {
-        this.subsistema = new ManejadorComprasMembresias();
-        initComponents();
+    public SeleccionarMembresia(){
+        this(new ManejadorComprasMembresias());
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -166,8 +165,8 @@ public class SeleccionarMembresia extends javax.swing.JFrame {
             serviciosExtras = new ArrayList<>();
         }
 
-        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
-        se.setVisible(true);
+//        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
+//        se.setVisible(true);
 
     }//GEN-LAST:event_MEMB5ActionPerformed
 
@@ -179,8 +178,8 @@ public class SeleccionarMembresia extends javax.swing.JFrame {
             serviciosExtras = new ArrayList<>();
         }
 
-        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
-        se.setVisible(true);
+//        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
+//        se.setVisible(true);
 
     }//GEN-LAST:event_MEMB4ActionPerformed
 
@@ -192,8 +191,8 @@ public class SeleccionarMembresia extends javax.swing.JFrame {
             serviciosExtras = new ArrayList<>();
         }
 
-        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
-        se.setVisible(true);
+//        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
+//        se.setVisible(true);
 
     }//GEN-LAST:event_MEMB3ActionPerformed
 
@@ -205,8 +204,8 @@ public class SeleccionarMembresia extends javax.swing.JFrame {
             serviciosExtras = new ArrayList<>();
         }
 
-        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
-        se.setVisible(true);
+//        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
+//        se.setVisible(true);
 
     }//GEN-LAST:event_memb2ActionPerformed
 
@@ -218,8 +217,8 @@ public class SeleccionarMembresia extends javax.swing.JFrame {
             serviciosExtras = new ArrayList<>();
         }
 
-        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
-        se.setVisible(true);
+//        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
+//        se.setVisible(true);
     }//GEN-LAST:event_MEMB1ActionPerformed
 
     /**

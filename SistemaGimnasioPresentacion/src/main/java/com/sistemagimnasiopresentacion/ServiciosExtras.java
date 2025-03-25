@@ -102,6 +102,10 @@ public class ServiciosExtras extends JFrame {
         btnLimpiar.addActionListener(e -> limpiarSeleccion());
     }
 
+    ServiciosExtras() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public List<ServicioExtraDTO> getServiciosSeleccionados() {
         List<ServicioExtraDTO> seleccionados = new LinkedList<>();
         for (JCheckBox checkBox : checkBoxes) {
