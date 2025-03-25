@@ -2,20 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.sistemagimnasiopresentacion;
+package presentacion;
 
 /**
  *
  * @author Ramón Zamudio
  */
-import com.subsistemacompramembresia.IManejadorComprasMembresias;
 import dtos.ClienteRegConMembDTO;
 import dtos.ServicioExtraDTO;
-import implementaciones.ManejadorComprasMembresias;
+import interfaces.IManejadorComprasMembresias;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 

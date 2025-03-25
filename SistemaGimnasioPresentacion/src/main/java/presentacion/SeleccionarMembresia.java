@@ -2,13 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.sistemagimnasiopresentacion;
+package presentacion;
 
-import com.sistemagimnasiopresentacion.ServiciosExtras;
-import com.subsistemacompramembresia.IManejadorComprasMembresias;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
 import implementaciones.ManejadorComprasMembresias;
+import interfaces.IManejadorComprasMembresias;
 import java.util.ArrayList;
 import java.util.List;
 

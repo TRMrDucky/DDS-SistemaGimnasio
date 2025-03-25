@@ -6,15 +6,14 @@ package implementaciones;
 
 import clasesmock.Cliente;
 import clasesmock.ServicioExtra;
-import com.subsistemacompramembresia.IManejadorComprasMembresias;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
 import excepciones.RegistroClienteException;
+import interfaces.IManejadorComprasMembresias;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;

@@ -1,11 +1,10 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-package com.sistemagimnasiopresentacion;
+package presentacion;
 
-
-import com.subsistemacompramembresia.IManejadorComprasMembresias;
 import implementaciones.ManejadorComprasMembresias;
+import interfaces.IManejadorComprasMembresias;
 
 /**
  *

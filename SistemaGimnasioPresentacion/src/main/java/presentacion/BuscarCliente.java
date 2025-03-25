@@ -2,38 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.sistemagimnasiopresentacion;
+package presentacion;
 
 import clasesmock.Cliente;
-import com.subsistemacompramembresia.IManejadorComprasMembresias;
-import dtos.ClienteRegistradoDTO;
-import implementaciones.ManejadorComprasMembresias;
+import interfaces.IManejadorComprasMembresias;
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
