@@ -11,25 +11,25 @@ import com.subsistemacompramembresia.IManejadorComprasMembresias;
  * @author 52644
  */
 public class ControlNavegacionCompraMembresia {
-    public void openFormRegistrarCliente(IManejadorComprasMembresias subsistema){
+
+    public void openFormRegistrarCliente(IManejadorComprasMembresias subsistema) {
         RegistrarCliente rc = new RegistrarCliente(subsistema);
         rc.setVisible(true);
     }
-    
-   public void openFormBuscarCliente(IManejadorComprasMembresias subsistema){
-       BuscarCliente bc = new BuscarCliente(subsistema);
-       bc.setVisible(true);
-   }
 
-		public void seleccionarMembresia(IManejadorComprasMembresias subsistema){
-			SeleccionarMembresia sm = new SeleccionarMembresia(subsistema);
-			sm.setVisible(true);
- }
-                
-                
-   public void openFormSeleccionarMembresia(IManejadorComprasMembresias subsistema){
-       SeleccionarMembresia em= new SeleccionarMembresia(subsistema);
-       em.setVisible(true);
-       
-   }
+    public void openFormBuscarCliente(IManejadorComprasMembresias subsistema) {
+        BuscarCliente bc = new BuscarCliente(subsistema);
+        bc.setVisible(true);
+    }
+
+    public void seleccionarMembresia(IManejadorComprasMembresias subsistema) {
+        SeleccionarMembresia sm = new SeleccionarMembresia(subsistema);
+        sm.setVisible(true);
+    }
+
+    public void openFormSeleccionarMembresia(IManejadorComprasMembresias subsistema) {
+        SeleccionarMembresia em = new SeleccionarMembresia(subsistema);
+        em.setVisible(true);
+
+    }
 }
