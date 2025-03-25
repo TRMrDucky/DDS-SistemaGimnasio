@@ -12,7 +12,7 @@ import interfaces.IManejadorComprasMembresias;
  */
 public class ControlNavegacionCompraMembresia {
 
-    public void openFormRegistrarCliente(IManejadorComprasMembresias subsistema) {
+    public static void openFormRegistrarCliente(IManejadorComprasMembresias subsistema) {
         RegistrarCliente rc = new RegistrarCliente(subsistema);
         rc.setVisible(true);
     }
@@ -22,12 +22,12 @@ public class ControlNavegacionCompraMembresia {
         bc.setVisible(true);
     }
 
-    public void seleccionarMembresia(IManejadorComprasMembresias subsistema) {
+    public static void seleccionarMembresia(IManejadorComprasMembresias subsistema) {
         SeleccionarMembresia sm = new SeleccionarMembresia(subsistema);
         sm.setVisible(true);
     }
 
-    public void openFormSeleccionarMembresia(IManejadorComprasMembresias subsistema) {
+    public static void openFormSeleccionarMembresia(IManejadorComprasMembresias subsistema) {
         SeleccionarMembresia em = new SeleccionarMembresia(subsistema);
         em.setVisible(true);
 

@@ -70,8 +70,8 @@ public class BuscarCliente extends JFrame {
 
         //  botón para registrar cliente
         btnRegistrar.addActionListener(e -> {
-            ControlNavegacionCompraMembresia controlNavegacion = new ControlNavegacionCompraMembresia();
-            controlNavegacion.openFormRegistrarCliente(this.subsistema);
+//            ControlNavegacionCompraMembresia controlNavegacion = new ControlNavegacionCompraMembresia();
+            ControlNavegacionCompraMembresia.openFormRegistrarCliente(this.subsistema);
         });
     }
 

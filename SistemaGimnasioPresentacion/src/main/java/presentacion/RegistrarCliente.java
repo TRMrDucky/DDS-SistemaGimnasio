@@ -240,10 +240,8 @@ public class RegistrarCliente extends javax.swing.JFrame {
         
         //Aqui se debe llamar a ControlNavegacionCompraMembresia y pasar como parametro 
         //ClienteRegistradoDTO y Subsistema
-        
-           
-       ControlNavegacionCompraMembresia control= new ControlNavegacionCompraMembresia();
-       control.openFormSeleccionarMembresia(subsistema);
+//       ControlNavegacionCompraMembresia control= new ControlNavegacionCompraMembresia();
+       ControlNavegacionCompraMembresia.openFormSeleccionarMembresia(subsistema);
        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
