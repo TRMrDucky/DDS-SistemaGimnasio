@@ -20,14 +20,16 @@ import java.util.stream.Collectors;
 
 public class ServiciosExtras extends JFrame {
 
-    private IManejadorComprasMembresias subsistema;
+    private ControlManejadorComprasMembresias control;
     private List<JCheckBox> checkBoxes;
     private LinkedList<ServicioExtraDTO> serviciosExtras;
     private double costoTotal;
     private JLabel lblCostoTotal;
 
-    public ServiciosExtras(IManejadorComprasMembresias subsistema, ClienteRegConMembDTO cliente) {
-        this.subsistema = subsistema;
+    public ServiciosExtras(ControlNavegacionComprasMembresia control, ClienteRegConMembDTO cliente) {
+        this.control = control;
+        //Este método debe llamar al control, que dentro de sí tendrá un método que llame al
+//subsistema.
         this.serviciosExtras = subsistema.obtenerServiciosExtrasDTO();
         this.costoTotal = 0.0;
         this.checkBoxes = new ArrayList<>();
