@@ -28,16 +28,16 @@ public class ControlNavegacionCompraMembresia {
         rc.setVisible(true);
     }
 
-    public static void openFormBuscarCliente(IManejadorComprasMembresias subsistema) {
-        BuscarCliente bc = new BuscarCliente(subsistema);
+    public static void openFormBuscarCliente() {
+        BuscarCliente bc = new BuscarCliente(this);
         bc.setVisible(true);
     }
 
-    public static void seleccionarMembresia(IManejadorComprasMembresias subsistema) {
-        SeleccionarMembresia sm = new SeleccionarMembresia(subsistema);
-        sm.setVisible(true);
+    /*public void seleccionarMembresia(ClienteRegistradoDTO cliente) {
+        SeleccionarMembresia sm = new SeleccionarMembresia(this, cliente);
+       sm.setVisible(true);
     }
-
+*\
     public void openFormSeleccionarMembresia(ClienteRegistradoDTO clienteRegistradoDTO) {
         SeleccionarMembresia em = new SeleccionarMembresia(this, clienteRegistradoDTO);
         em.setVisible(true);
@@ -58,8 +58,8 @@ public class ControlNavegacionCompraMembresia {
         return null;
     }
     
-    public static void openFormServiciosExtra(IManejadorComprasMembresias subsistema,ClienteRegConMembDTO cliente){
-        ServiciosExtras se = new ServiciosExtras(subsistema, cliente);
+    public void openFormServiciosExtra(ClienteRegConMembDTO cliente){
+        ServiciosExtras se = new ServiciosExtras(this, cliente);
         se.setVisible(true);
     }
 
