@@ -7,8 +7,6 @@ package presentacion;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
 import excepciones.RegistroClienteException;
-import implementaciones.ManejadorComprasMembresias;
-import interfaces.IManejadorComprasMembresias;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
