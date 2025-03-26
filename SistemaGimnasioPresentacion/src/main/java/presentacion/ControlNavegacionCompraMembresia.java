@@ -44,8 +44,7 @@ public class ControlNavegacionCompraMembresia {
 
     }
 
-    public ClienteRegistradoDTO registrarCliente(IManejadorComprasMembresias subsistema,
-            RegistrarClienteDTO registrarClienteDTO) {
+    public ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) {
         try {
             ClienteRegistradoDTO clienteRegistradoDTO = subsistema.registrarCliente(registrarClienteDTO);
             JOptionPane.showMessageDialog(null, clienteRegistradoDTO.toString(),
