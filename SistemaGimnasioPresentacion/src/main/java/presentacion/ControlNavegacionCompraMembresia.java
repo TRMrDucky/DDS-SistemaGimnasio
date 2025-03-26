@@ -23,8 +23,8 @@ public class ControlNavegacionCompraMembresia {
     private IManejadorComprasMembresias subsistema;
 
 
-    public static void openFormRegistrarCliente(IManejadorComprasMembresias subsistema) {
-        RegistrarCliente rc = new RegistrarCliente(subsistema);
+    public static void openFormRegistrarCliente() {
+        RegistrarCliente rc = new RegistrarCliente(this);
         rc.setVisible(true);
     }
 
