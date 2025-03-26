@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
 import dtos.RegistrarClienteDTO;
@@ -53,5 +54,10 @@ public class ControlNavegacionCompraMembresia {
                     JOptionPane.WARNING_MESSAGE);
         }
         return null;
+    }
+    
+    public static void openFormServiciosExtra(IManejadorComprasMembresias subsistema,ClienteRegConMembDTO cliente){
+        ServiciosExtras se = new ServiciosExtras(subsistema, cliente);
+        se.setVisible(true);
     }
 }
