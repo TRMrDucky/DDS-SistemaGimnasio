@@ -17,13 +17,15 @@ import java.util.List;
  */
 public class SeleccionarMembresia extends javax.swing.JFrame {
 
-    private final IManejadorComprasMembresias subsistema;
+    private final ControlNavegacionComprasMembresias control;
+    private ClienteRegistradoDTO clienteRegistradoDTO;
 
     /**
      * Creates new form SeleccionarMembresia
      */
-    public SeleccionarMembresia(IManejadorComprasMembresias subsistema) {
-        this.subsistema = subsistema;
+    public SeleccionarMembresia(ControlNavegacionComprasMembresias control, ClienteRegistradoDTO cliente RegistradoDTO) {
+        this.control = control;
+        this.clienteRegistradoDTO = clienteRegistradoDTO;
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
