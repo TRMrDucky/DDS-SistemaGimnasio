@@ -38,8 +38,8 @@ public class ControlNavegacionCompraMembresia {
         sm.setVisible(true);
     }
 
-    public static void openFormSeleccionarMembresia(IManejadorComprasMembresias subsistema) {
-        SeleccionarMembresia em = new SeleccionarMembresia(subsistema);
+    public void openFormSeleccionarMembresia(ClienteRegistradoDTO clienteRegistradoDTO) {
+        SeleccionarMembresia em = new SeleccionarMembresia(this, clienteRegistradoDTO);
         em.setVisible(true);
 
     }
