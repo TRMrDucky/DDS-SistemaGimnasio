@@ -160,10 +160,10 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
    public LinkedList<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
     return serviciosExtras.stream()
             .map(servicio -> new ServicioExtraDTO(
-                    servicio.getId(),
+                    (int) servicio.getId(),
                     servicio.getNombreServicio(),
                     servicio.getPrecio()))
-            .collect(Collectors.toCollection(LinkedList::new)); // Convertimos directamente a LinkedList
+            .collect(Collectors.toCollection(LinkedList::new)); 
 }
 
     
