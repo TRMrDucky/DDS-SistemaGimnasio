@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import clasesmock.Cliente;
 import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
@@ -45,6 +46,12 @@ public class ControlNavegacionCompraMembresia {
         em.setVisible(true);
 
     }
+    
+
+        public List<Cliente> getListaClientes() {
+        return subsistema.obtenerListaClientes();
+    }
+
 
     public ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) {
         try {

@@ -28,9 +28,9 @@ public class BuscarCliente extends JFrame {
     private JTable tablaClientes;
     private DefaultTableModel modeloTabla;
     private JButton btnRegistrar;
-    private ControlNavegacionComprasSubsistema control;
+    private ControlNavegacionCompraMembresia control;
 
-    public BuscarCliente(ControlNavegacionComprasSubsistema control) {
+    public BuscarCliente(ControlNavegacionCompraMembresia control) {
 
         this.control = control;
 
@@ -55,14 +55,14 @@ public class BuscarCliente extends JFrame {
         add(btnRegistrar, BorderLayout.SOUTH);
 
         // Cargar todos los clientes al inicio
-        actualizarTabla(subsistema.getListaClientes().stream().toList());
+        actualizarTabla(control.getListaClientes());
 
         //  búsqueda en vivo
         txtBusqueda.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 String nombre = txtBusqueda.getText().trim().toLowerCase();
-                actualizarTabla(subsistema.getListaClientes().stream()
+                actualizarTabla(control.getListaClientes().stream()
                         .filter(cliente -> cliente.getNombres().toLowerCase().contains(nombre))
                         .collect(Collectors.toList()));
             }
@@ -86,6 +86,11 @@ public class BuscarCliente extends JFrame {
             });
         }
     }
-
-  //prueba commit
+ 
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia();
+            new BuscarCliente(control).setVisible(true);
+        });
+}
 }
