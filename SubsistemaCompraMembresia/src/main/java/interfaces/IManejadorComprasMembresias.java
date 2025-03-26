@@ -25,9 +25,9 @@ public interface IManejadorComprasMembresias {
 
     public abstract List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono);
 
-    public abstract LinkedList<Cliente> getListaClientes();
+    public abstract List<Cliente> getListaClientes();
 
-    public abstract LinkedList<ServicioExtraDTO> obtenerServiciosExtrasDTO();
+    public abstract List<ServicioExtraDTO> obtenerServiciosExtrasDTO();
 
-    public abstract LinkedList<TipoMembresiaDTO> getTiposMembresia();
+    public abstract List<TipoMembresiaDTO> getTiposMembresia();
 }

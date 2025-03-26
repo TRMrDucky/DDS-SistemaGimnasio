@@ -31,8 +31,8 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     private int keyCliente = 4;
     private LinkedList<Cliente> listaClientes;
-    private LinkedList<ServicioExtra> serviciosExtras;
-    private LinkedList<TipoMembresiaDTO> tiposMembresia;
+    private LinkedList<ServicioExtra> listaserviciosExtras;
+    private LinkedList<TipoMembresiaDTO> listaMembresias;
 
     @Override
     public ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) throws RegistroClienteException {
@@ -74,31 +74,31 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
                 "vapo23@gmail.com", "6441385760", 2));
         listaClientes.add(new Cliente("Alondra Lizeth", "Aviles",
                 "pedro.sola@hotmail.com", "6442878593", 3));
-        serviciosExtras = new LinkedList<>();
-        serviciosExtras.add(new ServicioExtra(1, "Entrenador", 150));
-        serviciosExtras.add(new ServicioExtra(2, "Plan Alimenticio", 150));
-        serviciosExtras.add(new ServicioExtra(3, "Clases de yoga (Lu, Mi, Vi 6-7:30 AM)", 100));
-        serviciosExtras.add(new ServicioExtra(4, "Spinning (Ma, Ju 6-7:30 AM)", 50));
-        serviciosExtras.add(new ServicioExtra(5, "Masaje relajante", 200));
-        serviciosExtras.add(new ServicioExtra(6, "Asesoría Nutricional", 180));
+        listaserviciosExtras = new LinkedList<>();
+        listaserviciosExtras.add(new ServicioExtra(1, "Entrenador", 150));
+        listaserviciosExtras.add(new ServicioExtra(2, "Plan Alimenticio", 150));
+        listaserviciosExtras.add(new ServicioExtra(3, "Clases de yoga (Lu, Mi, Vi 6-7:30 AM)", 100));
+        listaserviciosExtras.add(new ServicioExtra(4, "Spinning (Ma, Ju 6-7:30 AM)", 50));
+        listaserviciosExtras.add(new ServicioExtra(5, "Masaje relajante", 200));
+        listaserviciosExtras.add(new ServicioExtra(6, "Asesoría Nutricional", 180));
         
          List<ServicioExtraDTO> servicios= new ArrayList();
-         tiposMembresia = new LinkedList<>();
+         listaMembresias = new LinkedList<>();
          servicios.add(new ServicioExtraDTO(1, "Entrenador", 150));
 
 
         
         
-        tiposMembresia.add(new TipoMembresiaDTO("Day Pass", 15));
-        tiposMembresia.add(new TipoMembresiaDTO("7 dias", 105, servicios));
+        listaMembresias.add(new TipoMembresiaDTO("Day Pass", 15));
+        listaMembresias.add(new TipoMembresiaDTO("7 dias", 105, servicios));
 
-        tiposMembresia.add(new TipoMembresiaDTO("10 dias", 150, servicios));
+        listaMembresias.add(new TipoMembresiaDTO("10 dias", 150, servicios));
 
-        tiposMembresia.add(new TipoMembresiaDTO("15 dias", 225, servicios));
+        listaMembresias.add(new TipoMembresiaDTO("15 dias", 225, servicios));
 
-        tiposMembresia.add(new TipoMembresiaDTO("Mensual", 300));
+        listaMembresias.add(new TipoMembresiaDTO("Mensual", 300));
         
-        tiposMembresia.add(new TipoMembresiaDTO("Por visita", 13));
+        listaMembresias.add(new TipoMembresiaDTO("Por visita", 13));
     }
     
 
@@ -124,12 +124,14 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
                 .anyMatch(e -> e.equals(numeroTelefono));
     }
     
-    public LinkedList getListaClientes(){
+    @Override
+    public List getListaClientes(){
         return listaClientes;
     }
     
-    public LinkedList<TipoMembresiaDTO> getTiposMembresia() {
-        return tiposMembresia;
+    @Override
+    public List<TipoMembresiaDTO> getTiposMembresia() {
+        return listaMembresias;
     }
 
     @Override
@@ -158,7 +160,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     @Override
    public LinkedList<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
-    return serviciosExtras.stream()
+    return listaserviciosExtras.stream()
             .map(servicio -> new ServicioExtraDTO(
                     (int) servicio.getId(),
                     servicio.getNombreServicio(),
