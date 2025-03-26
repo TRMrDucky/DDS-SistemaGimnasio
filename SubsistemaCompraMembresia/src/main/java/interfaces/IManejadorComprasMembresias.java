@@ -30,4 +30,6 @@ public interface IManejadorComprasMembresias {
     public abstract List<ServicioExtraDTO> obtenerServiciosExtrasDTO();
 
     public abstract List<TipoMembresiaDTO> getTiposMembresia();
+    
+    public abstract List<Cliente> obtenerListaClientes();
 }

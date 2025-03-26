@@ -133,7 +133,12 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     public List<TipoMembresiaDTO> getTiposMembresia() {
         return listaMembresias;
     }
+    
+    public List<Cliente> obtenerListaClientes() {
+        return listaClientes;
+    }
 
+    
     @Override
     public List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono) {
     // Validar que los parámetros no sean null
