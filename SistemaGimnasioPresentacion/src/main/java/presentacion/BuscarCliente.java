@@ -88,5 +88,5 @@ public class BuscarCliente extends JFrame {
         }
     }
 
-  
+  //prueba commit
 }
