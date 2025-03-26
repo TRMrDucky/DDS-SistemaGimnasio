@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class ControlNavegacionCompraMembresia {
 				
- private IManejadorComprasMembresias subsistema;
+    private IManejadorComprasMembresias subsistema;
 
 
     public static void openFormRegistrarCliente(IManejadorComprasMembresias subsistema) {
@@ -64,7 +64,7 @@ public class ControlNavegacionCompraMembresia {
         se.setVisible(true);
     }
 
-public void setSubsistema(IManejadorComprasMembresias subsistema){
-	this.subsistema = subsistema;
-}
+    public void setSubsistema(IManejadorComprasMembresias subsistema){
+        this.subsistema = subsistema;
+    }
 }
