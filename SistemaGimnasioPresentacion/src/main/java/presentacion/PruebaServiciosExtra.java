@@ -4,9 +4,12 @@
  */
 package presentacion;
 
+import clasesmock.ServicioExtra;
 import dtos.ClienteRegConMembDTO;
+import dtos.ServicioExtraDTO;
 import implementaciones.ManejadorComprasMembresias;
 import interfaces.IManejadorComprasMembresias;
+import java.util.LinkedList;
 
 /**
  *
@@ -19,8 +22,11 @@ public class PruebaServiciosExtra {
      */
    public static void main(String[] args) {
        IManejadorComprasMembresias mane = new ManejadorComprasMembresias();
-       ClienteRegConMembDTO cliente = new ClienteRegConMembDTO("entrenador", 150, null, 1);
-        new ServiciosExtras(mane, cliente).setVisible(true);
+       LinkedList<ServicioExtraDTO> servicios = new LinkedList<>();
+       ServicioExtraDTO servicio = new ServicioExtraDTO(2, "Plan Alimenticio", 150);
+       servicios.add(servicio);
+       ClienteRegConMembDTO cliente = new ClienteRegConMembDTO("mensual", 150, servicios, 1);
+       new ServiciosExtras(mane, cliente).setVisible(true);
         
     }
     

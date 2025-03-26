@@ -16,6 +16,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ServiciosExtras extends JFrame {
 
@@ -49,11 +50,16 @@ public class ServiciosExtras extends JFrame {
         serviciosPanel.setLayout(new GridLayout(0, 1, 10, 10));
         serviciosPanel.setBackground(new Color(100, 149, 237));
 
+        LinkedList<Long> idsServiciosCliente = new LinkedList<>();
+        for (ServicioExtraDTO servicio : cliente.getServicios()) {
+            idsServiciosCliente.add(servicio.getId()); // Ahora usamos LinkedList<Long>
+        }
+
         for (ServicioExtraDTO servicio : serviciosExtras) {
             JCheckBox checkBox = new JCheckBox(servicio.getNombreServicio() + " - Costo $" + servicio.getPrecio());
             checkBox.setActionCommand(String.valueOf(servicio.getId()));
 
-            if (cliente.getServicios().contains(servicio.getId())) {
+            if (idsServiciosCliente.contains(servicio.getId())) { // Compara IDs correctamente
                 checkBox.setSelected(true);
                 costoTotal += servicio.getPrecio();
             }

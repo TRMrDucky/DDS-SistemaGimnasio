@@ -13,11 +13,11 @@ import java.util.List;
 public class ClienteRegConMembDTO {
     private String tipoMembresia;
     private double precio;
-    private List<String>servicios;
+    private List<ServicioExtraDTO>servicios;
     private int idCliente;
     
     //todo
-    public ClienteRegConMembDTO(String tipoMembresia, double precio, List<String> servicios, int idCliente) {
+    public ClienteRegConMembDTO(String tipoMembresia, double precio, List<ServicioExtraDTO> servicios, int idCliente) {
         this.tipoMembresia = tipoMembresia;
         this.precio = precio;
         this.servicios = servicios;
@@ -40,11 +40,11 @@ public class ClienteRegConMembDTO {
         this.precio = precio;
     }
 
-    public List<String> getServicios() {
+    public List<ServicioExtraDTO> getServicios() {
         return servicios;
     }
 
-    public void setServicios(List<String> servicios) {
+    public void setServicios(List<ServicioExtraDTO> servicios) {
         this.servicios = servicios;
     }
 
