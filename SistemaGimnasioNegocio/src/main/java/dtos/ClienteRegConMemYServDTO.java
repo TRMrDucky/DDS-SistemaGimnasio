@@ -8,16 +8,15 @@ import java.util.List;
 
 /**
  *
- * @author janethcristinagalvanquinonez
+ * @author Ramón Zamudio
  */
-public class ClienteRegConMembDTO {
+public class ClienteRegConMemYServDTO {
     private String tipoMembresia;
     private double precio;
     private List<ServicioExtraDTO>servicios;
     private int idCliente;
-    
-    //todo
-    public ClienteRegConMembDTO(String tipoMembresia, double precio, List<ServicioExtraDTO> servicios, int idCliente) {
+
+    public ClienteRegConMemYServDTO(String tipoMembresia, double precio, List<ServicioExtraDTO> servicios, int idCliente) {
         this.tipoMembresia = tipoMembresia;
         this.precio = precio;
         this.servicios = servicios;
@@ -28,37 +27,38 @@ public class ClienteRegConMembDTO {
         return tipoMembresia;
     }
 
-    public void setTipoMembresia(String tipoMembresia) {
-        this.tipoMembresia = tipoMembresia;
-    }
-
     public double getPrecio() {
         return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
     }
 
     public List<ServicioExtraDTO> getServicios() {
         return servicios;
     }
 
-    public void setServicios(List<ServicioExtraDTO> servicios) {
-        this.servicios = servicios;
-    }
-
     public int getIdCliente() {
         return idCliente;
     }
 
+    public void setTipoMembresia(String tipoMembresia) {
+        this.tipoMembresia = tipoMembresia;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public void setServicios(List<ServicioExtraDTO> servicios) {
+        this.servicios = servicios;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
     @Override
     public String toString() {
-        return "SeleccionarMembresiaDTO{" + "tipoMembresia=" + tipoMembresia + ", precio=" + precio + ", servicios=" + servicios + '}';
+        return "ClienteRegConMemYServ{" + "tipoMembresia=" + tipoMembresia + ", precio=" + precio + ", servicios=" + servicios + ", idCliente=" + idCliente + '}';
     }
     
     
-
 }
-
-

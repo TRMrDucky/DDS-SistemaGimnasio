@@ -8,8 +8,10 @@ import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
 import dtos.RegistrarClienteDTO;
+import dtos.ServicioExtraDTO;
 import excepciones.RegistroClienteException;
 import interfaces.IManejadorComprasMembresias;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -27,17 +29,17 @@ public class ControlNavegacionCompraMembresia {
         RegistrarCliente rc = new RegistrarCliente(this);
         rc.setVisible(true);
     }
-
+    
     public static void openFormBuscarCliente() {
         BuscarCliente bc = new BuscarCliente(this);
         bc.setVisible(true);
     }
 
-    /*public void seleccionarMembresia(ClienteRegistradoDTO cliente) {
+    public void seleccionarMembresia(ClienteRegistradoDTO cliente) {
         SeleccionarMembresia sm = new SeleccionarMembresia(this, cliente);
        sm.setVisible(true);
     }
-*\
+
     public void openFormSeleccionarMembresia(ClienteRegistradoDTO clienteRegistradoDTO) {
         SeleccionarMembresia em = new SeleccionarMembresia(this, clienteRegistradoDTO);
         em.setVisible(true);
@@ -65,5 +67,17 @@ public class ControlNavegacionCompraMembresia {
 
     public void setSubsistema(IManejadorComprasMembresias subsistema){
         this.subsistema = subsistema;
+    }
+
+    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO(){
+        return subsistema.obtenerServiciosExtrasDTO();
+    }
+    
+    public void mostrarServiciosSeleccionados(List<ServicioExtraDTO> seleccionados) {
+        StringBuilder mensaje = new StringBuilder("Servicios seleccionados:\n");
+        for (ServicioExtraDTO servicio : seleccionados) {
+            mensaje.append(servicio.getNombreServicio()).append(" - Costo $").append(servicio.getPrecio()).append("\n");
+        }
+        JOptionPane.showMessageDialog(null, mensaje.toString(), "Selección de Servicios", JOptionPane.INFORMATION_MESSAGE);
     }
 }
