@@ -19,13 +19,13 @@ import javax.swing.JOptionPane;
  */
 public class RegistrarCliente extends javax.swing.JFrame {
 
-    private final IManejadorComprasMembresias subsistema;
+    private final ControlNavegacionComprasMembresias control;
 
     /**
      * Creates new form RegistrarUsuario
      */
-    public RegistrarCliente(IManejadorComprasMembresias subsistema) {
-        this.subsistema = subsistema;
+    public RegistrarCliente(ControlNavegacionComprasMembresias control) {
+        this.control = control;
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -222,9 +222,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
         RegistrarClienteDTO registrarClienteDTO = new RegistrarClienteDTO(nombres, apellidos,
                 email, numeroTelefono);
 
-        ControlNavegacionCompraMembresia CNCM = new ControlNavegacionCompraMembresia();
-
-        CNCM.registrarCliente(subsistema, registrarClienteDTO);
+        ControlNavegacionComprasMembresias.registrarCliente(registrarClienteDTO);
         campoNombres.setText(null);
         campoApellidos.setText(null);
         campoEmail.setText(null);
