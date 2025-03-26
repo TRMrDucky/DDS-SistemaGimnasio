@@ -28,11 +28,11 @@ public class BuscarCliente extends JFrame {
     private JTable tablaClientes;
     private DefaultTableModel modeloTabla;
     private JButton btnRegistrar;
-    private IManejadorComprasMembresias subsistema;
+    private ControlNavegacionComprasSubsistema control;
 
-    public BuscarCliente(IManejadorComprasMembresias subsistema) {
+    public BuscarCliente(ControlNavegacionComprasSubsistema control) {
 
-        this.subsistema = subsistema;
+        this.control = control;
 
         setTitle("Búsqueda de Cliente");
         setSize(500, 300);
@@ -70,8 +70,7 @@ public class BuscarCliente extends JFrame {
 
         //  botón para registrar cliente
         btnRegistrar.addActionListener(e -> {
-//            ControlNavegacionCompraMembresia controlNavegacion = new ControlNavegacionCompraMembresia();
-            ControlNavegacionCompraMembresia.openFormRegistrarCliente(this.subsistema);
+        control.openFormRegistrarCliente();
         });
     }
 
