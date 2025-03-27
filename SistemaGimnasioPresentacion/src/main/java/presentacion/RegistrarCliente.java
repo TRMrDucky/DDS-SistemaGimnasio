@@ -12,7 +12,7 @@ import dtos.RegistrarClienteDTO;
  * @author 52644
  */
 public class RegistrarCliente extends javax.swing.JFrame {
-
+    
     private final ControlNavegacionCompraMembresia control;
 
     /**
@@ -205,7 +205,11 @@ public class RegistrarCliente extends javax.swing.JFrame {
     private void campoEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoEmailActionPerformed
-
+/**
+ * Registra un cliente con base a los parámetros recogidos desde
+ * los campos de texto. 
+ * @param evt 
+ */
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
         String nombres = campoNombres.getText();
@@ -228,9 +232,12 @@ public class RegistrarCliente extends javax.swing.JFrame {
         control.openFormSeleccionarMembresia(cliente);
 
     }//GEN-LAST:event_btnAceptarActionPerformed
-
+/**
+ * Cancela el llenado del formulario del registro de usuario y vuelve a la pantalla anterior
+ * @param evt 
+ */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        control.openFormBuscarCliente();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
