@@ -15,6 +15,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -25,29 +26,41 @@ import javax.swing.SwingConstants;
  */
 public class ResumenCompraFrame extends JFrame {
     private ControlNavegacionCompraMembresia control;
-    public ResumenCompraFrame(ControlNavegacionCompraMembresia control,ClienteRegConMemYServDTO cliente) {
-        
+    
+    public ResumenCompraFrame(ControlNavegacionCompraMembresia control, ClienteRegConMemYServDTO cliente) {
         this.control = control;
         
-        
         cargarFrame();
-        
         cargarNombreCliente(control.obtenerNombreCliente(cliente.getIdCliente()));
-        
         cargarTelefonoCliente(control.obtenerNumeroCliente(cliente.getIdCliente()));
-        
         cargarPanelServicios(cliente);
-
         cargarLabelTotal(cliente);
         
         JTextField txtTotalPagado = cargarLabelTotalPagado();
         
+        JLabel lblCambio = new JLabel("Cambio: ");
+        lblCambio.setBounds(350, 250, 100, 20);
+        add(lblCambio);
+
+        JTextField txtCambio = new JTextField();
+        txtCambio.setBounds(350, 270, 100, 25);
+        txtCambio.setEditable(false);
+        add(txtCambio);
+
         JButton btnPagar = new JButton("Pagar");
         btnPagar.setBounds(230, 300, 140, 40);
         btnPagar.setBackground(Color.GREEN);
         btnPagar.addActionListener(e -> {
-            control.mostrarPagoEnResumen(cliente, txtTotalPagado);
-            dispose();
+            double montoPagado;
+    try {
+        montoPagado = Double.parseDouble(txtTotalPagado.getText());
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "Ingrese un monto válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Llamar al controlador para procesar el pago
+    control.procesarPago(cliente, montoPagado); // 
         });
         add(btnPagar);
 
@@ -55,13 +68,13 @@ public class ResumenCompraFrame extends JFrame {
         btnVolver.setBounds(10, 10, 100, 30);
         btnVolver.addActionListener(e -> {
             control.openFormServiciosExtra(new ClienteRegConMembDTO(cliente.getTipoMembresia(),
-                    (double)cliente.getPrecio(), cliente.getServicios(), cliente.getIdCliente()));
+                    (double) cliente.getPrecio(), cliente.getServicios(), cliente.getIdCliente()));
             dispose();
         });
         add(btnVolver);
     }
     
-    public void cargarFrame(){
+    public void cargarFrame() {
         setTitle("Resumen de Compra");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -74,20 +87,19 @@ public class ResumenCompraFrame extends JFrame {
         lblTitulo.setForeground(Color.MAGENTA);
         lblTitulo.setBounds(180, 10, 250, 30);
         add(lblTitulo);
-
     }
     
-    public void cargarNombreCliente(String nombre){
+    public void cargarNombreCliente(String nombre) {
         JLabel lblNombre = new JLabel("Nombre del cliente");
-            lblNombre.setBounds(50, 50, 150, 20);
-            add(lblNombre);
-            JTextField txtNombre = new JTextField(nombre);
-            txtNombre.setBounds(50, 70, 150, 25);
-            txtNombre.setEditable(false);
-            add(txtNombre);
+        lblNombre.setBounds(50, 50, 150, 20);
+        add(lblNombre);
+        JTextField txtNombre = new JTextField(nombre);
+        txtNombre.setBounds(50, 70, 150, 25);
+        txtNombre.setEditable(false);
+        add(txtNombre);
     }
     
-    public void cargarTelefonoCliente(String telefono){
+    public void cargarTelefonoCliente(String telefono) {
         JLabel lblTelefono = new JLabel("Número Telefónico");
         lblTelefono.setBounds(350, 50, 150, 20);
         add(lblTelefono);
@@ -97,7 +109,7 @@ public class ResumenCompraFrame extends JFrame {
         add(txtTelefono);
     }
     
-    public void cargarLabelTotal(ClienteRegConMemYServDTO cliente){
+    public void cargarLabelTotal(ClienteRegConMemYServDTO cliente) {
         JLabel lblTotal = new JLabel("Total");
         lblTotal.setBounds(350, 130, 100, 20);
         add(lblTotal);
@@ -107,7 +119,7 @@ public class ResumenCompraFrame extends JFrame {
         add(txtTotal);
     }
     
-    public JTextField cargarLabelTotalPagado(){
+    public JTextField cargarLabelTotalPagado() {
         JLabel lblTotalPagado = new JLabel("Total pagado");
         lblTotalPagado.setBounds(350, 190, 100, 20);
         add(lblTotalPagado);
@@ -117,7 +129,7 @@ public class ResumenCompraFrame extends JFrame {
         return txtTotalPagado;
     }
     
-    public void cargarPanelServicios(ClienteRegConMemYServDTO cliente){
+    public void cargarPanelServicios(ClienteRegConMemYServDTO cliente) {
         JPanel panelServicios = new JPanel();
         panelServicios.setLayout(new BoxLayout(panelServicios, BoxLayout.Y_AXIS));
         panelServicios.setBorder(BorderFactory.createTitledBorder("Membresía y Servicios Extras"));
@@ -135,3 +147,4 @@ public class ResumenCompraFrame extends JFrame {
         add(panelServicios);
     }
 }
+
