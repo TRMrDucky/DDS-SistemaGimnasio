@@ -40,4 +40,6 @@ public interface IManejadorComprasMembresias {
     
     public abstract PagoDTO procesarPago (int idCliente, double monto);
    
+    public abstract List<TipoMembresiaDTO> obtenerMembresiasDTO();
+    
 }
