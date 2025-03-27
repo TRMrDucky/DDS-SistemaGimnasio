@@ -29,17 +29,14 @@ public class SeleccionarMembresia extends JFrame {
     
     
     private JPanel panelMembresias;
-    private IManejadorComprasMembresias subsistema;
     private ClienteRegistradoDTO cliente;
      private ControlNavegacionCompraMembresia control;
      private ClienteRegConMembDTO clienteMemb;
     
     
-    public SeleccionarMembresia(ControlNavegacionCompraMembresia controlador, ClienteRegistradoDTO cliente) {
-        this.subsistema = subsistema;
-        this.cliente = cliente;
-        subsistema = new ManejadorComprasMembresias();
-        
+    public SeleccionarMembresia(ControlNavegacionCompraMembresia control, ClienteRegistradoDTO cliente) {
+        this.control = control;
+        this.cliente = cliente;     
         inicializarComponentes();
     }
     
@@ -61,7 +58,7 @@ public class SeleccionarMembresia extends JFrame {
     }
 
     private void cargarMembresias() {
-    List<TipoMembresiaDTO> listaMembresias = subsistema.getTiposMembresia();
+    List<TipoMembresiaDTO> listaMembresias = control.obtenerListaMembresiasDTO();
 
     for (TipoMembresiaDTO membresia : listaMembresias) {
         String servicios = "";

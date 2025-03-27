@@ -57,8 +57,13 @@ public class ServiciosExtras extends JFrame {
         serviciosPanel.setBackground(new Color(100, 149, 237));
 
         LinkedList<Long> idsServiciosCliente = new LinkedList<>();
-        for (ServicioExtraDTO servicio : cliente.getServicios()) {
-            idsServiciosCliente.add(servicio.getId());
+        
+        if (cliente.getServicios() != null) {
+            for (ServicioExtraDTO servicio : cliente.getServicios()) {
+                idsServiciosCliente.add(servicio.getId());
+            }
+        } else {
+            System.out.println("El cliente no tiene servicios extra.");
         }
 
         for (ServicioExtraDTO servicio : serviciosExtras) {

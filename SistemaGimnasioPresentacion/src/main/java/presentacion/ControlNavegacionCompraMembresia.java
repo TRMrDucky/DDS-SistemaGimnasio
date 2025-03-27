@@ -155,21 +155,20 @@ public class ControlNavegacionCompraMembresia {
     }
     /**
      * metodo que muestra si se completo el pago
-     * @param cliente
-     * @param txtTotalPagado 
+     * @param cliente 
+     * @param montoPagado 
      */
-    public void mostrarPagoEnResumen(ClienteRegConMemYServDTO cliente, JTextField txtTotalPagado) {
+    public void mostrarPagoEnResumen(ClienteRegConMemYServDTO cliente, double montoPagado) {
         try {
             double total = cliente.getPrecio();
-            double pagado = Double.parseDouble(txtTotalPagado.getText());
-            if (pagado > total) {
+            if (montoPagado > total) {
                 // Si el cliente pagó más, muestra el cambio a devolver
-                double cambio = pagado - total;
+                double cambio = montoPagado - total;
                 JOptionPane.showMessageDialog(null, "Pago completado. Cambio a devolver: $" + cambio, "Pago Exitoso", JOptionPane.INFORMATION_MESSAGE);
-            } else if (pagado >= total) {
+            } else if (montoPagado >= total) {
                 JOptionPane.showMessageDialog(null, "Pago completado. No hay deuda pendiente.", "Pago Exitoso", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                double deuda = total - pagado;
+                double deuda = total - montoPagado;
                 JOptionPane.showMessageDialog(null, "Pago parcial. Deuda restante: $" + deuda, "Pago Incompleto", JOptionPane.WARNING_MESSAGE);
             }
         } catch (NumberFormatException ex) {
@@ -231,8 +230,7 @@ public class ControlNavegacionCompraMembresia {
 }
     
     public void procesarPago(ClienteRegConMemYServDTO cliente, double montoPagado) {
-
-    System.out.println("Pago registrado para cliente: " + cliente.getIdCliente() + " Monto: $" + montoPagado);
+        mostrarPagoEnResumen(cliente, montoPagado);
 }
     
     public List<TipoMembresiaDTO> obtenerListaMembresiasDTO(){
