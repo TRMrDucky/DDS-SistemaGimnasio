@@ -101,6 +101,9 @@ public class SeleccionarMembresia extends JFrame {
       
                    
           JOptionPane.showMessageDialog(null, mensaje);
+
+         control.openFormServiciosExtra(clienteMemb);
+         dispose();
 });
      
 
