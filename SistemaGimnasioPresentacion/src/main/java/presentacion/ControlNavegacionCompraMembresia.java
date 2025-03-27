@@ -8,10 +8,10 @@ import clasesmock.Cliente;
 import dtos.ClienteRegConMemYServDTO;
 import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;
+import dtos.MembresiaSeleccionadaDTO;
 import dtos.PagoDTO;
 import dtos.RegistrarClienteDTO;
 import dtos.ServicioExtraDTO;
-import dtos.TipoMembresiaDTO;
 import excepciones.ConsultaDatosClienteException;
 import excepciones.RegistroClienteException;
 import interfaces.IManejadorComprasMembresias;
@@ -91,30 +91,30 @@ public class ControlNavegacionCompraMembresia {
     
     
     
-//    public ClienteRegConMembDTO clienteMembresia (ClienteRegistradoDTO clienteRegDTO, MembresiaSeleccionadaDTO membSeleccionadaDTO) {
-//        
-//        if (clienteRegDTO == null || membSeleccionadaDTO == null) {
-//        JOptionPane.showMessageDialog(null, "Faltan datos para continuar", "Error", JOptionPane.ERROR_MESSAGE);
-//        return null;
-//        
-//    }
-//        
-//        ClienteRegConMembDTO clienteConMembresia = new ClienteRegConMembDTO(  
-//                
-//                membSeleccionadaDTO.getTipoMembresia(),  
-//                
-//                clienteRegDTO.getId()
-//       
-//                );
-//       
-//
-//        
-//      JOptionPane.showMessageDialog(null, "Membresía asignada correctamente:\n" + 
-//        "ID Cliente: " + clienteConMembresia.getIdCliente() + "\n" + 
-//        "Membresía: " + clienteConMembresia.getTipoMembresia(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
-//
-//    return clienteConMembresia;
-//}  
+    public ClienteRegConMembDTO clienteMembresia (ClienteRegistradoDTO clienteRegDTO, MembresiaSeleccionadaDTO membSeleccionadaDTO) {
+        
+        if (clienteRegDTO == null || membSeleccionadaDTO == null) {
+        JOptionPane.showMessageDialog(null, "Faltan datos para continuar", "Error", JOptionPane.ERROR_MESSAGE);
+        return null;
+        
+    }
+        
+        ClienteRegConMembDTO clienteConMembresia = new ClienteRegConMembDTO(  
+                
+                membSeleccionadaDTO.getTipoMembresia(),  
+                
+                clienteRegDTO.getId()
+       
+                );
+       
+
+        
+      JOptionPane.showMessageDialog(null, "Membresía asignada correctamente:\n" + 
+        "ID Cliente: " + clienteConMembresia.getIdCliente() + "\n" + 
+        "Membresía: " + clienteConMembresia.getTipoMembresia(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+    return clienteConMembresia;
+}  
 /**
  * metodo que abre el formulario de servicios extra
  * @param cliente 
@@ -231,8 +231,4 @@ public class ControlNavegacionCompraMembresia {
     System.out.println("Pago registrado para cliente: " + cliente.getIdCliente() + " Monto: $" + montoPagado);
 }
 
-    public List<TipoMembresiaDTO> obtenerListaMembresiasDTO(){
-        return subsistema.obtenerMembresiasDTO();
-    }
-    
 }
