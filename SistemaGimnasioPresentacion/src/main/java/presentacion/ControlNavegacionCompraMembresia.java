@@ -47,7 +47,7 @@ public class ControlNavegacionCompraMembresia {
      * Genera una nueva instancia de seleccionarMembresia
      */
     public void seleccionarMembresia(ClienteRegistradoDTO cliente) {
-        SeleccionarMembresia sm = new SeleccionarMembresia(this, cliente);
+        SeleccionarMembresia2 sm = new SeleccionarMembresia2(this, cliente);
         sm.setVisible(true);
     }
 
@@ -55,7 +55,7 @@ public class ControlNavegacionCompraMembresia {
      * Genera una nueva instancia de seleccionarMembresia
      */
     public void openFormSeleccionarMembresia(ClienteRegistradoDTO clienteRegistradoDTO) {
-        SeleccionarMembresia em = new SeleccionarMembresia(this, clienteRegistradoDTO);
+        SeleccionarMembresia2 em = new SeleccionarMembresia2(this, clienteRegistradoDTO);
         em.setVisible(true);
 
     }
