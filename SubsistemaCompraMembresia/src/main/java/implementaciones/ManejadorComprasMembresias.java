@@ -7,6 +7,7 @@ package implementaciones;
 import clasesmock.Cliente;
 import clasesmock.ServicioExtra;
 import dtos.ClienteRegistradoDTO;
+import dtos.PagoDTO;
 import dtos.RegistrarClienteDTO;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
@@ -18,6 +19,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -203,4 +205,15 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
             .orElse(null);
             
     }
+    
+   
+    public PagoDTO procesarPago(int idCliente, double monto) {
+    
+        boolean aprobado = new Random().nextBoolean(); 
+
+        return new PagoDTO(idCliente, monto, aprobado);
+    }
+    
+    
+    
 }
