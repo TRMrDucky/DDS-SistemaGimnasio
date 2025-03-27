@@ -27,31 +27,52 @@ public class ControlNavegacionCompraMembresia {
 
     private IManejadorComprasMembresias subsistema;
 
+    /**
+     * Genera una nueva instancia de registrarCliente
+     */
     public void openFormRegistrarCliente() {
         RegistrarCliente rc = new RegistrarCliente(this);
         rc.setVisible(true);
     }
 
+    /**
+     * Abre una nueva pantalla de buscarCliente
+     */
     public void openFormBuscarCliente() {
         BuscarCliente bc = new BuscarCliente(this);
         bc.setVisible(true);
     }
 
+    /**
+     * Genera una nueva instancia de seleccionarMembresia
+     */
     public void seleccionarMembresia(ClienteRegistradoDTO cliente) {
         SeleccionarMembresia sm = new SeleccionarMembresia(this, cliente);
         sm.setVisible(true);
     }
 
+    /**
+     * Genera una nueva instancia de seleccionarMembresia
+     */
     public void openFormSeleccionarMembresia(ClienteRegistradoDTO clienteRegistradoDTO) {
         SeleccionarMembresia em = new SeleccionarMembresia(this, clienteRegistradoDTO);
         em.setVisible(true);
 
     }
 
+    /**
+     * Devuelve la lista de clientes
+     *
+     * @return una lista con objetos del tipo Cliente
+     */
     public List<Cliente> getListaClientes() {
         return subsistema.obtenerListaClientes();
     }
-
+/**
+ * Registra un cliente. Devuelve un ClienteRegistradoDTO. 
+ * @param registrarClienteDTO DTO que representa los datos de un cliente a registrar
+ * @return ClienteRegistradoDTO que representa los datos guardados del cliente y trae consigo el ID asignado para él
+ */
     public ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) {
         try {
             ClienteRegistradoDTO clienteRegistradoDTO = subsistema.registrarCliente(registrarClienteDTO);
@@ -106,6 +127,12 @@ public class ControlNavegacionCompraMembresia {
         }
     }
 
+    /**
+     * Retorna el los nombres del cliente con base a su ID
+     *
+     * @param id id del cliente
+     * @return un string que representa el nombre completo
+     */
     public String obtenerNombreCliente(int id) {
         try {
             return subsistema.obtenerNombreCliente(id);
@@ -116,6 +143,12 @@ public class ControlNavegacionCompraMembresia {
         return "";
     }
 
+    /**
+     * Retorna el numero de teléfono del cliente con base a su ID
+     *
+     * @param id id del cliente
+     * @return un string que representa el numero de teléfono
+     */
     public String obtenerNumeroCliente(int id) {
         try {
             return subsistema.obtenerNumeroCliente(id);

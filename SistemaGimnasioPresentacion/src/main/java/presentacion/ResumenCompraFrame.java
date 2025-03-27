@@ -133,10 +133,4 @@ public class ResumenCompraFrame extends JFrame {
         }
         add(panelServicios);
     }
-    
-    public static void main(String[] args) {
-        ClienteRegConMemYServDTO cliente = new ClienteRegConMemYServDTO("entrenador", 150, List.of(new ServicioExtraDTO(),new ServicioExtraDTO()), 1);  
-        ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia();
-        new ResumenCompraFrame(control,cliente,"raul","6441295693").setVisible(true);
-    }
 }
