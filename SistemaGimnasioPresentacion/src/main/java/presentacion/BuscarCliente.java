@@ -55,10 +55,10 @@ public class BuscarCliente extends JFrame {
         btnRegistrar = new JButton("Registrar Cliente");
         add(btnRegistrar, BorderLayout.SOUTH);
 
-        // Cargar todos los clientes al inicio
+//         Cargar todos los clientes al inicio
         actualizarTabla(control.getListaClientes());
 
-        //  búsqueda en vivo
+//          búsqueda en vivo
         txtBusqueda.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
