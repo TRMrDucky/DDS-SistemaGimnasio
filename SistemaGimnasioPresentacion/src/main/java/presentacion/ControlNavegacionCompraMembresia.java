@@ -8,6 +8,7 @@ import clasesmock.Cliente;
 import dtos.ClienteRegConMemYServDTO;
 import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;
+import dtos.PagoDTO;
 import dtos.RegistrarClienteDTO;
 import dtos.ServicioExtraDTO;
 import excepciones.ConsultaDatosClienteException;
@@ -183,6 +184,7 @@ public class ControlNavegacionCompraMembresia {
         }
         return "";
     }
+    
     /**
      * metodo que abre el formulario de resumen de compra
      * @param cliente 
@@ -192,4 +194,13 @@ public class ControlNavegacionCompraMembresia {
     }
     
     
+    public PagoDTO procesarPago(int idCliente, double monto) {
+         return subsistema.procesarPago(idCliente, monto);
+}
+    
+    public void procesarPago(ClienteRegConMemYServDTO cliente, double montoPagado) {
+
+    System.out.println("Pago registrado para cliente: " + cliente.getIdCliente() + " Monto: $" + montoPagado);
+}
+
 }
