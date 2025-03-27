@@ -108,6 +108,7 @@ public class ControlNavegacionCompraMembresia {
     public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
         return subsistema.obtenerServiciosExtrasDTO();
     }
+    
 /**
  * metodo que muestra los servicios extras seleccionados
  * @param seleccionados 
