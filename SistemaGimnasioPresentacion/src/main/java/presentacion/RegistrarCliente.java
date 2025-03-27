@@ -6,10 +6,6 @@ package presentacion;
 
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
-import excepciones.RegistroClienteException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,12 +13,12 @@ import javax.swing.JOptionPane;
  */
 public class RegistrarCliente extends javax.swing.JFrame {
 
-    private final ControlNavegacionComprasMembresias control;
+    private final ControlNavegacionCompraMembresia control;
 
     /**
      * Creates new form RegistrarUsuario
      */
-    public RegistrarCliente(ControlNavegacionComprasMembresias control) {
+    public RegistrarCliente(ControlNavegacionCompraMembresia control) {
         this.control = control;
         initComponents();
         setLocationRelativeTo(null);
@@ -30,9 +26,9 @@ public class RegistrarCliente extends javax.swing.JFrame {
 
     }
 
-    public RegistrarCliente() {
-        this(new ManejadorComprasMembresias());
-    }
+  public RegistrarCliente(){
+      this(new ControlNavegacionCompraMembresia());
+  }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -220,7 +216,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
         RegistrarClienteDTO registrarClienteDTO = new RegistrarClienteDTO(nombres, apellidos,
                 email, numeroTelefono);
 
-        ControlNavegacionComprasMembresias.registrarCliente(registrarClienteDTO);
+        ClienteRegistradoDTO cliente = control.registrarCliente(registrarClienteDTO);
         campoNombres.setText(null);
         campoApellidos.setText(null);
         campoEmail.setText(null);
@@ -229,7 +225,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
         //Aqui se debe llamar a ControlNavegacionCompraMembresia y pasar como parametro 
         //ClienteRegistradoDTO y Subsistema
         //ControlNavegacionCompraMembresia control= new ControlNavegacionCompraMembresia();
-        ControlNavegacionCompraMembresia.openFormSeleccionarMembresia(subsistema);
+        control.openFormSeleccionarMembresia(cliente);
 
     }//GEN-LAST:event_btnAceptarActionPerformed
 
