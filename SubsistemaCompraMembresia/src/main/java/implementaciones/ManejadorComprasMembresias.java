@@ -213,7 +213,12 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
         return new PagoDTO(idCliente, monto, aprobado);
     }
-    
-    
-    
+
+    @Override
+    public List<TipoMembresiaDTO> obtenerMembresiasDTO() {
+        return listaMembresias.stream().map(membresia -> new TipoMembresiaDTO(
+                membresia.getTipoMembresia(), membresia.getPrecio(), 
+                membresia.getServiciosExtras())).collect(Collectors.toCollection(LinkedList::new));
+        
+    }
 }
