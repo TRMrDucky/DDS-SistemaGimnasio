@@ -29,6 +29,7 @@ public class ResumenCompraFrame extends JFrame {
         
         this.control = control;
         
+        
         cargarFrame();
         
         cargarNombreCliente(control.obtenerNombreCliente(cliente.getIdCliente()));

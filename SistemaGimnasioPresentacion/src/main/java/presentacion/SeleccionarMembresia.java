@@ -192,6 +192,7 @@ public class SeleccionarMembresia extends javax.swing.JFrame {
 
         if (serviciosExtras == null) {
             serviciosExtras = new ArrayList<>();
+            //.
         }
 
 //        ServiciosExtras se = new ServiciosExtras(serviciosExtras);
