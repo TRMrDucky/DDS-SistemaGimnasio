@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import dtos.ClienteRegConMembDTO;
 
 /**
  *
@@ -31,12 +32,14 @@ public class SeleccionarMembresia extends JFrame {
     private IManejadorComprasMembresias subsistema;
     private ClienteRegistradoDTO cliente;
      private ControlNavegacionCompraMembresia control;
+     private ClienteRegConMembDTO clienteMemb;
     
     
     public SeleccionarMembresia(ControlNavegacionCompraMembresia controlador, ClienteRegistradoDTO cliente) {
         this.subsistema = subsistema;
         this.cliente = cliente;
         subsistema = new ManejadorComprasMembresias();
+        
         inicializarComponentes();
     }
     
@@ -85,6 +88,14 @@ public class SeleccionarMembresia extends JFrame {
         JButton btnMembresia = new JButton(textoBoton);
 
         btnMembresia.addActionListener(e -> {
+         clienteMemb = new ClienteRegConMembDTO(
+        membresia.getTipoMembresia(), 
+        membresia.getPrecio(), 
+                 
+    cliente.getId()
+           
+    );
+          
           String mensaje = "Seleccionaste la membresía: " + membresia.getTipoMembresia();
       
                    
