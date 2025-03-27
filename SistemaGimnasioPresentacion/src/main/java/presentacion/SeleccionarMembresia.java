@@ -5,6 +5,7 @@
 package presentacion;
 
 import dtos.ClienteRegistradoDTO;
+import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
 import implementaciones.ManejadorComprasMembresias;
 import interfaces.IManejadorComprasMembresias;
@@ -29,7 +30,7 @@ public class SeleccionarMembresia extends JFrame {
     private JPanel panelMembresias;
     private IManejadorComprasMembresias subsistema;
     private ClienteRegistradoDTO cliente;
-    
+     private ControlNavegacionCompraMembresia control;
     
     
     public SeleccionarMembresia(ControlNavegacionCompraMembresia controlador, ClienteRegistradoDTO cliente) {
@@ -57,24 +58,47 @@ public class SeleccionarMembresia extends JFrame {
     }
 
     private void cargarMembresias() {
-        List<TipoMembresiaDTO> listaMembresias = subsistema.getTiposMembresia();
-        
-        for (TipoMembresiaDTO membresia : listaMembresias) {
-            JButton btnMembresia = new JButton(membresia.getTipoMembresia() + " Precio: $" + membresia.getPrecio()+membresia.getServiciosExtras());
+    List<TipoMembresiaDTO> listaMembresias = subsistema.getTiposMembresia();
 
-            btnMembresia.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + membresia.getTipoMembresia());
+    for (TipoMembresiaDTO membresia : listaMembresias) {
+        String servicios = "";
+
+        List<ServicioExtraDTO> extras = membresia.getServiciosExtras();
+        if (extras != null && !extras.isEmpty()) {
+            StringBuilder sb = new StringBuilder("Incluye: ");
+            
+            
+            for (int i = 0; i < extras.size(); i++) {
+                sb.append(extras.get(i).getNombreServicio());
+                if (i < extras.size() - 1) {
+                    sb.append(", ");
                 }
-            });
-
-            panelMembresias.add(btnMembresia);
+            }
+            servicios = sb.toString();
         }
 
-        panelMembresias.revalidate();
-        panelMembresias.repaint();
+        String textoBoton = membresia.getTipoMembresia() + " - $" + membresia.getPrecio();
+        if (!servicios.isEmpty()) {
+            textoBoton += " (" + servicios + ")";
+        }
+
+        JButton btnMembresia = new JButton(textoBoton);
+
+        btnMembresia.addActionListener(e -> {
+          String mensaje = "Seleccionaste la membresía: " + membresia.getTipoMembresia();
+      
+                   
+          JOptionPane.showMessageDialog(null, mensaje);
+});
+     
+
+        panelMembresias.add(btnMembresia);
     }
+
+    panelMembresias.revalidate();
+    panelMembresias.repaint();
+}
+
 
     public static void main(String[] args) {
      ControlNavegacionCompraMembresia controlador = new ControlNavegacionCompraMembresia(); 
