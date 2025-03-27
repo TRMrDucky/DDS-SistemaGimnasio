@@ -38,15 +38,6 @@ public class ResumenCompraFrame extends JFrame {
         
         JTextField txtTotalPagado = cargarLabelTotalPagado();
         
-        JLabel lblCambio = new JLabel("Cambio: ");
-        lblCambio.setBounds(350, 250, 100, 20);
-        add(lblCambio);
-
-        JTextField txtCambio = new JTextField();
-        txtCambio.setBounds(350, 270, 100, 25);
-        txtCambio.setEditable(false);
-        add(txtCambio);
-
         JButton btnPagar = new JButton("Pagar");
         btnPagar.setBounds(230, 300, 140, 40);
         btnPagar.setBackground(Color.GREEN);
@@ -59,7 +50,7 @@ public class ResumenCompraFrame extends JFrame {
         return;
     }
 
-    // Llamar al controlador para procesar el pago
+    
     control.procesarPago(cliente, montoPagado); // 
         });
         add(btnPagar);
