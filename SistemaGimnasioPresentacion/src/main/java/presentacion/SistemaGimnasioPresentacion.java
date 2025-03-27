@@ -16,7 +16,7 @@ public class SistemaGimnasioPresentacion {
     public static void main(String[] args) {
         System.out.println("Hello World!");
         IManejadorComprasMembresias subsistema = new ManejadorComprasMembresias();
-        ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia();
+        ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia(subsistema);
         control.openFormBuscarCliente();
     }
 }

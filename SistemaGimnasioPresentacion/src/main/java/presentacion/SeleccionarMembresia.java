@@ -112,11 +112,5 @@ public class SeleccionarMembresia extends JFrame {
 }
 
 
-    public static void main(String[] args) {
-     ControlNavegacionCompraMembresia controlador = new ControlNavegacionCompraMembresia(); 
-    ClienteRegistradoDTO cliente = new ClienteRegistradoDTO("janeth", "galvan", "janeth@gmail.com", "6871616433", true, 1);
-
-    SeleccionarMembresia ventana = new SeleccionarMembresia(controlador, cliente);
-    ventana.setVisible(true);
-    }
+    
 }

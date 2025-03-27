@@ -173,11 +173,6 @@ public class ServiciosExtras extends JFrame {
         costoTotal = 0;
         lblCostoTotal.setText("Costo Total: $" + costoTotal);
     }
-    public static void main(String[]args){
-        IManejadorComprasMembresias subsistema = new ManejadorComprasMembresias();
-        ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia();
-        control.setSubsistema(subsistema);
-        new ServiciosExtras(control, new ClienteRegConMembDTO("mensual", 150, List.of(new ServicioExtraDTO(1, "entrenador", 150)), 1)).setVisible(true);
-    }
+    
 }
 

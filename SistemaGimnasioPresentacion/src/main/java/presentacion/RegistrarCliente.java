@@ -6,6 +6,7 @@ package presentacion;
 
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
+import implementaciones.ManejadorComprasMembresias;
 
 /**
  *
@@ -27,7 +28,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
     }
 
   public RegistrarCliente(){
-      this(new ControlNavegacionCompraMembresia());
+      this(new ControlNavegacionCompraMembresia(new ManejadorComprasMembresias()));
   }
 
     /**

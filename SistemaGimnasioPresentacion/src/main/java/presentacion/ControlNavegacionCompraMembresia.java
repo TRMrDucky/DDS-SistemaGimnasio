@@ -29,6 +29,10 @@ public class ControlNavegacionCompraMembresia {
 
     private IManejadorComprasMembresias subsistema;
 
+    public ControlNavegacionCompraMembresia(IManejadorComprasMembresias subsistema){
+        this.subsistema = subsistema;
+    }
+    
     /**
      * Genera una nueva instancia de registrarCliente
      */

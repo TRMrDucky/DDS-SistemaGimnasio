@@ -29,22 +29,19 @@ public class BuscarCliente extends JFrame {
     private JTable tablaClientes;
     private DefaultTableModel modeloTabla;
     private JButton btnRegistrar;
-    private ControlNavegacionCompraMembresia control;   
-    
+    private ControlNavegacionCompraMembresia control;
+
     public BuscarCliente(ControlNavegacionCompraMembresia control) {
         this.control = control;
-        configurarVentana();
-        inicializarComponentes();
-        agregarEventos();
-        actualizarTabla(control.getListaClientes());
-    }
-
-    private void configurarVentana() {
         setTitle("Búsqueda de Cliente");
         setSize(500, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
+
+        inicializarComponentes();
+        agregarEventos();
+        actualizarTabla(control.getListaClientes());
     }
 
     private void inicializarComponentes() {
@@ -82,21 +79,13 @@ public class BuscarCliente extends JFrame {
         modeloTabla.setRowCount(0);
         for (Cliente cliente : clientes) {
             modeloTabla.addRow(new Object[]{
-                    cliente.getId(),
-                    cliente.getNombres(),
-                    cliente.getNumeroTelefono(),
-                    cliente.getEmail()
+                cliente.getId(),
+                cliente.getNombres(),
+                cliente.getNumeroTelefono(),
+                cliente.getEmail()
             });
         }
     }
 
- 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            IManejadorComprasMembresias subsistema = new ManejadorComprasMembresias();
-            ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia();
-            control.setSubsistema(subsistema);
-            new BuscarCliente(control).setVisible(true);
-        });
-}
+    
 }
