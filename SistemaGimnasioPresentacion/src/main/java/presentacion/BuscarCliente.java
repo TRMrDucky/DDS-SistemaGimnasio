@@ -29,64 +29,67 @@ public class BuscarCliente extends JFrame {
     private JTable tablaClientes;
     private DefaultTableModel modeloTabla;
     private JButton btnRegistrar;
-    private ControlNavegacionCompraMembresia control;
-
+    private ControlNavegacionCompraMembresia control;   
+    
     public BuscarCliente(ControlNavegacionCompraMembresia control) {
-
         this.control = control;
+        configurarVentana();
+        inicializarComponentes();
+        agregarEventos();
+        actualizarTabla(control.getListaClientes());
+    }
 
+    private void configurarVentana() {
         setTitle("Búsqueda de Cliente");
         setSize(500, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
+    }
 
-        //  búsqueda
+    private void inicializarComponentes() {
         txtBusqueda = new JTextField();
         txtBusqueda.setToolTipText("Escriba el nombre del cliente...");
         add(txtBusqueda, BorderLayout.NORTH);
 
-        //  mostrar clientes
         modeloTabla = new DefaultTableModel(new String[]{"ID", "Nombre", "Teléfono", "Correo"}, 0);
         tablaClientes = new JTable(modeloTabla);
         add(new JScrollPane(tablaClientes), BorderLayout.CENTER);
 
-        // registro
         btnRegistrar = new JButton("Registrar Cliente");
         add(btnRegistrar, BorderLayout.SOUTH);
+    }
 
-//         Cargar todos los clientes al inicio
-        actualizarTabla(control.getListaClientes());
-
-//          búsqueda en vivo
+    private void agregarEventos() {
         txtBusqueda.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                String nombre = txtBusqueda.getText().trim().toLowerCase();
-                actualizarTabla(control.getListaClientes().stream()
-                        .filter(cliente -> cliente.getNombres().toLowerCase().contains(nombre))
-                        .collect(Collectors.toList()));
+                buscarClientes(txtBusqueda.getText().trim().toLowerCase());
             }
         });
 
-        //  botón para registrar cliente
-        btnRegistrar.addActionListener(e -> {
-        control.openFormRegistrarCliente();
-        });
+        btnRegistrar.addActionListener(e -> control.openFormRegistrarCliente());
     }
 
-    //  actualizar la tabla con los clientes
+    private void buscarClientes(String nombre) {
+        List<Cliente> clientesFiltrados = control.getListaClientes().stream()
+                .filter(cliente -> cliente.getNombres().toLowerCase().contains(nombre))
+                .collect(Collectors.toList());
+        actualizarTabla(clientesFiltrados);
+    }
+
     private void actualizarTabla(List<Cliente> clientes) {
-        modeloTabla.setRowCount(0); // limpia la tabla
+        modeloTabla.setRowCount(0);
         for (Cliente cliente : clientes) {
             modeloTabla.addRow(new Object[]{
-                cliente.getId(),
-                cliente.getNombres(),
-                cliente.getNumeroTelefono(),
-                cliente.getEmail()
+                    cliente.getId(),
+                    cliente.getNombres(),
+                    cliente.getNumeroTelefono(),
+                    cliente.getEmail()
             });
         }
     }
+
  
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
