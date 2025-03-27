@@ -8,6 +8,7 @@ package presentacion;
  *
  * @author Ramón Zamudio
  */
+import dtos.ClienteRegConMemYServDTO;
 import dtos.ClienteRegConMembDTO;
 import dtos.ServicioExtraDTO;
 import interfaces.IManejadorComprasMembresias;
@@ -20,25 +21,20 @@ import java.util.stream.Collectors;
 
 public class ServiciosExtras extends JFrame {
 
-    private ControlManejadorComprasMembresias control;
+    private ControlNavegacionCompraMembresia control;
     private List<JCheckBox> checkBoxes;
-    private LinkedList<ServicioExtraDTO> serviciosExtras;
+    private List<ServicioExtraDTO> serviciosExtras;
     private double costoTotal;
     private JLabel lblCostoTotal;
 
-    public ServiciosExtras(ControlNavegacionComprasMembresia control, ClienteRegConMembDTO cliente) {
+    public ServiciosExtras(ControlNavegacionCompraMembresia control, ClienteRegConMembDTO cliente) {
         this.control = control;
         //Este método debe llamar al control, que dentro de sí tendrá un método que llame al
 //subsistema.
-        this.serviciosExtras = subsistema.obtenerServiciosExtrasDTO();
+        this.serviciosExtras = control.obtenerServiciosExtrasDTO();
         this.costoTotal = 0.0;
         this.checkBoxes = new ArrayList<>();
-        setTitle("Servicios Extras");
-        setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setLayout(new BorderLayout());
-
+        cargarFrame();
         JPanel panel = new JPanel();
         panel.setBackground(new Color(100, 149, 237));
         panel.setLayout(new BorderLayout());
@@ -103,14 +99,19 @@ public class ServiciosExtras extends JFrame {
 
         btnContinuar.addActionListener(e -> {
             List<ServicioExtraDTO> seleccionadosList = getServiciosSeleccionados();
-            mostrarSeleccionados(seleccionadosList);
+            ClienteRegConMemYServDTO clienteConMembresia = new ClienteRegConMemYServDTO(cliente.getTipoMembresia(), cliente.getPrecio()+costoTotal, seleccionadosList, cliente.getIdCliente());
+            control.mostrarServiciosSeleccionados(seleccionadosList);
         });
 
         btnLimpiar.addActionListener(e -> limpiarSeleccion());
     }
 
-    public ServiciosExtras() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void cargarFrame(){
+        setTitle("Servicios Extras");
+        setSize(600, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
     }
 
     public List<ServicioExtraDTO> getServiciosSeleccionados() {
@@ -124,17 +125,9 @@ public class ServiciosExtras extends JFrame {
                         .orElse(null));
             }
         }
-        seleccionados.removeIf(s -> s == null);
         return seleccionados;
     }
 
-    private void mostrarSeleccionados(List<ServicioExtraDTO> seleccionados) {
-        StringBuilder mensaje = new StringBuilder("Servicios seleccionados:\n");
-        for (ServicioExtraDTO servicio : seleccionados) {
-            mensaje.append(servicio.getNombreServicio()).append(" - Costo $").append(servicio.getPrecio()).append("\n");
-        }
-        JOptionPane.showMessageDialog(this, mensaje.toString(), "Selección de Servicios", JOptionPane.INFORMATION_MESSAGE);
-    }
 
     private void actualizarCosto(JCheckBox checkBox, double precio) {
         if (checkBox.isSelected()) {

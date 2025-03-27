@@ -5,6 +5,7 @@
 package presentacion;
 
 import clasesmock.Cliente;
+import dtos.ClienteRegConMemYServDTO;
 import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -31,7 +33,7 @@ public class ControlNavegacionCompraMembresia {
         rc.setVisible(true);
     }
     
-    public static void openFormBuscarCliente() {
+    public void openFormBuscarCliente() {
         BuscarCliente bc = new BuscarCliente(this);
         bc.setVisible(true);
     }
@@ -87,4 +89,25 @@ public class ControlNavegacionCompraMembresia {
         }
         JOptionPane.showMessageDialog(null, mensaje.toString(), "Selección de Servicios", JOptionPane.INFORMATION_MESSAGE);
     }
+    
+    public void mostrarPagoEnResumen(ClienteRegConMemYServDTO cliente,JTextField txtTotalPagado){
+        try {
+            double total = cliente.getPrecio();
+            double pagado = Double.parseDouble(txtTotalPagado.getText());
+            if (pagado > total) {
+            // Si el cliente pagó más, muestra el cambio a devolver
+            double cambio = pagado - total;
+            JOptionPane.showMessageDialog(null, "Pago completado. Cambio a devolver: $" + cambio, "Pago Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else if (pagado >= total) {
+                JOptionPane.showMessageDialog(null, "Pago completado. No hay deuda pendiente.", "Pago Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            }else {
+                double deuda = total - pagado;
+                JOptionPane.showMessageDialog(null, "Pago parcial. Deuda restante: $" + deuda, "Pago Incompleto", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Ingrese una cantidad válida.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
 }
