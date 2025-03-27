@@ -15,6 +15,7 @@ import java.util.List;
  *
  * @author janethcristinagalvanquinonez
  */
+
 public class SeleccionarMembresia extends javax.swing.JFrame {
 
     private final ControlNavegacionComprasMembresias control;
