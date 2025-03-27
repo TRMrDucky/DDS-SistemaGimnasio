@@ -7,13 +7,8 @@ package presentacion;
 import dtos.ClienteRegConMemYServDTO;
 import dtos.ClienteRegConMembDTO;
 import dtos.ServicioExtraDTO;
-import implementaciones.ManejadorComprasMembresias;
-import interfaces.IManejadorComprasMembresias;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -21,10 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -32,14 +25,15 @@ import javax.swing.SwingUtilities;
  */
 public class ResumenCompraFrame extends JFrame {
     private ControlNavegacionCompraMembresia control;
-    public ResumenCompraFrame(ControlNavegacionCompraMembresia control,ClienteRegConMemYServDTO cliente, String nombreCliente, String telefono) {
+    public ResumenCompraFrame(ControlNavegacionCompraMembresia control,ClienteRegConMemYServDTO cliente) {
+        
         this.control = control;
         
         cargarFrame();
         
-        cargarNombreCliente(nombreCliente);
+        cargarNombreCliente(control.obtenerNombreCliente(cliente.getIdCliente()));
         
-        cargarTelefonoCliente(telefono);
+        cargarTelefonoCliente(control.obtenerNumeroCliente(cliente.getIdCliente()));
         
         cargarPanelServicios(cliente);
 
@@ -59,7 +53,8 @@ public class ResumenCompraFrame extends JFrame {
         JButton btnVolver = new JButton("← Volver");
         btnVolver.setBounds(10, 10, 100, 30);
         btnVolver.addActionListener(e -> {
-            control.openFormServiciosExtra(new ClienteRegConMembDTO(cliente.getTipoMembresia(), (int)cliente.getPrecio(), cliente.getServicios(), cliente.getIdCliente()));
+            control.openFormServiciosExtra(new ClienteRegConMembDTO(cliente.getTipoMembresia(),
+                    (double)cliente.getPrecio(), cliente.getServicios(), cliente.getIdCliente()));
             dispose();
         });
         add(btnVolver);
@@ -81,11 +76,11 @@ public class ResumenCompraFrame extends JFrame {
 
     }
     
-    public void cargarNombreCliente(String nombreCliente){
+    public void cargarNombreCliente(String nombre){
         JLabel lblNombre = new JLabel("Nombre del cliente");
             lblNombre.setBounds(50, 50, 150, 20);
             add(lblNombre);
-            JTextField txtNombre = new JTextField(nombreCliente);
+            JTextField txtNombre = new JTextField(nombre);
             txtNombre.setBounds(50, 70, 150, 25);
             txtNombre.setEditable(false);
             add(txtNombre);

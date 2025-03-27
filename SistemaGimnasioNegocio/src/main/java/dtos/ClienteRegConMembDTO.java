@@ -13,7 +13,7 @@ import java.util.List;
 public class ClienteRegConMembDTO {
     private String tipoMembresia;
     private double precio;
-    private List<ServicioExtraDTO>servicios;
+    private List<ServicioExtraDTO> servicios;
     private int idCliente;
     
     //todo
@@ -24,6 +24,8 @@ public class ClienteRegConMembDTO {
         this.idCliente = idCliente;
     }
 
+    public ClienteRegConMembDTO(){}
+    
     public String getTipoMembresia() {
         return tipoMembresia;
     }

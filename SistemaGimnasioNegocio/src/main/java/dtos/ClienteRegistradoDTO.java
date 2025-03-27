@@ -17,6 +17,26 @@ public class ClienteRegistradoDTO {
     boolean activo;
     int id;
 
+    public ClienteRegistradoDTO(String nombre, String apellidos, String email, String numeroTelefono, int id) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.numeroTelefono = numeroTelefono;
+        this.id = id;
+    }
+
+    public ClienteRegistradoDTO(String nombre, String apellidos, String email, String numeroTelefono, boolean activo, int id) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.numeroTelefono = numeroTelefono;
+        this.activo = activo;
+        this.id = id;
+    }
+
+    public ClienteRegistradoDTO() {
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -48,31 +68,11 @@ public class ClienteRegistradoDTO {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-    
-
-    public ClienteRegistradoDTO(String nombre, String apellidos, String email, String numeroTelefono, int id) {
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.email = email;
-        this.numeroTelefono = numeroTelefono;
-        this.id = id;
-    }
-
-    public ClienteRegistradoDTO(String nombre, String apellidos, String email, String numeroTelefono, boolean activo, int id) {
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.email = email;
-        this.numeroTelefono = numeroTelefono;
-        this.activo = activo;
-        this.id = id;
-    }
-    
 
     @Override
     public String toString() {
         return "Cliente Registrado:" + "\nNombre=" + nombre + "\nApellidos=" + apellidos + "\nEmail=" + email
                 + "\nNumeroTelefono=" + numeroTelefono + "\nId=" + id;
     }
-    
-    
+
 }

@@ -10,6 +10,7 @@ import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
+import excepciones.ConsultaDatosClienteException;
 import excepciones.RegistroClienteException;
 import interfaces.IManejadorComprasMembresias;
 import java.util.ArrayList;
@@ -30,9 +31,9 @@ import java.util.stream.Collectors;
 public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     private int keyCliente = 4;
-    private LinkedList<Cliente> listaClientes;
-    private LinkedList<ServicioExtra> listaserviciosExtras;
-    private LinkedList<TipoMembresiaDTO> listaMembresias;
+    private List<Cliente> listaClientes;
+    private List<ServicioExtra> listaserviciosExtras;
+    private List<TipoMembresiaDTO> listaMembresias;
 
     @Override
     public ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) throws RegistroClienteException {
@@ -48,21 +49,21 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
         if (validarRegistroCorreo(registrarClienteDTO.getEmail())) {
             throw new RegistroClienteException("Correo ya registrado");
         }
-        
-        if(validarRegistroNumeroTelefonico(registrarClienteDTO.getNumeroTelefono())){
+
+        if (validarRegistroNumeroTelefonico(registrarClienteDTO.getNumeroTelefono())) {
             throw new RegistroClienteException("Numero telefonico ya registrado");
         }
-        
+
         Cliente cliente = new Cliente(registrarClienteDTO.getNombre(), registrarClienteDTO.getApellidos(),
                 registrarClienteDTO.getEmail(), registrarClienteDTO.getNumeroTelefono(), keyCliente);
 
         listaClientes.add(cliente);
-        
+
         ClienteRegistradoDTO clienteRegistrado = new ClienteRegistradoDTO(registrarClienteDTO.getNombre(), registrarClienteDTO.getApellidos(),
                 registrarClienteDTO.getEmail(), registrarClienteDTO.getNumeroTelefono(), keyCliente);
-        
+
         keyCliente++;
-        
+
         return clienteRegistrado;
     }
 
@@ -81,14 +82,11 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
         listaserviciosExtras.add(new ServicioExtra(4, "Spinning (Ma, Ju 6-7:30 AM)", 50));
         listaserviciosExtras.add(new ServicioExtra(5, "Masaje relajante", 200));
         listaserviciosExtras.add(new ServicioExtra(6, "Asesoría Nutricional", 180));
-        
-         List<ServicioExtraDTO> servicios= new ArrayList();
-         listaMembresias = new LinkedList<>();
-         servicios.add(new ServicioExtraDTO(1, "Entrenador", 150));
 
+        List<ServicioExtraDTO> servicios = new ArrayList();
+        listaMembresias = new LinkedList<>();
+        servicios.add(new ServicioExtraDTO(1, "Entrenador", 150));
 
-        
-        
         listaMembresias.add(new TipoMembresiaDTO("Day Pass", 15));
         listaMembresias.add(new TipoMembresiaDTO("7 dias", 105, servicios));
 
@@ -97,10 +95,9 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
         listaMembresias.add(new TipoMembresiaDTO("15 dias", 225, servicios));
 
         listaMembresias.add(new TipoMembresiaDTO("Mensual", 300));
-        
+
         listaMembresias.add(new TipoMembresiaDTO("Por visita", 13));
     }
-    
 
     private boolean validarFormatoCorreo(String email) {
         Pattern patronEmail = Pattern.compile(
@@ -123,62 +120,72 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
                 .filter(Objects::nonNull)
                 .anyMatch(e -> e.equals(numeroTelefono));
     }
-    
+
     @Override
-    public List getListaClientes(){
+    public List getListaClientes() {
         return listaClientes;
     }
-    
+
     @Override
     public List<TipoMembresiaDTO> getTiposMembresia() {
         return listaMembresias;
     }
-    
+
     public List<Cliente> obtenerListaClientes() {
         return listaClientes;
     }
 
-    
     @Override
     public List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono) {
-    // Validar que los parámetros no sean null
-    if (nombre == null || numeroTelefono == null) {
-        return Collections.emptyList();
+        // Validar que los parámetros no sean null
+        if (nombre == null || numeroTelefono == null) {
+            return Collections.emptyList();
+        }
+
+        // Limpiar espacios extra y convertir a minúsculas para evitar errores de formato
+        String nombreLimpio = nombre.trim().toLowerCase();
+        String telefonoLimpio = numeroTelefono.trim();
+
+        return listaClientes.stream()
+                .filter(cliente -> cliente.getNombres() != null && cliente.getNumeroTelefono() != null)
+                .filter(cliente -> cliente.getNombres().toLowerCase().contains(nombreLimpio)
+                && cliente.getNumeroTelefono().equals(telefonoLimpio))
+                .map(cliente -> new ClienteRegistradoDTO(
+                cliente.getNombres(),
+                cliente.getApellidos(),
+                cliente.getEmail(),
+                cliente.getNumeroTelefono(),
+                cliente.getId()))
+                .collect(Collectors.toList());
     }
 
-    // Limpiar espacios extra y convertir a minúsculas para evitar errores de formato
-    String nombreLimpio = nombre.trim().toLowerCase();
-    String telefonoLimpio = numeroTelefono.trim();
-
-    return listaClientes.stream()
-            .filter(cliente -> cliente.getNombres() != null && cliente.getNumeroTelefono() != null)
-            .filter(cliente -> cliente.getNombres().toLowerCase().contains(nombreLimpio) && 
-                               cliente.getNumeroTelefono().equals(telefonoLimpio))
-            .map(cliente -> new ClienteRegistradoDTO(
-                    cliente.getNombres(), 
-                    cliente.getApellidos(), 
-                    cliente.getEmail(), 
-                    cliente.getNumeroTelefono(), 
-                    cliente.getId()))
-            .collect(Collectors.toList());
-}
+    @Override
+    public LinkedList<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
+        return listaserviciosExtras.stream()
+                .map(servicio -> new ServicioExtraDTO(
+                (int) servicio.getId(),
+                servicio.getNombreServicio(),
+                servicio.getPrecio()))
+                .collect(Collectors.toCollection(LinkedList::new));
+    }
 
     @Override
-   public LinkedList<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
-    return listaserviciosExtras.stream()
-            .map(servicio -> new ServicioExtraDTO(
-                    (int) servicio.getId(),
-                    servicio.getNombreServicio(),
-                    servicio.getPrecio()))
-            .collect(Collectors.toCollection(LinkedList::new)); 
+    public String obtenerNombreCliente(int id) throws ConsultaDatosClienteException {
+        for (Cliente c : listaClientes) {
+            if (c.getId() == id) {
+                return c.getNombres() + "\n" + c.getApellidos();
+            }
+        }
+        throw new ConsultaDatosClienteException("No se pudo cargar el nombre del cliente porque el ID no fue encontrado");
+    }
+
+    @Override
+    public String obtenerNumeroCliente(int id) throws ConsultaDatosClienteException {
+        for (Cliente c : listaClientes) {
+            if (c.getId() == id) {
+                return c.getNumeroTelefono();
+            }
+        }
+        throw new ConsultaDatosClienteException("No se pudo cargar el número telefónico del cliente porque el ID no fue encontrado");
+    }
 }
-
-    
-    
-    
-}
-
-
-    
-
-

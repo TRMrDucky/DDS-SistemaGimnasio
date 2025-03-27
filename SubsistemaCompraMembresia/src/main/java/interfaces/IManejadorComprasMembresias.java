@@ -5,14 +5,12 @@
 package interfaces;
 
 import clasesmock.Cliente;
-import clasesmock.ServicioExtra;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
+import excepciones.ConsultaDatosClienteException;
 import excepciones.RegistroClienteException;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -32,4 +30,9 @@ public interface IManejadorComprasMembresias {
     public abstract List<TipoMembresiaDTO> getTiposMembresia();
     
     public abstract List<Cliente> obtenerListaClientes();
+    
+    public abstract String obtenerNombreCliente(int id) throws ConsultaDatosClienteException;
+    
+    public abstract String obtenerNumeroCliente(int id) throws ConsultaDatosClienteException;
+    
 }

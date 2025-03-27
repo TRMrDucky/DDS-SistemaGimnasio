@@ -9,8 +9,8 @@ import dtos.ClienteRegConMemYServDTO;
 import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
-import dtos.RegistrarClienteDTO;
 import dtos.ServicioExtraDTO;
+import excepciones.ConsultaDatosClienteException;
 import excepciones.RegistroClienteException;
 import interfaces.IManejadorComprasMembresias;
 import java.util.List;
@@ -24,15 +24,14 @@ import javax.swing.JTextField;
  * @author 52644
  */
 public class ControlNavegacionCompraMembresia {
-				
-    private IManejadorComprasMembresias subsistema;
 
+    private IManejadorComprasMembresias subsistema;
 
     public void openFormRegistrarCliente() {
         RegistrarCliente rc = new RegistrarCliente(this);
         rc.setVisible(true);
     }
-    
+
     public void openFormBuscarCliente() {
         BuscarCliente bc = new BuscarCliente(this);
         bc.setVisible(true);
@@ -40,7 +39,7 @@ public class ControlNavegacionCompraMembresia {
 
     public void seleccionarMembresia(ClienteRegistradoDTO cliente) {
         SeleccionarMembresia sm = new SeleccionarMembresia(this, cliente);
-       sm.setVisible(true);
+        sm.setVisible(true);
     }
 
     public void openFormSeleccionarMembresia(ClienteRegistradoDTO clienteRegistradoDTO) {
@@ -48,12 +47,10 @@ public class ControlNavegacionCompraMembresia {
         em.setVisible(true);
 
     }
-    
 
-        public List<Cliente> getListaClientes() {
+    public List<Cliente> getListaClientes() {
         return subsistema.obtenerListaClientes();
     }
-
 
     public ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) {
         try {
@@ -66,22 +63,22 @@ public class ControlNavegacionCompraMembresia {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR",
                     JOptionPane.WARNING_MESSAGE);
         }
-        return null;
+        return new ClienteRegistradoDTO();
     }
-    
-    public void openFormServiciosExtra(ClienteRegConMembDTO cliente){
+
+    public void openFormServiciosExtra(ClienteRegConMembDTO cliente) {
         ServiciosExtras se = new ServiciosExtras(this, cliente);
         se.setVisible(true);
     }
 
-    public void setSubsistema(IManejadorComprasMembresias subsistema){
+    public void setSubsistema(IManejadorComprasMembresias subsistema) {
         this.subsistema = subsistema;
     }
 
-    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO(){
+    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
         return subsistema.obtenerServiciosExtrasDTO();
     }
-    
+
     public void mostrarServiciosSeleccionados(List<ServicioExtraDTO> seleccionados) {
         StringBuilder mensaje = new StringBuilder("Servicios seleccionados:\n");
         for (ServicioExtraDTO servicio : seleccionados) {
@@ -89,25 +86,44 @@ public class ControlNavegacionCompraMembresia {
         }
         JOptionPane.showMessageDialog(null, mensaje.toString(), "Selección de Servicios", JOptionPane.INFORMATION_MESSAGE);
     }
-    
-    public void mostrarPagoEnResumen(ClienteRegConMemYServDTO cliente,JTextField txtTotalPagado){
+
+    public void mostrarPagoEnResumen(ClienteRegConMemYServDTO cliente, JTextField txtTotalPagado) {
         try {
             double total = cliente.getPrecio();
             double pagado = Double.parseDouble(txtTotalPagado.getText());
             if (pagado > total) {
-            // Si el cliente pagó más, muestra el cambio a devolver
-            double cambio = pagado - total;
-            JOptionPane.showMessageDialog(null, "Pago completado. Cambio a devolver: $" + cambio, "Pago Exitoso", JOptionPane.INFORMATION_MESSAGE);
-            }
-            else if (pagado >= total) {
+                // Si el cliente pagó más, muestra el cambio a devolver
+                double cambio = pagado - total;
+                JOptionPane.showMessageDialog(null, "Pago completado. Cambio a devolver: $" + cambio, "Pago Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            } else if (pagado >= total) {
                 JOptionPane.showMessageDialog(null, "Pago completado. No hay deuda pendiente.", "Pago Exitoso", JOptionPane.INFORMATION_MESSAGE);
-            }else {
+            } else {
                 double deuda = total - pagado;
                 JOptionPane.showMessageDialog(null, "Pago parcial. Deuda restante: $" + deuda, "Pago Incompleto", JOptionPane.WARNING_MESSAGE);
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Ingrese una cantidad válida.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    public String obtenerNombreCliente(int id) {
+        try {
+            return subsistema.obtenerNombreCliente(id);
+        } catch (ConsultaDatosClienteException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+        return "";
+    }
+
+    public String obtenerNumeroCliente(int id) {
+        try {
+            return subsistema.obtenerNumeroCliente(id);
+        } catch (ConsultaDatosClienteException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+        return "";
     }
 
 }
