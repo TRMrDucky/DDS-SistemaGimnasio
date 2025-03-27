@@ -25,11 +25,11 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
- * a
- * a
+ * 
  *
  * @author 52644
  */
+
 public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     private int keyCliente = 4;

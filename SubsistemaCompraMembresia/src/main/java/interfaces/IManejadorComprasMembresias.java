@@ -6,6 +6,7 @@ package interfaces;
 
 import clasesmock.Cliente;
 import dtos.ClienteRegistradoDTO;
+import dtos.PagoDTO;
 import dtos.RegistrarClienteDTO;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
@@ -36,4 +37,7 @@ public interface IManejadorComprasMembresias {
     public abstract String obtenerNumeroCliente(int id) throws ConsultaDatosClienteException;
     
     public abstract ClienteRegistradoDTO buscarClienteporID(int id);
+    
+    public abstract PagoDTO procesarPago (int idCliente, double monto);
+   
 }
