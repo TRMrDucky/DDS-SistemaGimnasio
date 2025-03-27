@@ -35,4 +35,5 @@ public interface IManejadorComprasMembresias {
     
     public abstract String obtenerNumeroCliente(int id) throws ConsultaDatosClienteException;
     
+    public abstract ClienteRegistradoDTO buscarClienteporID(int id);
 }

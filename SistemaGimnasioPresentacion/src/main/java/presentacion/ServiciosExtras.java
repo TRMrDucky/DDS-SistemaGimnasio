@@ -10,7 +10,9 @@ package presentacion;
  */
 import dtos.ClienteRegConMemYServDTO;
 import dtos.ClienteRegConMembDTO;
+import dtos.ClienteRegistradoDTO;
 import dtos.ServicioExtraDTO;
+import implementaciones.ManejadorComprasMembresias;
 import interfaces.IManejadorComprasMembresias;
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +20,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * clase que representa la pantalla para elegir servicios extra
+ * @author Ramón Zamudio
+ */
 public class ServiciosExtras extends JFrame {
 
     private ControlNavegacionCompraMembresia control;
@@ -26,15 +31,18 @@ public class ServiciosExtras extends JFrame {
     private List<ServicioExtraDTO> serviciosExtras;
     private double costoTotal;
     private JLabel lblCostoTotal;
-
+    /**
+     * metodo que crea el frame
+     * @param control controlNavegacion
+     * @param cliente DTO del cliente recibido de la pantalla anterior
+     */
     public ServiciosExtras(ControlNavegacionCompraMembresia control, ClienteRegConMembDTO cliente) {
         this.control = control;
-        //Este método debe llamar al control, que dentro de sí tendrá un método que llame al
-//subsistema.
         this.serviciosExtras = control.obtenerServiciosExtrasDTO();
         this.costoTotal = 0.0;
         this.checkBoxes = new ArrayList<>();
         cargarFrame();
+        
         JPanel panel = new JPanel();
         panel.setBackground(new Color(100, 149, 237));
         panel.setLayout(new BorderLayout());
@@ -50,14 +58,14 @@ public class ServiciosExtras extends JFrame {
 
         LinkedList<Long> idsServiciosCliente = new LinkedList<>();
         for (ServicioExtraDTO servicio : cliente.getServicios()) {
-            idsServiciosCliente.add(servicio.getId()); // Ahora usamos LinkedList<Long>
+            idsServiciosCliente.add(servicio.getId());
         }
 
         for (ServicioExtraDTO servicio : serviciosExtras) {
             JCheckBox checkBox = new JCheckBox(servicio.getNombreServicio() + " - Costo $" + servicio.getPrecio());
             checkBox.setActionCommand(String.valueOf(servicio.getId()));
 
-            if (idsServiciosCliente.contains(servicio.getId())) { // Compara IDs correctamente
+            if (idsServiciosCliente.contains(servicio.getId())) {
                 checkBox.setSelected(true);
                 costoTotal += servicio.getPrecio();
             }
@@ -99,21 +107,34 @@ public class ServiciosExtras extends JFrame {
 
         btnContinuar.addActionListener(e -> {
             List<ServicioExtraDTO> seleccionadosList = getServiciosSeleccionados();
-            ClienteRegConMemYServDTO clienteConMembresia = new ClienteRegConMemYServDTO(cliente.getTipoMembresia(), cliente.getPrecio()+costoTotal, seleccionadosList, cliente.getIdCliente());
+            ClienteRegConMemYServDTO clienteConMembresia = new ClienteRegConMemYServDTO(cliente.getTipoMembresia(), cliente.getPrecio() + costoTotal, seleccionadosList, cliente.getIdCliente());
             control.mostrarServiciosSeleccionados(seleccionadosList);
+            control.openFormResumenCompra(clienteConMembresia);
+            dispose();
         });
-
+        
+        btnCancelar.addActionListener(e -> {
+            ClienteRegistradoDTO cliente2 = control.obtenerCliente(cliente.getIdCliente());
+            control.openFormSeleccionarMembresia(cliente2);
+            dispose();
+        });
+        
         btnLimpiar.addActionListener(e -> limpiarSeleccion());
     }
-
-    public void cargarFrame(){
+    /**
+     * metodo que carga el frame
+     */
+    public void cargarFrame() {
         setTitle("Servicios Extras");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
     }
-
+    /**
+     * meotdo que obtiene los servicios seleccionados por el cliente
+     * @return regresa una lista de los servicios seleccionados
+     */
     public List<ServicioExtraDTO> getServiciosSeleccionados() {
         List<ServicioExtraDTO> seleccionados = new LinkedList<>();
         for (JCheckBox checkBox : checkBoxes) {
@@ -127,8 +148,11 @@ public class ServiciosExtras extends JFrame {
         }
         return seleccionados;
     }
-
-
+    /**
+     * meotdo que actualiza el costo despues de marcar un checkBox
+     * @param checkBox checkbox marcado
+     * @param precio precio a sumar al total
+     */
     private void actualizarCosto(JCheckBox checkBox, double precio) {
         if (checkBox.isSelected()) {
             costoTotal += precio;
@@ -137,7 +161,9 @@ public class ServiciosExtras extends JFrame {
         }
         lblCostoTotal.setText("Costo Total: $" + costoTotal);
     }
-
+    /**
+     * metodo que quita la seleccion de todos los checkboxes
+     */
     private void limpiarSeleccion() {
         for (JCheckBox checkBox : checkBoxes) {
             if (checkBox.isSelected()) {
@@ -147,4 +173,11 @@ public class ServiciosExtras extends JFrame {
         costoTotal = 0;
         lblCostoTotal.setText("Costo Total: $" + costoTotal);
     }
+    public static void main(String[]args){
+        IManejadorComprasMembresias subsistema = new ManejadorComprasMembresias();
+        ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia();
+        control.setSubsistema(subsistema);
+        new ServiciosExtras(control, new ClienteRegConMembDTO("mensual", 150, List.of(new ServicioExtraDTO(1, "entrenador", 150)), 1)).setVisible(true);
+    }
 }
+

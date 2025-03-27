@@ -188,4 +188,19 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
         }
         throw new ConsultaDatosClienteException("No se pudo cargar el número telefónico del cliente porque el ID no fue encontrado");
     }
+    
+    @Override
+    public ClienteRegistradoDTO buscarClienteporID(int id) {
+        return listaClientes.stream()
+            .filter(cliente -> cliente.getId() == id) // Filtrar por ID
+            .map(cliente -> new ClienteRegistradoDTO(
+                    cliente.getNombres(),
+                    cliente.getApellidos(),
+                    cliente.getEmail(),
+                    cliente.getNumeroTelefono(),
+                    cliente.getId()))
+            .findFirst() // Tomar solo el primer resultado (si existe)
+            .orElse(null);
+            
+    }
 }

@@ -7,7 +7,7 @@ package dtos;
 import java.util.List;
 
 /**
- *
+ *Clase que representa a un cliente con una membresía y servicios adicionales.
  * @author Ramón Zamudio
  */
 public class ClienteRegConMemYServDTO {
@@ -15,7 +15,13 @@ public class ClienteRegConMemYServDTO {
     private double precio;
     private List<ServicioExtraDTO>servicios;
     private int idCliente;
-
+    /**
+     * Constructor con parámetros.
+     * @param tipoMembresia tipo de membresia
+     * @param precio precio de la membresia
+     * @param servicios servicios seleccionados
+     * @param idCliente id
+     */
     public ClienteRegConMemYServDTO(String tipoMembresia, double precio, List<ServicioExtraDTO> servicios, int idCliente) {
         this.tipoMembresia = tipoMembresia;
         this.precio = precio;

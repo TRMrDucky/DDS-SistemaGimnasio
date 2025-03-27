@@ -86,20 +86,32 @@ public class ControlNavegacionCompraMembresia {
         }
         return new ClienteRegistradoDTO();
     }
-
+/**
+ * metodo que abre el formulario de servicios extra
+ * @param cliente 
+ */
     public void openFormServiciosExtra(ClienteRegConMembDTO cliente) {
         ServiciosExtras se = new ServiciosExtras(this, cliente);
         se.setVisible(true);
     }
-
+/**
+ * metodo que setea el subsistema al atributo
+ * @param subsistema 
+ */
     public void setSubsistema(IManejadorComprasMembresias subsistema) {
         this.subsistema = subsistema;
     }
-
+/**
+ * metodo que obtiene los servicios extra
+ * @return 
+ */
     public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
         return subsistema.obtenerServiciosExtrasDTO();
     }
-
+/**
+ * metodo que muestra los servicios extras seleccionados
+ * @param seleccionados 
+ */
     public void mostrarServiciosSeleccionados(List<ServicioExtraDTO> seleccionados) {
         StringBuilder mensaje = new StringBuilder("Servicios seleccionados:\n");
         for (ServicioExtraDTO servicio : seleccionados) {
@@ -107,7 +119,11 @@ public class ControlNavegacionCompraMembresia {
         }
         JOptionPane.showMessageDialog(null, mensaje.toString(), "Selección de Servicios", JOptionPane.INFORMATION_MESSAGE);
     }
-
+    /**
+     * metodo que muestra si se completo el pago
+     * @param cliente
+     * @param txtTotalPagado 
+     */
     public void mostrarPagoEnResumen(ClienteRegConMemYServDTO cliente, JTextField txtTotalPagado) {
         try {
             double total = cliente.getPrecio();
@@ -142,6 +158,14 @@ public class ControlNavegacionCompraMembresia {
         }
         return "";
     }
+    /**
+     * metodo que obtiene un cliente en especifico
+     * @param id id del cliente a buscar
+     * @return 
+     */
+    public ClienteRegistradoDTO obtenerCliente(int id) {
+        return subsistema.buscarClienteporID(id);
+    }
 
     /**
      * Retorna el numero de teléfono del cliente con base a su ID
@@ -158,5 +182,13 @@ public class ControlNavegacionCompraMembresia {
         }
         return "";
     }
-
+    /**
+     * metodo que abre el formulario de resumen de compra
+     * @param cliente 
+     */
+    public void openFormResumenCompra(ClienteRegConMemYServDTO cliente){
+        new ResumenCompraFrame(this, cliente).setVisible(true);
+    }
+    
+    
 }

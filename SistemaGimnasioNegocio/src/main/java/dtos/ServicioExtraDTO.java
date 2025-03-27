@@ -5,18 +5,25 @@
 package dtos;
 
 /**
- *
+ *Clase que representa un servicio extra con su ID, nombre y precio.
  * @author Ramón Zamudio
  */
 public class ServicioExtraDTO {
-    private int id;
+    private long id;
     private String nombreServicio;
     private double precio;
-
+    /**
+     * Constructor vacío.
+     */
     public ServicioExtraDTO() {
     }
-
-    public ServicioExtraDTO(int id, String nombreServicio, double precio) {
+    /**
+     * Constructor con parámetros.
+     * @param id id del servicio
+     * @param nombreServicio nombre del servicioExtra
+     * @param precio precio del servicio
+     */
+    public ServicioExtraDTO(long id, String nombreServicio, double precio) {
         this.id = id;
         this.nombreServicio = nombreServicio;
         this.precio = precio;
@@ -34,7 +41,7 @@ public class ServicioExtraDTO {
         return precio;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -45,7 +52,10 @@ public class ServicioExtraDTO {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-
+    /**
+     *  Método toString para representar el objeto como una cadena de texto.
+     * @return regresa el objeto como cadena de texto
+     */
     @Override
     public String toString() {
         return "ServicioExtraDTO{" + "id=" + id + ", nombreServicio=" + nombreServicio + ", precio=" + precio + '}';

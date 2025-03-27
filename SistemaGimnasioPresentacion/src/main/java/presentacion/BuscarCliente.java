@@ -5,6 +5,7 @@
 package presentacion;
 
 import clasesmock.Cliente;
+import implementaciones.ManejadorComprasMembresias;
 import interfaces.IManejadorComprasMembresias;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
@@ -89,7 +90,9 @@ public class BuscarCliente extends JFrame {
  
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
+            IManejadorComprasMembresias subsistema = new ManejadorComprasMembresias();
             ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia();
+            control.setSubsistema(subsistema);
             new BuscarCliente(control).setVisible(true);
         });
 }
