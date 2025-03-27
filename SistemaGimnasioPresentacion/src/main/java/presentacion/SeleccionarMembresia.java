@@ -88,11 +88,12 @@ public class SeleccionarMembresia extends JFrame {
         JButton btnMembresia = new JButton(textoBoton);
 
         btnMembresia.addActionListener(e -> {
+             List<ServicioExtraDTO> serviciosExtras = membresia.getServiciosExtras();
          clienteMemb = new ClienteRegConMembDTO(
         membresia.getTipoMembresia(), 
-        membresia.getPrecio(), 
-                 
-    cliente.getId()
+        membresia.getPrecio(),
+        serviciosExtras,  
+        cliente.getId()
            
     );
           
