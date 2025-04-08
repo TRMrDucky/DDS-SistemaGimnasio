@@ -13,7 +13,7 @@ import implementaciones.ManejadorComprasMembresias;
  * @author 52644
  */
 public class RegistrarCliente extends javax.swing.JFrame {
-    
+
     private final ControlNavegacionCompraMembresia control;
 
     /**
@@ -27,9 +27,9 @@ public class RegistrarCliente extends javax.swing.JFrame {
 
     }
 
-  public RegistrarCliente(){
-      this(new ControlNavegacionCompraMembresia(new ManejadorComprasMembresias()));
-  }
+    public RegistrarCliente() {
+        this(new ControlNavegacionCompraMembresia(new ManejadorComprasMembresias()));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -206,11 +206,12 @@ public class RegistrarCliente extends javax.swing.JFrame {
     private void campoEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoEmailActionPerformed
-/**
- * Registra un cliente con base a los parámetros recogidos desde
- * los campos de texto. 
- * @param evt 
- */
+    /**
+     * Registra un cliente con base a los parámetros recogidos desde los campos
+     * de texto.
+     *
+     * @param evt
+     */
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
         String nombres = campoNombres.getText();
@@ -220,8 +221,9 @@ public class RegistrarCliente extends javax.swing.JFrame {
 
         RegistrarClienteDTO registrarClienteDTO = new RegistrarClienteDTO(nombres, apellidos,
                 email, numeroTelefono);
-
         ClienteRegistradoDTO cliente = control.registrarCliente(registrarClienteDTO);
+        if(!(cliente==null)){
+            
         campoNombres.setText(null);
         campoApellidos.setText(null);
         campoEmail.setText(null);
@@ -232,11 +234,15 @@ public class RegistrarCliente extends javax.swing.JFrame {
         //ControlNavegacionCompraMembresia control= new ControlNavegacionCompraMembresia();
         control.openFormSeleccionarMembresia(cliente);
 
+        }
+
     }//GEN-LAST:event_btnAceptarActionPerformed
-/**
- * Cancela el llenado del formulario del registro de usuario y vuelve a la pantalla anterior
- * @param evt 
- */
+    /**
+     * Cancela el llenado del formulario del registro de usuario y vuelve a la
+     * pantalla anterior
+     *
+     * @param evt
+     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         control.openFormBuscarCliente();
     }//GEN-LAST:event_btnCancelarActionPerformed

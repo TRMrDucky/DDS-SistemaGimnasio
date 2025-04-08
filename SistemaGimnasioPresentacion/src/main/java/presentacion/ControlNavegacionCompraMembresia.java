@@ -89,8 +89,8 @@ public class ControlNavegacionCompraMembresia {
             Logger.getLogger(RegistrarCliente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR",
                     JOptionPane.WARNING_MESSAGE);
+            return null;
         }
-        return new ClienteRegistradoDTO();
     }
     
     
