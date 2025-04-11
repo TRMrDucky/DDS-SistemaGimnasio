@@ -7,12 +7,8 @@ package presentacion;
 import dtos.ClienteRegistradoDTO;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
-import implementaciones.ManejadorComprasMembresias;
-import interfaces.IManejadorComprasMembresias;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -47,6 +43,7 @@ public class SeleccionarMembresia extends JFrame {
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+         setLocationRelativeTo(null);
 
         panelMembresias = new JPanel();
         panelMembresias.setLayout(new GridLayout(0, 1)); 

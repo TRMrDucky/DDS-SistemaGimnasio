@@ -65,7 +65,12 @@ public class BuscarCliente extends JFrame {
             }
         });
 
-        btnRegistrar.addActionListener(e -> control.openFormRegistrarCliente());
+            btnRegistrar.addActionListener(e -> registrarActionPerformed());
+    }
+    
+    private void registrarActionPerformed(){
+        control.openFormRegistrarCliente();
+        dispose();
     }
 
     private void buscarClientes(String nombre) {

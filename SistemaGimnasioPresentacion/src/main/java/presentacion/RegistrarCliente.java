@@ -233,7 +233,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
         //ClienteRegistradoDTO y Subsistema
         //ControlNavegacionCompraMembresia control= new ControlNavegacionCompraMembresia();
         control.openFormSeleccionarMembresia(cliente);
-
+        dispose();
         }
 
     }//GEN-LAST:event_btnAceptarActionPerformed

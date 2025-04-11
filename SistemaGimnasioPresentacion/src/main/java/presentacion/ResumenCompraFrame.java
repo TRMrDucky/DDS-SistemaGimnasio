@@ -25,33 +25,35 @@ import javax.swing.SwingConstants;
  * @author Ramón Zamudio
  */
 public class ResumenCompraFrame extends JFrame {
+
     private ControlNavegacionCompraMembresia control;
-    
+
     public ResumenCompraFrame(ControlNavegacionCompraMembresia control, ClienteRegConMemYServDTO cliente) {
         this.control = control;
-        
+
         cargarFrame();
         cargarNombreCliente(control.obtenerNombreCliente(cliente.getIdCliente()));
         cargarTelefonoCliente(control.obtenerNumeroCliente(cliente.getIdCliente()));
         cargarPanelServicios(cliente);
         cargarLabelTotal(cliente);
-        
+
         JTextField txtTotalPagado = cargarLabelTotalPagado();
-        
+
         JButton btnPagar = new JButton("Pagar");
         btnPagar.setBounds(230, 300, 140, 40);
         btnPagar.setBackground(Color.GREEN);
         btnPagar.addActionListener(e -> {
             double montoPagado;
-    try {
-        montoPagado = Double.parseDouble(txtTotalPagado.getText());
-    } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "Ingrese un monto válido.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+            try {
+                montoPagado = Double.parseDouble(txtTotalPagado.getText());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Ingrese un monto válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-    
-    control.procesarPago(cliente, montoPagado); // 
+            control.procesarPago(cliente, montoPagado);  
+            control.openFormBuscarCliente();
+            dispose();
         });
         add(btnPagar);
 
@@ -64,7 +66,7 @@ public class ResumenCompraFrame extends JFrame {
         });
         add(btnVolver);
     }
-    
+
     public void cargarFrame() {
         setTitle("Resumen de Compra");
         setSize(600, 400);
@@ -79,7 +81,7 @@ public class ResumenCompraFrame extends JFrame {
         lblTitulo.setBounds(180, 10, 250, 30);
         add(lblTitulo);
     }
-    
+
     public void cargarNombreCliente(String nombre) {
         JLabel lblNombre = new JLabel("Nombre del cliente");
         lblNombre.setBounds(50, 50, 150, 20);
@@ -89,7 +91,7 @@ public class ResumenCompraFrame extends JFrame {
         txtNombre.setEditable(false);
         add(txtNombre);
     }
-    
+
     public void cargarTelefonoCliente(String telefono) {
         JLabel lblTelefono = new JLabel("Número Telefónico");
         lblTelefono.setBounds(350, 50, 150, 20);
@@ -99,7 +101,7 @@ public class ResumenCompraFrame extends JFrame {
         txtTelefono.setEditable(false);
         add(txtTelefono);
     }
-    
+
     public void cargarLabelTotal(ClienteRegConMemYServDTO cliente) {
         JLabel lblTotal = new JLabel("Total");
         lblTotal.setBounds(350, 130, 100, 20);
@@ -109,7 +111,7 @@ public class ResumenCompraFrame extends JFrame {
         txtTotal.setEditable(false);
         add(txtTotal);
     }
-    
+
     public JTextField cargarLabelTotalPagado() {
         JLabel lblTotalPagado = new JLabel("Total pagado");
         lblTotalPagado.setBounds(350, 190, 100, 20);
@@ -119,14 +121,14 @@ public class ResumenCompraFrame extends JFrame {
         add(txtTotalPagado);
         return txtTotalPagado;
     }
-    
+
     public void cargarPanelServicios(ClienteRegConMemYServDTO cliente) {
         JPanel panelServicios = new JPanel();
         panelServicios.setLayout(new BoxLayout(panelServicios, BoxLayout.Y_AXIS));
         panelServicios.setBorder(BorderFactory.createTitledBorder("Membresía y Servicios Extras"));
         panelServicios.setBackground(new Color(204, 153, 255));
         panelServicios.setBounds(50, 110, 200, 150);
-        
+
         List<ServicioExtraDTO> servicios = cliente.getServicios();
         if (servicios != null && !servicios.isEmpty()) {
             for (ServicioExtraDTO servicio : servicios) {
@@ -138,4 +140,3 @@ public class ResumenCompraFrame extends JFrame {
         add(panelServicios);
     }
 }
-
