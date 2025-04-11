@@ -14,6 +14,17 @@ public class Membresia {
     String tipo;
     String estado;
     Double costo;
+
+    public Membresia(String tipo, String estado, Double costo) {
+        this.tipo = tipo;
+        this.estado = estado;
+        this.costo = costo;
+    }
+
+    public Membresia(String tipo, Double costo) {
+        this.tipo = tipo;
+        this.costo = costo;
+    }
     
 
     public int getIdMembresia() {

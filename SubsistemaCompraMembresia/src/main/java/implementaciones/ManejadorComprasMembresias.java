@@ -39,7 +39,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     @Override
     public ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) throws RegistroClienteException {
-        if (registrarClienteDTO.getNombre().isBlank() || registrarClienteDTO.getApellidos().isBlank()
+        if (registrarClienteDTO.getNombre().isBlank() || registrarClienteDTO.getApellidoMaterno().isBlank() || registrarClienteDTO.getApellidoPaterno().isBlank()
                 || registrarClienteDTO.getEmail().isBlank() || registrarClienteDTO.getNumeroTelefono().isBlank()) {
             throw new RegistroClienteException("Ningun campo puede permanecer vacio");
         }
@@ -56,12 +56,12 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
             throw new RegistroClienteException("Numero telefonico ya registrado");
         }
 
-        Cliente cliente = new Cliente(registrarClienteDTO.getNombre(), registrarClienteDTO.getApellidos(),
+        Cliente cliente = new Cliente(registrarClienteDTO.getNombre(), registrarClienteDTO.getApellidoPaterno(),registrarClienteDTO.getApellidoMaterno(),
                 registrarClienteDTO.getEmail(), registrarClienteDTO.getNumeroTelefono(), keyCliente);
 
         listaClientes.add(cliente);
 
-        ClienteRegistradoDTO clienteRegistrado = new ClienteRegistradoDTO(registrarClienteDTO.getNombre(), registrarClienteDTO.getApellidos(),
+        ClienteRegistradoDTO clienteRegistrado = new ClienteRegistradoDTO(registrarClienteDTO.getNombre(), registrarClienteDTO.getApellidoPaterno(),registrarClienteDTO.getApellidoMaterno(),
                 registrarClienteDTO.getEmail(), registrarClienteDTO.getNumeroTelefono(), keyCliente);
 
         keyCliente++;
@@ -71,11 +71,11 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     public ManejadorComprasMembresias() {
         listaClientes = new LinkedList<>();
-        listaClientes.add(new Cliente("Pedro", "Sola Meza",
+        listaClientes.add(new Cliente("Pedro", "Sola", "Meza",
                 "pedro.sola@hotmail.com", "6441348130", 1));
-        listaClientes.add(new Cliente("Vanessa Paola", "Solano Lopez",
+        listaClientes.add(new Cliente("Vanessa Paola", "Solano", "Lopez",
                 "vapo23@gmail.com", "6441385760", 2));
-        listaClientes.add(new Cliente("Alondra Lizeth", "Aviles",
+        listaClientes.add(new Cliente("Alondra Lizeth", "Aviles","",
                 "pedro.sola@hotmail.com", "6442878593", 3));
         listaserviciosExtras = new LinkedList<>();
         listaserviciosExtras.add(new ServicioExtra(1, "Entrenador", 150));
@@ -154,7 +154,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
                 && cliente.getNumeroTelefono().equals(telefonoLimpio))
                 .map(cliente -> new ClienteRegistradoDTO(
                 cliente.getNombres(),
-                cliente.getApellidos(),
+                cliente.getApellidoPaterno(),cliente.getApellidoMaterno(),
                 cliente.getEmail(),
                 cliente.getNumeroTelefono(),
                 cliente.getId()))
@@ -175,7 +175,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     public String obtenerNombreCliente(int id) throws ConsultaDatosClienteException {
         for (Cliente c : listaClientes) {
             if (c.getId() == id) {
-                return c.getNombres() + "\n" + c.getApellidos();
+                return c.getNombres() + "\n" + c.getApellidoPaterno()+c.getApellidoMaterno();
             }
         }
         throw new ConsultaDatosClienteException("No se pudo cargar el nombre del cliente porque el ID no fue encontrado");
@@ -194,10 +194,10 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     @Override
     public ClienteRegistradoDTO buscarClienteporID(int id) {
         return listaClientes.stream()
-            .filter(cliente -> cliente.getId() == id) // Filtrar por ID
+            .filter(cliente -> cliente.getId() == id)
             .map(cliente -> new ClienteRegistradoDTO(
                     cliente.getNombres(),
-                    cliente.getApellidos(),
+                    cliente.getApellidoPaterno(),cliente.getApellidoMaterno(),
                     cliente.getEmail(),
                     cliente.getNumeroTelefono(),
                     cliente.getId()))

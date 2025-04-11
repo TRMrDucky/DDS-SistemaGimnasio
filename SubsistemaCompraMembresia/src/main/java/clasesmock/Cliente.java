@@ -10,25 +10,37 @@ package clasesmock;
  */
 public class Cliente {
     private String nombres;
-    private String Apellidos;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
     private String email;
     private String numeroTelefono;
     private int id;
 
+    public Cliente(String nombres, String aapellidoPaterno, String apellidoMaterno, String email, String numeroTelefono) {
+        this.nombres = nombres;
+        this.apellidoPaterno = aapellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.email = email;
+        this.numeroTelefono = numeroTelefono;
+    }
+
+    public Cliente(String nombres, String aapellidoPaterno, String apellidoMaterno, String email, String numeroTelefono, int id) {
+        this.nombres = nombres;
+        this.apellidoPaterno = aapellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.email = email;
+        this.numeroTelefono = numeroTelefono;
+        this.id = id;
+    }
+    
+    
+    
     public String getNombres() {
         return nombres;
     }
 
     public void setNombres(String nombres) {
         this.nombres = nombres;
-    }
-
-    public String getApellidos() {
-        return Apellidos;
-    }
-
-    public void setApellidos(String Apellidos) {
-        this.Apellidos = Apellidos;
     }
 
     public String getEmail() {
@@ -58,13 +70,22 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String nombres, String Apellidos, String email, String numeroTelefono, int id) {
-        this.nombres = nombres;
-        this.Apellidos = Apellidos;
-        this.email = email;
-        this.numeroTelefono = numeroTelefono;
-        this.id = id;
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
     }
+
+    public void setApellidoPaterno(String aapellidoPaterno) {
+        this.apellidoPaterno = aapellidoPaterno;
+    }
+
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
+    }
+
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
+    }
+
     
     
 }
