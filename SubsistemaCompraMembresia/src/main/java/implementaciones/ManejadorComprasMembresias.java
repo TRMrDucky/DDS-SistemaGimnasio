@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package implementaciones;
 
 
+import bos.FabricaBOs;
 import bos.MembresiaBO;
 import bos.RegistrarClienteBO;
 import bos.ServicioExtraBO;
@@ -16,7 +13,6 @@ import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
 import excepciones.ConsultaDatosClienteException;
 import excepciones.RegistroClienteException;
-import fabricasBOs.FabricaBOs;
 import interfaces.IManejadorComprasMembresias;
 import java.util.ArrayList;
 import java.util.Collections;
