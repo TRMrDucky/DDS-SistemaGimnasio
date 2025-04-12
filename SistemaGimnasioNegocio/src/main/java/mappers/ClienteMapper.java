@@ -4,7 +4,7 @@
  */
 package mappers;
 
-import clasesmock.Cliente;
+import clases.mock.Cliente;
 import dtos.ClienteDTO;
 import java.util.LinkedList;
 import java.util.List;
