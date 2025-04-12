@@ -32,9 +32,9 @@ public class RegistrarClienteBO {
     }
 
     
-    public List<ClienteDTO> obtenerListaClientes(){
+    public List<ClienteRegistradoDTO> obtenerListaClientes(){
         List<Cliente> listaClientes = clienteDAO.obtenerListaClientes();
-        List<ClienteDTO> listaClientesDTO = ClienteMapper.toListDTO(listaClientes);
+        List<ClienteRegistradoDTO> listaClientesDTO = ClienteMapper.toListDTO(listaClientes);
         return listaClientesDTO;
     } 
 }

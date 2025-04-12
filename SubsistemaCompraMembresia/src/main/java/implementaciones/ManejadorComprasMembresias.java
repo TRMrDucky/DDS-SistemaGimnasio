@@ -94,22 +94,22 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     }
 
     private boolean validarRegistroCorreo(String email) {
-        return .stream()
-                .map(Cliente::getEmail)
+        return registrarClienteBO.obtenerListaClientes().stream()
+                .map(ClienteRegistradoDTO::getEmail)
                 .filter(Objects::nonNull)
                 .anyMatch(e -> e.equalsIgnoreCase(email));
     }
 
     private boolean validarRegistroNumeroTelefonico(String numeroTelefono) {
-        return listaClientes.stream()
-                .map(Cliente::getNumeroTelefono)
+        return registrarClienteBO.obtenerListaClientes().stream()
+                .map(ClienteRegistradoDTO::getNumeroTelefono)
                 .filter(Objects::nonNull)
                 .anyMatch(e -> e.equals(numeroTelefono));
     }
 
     @Override
-    public List getListaClientes() {
-        return listaClientes;
+    public List<ClienteRegistradoDTO> getListaClientes() {
+        return registrarClienteBO.obtenerListaClientes();
     }
 
     @Override
@@ -117,9 +117,6 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
         return listaMembresias;
     }
 
-    public List<Cliente> obtenerListaClientes() {
-        return listaClientes;
-    }
 
     @Override
     public List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono) {

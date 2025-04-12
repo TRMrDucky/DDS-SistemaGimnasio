@@ -24,10 +24,10 @@ public class ClienteMapper {
     public static ClienteRegistradoDTO ClienteRegistradoToDTO(Cliente cliente){
         return new ClienteRegistradoDTO(cliente.getNombres(), cliente.getApellidos(), cliente.getEmail(), cliente.getNumeroTelefono(), cliente.getId());
     }
-    public static List<ClienteDTO>toListDTO(List<Cliente>clientes){
-        List<ClienteDTO>listaCLientesDTO = new LinkedList<>();
+    public static List<ClienteRegistradoDTO>toListDTO(List<Cliente>clientes){
+        List<ClienteRegistradoDTO>listaCLientesDTO = new LinkedList<>();
         for(Cliente cliente : clientes){
-            listaCLientesDTO.add(new ClienteDTO(cliente.getNombres(), cliente.getApellidos(), cliente.getEmail(), cliente.getNumeroTelefono()));
+            listaCLientesDTO.add(new ClienteRegistradoDTO(cliente.getNombres(), cliente.getApellidos(), cliente.getEmail(), cliente.getNumeroTelefono(), cliente.getId()));
         }
         return listaCLientesDTO;
     }

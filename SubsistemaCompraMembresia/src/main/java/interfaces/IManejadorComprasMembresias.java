@@ -24,13 +24,13 @@ public interface IManejadorComprasMembresias {
 
     public abstract List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono);
 
-    public abstract List<Cliente> getListaClientes();
+    public abstract List<ClienteRegistradoDTO> getListaClientes();
 
     public abstract List<ServicioExtraDTO> obtenerServiciosExtrasDTO();
 
     public abstract List<TipoMembresiaDTO> getTiposMembresia();
     
-    public abstract List<Cliente> obtenerListaClientes();
+    public abstract List<ClienteRegistradoDTO> obtenerListaClientes();
     
     public abstract String obtenerNombreCliente(int id) throws ConsultaDatosClienteException;
     
