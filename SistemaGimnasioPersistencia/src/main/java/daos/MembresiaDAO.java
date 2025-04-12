@@ -34,4 +34,17 @@ public class MembresiaDAO {
         listaMembresias.add(new Membresia("Por visita", 13));
         
     }
+        
+        
+        public static MembresiaDAO getInstance(){
+            if(instancia==null){
+                instancia= new MembresiaDAO();
+            }
+            return instancia;
+        }
+        
+        
+        public List<Membresia> obtenerMembresiasDTO(){
+            return listaMembresias;
+        }
 }

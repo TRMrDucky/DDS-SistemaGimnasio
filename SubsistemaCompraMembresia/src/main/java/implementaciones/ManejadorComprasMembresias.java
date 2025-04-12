@@ -69,20 +69,20 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
         this.registrarClienteBO = FabricaBOs.getInstanceRegistrarClienteBO();
         
 
-        List<ServicioExtraDTO> servicios = new ArrayList();
-        listaMembresias = new LinkedList<>();
-        servicios.add(new ServicioExtraDTO(1, "Entrenador", 150));
-
-        listaMembresias.add(new TipoMembresiaDTO("Day Pass", 15));
-        listaMembresias.add(new TipoMembresiaDTO("7 dias", 105, servicios));
-
-        listaMembresias.add(new TipoMembresiaDTO("10 dias", 150, servicios));
-
-        listaMembresias.add(new TipoMembresiaDTO("15 dias", 225, servicios));
-
-        listaMembresias.add(new TipoMembresiaDTO("Mensual", 300));
-
-        listaMembresias.add(new TipoMembresiaDTO("Por visita", 13));
+//        List<ServicioExtraDTO> servicios = new ArrayList();
+//        listaMembresias = new LinkedList<>();
+//        servicios.add(new ServicioExtraDTO(1, "Entrenador", 150));
+//
+//        listaMembresias.add(new TipoMembresiaDTO("Day Pass", 15));
+//        listaMembresias.add(new TipoMembresiaDTO("7 dias", 105, servicios));
+//
+//        listaMembresias.add(new TipoMembresiaDTO("10 dias", 150, servicios));
+//
+//        listaMembresias.add(new TipoMembresiaDTO("15 dias", 225, servicios));
+//
+//        listaMembresias.add(new TipoMembresiaDTO("Mensual", 300));
+//
+//        listaMembresias.add(new TipoMembresiaDTO("Por visita", 13));
     }
 
     private boolean validarFormatoCorreo(String email) {
