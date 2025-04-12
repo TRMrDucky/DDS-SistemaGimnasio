@@ -4,7 +4,7 @@
  */
 package presentacion;
 
-import clasesmock.Cliente;
+import clases.mock.Cliente;
 import implementaciones.ManejadorComprasMembresias;
 import interfaces.IManejadorComprasMembresias;
 import java.awt.BorderLayout;

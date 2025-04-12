@@ -4,8 +4,7 @@
  */
 package implementaciones;
 
-import clasesmock.Cliente;
-import clasesmock.ServicioExtra;
+
 import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
 import dtos.RegistrarClienteDTO;
@@ -32,8 +31,7 @@ import java.util.stream.Collectors;
 
 public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
-    private int keyCliente = 4;
-    private List<Cliente> listaClientes;
+    
     private List<ServicioExtra> listaserviciosExtras;
     private List<TipoMembresiaDTO> listaMembresias;
 

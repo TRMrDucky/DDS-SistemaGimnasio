@@ -4,7 +4,7 @@
  */
 package presentacion;
 
-import clasesmock.Cliente;
+import clases.mock.Cliente;
 import dtos.ClienteRegConMemYServDTO;
 import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;

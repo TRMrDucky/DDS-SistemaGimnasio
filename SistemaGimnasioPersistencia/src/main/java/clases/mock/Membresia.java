@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package clasesmock;
+package clases.mock;
 
 /**
  *
@@ -14,7 +14,21 @@ public class Membresia {
     String tipo;
     String estado;
     Double costo;
-    
+
+    public Membresia() {
+    }
+
+    public Membresia(int idMembresia, String tipo, String estado, Double costo) {
+        this.idMembresia = idMembresia;
+        this.tipo = tipo;
+        this.estado = estado;
+        this.costo = costo;
+    }
+
+    public Membresia(String tipo, Double costo) {
+        this.tipo = tipo;
+        this.costo = costo;
+    }
 
     public int getIdMembresia() {
         return idMembresia;
@@ -48,20 +62,4 @@ public class Membresia {
         this.costo = costo;
     }
 
-    public Membresia() {
-    }
-
-    public Membresia(int idMembresia, String tipo, String estado, Double costo) {
-        this.idMembresia = idMembresia;
-        this.tipo = tipo;
-        this.estado = estado;
-        this.costo = costo;
-    }
-
-    public Membresia(String tipo, Double costo) {
-        this.tipo = tipo;
-        this.costo = costo;
-    }
-    
-    
 }

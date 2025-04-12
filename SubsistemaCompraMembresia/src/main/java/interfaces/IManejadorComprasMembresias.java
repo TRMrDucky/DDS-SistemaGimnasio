@@ -4,7 +4,7 @@
  */
 package interfaces;
 
-import clasesmock.Cliente;
+import clases.mock.Cliente;
 import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
 import dtos.RegistrarClienteDTO;

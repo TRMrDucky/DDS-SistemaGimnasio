@@ -1,7 +1,7 @@
 
 package implementaciones;
 
-import clasesmock.Cliente;
+import clases.mock.Cliente;
 import dtos.ClienteRegistradoDTO;
 import dtos.RegistrarClienteDTO;
 import excepciones.RegistroClienteException;
