@@ -1,7 +1,0 @@
-implementaciones\ManejadorComprasMembresias.class
-clasesmock\Membresia.class
-excepciones\ConsultaDatosClienteException.class
-excepciones\RegistroClienteException.class
-clasesmock\ServicioExtra.class
-interfaces\IManejadorComprasMembresias.class
-clasesmock\Cliente.class

@@ -5,8 +5,6 @@
 package daos;
 
 import clases.mock.Cliente;
-import dtos.ClienteDTO;
-import dtos.ClienteRegistradoDTO;
 import interfaces.dao.IClienteDAO;
 import java.util.LinkedList;
 import java.util.List;
