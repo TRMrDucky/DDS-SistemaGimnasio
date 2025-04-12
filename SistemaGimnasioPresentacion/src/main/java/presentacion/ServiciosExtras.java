@@ -120,7 +120,7 @@ public class ServiciosExtras extends JFrame {
         
         btnCancelar.addActionListener(e -> {
             ClienteRegistradoDTO cliente2 = control.obtenerCliente(cliente.getIdCliente());
-            control.openFormSeleccionarMembresia(cliente2);
+           // control.openFormSeleccionarMembresia(cliente2);
             dispose();
         });
         

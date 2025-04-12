@@ -50,18 +50,18 @@ public class ControlNavegacionCompraMembresia {
     /**
      * Genera una nueva instancia de seleccionarMembresia
      */
-    public void seleccionarMembresia(ClienteRegistradoDTO cliente) {
-        SeleccionarMembresia sm = new SeleccionarMembresia(this, cliente);
-        sm.setVisible(true);
-    }
+//    public void seleccionarMembresia(ClienteRegistradoDTO cliente) {
+//        SeleccionarMembresia sm = new SeleccionarMembresia(this, cliente);
+//        sm.setVisible(true);
+//    }
 
     /**
      * Genera una nueva instancia de seleccionarMembresia
      */
-    public void openFormSeleccionarMembresia(ClienteRegistradoDTO clienteRegistradoDTO) {
-        SeleccionarMembresia em = new SeleccionarMembresia(this, clienteRegistradoDTO);
+    public void openFormOpcionesMembresia(ClienteRegistradoDTO cliente) {
+        OpcionesMemb em = new OpcionesMemb(this, cliente);
         em.setVisible(true);
-
+//
     }
 
     /**
@@ -223,6 +223,11 @@ public class ControlNavegacionCompraMembresia {
     public void openFormResumenCompra(ClienteRegConMemYServDTO cliente){
         new ResumenCompraFrame(this, cliente).setVisible(true);
     }
+    
+//    public void openFormOpcionesMembresia(ClienteRegistradoDTO cliente){
+//        OpcionesMemb opcionesMemb= new OpcionesMemb(this);
+//        opcionesMemb.setVisible(true);
+//    }
     
     
     public PagoDTO procesarPago(int idCliente, double monto) {

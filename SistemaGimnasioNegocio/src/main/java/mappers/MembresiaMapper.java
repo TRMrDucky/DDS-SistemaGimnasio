@@ -8,6 +8,7 @@ import clases.mock.Membresia;
 import clases.mock.ServicioExtra;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,13 +29,12 @@ public class MembresiaMapper {
     
     
     public static TipoMembresiaDTO toDTO(Membresia membresia){
-        return new TipoMembresiaDTO( 
-                membresia.getTipo(),
-                membresia.getCosto(),
+        List<ServicioExtraDTO> servicios = (membresia.getServiciosExtras() != null) ?
                 membresia.getServiciosExtras().stream()
-                .map(servicioDTO -> new ServicioExtraDTO(servicioDTO.getId(), servicioDTO.getNombreServicio(), servicioDTO.getPrecio()))
-                 .collect(Collectors.toList())
-        );
+                .map(servicio -> new ServicioExtraDTO(servicio.getId(), servicio.getNombreServicio(), servicio.getPrecio()))
+                .collect(Collectors.toList()) :
+                Collections.emptyList();
+        return new TipoMembresiaDTO(membresia.getTipo(), membresia.getCosto(), servicios);
     }
     
     

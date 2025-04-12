@@ -25,12 +25,12 @@ public class MembresiaDAO implements IMembresiaDAO {
         listaMembresias = new LinkedList<>();
         List<ServicioExtra> servicios = new LinkedList<>();
 
-        listaMembresias.add(new Membresia("Day Pass", 15));
+        listaMembresias.add(new Membresia("Day Pass", 15, new LinkedList<>()));
         listaMembresias.add(new Membresia("7 dias", 105, obtenerServicio()));
         listaMembresias.add(new Membresia("10 dias", 150, obtenerServicio()));
         listaMembresias.add(new Membresia("15 dias", 225, obtenerServicio()));
-        listaMembresias.add(new Membresia("Mensual", 300));
-        listaMembresias.add(new Membresia("Por visita", 13));
+        listaMembresias.add(new Membresia("Mensual", 300, new LinkedList<>()));
+        listaMembresias.add(new Membresia("Por visita", 13, new LinkedList<>()));
 
     }
 
