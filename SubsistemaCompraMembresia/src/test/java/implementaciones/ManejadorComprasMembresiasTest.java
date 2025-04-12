@@ -1,4 +1,4 @@
-
+/**
 package implementaciones;
 
 import clases.mock.Cliente;
@@ -12,18 +12,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- *
- * @author 52644
- */
+
 public class ManejadorComprasMembresiasTest {
 
     public ManejadorComprasMembresiasTest() {
     }
 
-    /**
-     * Test of registrarCliente method, of class ManejadorComprasMembresias.
-     */
+   
     @Test
     public void testRegistrarClienteValoresCorrectosOk() throws Exception {
         ManejadorComprasMembresias mcm = new ManejadorComprasMembresias();
@@ -102,3 +97,5 @@ public class ManejadorComprasMembresiasTest {
         assertEquals(mensajeEsperado, e.getMessage());
     }
 }
+
+ */

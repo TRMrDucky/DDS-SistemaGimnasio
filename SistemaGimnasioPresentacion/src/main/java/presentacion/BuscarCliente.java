@@ -4,7 +4,7 @@
  */
 package presentacion;
 
-import clases.mock.Cliente;
+import dtos.ClienteDTO;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Jose
  */
 public class BuscarCliente extends JFrame {
+
 
     private JTextField txtBusqueda;
     private JTable tablaClientes;
@@ -47,7 +48,7 @@ public class BuscarCliente extends JFrame {
         txtBusqueda.setToolTipText("Escriba el nombre del cliente...");
         add(txtBusqueda, BorderLayout.NORTH);
 
-        modeloTabla = new DefaultTableModel(new String[]{"ID", "Nombre", "Teléfono", "Correo"}, 0);
+        modeloTabla = new DefaultTableModel(new String[]{ "Nombre", "Teléfono", "Correo"}, 0);
         tablaClientes = new JTable(modeloTabla);
         add(new JScrollPane(tablaClientes), BorderLayout.CENTER);
 
@@ -63,32 +64,30 @@ public class BuscarCliente extends JFrame {
             }
         });
 
-            btnRegistrar.addActionListener(e -> registrarActionPerformed());
+        btnRegistrar.addActionListener(e -> registrarActionPerformed());
     }
     
-    private void registrarActionPerformed(){
+    private void registrarActionPerformed() {
         control.openFormRegistrarCliente();
         dispose();
     }
 
     private void buscarClientes(String nombre) {
-        List<Cliente> clientesFiltrados = control.getListaClientes().stream()
-                .filter(cliente -> cliente.getNombres().toLowerCase().contains(nombre))
+        // Filtrar la lista de ClienteDTO por nombre
+        List<ClienteDTO> clientesFiltrados = control.getListaClientes().stream()
+                .filter(cliente -> cliente.getNombre().toLowerCase().contains(nombre))
                 .collect(Collectors.toList());
         actualizarTabla(clientesFiltrados);
     }
 
-    private void actualizarTabla(List<Cliente> clientes) {
+    private void actualizarTabla(List<ClienteDTO> clientes) {
         modeloTabla.setRowCount(0);
-        for (Cliente cliente : clientes) {
+        for (ClienteDTO cliente : clientes) {
             modeloTabla.addRow(new Object[]{
-                cliente.getId(),
-                cliente.getNombres(),
-                cliente.getNumeroTelefono(),
-                cliente.getEmail()
+                cliente.getNombre(),
+                cliente.getTelefono(),
+                cliente.getCorreo()
             });
         }
     }
-
-    
 }

@@ -107,9 +107,11 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
                 .anyMatch(e -> e.equals(numeroTelefono));
     }
 
+    
+    //MODIFICADO
     @Override
-    public List<ClienteRegistradoDTO> getListaClientes() {
-        return registrarClienteBO.obtenerListaClientes();
+    public List<ClienteDTO> getListaClientes() {
+        return registrarClienteBO.obtenerListaClientes2();
     }
 
     @Override
@@ -117,7 +119,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
         return listaMembresias;
     }
 
-
+ /*
     @Override
     public List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono) {
         // Validar que los parámetros no sean null
@@ -182,7 +184,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
             
     }
     
-   
+    */
     public PagoDTO procesarPago(int idCliente, double monto) {
     
         boolean aprobado = new Random().nextBoolean(); 
@@ -191,12 +193,41 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     }
 
     @Override
-    public List<TipoMembresiaDTO> obtenerMembresiasDTO() {
-        return (List<TipoMembresiaDTO>) listaMembresias.stream()
-                .map(membresia -> new TipoMembresiaDTO(membresia.getTipoMembresia(),
-                membresia.getPrecio(),
-                membresia.getServiciosExtras())).collect(Collectors.toCollection(LinkedList::new));
+    public List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<ClienteRegistradoDTO> obtenerListaClientes() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String obtenerNombreCliente(int id) throws ConsultaDatosClienteException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String obtenerNumeroCliente(int id) throws ConsultaDatosClienteException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ClienteRegistradoDTO buscarClienteporID(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<TipoMembresiaDTO> obtenerMembresiasDTO() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+   
     
     
     

@@ -10,6 +10,7 @@ import dtos.ClienteDTO;
 import dtos.ClienteRegistradoDTO;
 import interfaces.dao.IClienteDAO;
 import java.util.List;
+import java.util.stream.Collectors;
 import mappers.ClienteMapper;
 
 /**
@@ -30,6 +31,21 @@ public class RegistrarClienteBO {
         ClienteRegistradoDTO clienteRegistradoDTO = ClienteMapper.ClienteRegistradoToDTO(clienteRegistrado);
         return clienteRegistradoDTO;
     }
+    
+    //MODIFICADO
+      public ClienteDTO registrarCliente2(ClienteDTO clienteDTO) {
+   
+    Cliente clienteRegistrar = ClienteMapper.toEntity(clienteDTO);
+
+  
+    Cliente clienteRegistrado = clienteDAO.registrarCliente(clienteRegistrar);
+
+    
+    ClienteDTO clienteRespuesta = ClienteMapper.toDTO(clienteRegistrado);
+
+ 
+    return clienteRespuesta;
+}
 
     
     public List<ClienteRegistradoDTO> obtenerListaClientes(){
@@ -37,4 +53,18 @@ public class RegistrarClienteBO {
         List<ClienteRegistradoDTO> listaClientesDTO = ClienteMapper.toListDTO(listaClientes);
         return listaClientesDTO;
     } 
+    
+        public List<ClienteDTO> obtenerListaClientes2() {
+
+        List<Cliente> listaClientes = clienteDAO.obtenerListaClientes();
+
+
+        List<ClienteDTO> listaClientesDTO = listaClientes.stream()
+                .map(ClienteMapper::toDTO)
+                .collect(Collectors.toList());
+
+
+        return listaClientesDTO;
+    }
+
 }

@@ -69,8 +69,10 @@ public class ControlNavegacionCompraMembresia {
      *
      * @return una lista con objetos del tipo Cliente
      */
-    public List<ClienteRegistradoDTO> getListaClientes() {
-        return subsistema.obtenerListaClientes();
+    
+    //MODIFICADO
+    public List<ClienteDTO> getListaClientes() {
+        return subsistema.getListaClientes();
     }
 /**
  * Registra un cliente. Devuelve un ClienteRegistradoDTO. 

@@ -23,10 +23,10 @@ public interface IManejadorComprasMembresias {
     public abstract ClienteRegistradoDTO registrarCliente(ClienteDTO registrarClienteDTO) throws RegistroClienteException;
 
     public abstract List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono);
+//MODIFICADO
+    public abstract List<ClienteDTO> getListaClientes();
 
-    public abstract List<ClienteRegistradoDTO> getListaClientes();
-
-    public abstract List<ServicioExtraDTO> obtenerServiciosExtrasDTO();
+   public abstract List<ServicioExtraDTO> obtenerServiciosExtrasDTO();
 
     public abstract List<TipoMembresiaDTO> getTiposMembresia();
     
