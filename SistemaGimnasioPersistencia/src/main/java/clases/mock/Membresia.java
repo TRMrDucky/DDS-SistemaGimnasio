@@ -4,6 +4,9 @@
  */
 package clases.mock;
 
+import dtos.ServicioExtraDTO;
+import java.util.List;
+
 /**
  *
  * @author janethcristinagalvanquinonez
@@ -13,7 +16,8 @@ public class Membresia {
     int idMembresia;
     String tipo;
     String estado;
-    Double costo;
+    double costo;
+    private List<ServicioExtraDTO> serviciosExtras;
 
     public Membresia() {
     }
@@ -24,8 +28,17 @@ public class Membresia {
         this.estado = estado;
         this.costo = costo;
     }
+    
+    public Membresia(String tipo, double costo, List<ServicioExtraDTO> serviciosExtras) {
+        this.tipo= tipo;
+        this.costo= costo;
+        this.serviciosExtras = serviciosExtras;
+        
+    }
+    
+    
 
-    public Membresia(String tipo, Double costo) {
+    public Membresia(String tipo, double costo) {
         this.tipo = tipo;
         this.costo = costo;
     }
