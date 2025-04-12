@@ -4,7 +4,7 @@
  */
 package mappers;
 
-import clasesmock.ServicioExtra;
+import clases.mock.ServicioExtra;
 import dtos.ServicioExtraDTO;
 import java.util.LinkedList;
 import java.util.List;

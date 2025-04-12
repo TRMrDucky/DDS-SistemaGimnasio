@@ -6,7 +6,6 @@ package daos;
 
 import clases.mock.ServicioExtra;
 import com.sistemagimnasiopersistencia.interfaces.dao.IServicioExtraDAO;
-import dtos.ServicioExtraDTO;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,13 +35,11 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
         }
         return instancia;
     }
-    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
-        return listaserviciosExtras.stream()
-                .map(servicio -> new ServicioExtraDTO(
-                (int) servicio.getId(),
-                servicio.getNombreServicio(),
-                servicio.getPrecio()))
-                .collect(Collectors.toCollection(LinkedList::new));
+    @Override
+    public List<ServicioExtra> obtenerServiciosExtrasDTO() {
+        return listaserviciosExtras;
     }
+    
+    
     
 }

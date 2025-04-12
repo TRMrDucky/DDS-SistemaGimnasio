@@ -5,6 +5,8 @@
 package implementaciones;
 
 
+import bos.ServicioExtraBO;
+import daos.ServicioExtraDAO;
 import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
 import dtos.RegistrarClienteDTO;
@@ -32,8 +34,8 @@ import java.util.stream.Collectors;
 public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     
-    private List<ServicioExtra> listaserviciosExtras;
     private List<TipoMembresiaDTO> listaMembresias;
+    private ServicioExtraBO servicioExtraBO;
 
     @Override
     public ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) throws RegistroClienteException {
@@ -68,6 +70,8 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     }
 
     public ManejadorComprasMembresias() {
+        ServicioExtraDAO servicioExtraDAO = ServicioExtraDAO.getInstance();
+        servicioExtraBO = new ServicioExtraBO(servicioExtraDAO);
         listaClientes = new LinkedList<>();
         listaClientes.add(new Cliente("Pedro", "Sola Meza",
                 "pedro.sola@hotmail.com", "6441348130", 1));
@@ -75,13 +79,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
                 "vapo23@gmail.com", "6441385760", 2));
         listaClientes.add(new Cliente("Alondra Lizeth", "Aviles",
                 "pedro.sola@hotmail.com", "6442878593", 3));
-        listaserviciosExtras = new LinkedList<>();
-        listaserviciosExtras.add(new ServicioExtra(1, "Entrenador", 150));
-        listaserviciosExtras.add(new ServicioExtra(2, "Plan Alimenticio", 150));
-        listaserviciosExtras.add(new ServicioExtra(3, "Clases de yoga (Lu, Mi, Vi 6-7:30 AM)", 100));
-        listaserviciosExtras.add(new ServicioExtra(4, "Spinning (Ma, Ju 6-7:30 AM)", 50));
-        listaserviciosExtras.add(new ServicioExtra(5, "Masaje relajante", 200));
-        listaserviciosExtras.add(new ServicioExtra(6, "Asesoría Nutricional", 180));
+        
 
         List<ServicioExtraDTO> servicios = new ArrayList();
         listaMembresias = new LinkedList<>();
@@ -160,13 +158,8 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     }
 
     @Override
-    public LinkedList<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
-        return listaserviciosExtras.stream()
-                .map(servicio -> new ServicioExtraDTO(
-                (int) servicio.getId(),
-                servicio.getNombreServicio(),
-                servicio.getPrecio()))
-                .collect(Collectors.toCollection(LinkedList::new));
+    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
+        return servicioExtraBO.obtenerServiciosExtrasDTO();
     }
 
     @Override

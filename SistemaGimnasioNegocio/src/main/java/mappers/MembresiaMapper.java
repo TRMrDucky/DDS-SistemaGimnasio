@@ -4,7 +4,7 @@
  */
 package mappers;
 
-import clasesmock.Membresia;
+import clases.mock.Membresia;
 import dtos.TipoMembresiaDTO;
 import java.util.LinkedList;
 import java.util.List;

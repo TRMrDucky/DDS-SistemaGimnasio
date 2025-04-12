@@ -4,8 +4,8 @@
  */
 package com.sistemagimnasiopersistencia.interfaces.dao;
 
+import clases.mock.ServicioExtra;
 import daos.ServicioExtraDAO;
-import dtos.ServicioExtraDTO;
 import java.util.List;
 
 /**
@@ -13,5 +13,5 @@ import java.util.List;
  * @author Ramón Zamudio
  */
 public interface IServicioExtraDAO {
-    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO();
+    public List<ServicioExtra> obtenerServiciosExtrasDTO();
 }
