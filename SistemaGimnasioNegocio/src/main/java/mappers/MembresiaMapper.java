@@ -20,6 +20,8 @@ public class MembresiaMapper {
     public static TipoMembresiaDTO toDTO(Membresia membresia){
         return new TipoMembresiaDTO( membresia.getTipo(), membresia.getCosto());
     }
+    
+    
     public static List<TipoMembresiaDTO> toListDTO(List<Membresia>membresias){
         List<TipoMembresiaDTO> listaMembresias = new LinkedList<>();
         for(Membresia membresia : membresias){

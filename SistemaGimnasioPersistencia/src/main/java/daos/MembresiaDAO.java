@@ -45,7 +45,7 @@ public class MembresiaDAO implements IMembresiaDAO {
         }
         
         
-        public List<Membresia> obtenerMembresiasDTO(){
+        public List<Membresia> obtenerMembresias(){
             return listaMembresias;
         }
 }

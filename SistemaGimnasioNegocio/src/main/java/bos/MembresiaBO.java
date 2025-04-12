@@ -22,6 +22,6 @@ public class MembresiaBO {
     }
     
     public List<TipoMembresiaDTO> obtenerMembresiasDTO(){
-        return MembresiaMapper.toListDTO(membresiaDAO.obtenerMembresiasDTO());
+        return MembresiaMapper.toListDTO(membresiaDAO.obtenerMembresias());
     }
 }

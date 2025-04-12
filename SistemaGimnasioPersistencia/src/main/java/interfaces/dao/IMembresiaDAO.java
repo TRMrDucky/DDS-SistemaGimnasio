@@ -14,5 +14,5 @@ import java.util.List;
 public interface IMembresiaDAO {
     
     
-    public List<Membresia> obtenerMembresiasDTO();
+    public List<Membresia> obtenerMembresias();
 }
