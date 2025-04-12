@@ -13,7 +13,7 @@ import java.util.List;
 public class TipoMembresiaDTO {
     private String tipoMembresia;
     private double precio;
-        private List<ServicioExtraDTO> serviciosextras;
+        private List<ServicioExtraDTO> serviciosExtras;
 
     public TipoMembresiaDTO() {
     }
@@ -39,18 +39,18 @@ public class TipoMembresiaDTO {
         this.precio = precio;
     }
 
-    public TipoMembresiaDTO(String tipoMembresia, double precio, List<ServicioExtraDTO> serviciosextras) {
+    public TipoMembresiaDTO(String tipoMembresia, double precio, List<ServicioExtraDTO> serviciosExtras) {
         this.tipoMembresia = tipoMembresia;
         this.precio = precio;
-        this.serviciosextras = serviciosextras;
+        this.serviciosExtras = serviciosExtras;
     }
 
     public List<ServicioExtraDTO> getServiciosExtras() {
-        return serviciosextras;
+        return serviciosExtras;
     }
 
-    public void setServiciosextras(List<ServicioExtraDTO> serviciosextras) {
-        this.serviciosextras = serviciosextras;
+    public void setServiciosExtras(List<ServicioExtraDTO> serviciosextras) {
+        this.serviciosExtras = serviciosextras;
     }
     
     

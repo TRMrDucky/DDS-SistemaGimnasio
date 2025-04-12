@@ -1,0 +1,4 @@
+implementaciones/ManejadorComprasMembresias.class
+excepciones/RegistroClienteException.class
+excepciones/ConsultaDatosClienteException.class
+interfaces/IManejadorComprasMembresias.class

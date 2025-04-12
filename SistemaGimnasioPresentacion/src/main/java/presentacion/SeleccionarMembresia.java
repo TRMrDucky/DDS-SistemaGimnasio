@@ -56,23 +56,27 @@ public class SeleccionarMembresia extends JFrame {
 
     private void cargarMembresias() {
     List<TipoMembresiaDTO> listaMembresias = control.obtenerListaMembresiasDTO();
+    if(listaMembresias==null || listaMembresias.isEmpty()){
+        System.out.println("Membresias no disponibles");
+        return;
+    }
 
     for (TipoMembresiaDTO membresia : listaMembresias) {
         String servicios = "";
 
-        List<ServicioExtraDTO> extras = membresia.getServiciosExtras();
-        if (extras != null && !extras.isEmpty()) {
-            StringBuilder sb = new StringBuilder("Incluye: ");
-            
-            
-            for (int i = 0; i < extras.size(); i++) {
-                sb.append(extras.get(i).getNombreServicio());
-                if (i < extras.size() - 1) {
-                    sb.append(", ");
-                }
-            }
-            servicios = sb.toString();
-        }
+//        List<ServicioExtraDTO> extras = membresia.getServiciosExtras();
+//        if (extras != null && !extras.isEmpty()) {
+//            StringBuilder sb = new StringBuilder("Incluye: ");
+//            
+//            
+//            for (int i = 0; i < extras.size(); i++) {
+//                sb.append(extras.get(i).getNombreServicio());
+//                if (i < extras.size() - 1) {
+//                    sb.append(", ");
+//                }
+//            }
+//            servicios = sb.toString();
+//        }
 
         String textoBoton = membresia.getTipoMembresia() + " - $" + membresia.getPrecio();
         if (!servicios.isEmpty()) {

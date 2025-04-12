@@ -5,6 +5,7 @@
 package interfaces.dao;
 
 import clases.mock.Membresia;
+import clases.mock.ServicioExtra;
 import java.util.List;
 
 /**
@@ -15,4 +16,6 @@ public interface IMembresiaDAO {
     
     
     public List<Membresia> obtenerMembresias();
+    public List<ServicioExtra> obtenerServicio();
+    
 }

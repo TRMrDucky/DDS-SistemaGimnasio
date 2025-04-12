@@ -4,9 +4,13 @@
  */
 package bos;
 
+import clases.mock.Membresia;
 import dtos.TipoMembresiaDTO;
 import interfaces.dao.IMembresiaDAO;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 import mappers.MembresiaMapper;
 
 /**
@@ -15,13 +19,23 @@ import mappers.MembresiaMapper;
  */
 public class MembresiaBO {
     
-    IMembresiaDAO membresiaDAO;
+    private final IMembresiaDAO membresiaDAO;
 
     public MembresiaBO(IMembresiaDAO membresiaDAO) {
         this.membresiaDAO = membresiaDAO;
     }
     
     public List<TipoMembresiaDTO> obtenerMembresiasDTO(){
-        return MembresiaMapper.toListDTO(membresiaDAO.obtenerMembresias());
+        List<Membresia> listaMembresias= membresiaDAO.obtenerMembresias();
+        
+        if(listaMembresias== null || listaMembresias.isEmpty()){
+           return Collections.emptyList();
+        }
+        
+        return listaMembresias.stream()
+                .map(MembresiaMapper::toDTO)
+                .collect(Collectors.toList());
+        
+        
     }
 }
