@@ -68,6 +68,8 @@ public class OpcionesMemb extends javax.swing.JFrame {
             
             
         }
+        
+        
         }
        // getContentPane().removeAll();
         //getContentPane().setLayout(new BorderLayout());
@@ -75,10 +77,12 @@ public class OpcionesMemb extends javax.swing.JFrame {
         //JScrollPane scroll = new JScrollPane(panelMemb);
         //scroll.setPreferredSize(new Dimension(200, 300));
         
-        
-        
-        panelMemb.revalidate();
-        panelMemb.repaint();
+//        
+//        JScrollPane scrollPane = new JScrollPane(panelMemb);
+//        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        scrollPane.setPreferredSize(new Dimension(400, 500));
+//        panelMemb.revalidate();
+//        panelMemb.repaint();
     }
         
         private void seleccionarMembresia(TipoMembresiaDTO membresia){
@@ -138,11 +142,11 @@ public class OpcionesMemb extends javax.swing.JFrame {
         panelMemb.setLayout(panelMembLayout);
         panelMembLayout.setHorizontalGroup(
             panelMembLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 461, Short.MAX_VALUE)
+            .addGap(0, 524, Short.MAX_VALUE)
         );
         panelMembLayout.setVerticalGroup(
             panelMembLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 344, Short.MAX_VALUE)
+            .addGap(0, 452, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -151,13 +155,13 @@ public class OpcionesMemb extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(123, 123, 123)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addComponent(panelMemb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
-                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,7 +171,7 @@ public class OpcionesMemb extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelMemb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 97, Short.MAX_VALUE))
+                .addGap(0, 61, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -178,7 +182,9 @@ public class OpcionesMemb extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
