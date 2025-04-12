@@ -5,6 +5,7 @@
 package implementaciones;
 
 
+import bos.MembresiaBO;
 import bos.RegistrarClienteBO;
 import bos.ServicioExtraBO;
 import clases.mock.Cliente;
@@ -39,6 +40,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     private List<TipoMembresiaDTO> listaMembresias;
     private ServicioExtraBO servicioExtraBO;
     private RegistrarClienteBO registrarClienteBO;
+    private MembresiaBO membresiaBO;
 
     @Override
     public ClienteRegistradoDTO registrarCliente(ClienteDTO registrarClienteDTO) throws RegistroClienteException {
@@ -67,6 +69,8 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     public ManejadorComprasMembresias() {
         this.servicioExtraBO = FabricaBOs.getInstanceServicioExtraBO();
         this.registrarClienteBO = FabricaBOs.getInstanceRegistrarClienteBO();
+        this.membresiaBO= FabricaBOs.getInstanceMembresiaBO();
+        
         
 
 //        List<ServicioExtraDTO> servicios = new ArrayList();
@@ -116,8 +120,9 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     @Override
     public List<TipoMembresiaDTO> getTiposMembresia() {
-        return listaMembresias;
+        return membresiaBO.obtenerMembresiasDTO();
     }
+  
 
  /*
     @Override
