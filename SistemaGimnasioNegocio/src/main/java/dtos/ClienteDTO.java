@@ -13,28 +13,16 @@ public class ClienteDTO {
     private String correo;
     private String direccion;
     private String telefono;
-    private String apellidoPaterno;
-    private String apellidoMaterno;
+
     public ClienteDTO() {
     }
     
-    public ClienteDTO(String nombre,String apellidoPaterno, String apellidoMaterno, String correo, String direccion, String telefono) {
+    public ClienteDTO(String nombre, String correo, String direccion, String telefono) {
         this.nombre = nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
         this.correo = correo;
         this.direccion = direccion;
         this.telefono = telefono;
     }
-
-    public ClienteDTO(String nombre, String correo, String telefono, String apellidoPaterno, String apellidoMaterno) {
-        this.nombre = nombre;
-        this.correo = correo;
-        this.telefono = telefono;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
-    }
-    
 
     public String getNombre() {
         return nombre;
@@ -68,28 +56,10 @@ public class ClienteDTO {
         this.telefono = telefono;
     }
 
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
-    }
-
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
-    }
-
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
-    }
-
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
-    }
-
     @Override
     public String toString() {
-        return "ClienteDTO{" + "nombre=" + nombre + ", correo=" + correo + ", direccion=" + direccion + ", telefono=" + telefono + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + '}';
+        return "ClienteDTO{" + "nombre=" + nombre + ", correo=" + correo + ", direccion=" + direccion + ", telefono=" + telefono + '}';
     }
-
-    
     
     
     

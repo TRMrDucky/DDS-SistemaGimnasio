@@ -10,31 +10,28 @@ package dtos;
  */
 public class ClienteRegistradoDTO {
 
-    private String nombre;
-    private String apellidoPaterno;
-    private String apellidoMaterno;
-    private String email;
-    private String numeroTelefono;
-    private boolean activo;
-    private int id;
-    
-    public ClienteRegistradoDTO(String nombre, String apellidoPaterno, String apellidoMaterno, String email, String numeroTelefono, int id) {
+    String nombre;
+    String apellidos;
+    String email;
+    String numeroTelefono;
+    boolean activo;
+    int id;
+
+    public ClienteRegistradoDTO(String nombre, String apellidos, String email, String numeroTelefono, int id) {
         this.nombre = nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.numeroTelefono = numeroTelefono;
+        this.id = id;
+    }
+
+    public ClienteRegistradoDTO(String nombre, String apellidos, String email, String numeroTelefono, boolean activo, int id) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
         this.email = email;
         this.numeroTelefono = numeroTelefono;
         this.activo = activo;
         this.id = id;
-    }
-
-    public ClienteRegistradoDTO(String nombre, String apellidoPaterno, String apellidoMaterno, String email, String numeroTelefono) {
-        this.nombre = nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
-        this.email = email;
-        this.numeroTelefono = numeroTelefono;
-        this.activo = activo;
     }
 
     public ClienteRegistradoDTO() {
@@ -44,48 +41,16 @@ public class ClienteRegistradoDTO {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
-    }
-
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
-    }
-
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
-    }
-
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
+    public String getApellidos() {
+        return apellidos;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getNumeroTelefono() {
         return numeroTelefono;
-    }
-
-    public void setNumeroTelefono(String numeroTelefono) {
-        this.numeroTelefono = numeroTelefono;
-    }
-
-    public boolean isActivo() {
-        return activo;
-    }
-
-    public void setActivo(boolean activo) {
-        this.activo = activo;
     }
 
     public int getId() {
@@ -96,10 +61,18 @@ public class ClienteRegistradoDTO {
         this.id = id;
     }
 
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
     @Override
     public String toString() {
-        return "ClienteRegistradoDTO{" + "nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", email=" + email + ", numeroTelefono=" + numeroTelefono + ", activo=" + activo + ", id=" + id + '}';
+        return "Cliente Registrado:" + "\nNombre=" + nombre + "\nApellidos=" + apellidos + "\nEmail=" + email
+                + "\nNumeroTelefono=" + numeroTelefono + "\nId=" + id;
     }
-    
-    
+
 }

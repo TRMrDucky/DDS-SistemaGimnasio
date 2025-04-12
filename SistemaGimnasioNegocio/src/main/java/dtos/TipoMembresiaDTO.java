@@ -13,7 +13,7 @@ import java.util.List;
 public class TipoMembresiaDTO {
     private String tipoMembresia;
     private double precio;
-    private List<ServicioExtraDTO> serviciosextras;
+        private List<ServicioExtraDTO> serviciosextras;
 
     public TipoMembresiaDTO() {
     }
