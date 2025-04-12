@@ -4,12 +4,11 @@
  */
 package presentacion;
 
-import clases.mock.Cliente;
+import dtos.ClienteDTO;
 import dtos.ClienteRegConMemYServDTO;
 import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
-import dtos.RegistrarClienteDTO;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
 import excepciones.ConsultaDatosClienteException;
@@ -70,7 +69,7 @@ public class ControlNavegacionCompraMembresia {
      *
      * @return una lista con objetos del tipo Cliente
      */
-    public List<Cliente> getListaClientes() {
+    public List<ClienteRegistradoDTO> getListaClientes() {
         return subsistema.obtenerListaClientes();
     }
 /**
@@ -78,7 +77,7 @@ public class ControlNavegacionCompraMembresia {
  * @param registrarClienteDTO DTO que representa los datos de un cliente a registrar
  * @return ClienteRegistradoDTO que representa los datos guardados del cliente y trae consigo el ID asignado para él
  */
-    public ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) {
+    public ClienteRegistradoDTO registrarCliente(ClienteDTO registrarClienteDTO) {
         try {
             ClienteRegistradoDTO clienteRegistradoDTO = subsistema.registrarCliente(registrarClienteDTO);
             JOptionPane.showMessageDialog(null, clienteRegistradoDTO.toString(),
