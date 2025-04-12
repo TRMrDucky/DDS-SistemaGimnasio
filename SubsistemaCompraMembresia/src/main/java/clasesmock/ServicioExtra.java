@@ -16,6 +16,11 @@ public class ServicioExtra {
     public ServicioExtra() {
     }
 
+    public ServicioExtra(String nombreServicio, double precio) {
+        this.nombreServicio = nombreServicio;
+        this.precio = precio;
+    }
+    
     public ServicioExtra(long id, String nombreServicio, double precio) {
         this.id = id;
         this.nombreServicio = nombreServicio;

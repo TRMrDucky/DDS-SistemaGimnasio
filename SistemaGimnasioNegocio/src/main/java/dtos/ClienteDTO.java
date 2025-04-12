@@ -10,17 +10,17 @@ package dtos;
  */
 public class ClienteDTO {
     private String nombre;
+    private String apellido;
     private String correo;
-    private String direccion;
     private String telefono;
 
     public ClienteDTO() {
     }
     
-    public ClienteDTO(String nombre, String correo, String direccion, String telefono) {
+    public ClienteDTO(String nombre, String apellido, String correo, String telefono) {
         this.nombre = nombre;
+        this.apellido = apellido;
         this.correo = correo;
-        this.direccion = direccion;
         this.telefono = telefono;
     }
 
@@ -28,12 +28,12 @@ public class ClienteDTO {
         return nombre;
     }
 
-    public String getCorreo() {
+    public String getApellido() {
         return correo;
     }
-
-    public String getDireccion() {
-        return direccion;
+    
+    public String getCorreo() {
+        return correo;
     }
 
     public String getTelefono() {
@@ -44,12 +44,12 @@ public class ClienteDTO {
         this.nombre = nombre;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public void setTelefono(String telefono) {
@@ -58,7 +58,7 @@ public class ClienteDTO {
 
     @Override
     public String toString() {
-        return "ClienteDTO{" + "nombre=" + nombre + ", correo=" + correo + ", direccion=" + direccion + ", telefono=" + telefono + '}';
+        return "ClienteDTO{" + "nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", telefono=" + telefono + '}';
     }
     
     

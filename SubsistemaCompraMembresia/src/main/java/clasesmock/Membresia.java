@@ -57,6 +57,11 @@ public class Membresia {
         this.estado = estado;
         this.costo = costo;
     }
+
+    public Membresia(String tipo, Double costo) {
+        this.tipo = tipo;
+        this.costo = costo;
+    }
     
-    // .
+    
 }

@@ -29,6 +29,11 @@ public class ServicioExtraDTO {
         this.precio = precio;
     }
 
+    public ServicioExtraDTO(String nombreServicio, double precio) {
+        this.nombreServicio = nombreServicio;
+        this.precio = precio;
+    }
+
     public long getId() {
         return id;
     }

@@ -19,6 +19,13 @@ public class Cliente {
         return nombres;
     }
 
+    public Cliente(String nombres, String Apellidos, String email, String numeroTelefono) {
+        this.nombres = nombres;
+        this.Apellidos = Apellidos;
+        this.email = email;
+        this.numeroTelefono = numeroTelefono;
+    }
+
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
