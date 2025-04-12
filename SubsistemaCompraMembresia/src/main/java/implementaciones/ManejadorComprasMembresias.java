@@ -5,15 +5,17 @@
 package implementaciones;
 
 
+import bos.RegistrarClienteBO;
 import bos.ServicioExtraBO;
-import daos.ServicioExtraDAO;
+import clases.mock.Cliente;
+import dtos.ClienteDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
-import dtos.RegistrarClienteDTO;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
 import excepciones.ConsultaDatosClienteException;
 import excepciones.RegistroClienteException;
+import fabricasBOs.FabricaBOs;
 import interfaces.IManejadorComprasMembresias;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,49 +38,35 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     
     private List<TipoMembresiaDTO> listaMembresias;
     private ServicioExtraBO servicioExtraBO;
+    private RegistrarClienteBO registrarClienteBO;
 
     @Override
-    public ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) throws RegistroClienteException {
-        if (registrarClienteDTO.getNombre().isBlank() || registrarClienteDTO.getApellidos().isBlank()
-                || registrarClienteDTO.getEmail().isBlank() || registrarClienteDTO.getNumeroTelefono().isBlank()) {
+    public ClienteRegistradoDTO registrarCliente(ClienteDTO registrarClienteDTO) throws RegistroClienteException {
+        if (registrarClienteDTO.getNombre().isBlank() || registrarClienteDTO.getApellido().isBlank()
+                || registrarClienteDTO.getCorreo().isBlank() || registrarClienteDTO.getTelefono().isBlank()) {
             throw new RegistroClienteException("Ningun campo puede permanecer vacio");
         }
 
-        if (!validarFormatoCorreo(registrarClienteDTO.getEmail())) {
+        if (!validarFormatoCorreo(registrarClienteDTO.getCorreo())) {
             throw new RegistroClienteException("Formato Email no valido");
         }
 
-        if (validarRegistroCorreo(registrarClienteDTO.getEmail())) {
+        if (validarRegistroCorreo(registrarClienteDTO.getCorreo())) {
             throw new RegistroClienteException("Correo ya registrado");
         }
 
-        if (validarRegistroNumeroTelefonico(registrarClienteDTO.getNumeroTelefono())) {
+        if (validarRegistroNumeroTelefonico(registrarClienteDTO.getTelefono())) {
             throw new RegistroClienteException("Numero telefonico ya registrado");
         }
 
-        Cliente cliente = new Cliente(registrarClienteDTO.getNombre(), registrarClienteDTO.getApellidos(),
-                registrarClienteDTO.getEmail(), registrarClienteDTO.getNumeroTelefono(), keyCliente);
-
-        listaClientes.add(cliente);
-
-        ClienteRegistradoDTO clienteRegistrado = new ClienteRegistradoDTO(registrarClienteDTO.getNombre(), registrarClienteDTO.getApellidos(),
-                registrarClienteDTO.getEmail(), registrarClienteDTO.getNumeroTelefono(), keyCliente);
-
-        keyCliente++;
-
-        return clienteRegistrado;
+        ClienteRegistradoDTO cliente = registrarClienteBO.registrarCliente(registrarClienteDTO);
+        
+        return cliente;
     }
 
     public ManejadorComprasMembresias() {
-        ServicioExtraDAO servicioExtraDAO = ServicioExtraDAO.getInstance();
-        servicioExtraBO = new ServicioExtraBO(servicioExtraDAO);
-        listaClientes = new LinkedList<>();
-        listaClientes.add(new Cliente("Pedro", "Sola Meza",
-                "pedro.sola@hotmail.com", "6441348130", 1));
-        listaClientes.add(new Cliente("Vanessa Paola", "Solano Lopez",
-                "vapo23@gmail.com", "6441385760", 2));
-        listaClientes.add(new Cliente("Alondra Lizeth", "Aviles",
-                "pedro.sola@hotmail.com", "6442878593", 3));
+        this.servicioExtraBO = FabricaBOs.getInstanceServicioExtraBO();
+        this.registrarClienteBO = FabricaBOs.getInstanceRegistrarClienteBO();
         
 
         List<ServicioExtraDTO> servicios = new ArrayList();

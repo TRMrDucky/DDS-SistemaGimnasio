@@ -5,7 +5,7 @@
 package daos;
 
 import clases.mock.ServicioExtra;
-import com.sistemagimnasiopersistencia.interfaces.dao.IServicioExtraDAO;
+import interfaces.dao.IServicioExtraDAO;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;

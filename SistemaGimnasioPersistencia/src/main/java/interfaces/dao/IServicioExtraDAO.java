@@ -4,15 +4,14 @@
  */
 package interfaces.dao;
 
-import dtos.ClienteDTO;
-import dtos.ClienteRegistradoDTO;
+import clases.mock.ServicioExtra;
+import daos.ServicioExtraDAO;
+import java.util.List;
 
 /**
  *
- * @author 52644
+ * @author Ramón Zamudio
  */
-public interface IClientesDAO {
-    
-    public abstract ClienteRegistradoDTO registrarCliente(ClienteDTO cliente);
-    
+public interface IServicioExtraDAO {
+    public List<ServicioExtra> obtenerServiciosExtrasDTO();
 }

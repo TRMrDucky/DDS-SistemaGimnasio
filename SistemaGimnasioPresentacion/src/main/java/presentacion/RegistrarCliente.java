@@ -5,7 +5,7 @@
 package presentacion;
 
 import dtos.ClienteRegistradoDTO;
-import dtos.RegistrarClienteDTO;
+import dtos.ClienteDTO;
 import implementaciones.ManejadorComprasMembresias;
 
 /**
@@ -219,7 +219,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
         String email = campoEmail.getText();
         String numeroTelefono = campoNumeroTelefono.getText();
 
-        RegistrarClienteDTO registrarClienteDTO = new RegistrarClienteDTO(nombres, apellidos,
+        ClienteDTO registrarClienteDTO = new ClienteDTO(nombres, apellidos,
                 email, numeroTelefono);
         ClienteRegistradoDTO cliente = control.registrarCliente(registrarClienteDTO);
         if(!(cliente==null)){

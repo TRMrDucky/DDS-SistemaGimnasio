@@ -5,8 +5,6 @@
 package presentacion;
 
 import clases.mock.Cliente;
-import implementaciones.ManejadorComprasMembresias;
-import interfaces.IManejadorComprasMembresias;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;

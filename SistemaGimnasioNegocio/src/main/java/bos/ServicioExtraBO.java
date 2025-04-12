@@ -4,7 +4,7 @@
  */
 package bos;
 
-import com.sistemagimnasiopersistencia.interfaces.dao.IServicioExtraDAO;
+import interfaces.dao.IServicioExtraDAO;
 import dtos.ServicioExtraDTO;
 import java.util.LinkedList;
 import java.util.List;

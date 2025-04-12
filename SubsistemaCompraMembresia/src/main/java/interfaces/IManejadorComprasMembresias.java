@@ -7,7 +7,7 @@ package interfaces;
 import clases.mock.Cliente;
 import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
-import dtos.RegistrarClienteDTO;
+import dtos.ClienteDTO;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
 import excepciones.ConsultaDatosClienteException;
@@ -20,7 +20,7 @@ import java.util.List;
  */
 public interface IManejadorComprasMembresias {
 
-    public abstract ClienteRegistradoDTO registrarCliente(RegistrarClienteDTO registrarClienteDTO) throws RegistroClienteException;
+    public abstract ClienteRegistradoDTO registrarCliente(ClienteDTO registrarClienteDTO) throws RegistroClienteException;
 
     public abstract List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono);
 
