@@ -9,6 +9,7 @@ import clases.mock.Cliente;
 import dtos.ClienteDTO;
 import dtos.ClienteRegistradoDTO;
 import interfaces.dao.IClienteDAO;
+import java.util.List;
 import mappers.ClienteMapper;
 
 /**
@@ -30,4 +31,10 @@ public class RegistrarClienteBO {
         return clienteRegistradoDTO;
     }
 
+    
+    public List<ClienteDTO> obtenerListaClientes(){
+        List<Cliente> listaClientes = clienteDAO.obtenerListaClientes();
+        List<ClienteDTO> listaClientesDTO = ClienteMapper.toListDTO(listaClientes);
+        return listaClientesDTO;
+    } 
 }

@@ -47,4 +47,9 @@ public class ClienteDAO implements IClienteDAO {
         return cliente;
 
     }
+    
+    @Override
+    public List<Cliente> obtenerListaClientes(){
+        return this.listaClientes;
+    }
 }

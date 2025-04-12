@@ -94,7 +94,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     }
 
     private boolean validarRegistroCorreo(String email) {
-        return listaClientes.stream()
+        return .stream()
                 .map(Cliente::getEmail)
                 .filter(Objects::nonNull)
                 .anyMatch(e -> e.equalsIgnoreCase(email));

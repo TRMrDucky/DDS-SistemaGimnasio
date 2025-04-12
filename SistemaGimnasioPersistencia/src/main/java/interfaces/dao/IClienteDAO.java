@@ -5,6 +5,7 @@
 package interfaces.dao;
 
 import clases.mock.Cliente;
+import java.util.List;
 
 /**
  *
@@ -13,5 +14,5 @@ import clases.mock.Cliente;
 public interface IClienteDAO {
     
     public abstract Cliente registrarCliente(Cliente cliente);
-    
+    public abstract List<Cliente> obtenerListaClientes();
 }
