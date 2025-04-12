@@ -7,6 +7,7 @@ package daos;
 import clases.mock.Membresia;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
+import interfaces.dao.IMembresiaDAO;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  *
  * @author janethcristinagalvanquinonez
  */
-public class MembresiaDAO {
+public class MembresiaDAO implements IMembresiaDAO {
     
     private static MembresiaDAO instancia;
     private List<Membresia> listaMembresias;

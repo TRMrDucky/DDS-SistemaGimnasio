@@ -4,9 +4,11 @@
  */
 package fabricasBOs;
 
+import bos.MembresiaBO;
 import bos.RegistrarClienteBO;
 import bos.ServicioExtraBO;
 import daos.ClienteDAO;
+import daos.MembresiaDAO;
 import daos.ServicioExtraDAO;
 
 /**
@@ -25,6 +27,12 @@ public class FabricaBOs {
         ClienteDAO clienteDAO = ClienteDAO.getInstance();
         RegistrarClienteBO registrarClienteBO = new RegistrarClienteBO(clienteDAO);
         return registrarClienteBO;
+    }
+    
+    public static MembresiaBO getInstanceMembresiaBO(){
+        MembresiaDAO membresiaDAO= MembresiaDAO.getInstance();
+        MembresiaBO membresiaBO= new MembresiaBO(membresiaDAO);
+        return membresiaBO;
     }
     
 }
