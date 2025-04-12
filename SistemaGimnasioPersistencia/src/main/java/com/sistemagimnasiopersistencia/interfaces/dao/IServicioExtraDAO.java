@@ -4,10 +4,14 @@
  */
 package com.sistemagimnasiopersistencia.interfaces.dao;
 
+import daos.ServicioExtraDAO;
+import dtos.ServicioExtraDTO;
+import java.util.List;
+
 /**
  *
  * @author Ramón Zamudio
  */
 public interface IServicioExtraDAO {
-    
+    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO();
 }

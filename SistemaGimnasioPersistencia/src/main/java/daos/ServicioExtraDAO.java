@@ -4,7 +4,12 @@
  */
 package daos;
 
+import clases.mock.ServicioExtra;
 import com.sistemagimnasiopersistencia.interfaces.dao.IServicioExtraDAO;
+import dtos.ServicioExtraDTO;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -13,8 +18,16 @@ import com.sistemagimnasiopersistencia.interfaces.dao.IServicioExtraDAO;
 public class ServicioExtraDAO implements IServicioExtraDAO {
     
     private static ServicioExtraDAO instancia;
+    private List<ServicioExtra> listaserviciosExtras;
     
     private ServicioExtraDAO() {
+        listaserviciosExtras = new LinkedList<>();
+        listaserviciosExtras.add(new ServicioExtra(1, "Entrenador", 150));
+        listaserviciosExtras.add(new ServicioExtra(2, "Plan Alimenticio", 150));
+        listaserviciosExtras.add(new ServicioExtra(3, "Clases de yoga (Lu, Mi, Vi 6-7:30 AM)", 100));
+        listaserviciosExtras.add(new ServicioExtra(4, "Spinning (Ma, Ju 6-7:30 AM)", 50));
+        listaserviciosExtras.add(new ServicioExtra(5, "Masaje relajante", 200));
+        listaserviciosExtras.add(new ServicioExtra(6, "Asesoría Nutricional", 180));
     }
     
     public static ServicioExtraDAO getInstance() {
@@ -23,6 +36,13 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
         }
         return instancia;
     }
-    
+    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
+        return listaserviciosExtras.stream()
+                .map(servicio -> new ServicioExtraDTO(
+                (int) servicio.getId(),
+                servicio.getNombreServicio(),
+                servicio.getPrecio()))
+                .collect(Collectors.toCollection(LinkedList::new));
+    }
     
 }
