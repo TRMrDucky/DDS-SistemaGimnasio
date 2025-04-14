@@ -200,7 +200,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     @Override
     public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return servicioExtraBO.obtenerServiciosExtrasDTO();
     }
 
     @Override

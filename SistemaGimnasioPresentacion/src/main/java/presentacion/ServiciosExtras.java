@@ -12,14 +12,12 @@ import dtos.ClienteRegConMemYServDTO;
 import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.ServicioExtraDTO;
-import implementaciones.ManejadorComprasMembresias;
-import interfaces.IManejadorComprasMembresias;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 /**
  * clase que representa la pantalla para elegir servicios extra
  * @author Ramón Zamudio
@@ -72,7 +70,6 @@ public class ServiciosExtras extends JFrame {
 
             if (idsServiciosCliente.contains(servicio.getId())) {
                 checkBox.setSelected(true);
-                costoTotal += servicio.getPrecio();
             }
 
             checkBox.addActionListener(e -> actualizarCosto(checkBox, servicio.getPrecio()));
