@@ -29,7 +29,7 @@ public class ClienteDTO {
     }
 
     public String getApellido() {
-        return correo;
+        return apellido;
     }
     
     public String getCorreo() {
