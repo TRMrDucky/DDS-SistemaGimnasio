@@ -113,7 +113,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     
     //MODIFICADO
     @Override
-    public List<ClienteDTO> getListaClientes() {
+    public List<ClienteRegistradoDTO> getListaClientes() {
         return registrarClienteBO.obtenerListaClientes2();
     }
 

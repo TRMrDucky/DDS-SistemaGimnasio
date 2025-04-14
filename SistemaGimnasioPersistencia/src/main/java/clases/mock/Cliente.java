@@ -15,8 +15,12 @@ public class Cliente {
     private String numeroTelefono;
     private int id;
 
-    public String getNombres() {
-        return nombres;
+    public Cliente(String nombres, String apellidos, String email, String numeroTelefono, int id) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.numeroTelefono = numeroTelefono;
+        this.id = id;
     }
 
     public Cliente(String nombres, String apellidos, String email, String numeroTelefono) {
@@ -24,6 +28,10 @@ public class Cliente {
         this.apellidos = apellidos;
         this.email = email;
         this.numeroTelefono = numeroTelefono;
+    }
+
+    public String getNombres() {
+        return nombres;
     }
 
     public void setNombres(String nombres) {
@@ -65,13 +73,4 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String nombres, String apellidos, String email, String numeroTelefono, int id) {
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.email = email;
-        this.numeroTelefono = numeroTelefono;
-        this.id = id;
-    }
-    
-    
 }

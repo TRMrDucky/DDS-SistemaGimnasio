@@ -1,4 +1,2 @@
 interfaces\IManejadorComprasMembresias.class
 implementaciones\ManejadorComprasMembresias.class
-excepciones\ConsultaDatosClienteException.class
-excepciones\RegistroClienteException.class

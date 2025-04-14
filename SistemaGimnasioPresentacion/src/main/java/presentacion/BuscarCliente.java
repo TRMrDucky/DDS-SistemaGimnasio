@@ -5,6 +5,7 @@
 package presentacion;
 
 import dtos.ClienteDTO;
+import dtos.ClienteRegistradoDTO;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -48,7 +49,7 @@ public class BuscarCliente extends JFrame {
         txtBusqueda.setToolTipText("Escriba el nombre del cliente...");
         add(txtBusqueda, BorderLayout.NORTH);
 
-        modeloTabla = new DefaultTableModel(new String[]{ "Nombre", "Apellidos", "Teléfono", "Correo"}, 0);
+        modeloTabla = new DefaultTableModel(new String[]{ "Nombre", "Apellidos", "Teléfono", "Correo", "Identificador"}, 0);
         tablaClientes = new JTable(modeloTabla);
         add(new JScrollPane(tablaClientes), BorderLayout.CENTER);
 
@@ -74,21 +75,21 @@ public class BuscarCliente extends JFrame {
 
     private void buscarClientes(String nombre) {
         // Filtrar la lista de ClienteDTO por nombre
-        List<ClienteDTO> clientesFiltrados = control.getListaClientes().stream()
+        List<ClienteRegistradoDTO> clientesFiltrados = control.getListaClientes().stream()
                 .filter(cliente -> cliente.getNombre().toLowerCase().contains(nombre))
                 .collect(Collectors.toList());
         actualizarTabla(clientesFiltrados);
     }
 
-    private void actualizarTabla(List<ClienteDTO> clientes) {
+    private void actualizarTabla(List<ClienteRegistradoDTO> clientes) {
         modeloTabla.setRowCount(0);
-        for (ClienteDTO cliente : clientes) {
+        for (ClienteRegistradoDTO cliente : clientes) {
             modeloTabla.addRow(new Object[]{
                 cliente.getNombre(),
-                cliente.getApellido(),
-                cliente.getTelefono(),
-                cliente.getCorreo()
-                // Añadir la opción String.valueOf(cliente.getId) para mostrar el id al usuario del sistema
+                cliente.getApellidos(),
+                cliente.getNumeroTelefono(),
+                cliente.getEmail(),
+                cliente.getId()
             });
         }
     }

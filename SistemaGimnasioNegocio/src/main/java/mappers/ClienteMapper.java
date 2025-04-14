@@ -18,8 +18,8 @@ public class ClienteMapper {
     public static Cliente toEntity(ClienteDTO cliente){
         return new Cliente(cliente.getNombre(), cliente.getApellido(), cliente.getCorreo(), cliente.getTelefono());
     }
-    public static ClienteDTO toDTO(Cliente cliente){
-        return new ClienteDTO(cliente.getNombres(), cliente.getApellidos(), cliente.getEmail(), cliente.getNumeroTelefono());
+    public static ClienteRegistradoDTO toDTO(Cliente cliente){
+        return new ClienteRegistradoDTO(cliente.getNombres(), cliente.getApellidos(), cliente.getEmail(), cliente.getNumeroTelefono(), cliente.getId());
     }
     public static ClienteRegistradoDTO ClienteRegistradoToDTO(Cliente cliente){
         return new ClienteRegistradoDTO(cliente.getNombres(), cliente.getApellidos(), cliente.getEmail(), cliente.getNumeroTelefono(), cliente.getId());

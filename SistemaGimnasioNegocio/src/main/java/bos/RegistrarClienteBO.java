@@ -36,7 +36,7 @@ public class RegistrarClienteBO {
     }
     
     //MODIFICADO
-      public ClienteDTO registrarCliente2(ClienteDTO clienteDTO) {
+      public ClienteRegistradoDTO registrarCliente2(ClienteDTO clienteDTO) {
    
     Cliente clienteRegistrar = ClienteMapper.toEntity(clienteDTO);
 
@@ -44,7 +44,7 @@ public class RegistrarClienteBO {
     Cliente clienteRegistrado = clienteDAO.registrarCliente(clienteRegistrar);
 
     
-    ClienteDTO clienteRespuesta = ClienteMapper.toDTO(clienteRegistrado);
+    ClienteRegistradoDTO clienteRespuesta = ClienteMapper.toDTO(clienteRegistrado);
 
  
     return clienteRespuesta;
@@ -57,12 +57,12 @@ public class RegistrarClienteBO {
         return listaClientesDTO;
     } 
     
-        public List<ClienteDTO> obtenerListaClientes2() {
+        public List<ClienteRegistradoDTO> obtenerListaClientes2() {
 
         List<Cliente> listaClientes = clienteDAO.obtenerListaClientes();
 
 
-        List<ClienteDTO> listaClientesDTO = listaClientes.stream()
+        List<ClienteRegistradoDTO> listaClientesDTO = listaClientes.stream()
                 .map(ClienteMapper::toDTO)
                 .collect(Collectors.toList());
 

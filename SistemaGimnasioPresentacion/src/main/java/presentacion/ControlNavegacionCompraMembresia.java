@@ -72,7 +72,7 @@ public class ControlNavegacionCompraMembresia {
      */
     
     //MODIFICADO
-    public List<ClienteDTO> getListaClientes() {
+    public List<ClienteRegistradoDTO> getListaClientes() {
         return subsistema.getListaClientes();
     }
 /**
