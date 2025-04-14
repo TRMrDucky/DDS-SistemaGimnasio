@@ -5,6 +5,7 @@
 package daos;
 
 import clases.mock.Cliente;
+import excepciones.ConsultaDatosClienteException;
 import interfaces.dao.IClienteDAO;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,6 +40,8 @@ public class ClienteDAO implements IClienteDAO {
 
     @Override
     public Cliente registrarCliente(Cliente cliente) {
+        System.out.println(cliente.getApellidos());
+        System.out.println(cliente.getEmail());
         cliente.setId(keyCliente);
         keyCliente++;
         listaClientes.add(cliente);
@@ -49,5 +52,25 @@ public class ClienteDAO implements IClienteDAO {
     @Override
     public List<Cliente> obtenerListaClientes(){
         return this.listaClientes;
+    }
+    
+    @Override
+    public String obtenerNombreCliente(int id) throws ConsultaDatosClienteException {
+        for (Cliente c : listaClientes) {
+            if (c.getId() == id) {
+                return c.getNombres() + "\n" + c.getApellidos();
+            }
+        }
+        throw new ConsultaDatosClienteException("No se pudo cargar el nombre del cliente porque el ID no fue encontrado");
+    }
+    
+    @Override
+    public String obtenerNumeroCliente(int id) throws ConsultaDatosClienteException {
+        for (Cliente c : listaClientes) {
+            if (c.getId() == id) {
+                return c.getNumeroTelefono();
+            }
+        }
+        throw new ConsultaDatosClienteException("No se pudo cargar el número telefónico del cliente porque el ID no fue encontrado");
     }
 }

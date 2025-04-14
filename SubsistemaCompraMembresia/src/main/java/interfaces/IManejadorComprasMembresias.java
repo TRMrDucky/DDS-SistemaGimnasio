@@ -11,6 +11,7 @@ import dtos.ClienteDTO;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
 import excepciones.ConsultaDatosClienteException;
+import excepciones.NegocioException;
 import excepciones.RegistroClienteException;
 import java.util.List;
 
@@ -32,9 +33,9 @@ public interface IManejadorComprasMembresias {
     
     public abstract List<ClienteRegistradoDTO> obtenerListaClientes();
     
-    public abstract String obtenerNombreCliente(int id) throws ConsultaDatosClienteException;
+    public abstract String obtenerNombreCliente(int id) throws NegocioException;
     
-    public abstract String obtenerNumeroCliente(int id) throws ConsultaDatosClienteException;
+    public abstract String obtenerNumeroCliente(int id) throws NegocioException;
     
     public abstract ClienteRegistradoDTO buscarClienteporID(int id);
     

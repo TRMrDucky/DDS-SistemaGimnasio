@@ -12,6 +12,7 @@ import dtos.PagoDTO;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
 import excepciones.ConsultaDatosClienteException;
+import excepciones.NegocioException;
 import excepciones.RegistroClienteException;
 import interfaces.IManejadorComprasMembresias;
 import java.util.List;
@@ -183,9 +184,10 @@ public class ControlNavegacionCompraMembresia {
      * @return un string que representa el nombre completo
      */
     public String obtenerNombreCliente(int id) {
+        System.out.println(id);
         try {
             return subsistema.obtenerNombreCliente(id);
-        } catch (ConsultaDatosClienteException e) {
+        } catch (NegocioException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR",
                     JOptionPane.WARNING_MESSAGE);
         }
@@ -207,9 +209,11 @@ public class ControlNavegacionCompraMembresia {
      * @return un string que representa el numero de teléfono
      */
     public String obtenerNumeroCliente(int id) {
+         System.out.println(id);
         try {
             return subsistema.obtenerNumeroCliente(id);
-        } catch (ConsultaDatosClienteException e) {
+        } catch (NegocioException e) {
+            System.out.println("error "+ id);
             JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR",
                     JOptionPane.WARNING_MESSAGE);
         }

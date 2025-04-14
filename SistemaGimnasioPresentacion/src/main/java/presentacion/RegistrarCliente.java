@@ -218,7 +218,6 @@ public class RegistrarCliente extends javax.swing.JFrame {
         String apellidos = campoApellidos.getText();
         String email = campoEmail.getText();
         String numeroTelefono = campoNumeroTelefono.getText();
-
         ClienteDTO registrarClienteDTO = new ClienteDTO(nombres, apellidos,
                 email, numeroTelefono);
         ClienteRegistradoDTO cliente = control.registrarCliente(registrarClienteDTO);

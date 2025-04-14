@@ -12,6 +12,7 @@ import dtos.PagoDTO;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
 import excepciones.ConsultaDatosClienteException;
+import excepciones.NegocioException;
 import excepciones.RegistroClienteException;
 import interfaces.IManejadorComprasMembresias;
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -209,13 +212,23 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     }
 
     @Override
-    public String obtenerNombreCliente(int id) throws ConsultaDatosClienteException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String obtenerNombreCliente(int id) throws NegocioException {
+        try {
+            return registrarClienteBO.obtenerNombreCliente(id);
+        } catch (NegocioException ex) {
+            Logger.getLogger(ManejadorComprasMembresias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        throw new NegocioException("No se pudo cargar el nombre del cliente porque el ID no fue encontrado");
     }
 
     @Override
-    public String obtenerNumeroCliente(int id) throws ConsultaDatosClienteException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String obtenerNumeroCliente(int id) throws NegocioException {
+        try {
+            return registrarClienteBO.obtenerNumeroCliente(id);
+        } catch (NegocioException ex) {
+            Logger.getLogger(ManejadorComprasMembresias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        throw new NegocioException("No se pudo cargar el numero del cliente porque el ID no fue encontrado");
     }
 
     @Override
