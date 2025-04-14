@@ -10,7 +10,7 @@ package clases.mock;
  */
 public class Cliente {
     private String nombres;
-    private String Apellidos;
+    private String apellidos;
     private String email;
     private String numeroTelefono;
     private int id;
@@ -19,9 +19,9 @@ public class Cliente {
         return nombres;
     }
 
-    public Cliente(String nombres, String Apellidos, String email, String numeroTelefono) {
+    public Cliente(String nombres, String apellidos, String email, String numeroTelefono) {
         this.nombres = nombres;
-        this.Apellidos = Apellidos;
+        this.apellidos = apellidos;
         this.email = email;
         this.numeroTelefono = numeroTelefono;
     }
@@ -31,11 +31,11 @@ public class Cliente {
     }
 
     public String getApellidos() {
-        return Apellidos;
+        return apellidos;
     }
 
-    public void setApellidos(String Apellidos) {
-        this.Apellidos = Apellidos;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getEmail() {
@@ -65,9 +65,9 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String nombres, String Apellidos, String email, String numeroTelefono, int id) {
+    public Cliente(String nombres, String apellidos, String email, String numeroTelefono, int id) {
         this.nombres = nombres;
-        this.Apellidos = Apellidos;
+        this.apellidos = apellidos;
         this.email = email;
         this.numeroTelefono = numeroTelefono;
         this.id = id;

@@ -48,7 +48,7 @@ public class BuscarCliente extends JFrame {
         txtBusqueda.setToolTipText("Escriba el nombre del cliente...");
         add(txtBusqueda, BorderLayout.NORTH);
 
-        modeloTabla = new DefaultTableModel(new String[]{ "Nombre", "Teléfono", "Correo"}, 0);
+        modeloTabla = new DefaultTableModel(new String[]{ "Nombre", "Apellidos", "Teléfono", "Correo"}, 0);
         tablaClientes = new JTable(modeloTabla);
         add(new JScrollPane(tablaClientes), BorderLayout.CENTER);
 
@@ -85,8 +85,10 @@ public class BuscarCliente extends JFrame {
         for (ClienteDTO cliente : clientes) {
             modeloTabla.addRow(new Object[]{
                 cliente.getNombre(),
+                cliente.getApellido(),
                 cliente.getTelefono(),
                 cliente.getCorreo()
+                // Añadir la opción String.valueOf(cliente.getId) para mostrar el id al usuario del sistema
             });
         }
     }
