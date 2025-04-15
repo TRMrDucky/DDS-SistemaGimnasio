@@ -2,9 +2,6 @@ package implementaciones;
 
 
 import bos.FabricaBOs;
-import bos.MembresiaBO;
-import bos.RegistrarClienteBO;
-import bos.ServicioExtraBO;
 import dtos.ClienteDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
@@ -13,6 +10,9 @@ import dtos.TipoMembresiaDTO;
 import excepciones.NegocioException;
 import excepciones.RegistroClienteException;
 import interfaces.IManejadorComprasMembresias;
+import interfaces.bo.IMembresiaBO;
+import interfaces.bo.IRegistrarClienteBO;
+import interfaces.bo.IServicioExtraBO;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -31,9 +31,9 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     
     private List<TipoMembresiaDTO> listaMembresias;
-    private ServicioExtraBO servicioExtraBO;
-    private RegistrarClienteBO registrarClienteBO;
-    private MembresiaBO membresiaBO;
+    private IServicioExtraBO servicioExtraBO;
+    private IRegistrarClienteBO registrarClienteBO;
+    private IMembresiaBO membresiaBO;
 
     @Override
     public ClienteRegistradoDTO registrarCliente(ClienteDTO registrarClienteDTO) throws RegistroClienteException {
@@ -108,7 +108,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     //MODIFICADO
     @Override
     public List<ClienteRegistradoDTO> getListaClientes() {
-        return registrarClienteBO.obtenerListaClientes2();
+        return registrarClienteBO.obtenerListaClientes();
     }
 
     @Override
