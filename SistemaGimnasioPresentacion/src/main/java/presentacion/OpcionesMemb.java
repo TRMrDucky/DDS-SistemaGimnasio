@@ -8,6 +8,8 @@ import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
+import implementaciones.ManejadorComprasMembresias;
+import interfaces.IManejadorComprasMembresias;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
@@ -221,7 +223,8 @@ public class OpcionesMemb extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia(null);
+                IManejadorComprasMembresias manejador = new ManejadorComprasMembresias();
+                ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia(manejador);
                 ClienteRegistradoDTO cliente= new ClienteRegistradoDTO();
                 new OpcionesMemb(control, cliente).setVisible(true);
             }
