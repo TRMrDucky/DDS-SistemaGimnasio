@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package interfaces.bo;
-import bos.MembresiaBO;
+import dtos.TipoMembresiaDTO;
 import java.util.List;
 
 /**

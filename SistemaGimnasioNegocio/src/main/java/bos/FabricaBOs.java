@@ -4,9 +4,6 @@
  */
 package bos;
 
-import bos.MembresiaBO;
-import bos.RegistrarClienteBO;
-import bos.ServicioExtraBO;
 import daos.ClienteDAO;
 import daos.MembresiaDAO;
 import daos.ServicioExtraDAO;

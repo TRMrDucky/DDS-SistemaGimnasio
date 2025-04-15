@@ -5,19 +5,14 @@ import bos.FabricaBOs;
 import bos.MembresiaBO;
 import bos.RegistrarClienteBO;
 import bos.ServicioExtraBO;
-import clases.mock.Cliente;
 import dtos.ClienteDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
-import excepciones.ConsultaDatosClienteException;
 import excepciones.NegocioException;
 import excepciones.RegistroClienteException;
 import interfaces.IManejadorComprasMembresias;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -25,7 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 /**
  * 
