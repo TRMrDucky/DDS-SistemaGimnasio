@@ -26,6 +26,7 @@ public class MembresiaBO implements IMembresiaBO {
         this.membresiaDAO = membresiaDAO;
     }
     
+    @Override
     public List<TipoMembresiaDTO> obtenerMembresiasDTO(){
         List<Membresia> listaMembresias= membresiaDAO.obtenerMembresias();
         
