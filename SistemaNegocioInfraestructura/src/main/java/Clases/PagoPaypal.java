@@ -4,10 +4,12 @@
  */
 package Clases;
 
+import interfaces.IMetodosPago;
+
 /**
  *
  * @author Cricri
  */
-public class PagoPaypal {
+public class PagoPaypal implements IMetodosPago {
     
 }
