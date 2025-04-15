@@ -21,7 +21,10 @@ public class ServicioExtraBO implements IServicioExtraBO{
     public ServicioExtraBO(IServicioExtraDAO servicioDAO) {
         this.servicioDAO = servicioDAO;
     }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
         return ServicioExtraMapper.toListDTO(servicioDAO.obtenerServiciosExtrasDTO());
     }
