@@ -22,7 +22,6 @@ public class ClienteDAO implements IClienteDAO {
 
     private ClienteDAO() {
         listaClientes = new LinkedList<>();
-        listaClientes = new LinkedList<>();
         listaClientes.add(new Cliente("Pedro", "Sola Meza",
                 "pedro.sola@hotmail.com", "6441348130", 1));
         listaClientes.add(new Cliente("Vanessa Paola", "Solano Lopez",
