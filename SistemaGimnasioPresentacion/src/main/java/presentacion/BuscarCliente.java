@@ -49,7 +49,13 @@ public class BuscarCliente extends JFrame {
         txtBusqueda.setToolTipText("Escriba el nombre del cliente...");
         add(txtBusqueda, BorderLayout.NORTH);
 
-        modeloTabla = new DefaultTableModel(new String[]{ "Nombre", "Apellidos", "Teléfono", "Correo", "Identificador"}, 0);
+        modeloTabla = new DefaultTableModel(new String[]{ "Nombre", "Apellidos", "Teléfono", "Correo", "Identificador"}, 0) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false; 
+        }
+    };
+
         tablaClientes = new JTable(modeloTabla);
         add(new JScrollPane(tablaClientes), BorderLayout.CENTER);
 
