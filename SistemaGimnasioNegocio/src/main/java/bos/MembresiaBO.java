@@ -6,6 +6,7 @@ package bos;
 
 import clases.mock.Membresia;
 import dtos.TipoMembresiaDTO;
+import interfaces.bo.IMembresiaBO;
 import interfaces.dao.IMembresiaDAO;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -17,7 +18,7 @@ import mappers.MembresiaMapper;
  *
  * @author janethcristinagalvanquinonez
  */
-public class MembresiaBO {
+public class MembresiaBO implements IMembresiaBO {
     
     private final IMembresiaDAO membresiaDAO;
 

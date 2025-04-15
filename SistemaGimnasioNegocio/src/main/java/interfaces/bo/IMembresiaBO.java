@@ -3,11 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package interfaces.bo;
+import bos.MembresiaBO;
+import java.util.List;
 
 /**
  *
  * @author janethcristinagalvanquinonez
  */
 public interface IMembresiaBO {
+    public List<TipoMembresiaDTO> obtenerMembresiasDTO();
     
 }
