@@ -4,10 +4,13 @@
  */
 package interfaces.bo;
 
+import dtos.ServicioExtraDTO;
+import java.util.List;
+
 /**
  *
  * @author Ramón Zamudio
  */
 public interface IServicioExtraBO {
-    
+    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO();
 }
