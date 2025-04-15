@@ -228,6 +228,10 @@ public class ControlNavegacionCompraMembresia {
         new ResumenCompraFrame(this, cliente).setVisible(true);
     }
     
+    public void openFormPantallaPrincipal(){
+        new PantallaPrincipal(this).setVisible(true);
+    }
+    
 //    public void openFormOpcionesMembresia(ClienteRegistradoDTO cliente){
 //        OpcionesMemb opcionesMemb= new OpcionesMemb(this);
 //        opcionesMemb.setVisible(true);
