@@ -23,7 +23,7 @@ public class ServicioExtraMapper {
     public static List<ServicioExtraDTO> toListDTO(List<ServicioExtra> serviciosExtra){
         List<ServicioExtraDTO>servicios = new LinkedList<>();
         for(ServicioExtra se : serviciosExtra){
-            servicios.add(new ServicioExtraDTO(se.getNombreServicio(),se.getPrecio()));
+            servicios.add(new ServicioExtraDTO(se.getId(),se.getNombreServicio(),se.getPrecio()));
         }
         return servicios;
     }
