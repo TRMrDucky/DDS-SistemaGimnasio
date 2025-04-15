@@ -6,6 +6,7 @@ package bos;
 
 import interfaces.dao.IServicioExtraDAO;
 import dtos.ServicioExtraDTO;
+import interfaces.bo.IServicioExtraBO;
 import java.util.LinkedList;
 import java.util.List;
 import mappers.ServicioExtraMapper;
@@ -14,12 +15,13 @@ import mappers.ServicioExtraMapper;
  *
  * @author Ramón Zamudio
  */
-public class ServicioExtraBO {
+public class ServicioExtraBO implements IServicioExtraBO{
     private IServicioExtraDAO servicioDAO;
 
     public ServicioExtraBO(IServicioExtraDAO servicioDAO) {
         this.servicioDAO = servicioDAO;
     }
+    @Override
     public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
         return ServicioExtraMapper.toListDTO(servicioDAO.obtenerServiciosExtrasDTO());
     }
