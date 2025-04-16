@@ -11,5 +11,9 @@ import interfaces.IMetodosPago;
  * @author Cricri
  */
 public class PagoEfectivo implements IMetodosPago{
-    
+     @Override
+    public boolean pago(int montoPagar) {
+        System.out.println("Pago en efectivo realizado por $" + montoPagar);
+        return true;
+    }
 }

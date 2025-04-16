@@ -4,6 +4,7 @@
  */
 package ClasesMetodosDePago;
 
+import formaspago.Tarjeta;
 import interfaces.IMetodosPago;
 
 /**
@@ -11,5 +12,23 @@ import interfaces.IMetodosPago;
  * @author Cricri
  */
 public class PagoTarjeta implements IMetodosPago {
+     private Tarjeta tarjeta;
+
+    public PagoTarjeta(Tarjeta tarjeta) {
+        this.tarjeta = tarjeta;
+    }
+
+    @Override
+    public boolean pago(int montoPagar) {
+        if (tarjeta.getSaldo() >= montoPagar) {
+            tarjeta.descontar(montoPagar);
+            System.out.println("Pago con tarjeta realizado. Saldo restante: $" + tarjeta.getSaldo());
+            return true;
+        } else {
+            System.out.println("Saldo insuficiente en la tarjeta.");
+            return false;
+        }
     
+    
+    }
 }

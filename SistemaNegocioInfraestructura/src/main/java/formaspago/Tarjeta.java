@@ -9,62 +9,77 @@ package formaspago;
  * @author 52644
  */
 public class Tarjeta {
+   private String nombreTitular;
+    private String numero;
+    private int cvv;
+    private int vencimiento;
+    private double saldo;
 
-    String titular;
-    String numeroTarjta;
-    int ccv;
-    int fechaVencimiento;
-    double fondos;
+    public Tarjeta(String nombreTitular, String numero, int cvv, int vencimiento, double saldo) {
+        this.nombreTitular = nombreTitular;
+        this.numero = numero;
+        this.cvv = cvv;
+        this.vencimiento = vencimiento;
+        this.saldo = saldo;
+    }
 
     public Tarjeta() {
     }
-
-    public Tarjeta(String titular, String numeroTarjeta, int ccv, int fechaVencimiento, double fondos) {
-        this.titular = titular;
-        this.numeroTarjta = numeroTarjeta;
-        this.ccv = ccv;
-        this.fechaVencimiento = fechaVencimiento;
-        this.fondos = fondos;
+     
+    
+    public String getNombreTitular() {
+        return nombreTitular;
     }
 
-    public String getTitular() {
-        return titular;
+    public void setNombreTitular(String nombreTitular) {
+        this.nombreTitular = nombreTitular;
     }
 
-    public void setTitular(String titular) {
-        this.titular = titular;
+    public String getNumero() {
+        return numero;
     }
 
-    public String getNumeroTarjta() {
-        return numeroTarjta;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public void setNumeroTarjta(String numeroTarjta) {
-        this.numeroTarjta = numeroTarjta;
+    public int getCvv() {
+        return cvv;
     }
 
-    public int getCcv() {
-        return ccv;
+    public void setCvv(int cvv) {
+        this.cvv = cvv;
     }
 
-    public void setCcv(int ccv) {
-        this.ccv = ccv;
+    public int getVencimiento() {
+        return vencimiento;
     }
 
-    public int getFechaVencimiento() {
-        return fechaVencimiento;
+    public void setVencimiento(int vencimiento) {
+        this.vencimiento = vencimiento;
     }
 
-    public void setFechaVencimiento(int fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
+    public double getSaldo() {
+        return saldo;
     }
 
-    public double getFondos() {
-        return fondos;
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
     }
 
-    public void setFondos(double fondos) {
-        this.fondos = fondos;
+    
+     public void descontar(double monto) {
+        this.saldo -= monto;
     }
-
+    
+    @Override
+    public String toString() {
+        return "PagoTarjeta{" + "nombreTitular=" + nombreTitular + ", numero=" + numero + ", cvv=" + cvv + ", vencimiento=" + vencimiento + ", saldo=" + saldo + '}';
+    }
+    
+   
 }
+
+   
+
+
