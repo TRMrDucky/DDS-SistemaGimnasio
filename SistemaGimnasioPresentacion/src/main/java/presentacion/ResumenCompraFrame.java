@@ -199,7 +199,7 @@ public class ResumenCompraFrame extends JFrame {
             txtMetodoPagoInfo.setText(""); 
             panelMetodoPago.add(txtMetodoPagoInfo); 
         } else if (metodo.equals("Efectivo")) {
-            panelMetodoPago.add(new JLabel("Confirmar con 'efectivo':"));
+            panelMetodoPago.add(new JLabel("Confirmar con palabra 'efectivo':"));
             txtMetodoPagoInfo.setText("");
             panelMetodoPago.add(txtMetodoPagoInfo);
         }
