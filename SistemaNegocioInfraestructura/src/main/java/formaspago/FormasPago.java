@@ -13,11 +13,11 @@ import java.util.List;
  */
 public class FormasPago {
 
-    private static FormasPago formasPago;
+    public static FormasPago formasPago;
     List<Tarjeta> tarjetas;
     List<Paypal> paypals;
 
-    private FormasPago() {
+    public FormasPago() {
         this.tarjetas = new LinkedList<>();
         this.tarjetas.add(new Tarjeta("José Reynaga", "6458151236482164", 037, 1126, 7000));
         this.tarjetas.add(new Tarjeta("Ramón Zamudio", "16435846798643156", 198, 0725, 7000));

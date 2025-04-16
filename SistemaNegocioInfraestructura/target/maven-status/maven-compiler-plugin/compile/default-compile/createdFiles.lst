@@ -1,2 +1,11 @@
+ClasesMetodosDePago\PagoPaypal.class
+formaspago\Tarjeta.class
+interfaces\IMetodosPago.class
+Enums\MetodosPagoEnum.class
+ClasesMetodosDePago\PagoEfectivo.class
 ProcesadorPago\ProcesadorPago$1.class
 pruebas\pruebaPago.class
+ClasesMetodosDePago\PagoTarjeta.class
+formaspago\FormasPago.class
+formaspago\Paypal.class
+ProcesadorPago\ProcesadorPago.class

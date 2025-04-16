@@ -5,7 +5,10 @@
 package pruebas;
 
 import ClasesMetodosDePago.PagoPaypal;
+import ClasesMetodosDePago.PagoTarjeta;
+import formaspago.FormasPago;
 import formaspago.Paypal;
+import formaspago.Tarjeta;
 
 /**
  *
@@ -17,11 +20,21 @@ public class pruebaPago {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-         Paypal cuenta = new Paypal("josee@gmail.com", "12345", 5000);
-        PagoPaypal pago = new PagoPaypal(cuenta);
-        
-        boolean resultado = pago.pago(3000);
-        System.out.println("¿Pago exitoso?: " + resultado);
+       // Obtener la instancia única de FormasPago
+        FormasPago formasPago = new FormasPago().getFormasPago();
+
+        // Elegimos la primera tarjeta de prueba
+        Tarjeta tarjetaSeleccionada = formasPago.obtenerTarjetas().get(0); // José Reynaga
+
+        // Imprimir datos de la tarjeta
+        System.out.println("Tarjeta seleccionada de: " + tarjetaSeleccionada.getNombreTitular());
+
+        // Simular pago
+        PagoTarjeta pago = new PagoTarjeta(tarjetaSeleccionada);
+        boolean resultado = pago.pago(2500); // intenta pagar $2500
+
+        System.out.println("¿El pago fue exitoso? " + resultado);
+    }
     }
     
-}
+
