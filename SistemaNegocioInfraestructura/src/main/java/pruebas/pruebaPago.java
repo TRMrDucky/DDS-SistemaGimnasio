@@ -20,6 +20,8 @@ public class pruebaPago {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        //prueba usando formas pago los clientes que estan ahi,sus tarjetas
        // Obtener la instancia única de FormasPago
         FormasPago formasPago = new FormasPago().getFormasPago();
 

@@ -10,7 +10,7 @@ import ClasesMetodosDePago.PagoTarjeta;
 import Enums.MetodosPagoEnum;
 import formaspago.Paypal;
 import formaspago.Tarjeta;
-import interfaces.IMetodosPago;
+import interfaces.infraestructura.IMetodosPago;
 
 /**
  *

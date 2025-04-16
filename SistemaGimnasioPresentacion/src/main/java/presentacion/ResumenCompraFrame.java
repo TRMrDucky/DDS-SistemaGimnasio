@@ -19,14 +19,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
+import Enums.MetodosPagoEnum;
+import java.awt.GridLayout;
+import javax.swing.JComboBox;
 /**
  *
  * @author Ramón Zamudio
  */
 public class ResumenCompraFrame extends JFrame {
-
+ 
     private ControlNavegacionCompraMembresia control;
+    private JTextField txtTotalPagado;
+    private JTextField txtMetodoPagoInfo;
+    private JComboBox<String> comboMetodoPago;
+    private JPanel panelMetodoPago;
 
     public ResumenCompraFrame(ControlNavegacionCompraMembresia control, ClienteRegConMemYServDTO cliente) {
         this.control = control;
@@ -37,10 +43,11 @@ public class ResumenCompraFrame extends JFrame {
         cargarPanelServicios(cliente);
         cargarLabelTotal(cliente);
 
-        JTextField txtTotalPagado = cargarLabelTotalPagado();
+        txtTotalPagado = cargarLabelTotalPagado();
+        cargarMetodoPago();
 
         JButton btnPagar = new JButton("Pagar");
-        btnPagar.setBounds(230, 300, 140, 40);
+        btnPagar.setBounds(330, 320, 140, 40);
         btnPagar.setBackground(Color.GREEN);
         btnPagar.addActionListener(e -> {
             double montoPagado;
@@ -51,7 +58,25 @@ public class ResumenCompraFrame extends JFrame {
                 return;
             }
 
-            control.procesarPago(cliente, montoPagado);  
+            String metodo = (String) comboMetodoPago.getSelectedItem();
+            String infoPago = txtMetodoPagoInfo.getText().trim();
+
+            if (metodo.equals("PayPal") && !infoPago.contains("@")) {
+                JOptionPane.showMessageDialog(this, "Ingrese un correo válido para PayPal.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (metodo.equals("Tarjeta de Crédito") && (infoPago.length() < 13 || !infoPago.matches("\\d+"))) {
+                JOptionPane.showMessageDialog(this, "Ingrese un número de tarjeta válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (metodo.equals("Efectivo") && !infoPago.equalsIgnoreCase("efectivo")) {
+                JOptionPane.showMessageDialog(this, "Confirme escribiendo 'efectivo' en el campo.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            control.procesarPago(cliente, montoPagado);
             control.openFormBuscarCliente();
             dispose();
         });
@@ -60,8 +85,12 @@ public class ResumenCompraFrame extends JFrame {
         JButton btnVolver = new JButton("← Volver");
         btnVolver.setBounds(10, 10, 100, 30);
         btnVolver.addActionListener(e -> {
-            control.openFormServiciosExtra(new ClienteRegConMembDTO(cliente.getTipoMembresia(),
-                    (double) cliente.getPrecio(), cliente.getServicios(), cliente.getIdCliente()));
+            control.openFormServiciosExtra(new ClienteRegConMembDTO(
+                cliente.getTipoMembresia(),
+                cliente.getPrecio(),
+                cliente.getServicios(),
+                cliente.getIdCliente()
+            ));
             dispose();
         });
         add(btnVolver);
@@ -69,7 +98,7 @@ public class ResumenCompraFrame extends JFrame {
 
     public void cargarFrame() {
         setTitle("Resumen de Compra");
-        setSize(600, 400);
+        setSize(600, 430);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(null);
@@ -116,10 +145,10 @@ public class ResumenCompraFrame extends JFrame {
         JLabel lblTotalPagado = new JLabel("Total pagado");
         lblTotalPagado.setBounds(350, 190, 100, 20);
         add(lblTotalPagado);
-        JTextField txtTotalPagado = new JTextField();
-        txtTotalPagado.setBounds(350, 210, 100, 25);
-        add(txtTotalPagado);
-        return txtTotalPagado;
+        JTextField txt = new JTextField();
+        txt.setBounds(350, 210, 100, 25);
+        add(txt);
+        return txt;
     }
 
     public void cargarPanelServicios(ClienteRegConMemYServDTO cliente) {
@@ -139,4 +168,44 @@ public class ResumenCompraFrame extends JFrame {
         }
         add(panelServicios);
     }
+
+  public void cargarMetodoPago() {
+    JLabel lblMetodoPago = new JLabel("Método de Pago:");
+    lblMetodoPago.setBounds(350, 250, 120, 20);
+    add(lblMetodoPago);
+
+    comboMetodoPago = new JComboBox<>(new String[]{"Efectivo", "Tarjeta de Crédito", "PayPal"});
+    comboMetodoPago.setBounds(350, 270, 140, 25);
+    add(comboMetodoPago);
+
+
+    txtMetodoPagoInfo = new JTextField();
+
+    panelMetodoPago = new JPanel();
+    panelMetodoPago.setLayout(new BoxLayout(panelMetodoPago, BoxLayout.Y_AXIS));
+    panelMetodoPago.setBounds(50, 270, 250, 90);
+    add(panelMetodoPago);
+
+    comboMetodoPago.addActionListener(e -> {
+        String metodo = (String) comboMetodoPago.getSelectedItem();
+        panelMetodoPago.removeAll();
+
+        if (metodo.equals("PayPal")) {
+            panelMetodoPago.add(new JLabel("Correo para PayPal:"));
+            txtMetodoPagoInfo.setText(""); 
+            panelMetodoPago.add(txtMetodoPagoInfo);
+        } else if (metodo.equals("Tarjeta de Crédito")) {
+            panelMetodoPago.add(new JLabel("Número de tarjeta (mín. 13 dígitos):"));
+            txtMetodoPagoInfo.setText(""); 
+            panelMetodoPago.add(txtMetodoPagoInfo); 
+        } else if (metodo.equals("Efectivo")) {
+            panelMetodoPago.add(new JLabel("Confirmar con 'efectivo':"));
+            txtMetodoPagoInfo.setText("");
+            panelMetodoPago.add(txtMetodoPagoInfo);
+        }
+
+        panelMetodoPago.revalidate();
+        panelMetodoPago.repaint();
+    });
+}
 }

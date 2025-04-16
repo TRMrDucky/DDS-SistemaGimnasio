@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import Enums.MetodosPagoEnum;
 import dtos.ClienteDTO;
 import dtos.ClienteRegConMemYServDTO;
 import dtos.ClienteRegConMembDTO;
@@ -237,10 +238,10 @@ public class ControlNavegacionCompraMembresia {
 //        opcionesMemb.setVisible(true);
 //    }
     
-    
-    public PagoDTO procesarPago(int idCliente, double monto) {
-         return subsistema.procesarPago(idCliente, monto);
+    public PagoDTO procesarPago(int idCliente, double monto, MetodosPagoEnum metodo, Object datosPago) {
+    return subsistema.procesarPago(idCliente, monto, metodo, datosPago);
 }
+
     
     public void procesarPago(ClienteRegConMemYServDTO cliente, double montoPagado) {
         mostrarPagoEnResumen(cliente, montoPagado);

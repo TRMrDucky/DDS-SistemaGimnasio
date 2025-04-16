@@ -5,7 +5,7 @@
 package ClasesMetodosDePago;
 
 import formaspago.Paypal;
-import interfaces.IMetodosPago;
+import interfaces.infraestructura.IMetodosPago;
 
 /**
  *

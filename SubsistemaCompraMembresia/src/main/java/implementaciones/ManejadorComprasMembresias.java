@@ -1,6 +1,8 @@
 package implementaciones;
 
 
+import Enums.MetodosPagoEnum;
+import ProcesadorPago.ProcesadorPago;
 import bos.FabricaBOs;
 import dtos.ClienteDTO;
 import dtos.ClienteRegistradoDTO;
@@ -13,6 +15,10 @@ import interfaces.IManejadorComprasMembresias;
 import interfaces.bo.IMembresiaBO;
 import interfaces.bo.IRegistrarClienteBO;
 import interfaces.bo.IServicioExtraBO;
+import interfaces.infraestructura.IMetodosPago;
+
+
+
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -183,12 +189,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     }
     
     */
-    public PagoDTO procesarPago(int idCliente, double monto) {
-    
-        boolean aprobado = new Random().nextBoolean(); 
 
-        return new PagoDTO(idCliente, monto, aprobado);
-    }
 
     @Override
     public List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono) {
@@ -234,6 +235,13 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     public List<TipoMembresiaDTO> obtenerMembresiasDTO() {
        return membresiaBO.obtenerMembresiasDTO();
     }
+
+public PagoDTO procesarPago(int idCliente, double monto, MetodosPagoEnum metodo, Object datosPago) {
+    ProcesadorPago procesador = new ProcesadorPago();
+    boolean aprobado = procesador.procesarPago(metodo, (int) monto, datosPago); 
+
+    return new PagoDTO(idCliente, monto, aprobado);
+}
 
    
     

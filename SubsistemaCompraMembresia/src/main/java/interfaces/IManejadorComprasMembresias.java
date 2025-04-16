@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import Enums.MetodosPagoEnum;
 import clases.mock.Cliente;
 import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
@@ -39,8 +40,10 @@ public interface IManejadorComprasMembresias {
     
     public abstract ClienteRegistradoDTO buscarClienteporID(int id);
     
-    public abstract PagoDTO procesarPago (int idCliente, double monto);
+   // public abstract PagoDTO procesarPago (int idCliente, double monto);
    
     public abstract List<TipoMembresiaDTO> obtenerMembresiasDTO();
+    
+    public PagoDTO procesarPago(int idCliente, double monto, MetodosPagoEnum metodo, Object datosPago);
     
 }
