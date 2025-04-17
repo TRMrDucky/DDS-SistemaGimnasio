@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Ramón Zamudio
  */
-public interface ImanejadorServicioExtra {
+public interface IManejadorServicioExtra {
     public List<ServicioExtraDTO> obtenerServiciosExtrasDTO();
     public ServicioExtraDTO obtenerServicioExtra(Long id);
     public ServicioExtraDTO añadirServicio(ServicioExtraDTO servicio)throws NegocioException;

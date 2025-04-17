@@ -30,7 +30,7 @@ public class ServicioExtraDTO {
         this.precio = precio;
     }
 
-    public ServicioExtraDTO(String nombreServicio, double precio,String descripcion) {
+    public ServicioExtraDTO(String nombreServicio, double precio, String descripcion) {
         this.nombreServicio = nombreServicio;
         this.precio = precio;
         this.descripcion = descripcion;
@@ -74,14 +74,15 @@ public class ServicioExtraDTO {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
     /**
      *  Método toString para representar el objeto como una cadena de texto.
      * @return regresa el objeto como cadena de texto
      */
     @Override
     public String toString() {
-        return "ServicioExtraDTO{" + "id=" + id + ", nombreServicio=" + nombreServicio + ", precio=" + precio + '}';
+        return "ServicioExtraDTO{" + "id=" + id + ", nombreServicio=" + nombreServicio + ", precio=" + precio + ", descripcion=" + descripcion + '}';
     }
+    
+    
     
 }

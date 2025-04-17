@@ -4,18 +4,23 @@
  */
 package implementaciones;
 
+import bos.FabricaBOs;
 import dtos.ServicioExtraDTO;
 import excepciones.NegocioException;
 import interfaces.bo.IServicioExtraBO;
-import interfaz.ImanejadorServicioExtra;
 import java.util.List;
+import interfaz.IManejadorServicioExtra;
 
 /**
  *
  * @author Ramón Zamudio
  */
-public class ManejadorServicioExtra implements ImanejadorServicioExtra{
+public class ManejadorServicioExtra implements IManejadorServicioExtra{
     private IServicioExtraBO servicioExtraBO;
+
+    public ManejadorServicioExtra() {
+        this.servicioExtraBO = FabricaBOs.getInstanceServicioExtraBO();
+    }
 
     @Override
     public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() {

@@ -4,17 +4,22 @@
  */
 package interfaces;
 
+import implementaciones.ManejadorServicioExtra;
+import interfaz.IManejadorServicioExtra;
+import presentacion.ControlNavegacionCompraMembresia;
+
 /**
  *
  * @author Ramón Zamudio
  */
 public class SeleccionOpcionServicioExtra extends javax.swing.JFrame {
-
+    ControlNavegacionCompraMembresia control;
     /**
      * Creates new form SeleccionOpcionServicioExtra
      */
-    public SeleccionOpcionServicioExtra() {
+    public SeleccionOpcionServicioExtra(ControlNavegacionCompraMembresia control) {
         initComponents();
+        this.control = control;
         getContentPane().setBackground(new java.awt.Color(48, 150, 244));
         jPanel1.setBackground(new java.awt.Color(48, 150, 244));
     }
@@ -46,10 +51,25 @@ public class SeleccionOpcionServicioExtra extends javax.swing.JFrame {
         jLabel2.setText("Seleccione una opcion");
 
         jButton1.setText("Eliminar Servicio");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Añadir Servicio");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Editar Servicio");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -107,6 +127,21 @@ public class SeleccionOpcionServicioExtra extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        control.openFormAñadirServicio();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        control.openFormSeleccionarServicioExtra("editar");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        control.openFormSeleccionarServicioExtra("eliminar");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -137,7 +172,9 @@ public class SeleccionOpcionServicioExtra extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SeleccionOpcionServicioExtra().setVisible(true);
+                IManejadorServicioExtra manejador = new ManejadorServicioExtra();
+                ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia(manejador);
+                new SeleccionOpcionServicioExtra(control).setVisible(true);
             }
         });
     }

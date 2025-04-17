@@ -4,18 +4,26 @@
  */
 package interfaces;
 
+import dtos.ServicioExtraDTO;
+import excepciones.NegocioException;
+import implementaciones.ManejadorServicioExtra;
+import interfaz.IManejadorServicioExtra;
+import presentacion.ControlNavegacionCompraMembresia;
+
 /**
  *
  * @author Ramón Zamudio
  */
 public class AñadirServicio extends javax.swing.JFrame {
-
+    ControlNavegacionCompraMembresia control;
+    ServicioExtraDTO servicioNuevo;
     /**
      * Creates new form AñadirServicio
      */
     
-    public AñadirServicio() {
+    public AñadirServicio(ControlNavegacionCompraMembresia control) {
         initComponents();
+        this.control = control;
     }
 
     /**
@@ -101,6 +109,13 @@ public class AñadirServicio extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
+        servicioNuevo = new ServicioExtraDTO(textNombre.getText(), Double.parseDouble(textPrecio.getText()), textDesc.getText());
+        try{
+           control.añadirServicio(servicioNuevo);
+            System.out.println(control.obtenerServiciosExtrasDTO2());
+        }catch(NegocioException e){
+        }
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
@@ -133,7 +148,9 @@ public class AñadirServicio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AñadirServicio().setVisible(true);
+                IManejadorServicioExtra manejador = new ManejadorServicioExtra();
+                ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia(manejador);
+                new AñadirServicio(control).setVisible(true);
             }
         });
     }
