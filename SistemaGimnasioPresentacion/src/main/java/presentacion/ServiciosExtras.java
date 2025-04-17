@@ -65,7 +65,7 @@ public class ServiciosExtras extends JFrame {
         }
 
         for (ServicioExtraDTO servicio : serviciosExtras) {
-            JCheckBox checkBox = new JCheckBox(servicio.getNombreServicio() + " - Costo $" + servicio.getPrecio());
+            JCheckBox checkBox = new JCheckBox(servicio.getNombreServicio() + " - Costo $" + servicio.getPrecio()+" "+servicio.getDescripcion());
             checkBox.setActionCommand(String.valueOf(servicio.getId()));
 
             Long idServicio = servicio.getId();

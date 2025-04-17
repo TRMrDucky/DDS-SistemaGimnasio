@@ -8,13 +8,15 @@ public class ServicioExtra {
     private long id;
     private String nombreServicio;
     private double precio;
+    private String descripcion;
 
     public ServicioExtra() {
     }
 
-    public ServicioExtra(String nombreServicio, double precio) {
+    public ServicioExtra(String nombreServicio, double precio,String descripcion) {
         this.nombreServicio = nombreServicio;
         this.precio = precio;
+        this.descripcion = descripcion;
     }
     
     public ServicioExtra(long id, String nombreServicio, double precio) {
@@ -23,6 +25,22 @@ public class ServicioExtra {
         this.precio = precio;
     }
 
+    public ServicioExtra(long id, String nombreServicio, double precio, String descripcion) {
+        this.id = id;
+        this.nombreServicio = nombreServicio;
+        this.precio = precio;
+        this.descripcion = descripcion;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+    
     public long getId() {
         return id;
     }

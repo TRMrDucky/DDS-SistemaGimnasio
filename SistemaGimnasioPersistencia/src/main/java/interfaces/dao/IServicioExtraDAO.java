@@ -13,4 +13,8 @@ import java.util.List;
  */
 public interface IServicioExtraDAO {
     public List<ServicioExtra> obtenerServiciosExtrasDTO();
+    public ServicioExtra obtenerServicioExtra(Long id);
+    public ServicioExtra añadirServicio(ServicioExtra servicio);
+    public ServicioExtra editarServicio(ServicioExtra servicio);
+    public boolean eliinarServicioExtra(Long id);
 }

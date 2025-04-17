@@ -12,6 +12,7 @@ public class ServicioExtraDTO {
     private long id;
     private String nombreServicio;
     private double precio;
+    private String descripcion;
     /**
      * Constructor vacío.
      */
@@ -29,11 +30,19 @@ public class ServicioExtraDTO {
         this.precio = precio;
     }
 
-    public ServicioExtraDTO(String nombreServicio, double precio) {
+    public ServicioExtraDTO(String nombreServicio, double precio,String descripcion) {
         this.nombreServicio = nombreServicio;
         this.precio = precio;
+        this.descripcion = descripcion;
     }
 
+    public ServicioExtraDTO(long id, String nombreServicio, double precio, String descripcion) {
+        this.id = id;
+        this.nombreServicio = nombreServicio;
+        this.precio = precio;
+        this.descripcion = descripcion;
+    }
+    
     public long getId() {
         return id;
     }
@@ -57,6 +66,15 @@ public class ServicioExtraDTO {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
     /**
      *  Método toString para representar el objeto como una cadena de texto.
      * @return regresa el objeto como cadena de texto

@@ -4,8 +4,10 @@
  */
 package bos;
 
+import clases.mock.ServicioExtra;
 import interfaces.dao.IServicioExtraDAO;
 import dtos.ServicioExtraDTO;
+import excepciones.NegocioException;
 import interfaces.bo.IServicioExtraBO;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,7 +24,28 @@ public class ServicioExtraBO implements IServicioExtraBO{
         this.servicioDAO = servicioDAO;
     }
 
+    @Override
     public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
         return ServicioExtraMapper.toListDTO(servicioDAO.obtenerServiciosExtrasDTO());
+    }
+
+    @Override
+    public ServicioExtraDTO obtenerServicioExtra(Long id) {
+        return ServicioExtraMapper.toDTO(servicioDAO.obtenerServicioExtra(id));
+    }
+
+    @Override
+    public ServicioExtraDTO añadirServicio(ServicioExtraDTO servicio)throws NegocioException {
+        return ServicioExtraMapper.toDTO(servicioDAO.añadirServicio(ServicioExtraMapper.toEntity(servicio)));
+    }
+
+    @Override
+    public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio)throws NegocioException {
+        return ServicioExtraMapper.toDTO(servicioDAO.editarServicio(ServicioExtraMapper.toEntity(servicio)));
+    }
+
+    @Override
+    public boolean eliinarServicioExtra(Long id) {
+        return servicioDAO.eliinarServicioExtra(id);
     }
 }
