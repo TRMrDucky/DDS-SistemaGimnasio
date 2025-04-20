@@ -50,7 +50,7 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
     }
     
     @Override
-    public ServicioExtra añadirServicio(ServicioExtra servicio){
+    public ServicioExtra agregarServicio(ServicioExtra servicio){
         listaserviciosExtras.add(servicio);
         return servicio;
     }

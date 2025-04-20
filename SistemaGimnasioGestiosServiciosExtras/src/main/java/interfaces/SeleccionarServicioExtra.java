@@ -4,7 +4,9 @@
  */
 package interfaces;
 
+import ControlNavegacionServicioExtra.ControlNavegacionServicioExtra;
 import dtos.ServicioExtraDTO;
+import implementaciones.ManejadorComprasMembresias;
 import implementaciones.ManejadorServicioExtra;
 import interfaz.IManejadorServicioExtra;
 import java.awt.Component;
@@ -12,23 +14,21 @@ import java.awt.Dimension;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import presentacion.ControlNavegacionCompraMembresia;
 
 /**
  *
  * @author Ramón Zamudio
  */
 public class SeleccionarServicioExtra extends javax.swing.JFrame {
-    ControlNavegacionCompraMembresia control;
+    ControlNavegacionServicioExtra control;
     /**
      * Creates new form SeleccionarServicioExtra
      * @param control
      */
-    public SeleccionarServicioExtra(ControlNavegacionCompraMembresia control,String origen) {
+    public SeleccionarServicioExtra(ControlNavegacionServicioExtra control,String origen) {
         initComponents();
-        List<ServicioExtraDTO> listaServicios = control.obtenerServiciosExtrasDTO2();
+        List<ServicioExtraDTO> listaServicios = control.obtenerServiciosExtrasDTO();
         jPanel1.removeAll();
         jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
         for(ServicioExtraDTO se : listaServicios){
@@ -140,8 +140,8 @@ public class SeleccionarServicioExtra extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                IManejadorServicioExtra manejador = new ManejadorServicioExtra();
-                ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia(manejador);
+                IManejadorServicioExtra manejadorServicio = new ManejadorServicioExtra();
+                ControlNavegacionServicioExtra control = new ControlNavegacionServicioExtra(manejadorServicio);
                 new SeleccionarServicioExtra(control,"editar").setVisible(true);
             }
         });

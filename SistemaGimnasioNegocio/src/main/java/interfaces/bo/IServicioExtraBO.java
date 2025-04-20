@@ -15,7 +15,7 @@ import java.util.List;
 public interface IServicioExtraBO {
     public List<ServicioExtraDTO> obtenerServiciosExtrasDTO();
     public ServicioExtraDTO obtenerServicioExtra(Long id);
-    public ServicioExtraDTO añadirServicio(ServicioExtraDTO servicio)throws NegocioException;
+    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio)throws NegocioException;
     public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio)throws NegocioException ;
     public boolean eliinarServicioExtra(Long id);
 }

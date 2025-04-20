@@ -4,24 +4,26 @@
  */
 package interfaces;
 
+import ControlNavegacionServicioExtra.ControlNavegacionServicioExtra;
 import dtos.ServicioExtraDTO;
 import excepciones.NegocioException;
+import implementaciones.ManejadorComprasMembresias;
 import implementaciones.ManejadorServicioExtra;
 import interfaz.IManejadorServicioExtra;
-import presentacion.ControlNavegacionCompraMembresia;
 
 /**
  *
  * @author Ramón Zamudio
  */
-public class AñadirServicio extends javax.swing.JFrame {
-    ControlNavegacionCompraMembresia control;
+public class AgregarServicioExtra extends javax.swing.JFrame {
+    ControlNavegacionServicioExtra control;
     ServicioExtraDTO servicioNuevo;
     /**
      * Creates new form AñadirServicio
+     * @param control
      */
     
-    public AñadirServicio(ControlNavegacionCompraMembresia control) {
+    public AgregarServicioExtra(ControlNavegacionServicioExtra control) {
         initComponents();
         this.control = control;
     }
@@ -112,7 +114,7 @@ public class AñadirServicio extends javax.swing.JFrame {
         servicioNuevo = new ServicioExtraDTO(textNombre.getText(), Double.parseDouble(textPrecio.getText()), textDesc.getText());
         try{
            control.añadirServicio(servicioNuevo);
-            System.out.println(control.obtenerServiciosExtrasDTO2());
+            System.out.println(control.obtenerServiciosExtrasDTO());
         }catch(NegocioException e){
         }
         
@@ -135,22 +137,23 @@ public class AñadirServicio extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AñadirServicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarServicioExtra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AñadirServicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarServicioExtra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AñadirServicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarServicioExtra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AñadirServicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarServicioExtra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                IManejadorServicioExtra manejador = new ManejadorServicioExtra();
-                ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia(manejador);
-                new AñadirServicio(control).setVisible(true);
+                IManejadorServicioExtra manejadorServicio = new ManejadorServicioExtra();
+                ControlNavegacionServicioExtra control = new ControlNavegacionServicioExtra(manejadorServicio);
+                new AgregarServicioExtra(control).setVisible(true);
             }
         });
     }

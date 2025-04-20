@@ -4,20 +4,22 @@
  */
 package interfaces;
 
+import ControlNavegacionServicioExtra.ControlNavegacionServicioExtra;
+import implementaciones.ManejadorComprasMembresias;
 import implementaciones.ManejadorServicioExtra;
 import interfaz.IManejadorServicioExtra;
-import presentacion.ControlNavegacionCompraMembresia;
+import javax.smartcardio.ATR;
 
 /**
  *
  * @author Ramón Zamudio
  */
 public class SeleccionOpcionServicioExtra extends javax.swing.JFrame {
-    ControlNavegacionCompraMembresia control;
+    ControlNavegacionServicioExtra control;
     /**
      * Creates new form SeleccionOpcionServicioExtra
      */
-    public SeleccionOpcionServicioExtra(ControlNavegacionCompraMembresia control) {
+    public SeleccionOpcionServicioExtra(ControlNavegacionServicioExtra control) {
         initComponents();
         this.control = control;
         getContentPane().setBackground(new java.awt.Color(48, 150, 244));
@@ -57,7 +59,7 @@ public class SeleccionOpcionServicioExtra extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Añadir Servicio");
+        jButton2.setText("Agregar Servicio");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -129,7 +131,7 @@ public class SeleccionOpcionServicioExtra extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        control.openFormAñadirServicio();
+        control.openFormAgregarServicio();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -172,8 +174,8 @@ public class SeleccionOpcionServicioExtra extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                IManejadorServicioExtra manejador = new ManejadorServicioExtra();
-                ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia(manejador);
+                IManejadorServicioExtra manejadorServicio = new ManejadorServicioExtra();
+                ControlNavegacionServicioExtra control = new ControlNavegacionServicioExtra(manejadorServicio);
                 new SeleccionOpcionServicioExtra(control).setVisible(true);
             }
         });

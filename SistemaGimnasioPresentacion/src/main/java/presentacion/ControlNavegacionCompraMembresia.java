@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import ControlNavegacionServicioExtra.ControlNavegacionServicioExtra;
 import Enums.MetodosPagoEnum;
 import dtos.ClienteDTO;
 import dtos.ClienteRegConMemYServDTO;
@@ -12,19 +13,14 @@ import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
-import excepciones.ConsultaDatosClienteException;
 import excepciones.NegocioException;
 import excepciones.RegistroClienteException;
-import interfaces.AñadirServicio;
 import interfaces.IManejadorComprasMembresias;
 import interfaces.SeleccionOpcionServicioExtra;
-import interfaces.SeleccionarServicioExtra;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import interfaz.IManejadorServicioExtra;
-import mappers.ServicioExtraMapper;
 
 /**
  *
@@ -33,13 +29,8 @@ import mappers.ServicioExtraMapper;
 public class ControlNavegacionCompraMembresia {
 
     private IManejadorComprasMembresias subsistema;
-    private IManejadorServicioExtra subsistemaSE;
     public ControlNavegacionCompraMembresia(IManejadorComprasMembresias subsistema){
         this.subsistema = subsistema;
-    }
-
-    public ControlNavegacionCompraMembresia(IManejadorServicioExtra subsistemeSE) {
-        this.subsistemaSE = subsistemeSE;
     }
     
     
@@ -261,39 +252,8 @@ public class ControlNavegacionCompraMembresia {
         return subsistema.obtenerMembresiasDTO();
     }
 
-    
-    
-    //controlador de servicios extra 
-    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO2() {
-        return subsistemaSE.obtenerServiciosExtrasDTO();
+    public void openFormSeleccionarSevicioExtra(ControlNavegacionServicioExtra control){
+        new SeleccionOpcionServicioExtra(control).setVisible(true);
     }
-    public ServicioExtraDTO obtenerServicioExtra(Long id) {
-        return subsistemaSE.obtenerServicioExtra(id);
-    }
-
-    public ServicioExtraDTO añadirServicio(ServicioExtraDTO servicio)throws NegocioException {
-        return subsistemaSE.añadirServicio(servicio);
-    }
-
-
-    public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio)throws NegocioException {
-        return subsistemaSE.editarServicio(servicio);
-    }
-
-
-    public boolean eliinarServicioExtra(Long id) {
-        return subsistemaSE.eliinarServicioExtra(id);
-    }
-    
-    public void openFormAñadirServicio(){
-        new AñadirServicio(this).setVisible(true);
-    }
-    public void openFormSeleecionOpcionServicioExtra(){
-        new SeleccionOpcionServicioExtra(this).setVisible(true);
-    }
-    public void openFormSeleccionarServicioExtra(String origen){
-        new SeleccionarServicioExtra(this, origen).setVisible(true);
-    }
-    
     
 }

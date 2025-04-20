@@ -35,8 +35,8 @@ public class ServicioExtraBO implements IServicioExtraBO{
     }
 
     @Override
-    public ServicioExtraDTO añadirServicio(ServicioExtraDTO servicio)throws NegocioException {
-        return ServicioExtraMapper.toDTO(servicioDAO.añadirServicio(ServicioExtraMapper.toEntity(servicio)));
+    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio)throws NegocioException {
+        return ServicioExtraMapper.toDTO(servicioDAO.agregarServicio(ServicioExtraMapper.toEntity(servicio)));
     }
 
     @Override

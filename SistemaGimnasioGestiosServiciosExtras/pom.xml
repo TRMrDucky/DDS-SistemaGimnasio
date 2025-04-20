@@ -13,7 +13,7 @@
         </dependency>
         <dependency>
             <groupId>com.00000253020</groupId>
-            <artifactId>SistemaGimnasioPresentacion</artifactId>
+            <artifactId>SubsistemaCompraMembresia</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
