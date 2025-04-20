@@ -4,7 +4,6 @@
  */
 package presentacion;
 
-import ControlNavegacionServicioExtra.ControlNavegacionServicioExtra;
 import Enums.MetodosPagoEnum;
 import dtos.ClienteDTO;
 import dtos.ClienteRegConMemYServDTO;
@@ -16,7 +15,7 @@ import dtos.TipoMembresiaDTO;
 import excepciones.NegocioException;
 import excepciones.RegistroClienteException;
 import interfaces.IManejadorComprasMembresias;
-import interfaces.SeleccionOpcionServicioExtra;
+import interfaz.IManejadorServicioExtra;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,9 +28,13 @@ import javax.swing.JOptionPane;
 public class ControlNavegacionCompraMembresia {
 
     private IManejadorComprasMembresias subsistema;
-    public ControlNavegacionCompraMembresia(IManejadorComprasMembresias subsistema){
+    private IManejadorServicioExtra subsistema2;
+    
+    public ControlNavegacionCompraMembresia(IManejadorComprasMembresias subsistema,IManejadorServicioExtra subsistema2 ){
         this.subsistema = subsistema;
+        this.subsistema2 = subsistema2;
     }
+
     
     
     /**
@@ -240,20 +243,31 @@ public class ControlNavegacionCompraMembresia {
 //    }
     
     public PagoDTO procesarPago(int idCliente, double monto, MetodosPagoEnum metodo, Object datosPago) {
-    return subsistema.procesarPago(idCliente, monto, metodo, datosPago);
-}
+        return subsistema.procesarPago(idCliente, monto, metodo, datosPago);
+    }
 
     
     public void procesarPago(ClienteRegConMemYServDTO cliente, double montoPagado) {
         mostrarPagoEnResumen(cliente, montoPagado);
-}
+    }
     
     public List<TipoMembresiaDTO> obtenerListaMembresiasDTO(){
         return subsistema.obtenerMembresiasDTO();
     }
 
-    public void openFormSeleccionarSevicioExtra(ControlNavegacionServicioExtra control){
-        new SeleccionOpcionServicioExtra(control).setVisible(true);
+    public void openFormSeleccionarOpcionSevicioExtra(){
+        new SeleccionOpcionServicioExtra(this).setVisible(true);
     }
+    public void openFormAgregarServicioExtra(){
+        new AgregarServicioExtra(this).setVisible(true);
+    }
+    public void openFormSeleccionarServicioExtra(String origen){
+        new SeleccionarServicioExtra(this, origen).setVisible(true);
+    }
+    
+    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio) throws NegocioException {
+        return subsistema2.agregarServicio(servicio);
+    }
+    
     
 }

@@ -2,28 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package interfaces;
+package presentacion;
 
-import ControlNavegacionServicioExtra.ControlNavegacionServicioExtra;
 import dtos.ServicioExtraDTO;
 import excepciones.NegocioException;
-import implementaciones.ManejadorComprasMembresias;
 import implementaciones.ManejadorServicioExtra;
 import interfaz.IManejadorServicioExtra;
+
 
 /**
  *
  * @author Ramón Zamudio
  */
 public class AgregarServicioExtra extends javax.swing.JFrame {
-    ControlNavegacionServicioExtra control;
+    ControlNavegacionCompraMembresia control;
     ServicioExtraDTO servicioNuevo;
     /**
      * Creates new form AñadirServicio
      * @param control
      */
     
-    public AgregarServicioExtra(ControlNavegacionServicioExtra control) {
+    public AgregarServicioExtra(ControlNavegacionCompraMembresia control) {
         initComponents();
         this.control = control;
     }
@@ -112,10 +111,11 @@ public class AgregarServicioExtra extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         servicioNuevo = new ServicioExtraDTO(textNombre.getText(), Double.parseDouble(textPrecio.getText()), textDesc.getText());
-        try{
-           control.añadirServicio(servicioNuevo);
-            System.out.println(control.obtenerServiciosExtrasDTO());
-        }catch(NegocioException e){
+        try {
+            if(control.agregarServicio(servicioNuevo)!=null){
+                System.out.println("se logro");
+            }
+        } catch (NegocioException ex) {
         }
         
     }//GEN-LAST:event_btnAceptarActionPerformed
@@ -123,40 +123,7 @@ public class AgregarServicioExtra extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarServicioExtra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarServicioExtra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarServicioExtra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarServicioExtra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                IManejadorServicioExtra manejadorServicio = new ManejadorServicioExtra();
-                ControlNavegacionServicioExtra control = new ControlNavegacionServicioExtra(manejadorServicio);
-                new AgregarServicioExtra(control).setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
