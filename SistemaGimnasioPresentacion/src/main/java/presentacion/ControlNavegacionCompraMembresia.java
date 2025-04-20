@@ -279,5 +279,34 @@ public class ControlNavegacionCompraMembresia {
         }
         return null;
     }
+    public boolean eliminarServicio(Long id){
+        return subsistema2.eliminarServicioExtra(id);
+    }
+    public static void mostrarMensaje(String origen) {
+        String mensaje = "";
+
+        switch (origen.toLowerCase()) {
+            case "agregar":
+                mensaje = "Servicio extra agregado correctamente.";
+                break;
+            case "editar":
+                mensaje = "Servicio extra editado correctamente.";
+                break;
+            case "eliminar":
+                mensaje = "Servicio extra eliminado correctamente.";
+                break;
+        }
+
+        int opcion = JOptionPane.showOptionDialog(
+                null,
+                mensaje,
+                "Información",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                new Object[]{"Aceptar"},
+                "Aceptar"
+        );
+    }
     
 }

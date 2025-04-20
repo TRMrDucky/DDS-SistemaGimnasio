@@ -22,6 +22,7 @@ public class MostrarServiciosExtras extends javax.swing.JFrame {
      */
     public MostrarServiciosExtras(ControlNavegacionCompraMembresia control,String origen,ServicioExtraDTO servicioExtra) {
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(48, 150, 244));
         this.control = control;
         this.servicioExtra = servicioExtra;
         switch(origen){
@@ -168,6 +169,14 @@ public class MostrarServiciosExtras extends javax.swing.JFrame {
             servicio.setDescripcion(textDesc.getText());
             servicio.setPrecio(Double.valueOf(textPrecio.getText()));
             control.editarServicio(servicio);
+            control.mostrarMensaje("editar");
+            control.openFormPantallaPrincipal();
+            dispose();
+        }else{
+            control.eliminarServicio(servicioExtra.getId());
+            control.mostrarMensaje("eliminar");
+            control.openFormPantallaPrincipal();
+            dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

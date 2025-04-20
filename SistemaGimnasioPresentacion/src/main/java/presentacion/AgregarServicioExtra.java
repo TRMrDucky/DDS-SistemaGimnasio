@@ -25,6 +25,7 @@ public class AgregarServicioExtra extends javax.swing.JFrame {
     public AgregarServicioExtra(ControlNavegacionCompraMembresia control) {
         initComponents();
         this.control = control;
+        getContentPane().setBackground(new java.awt.Color(48, 150, 244));
     }
 
     /**
@@ -113,7 +114,9 @@ public class AgregarServicioExtra extends javax.swing.JFrame {
         servicioNuevo = new ServicioExtraDTO(textNombre.getText(), Double.parseDouble(textPrecio.getText()), textDesc.getText());
         try {
             if(control.agregarServicio(servicioNuevo)!=null){
-                System.out.println("se logro");
+                control.mostrarMensaje("agregar");
+                control.openFormPantallaPrincipal();
+                dispose();
             }
         } catch (NegocioException ex) {
         }
