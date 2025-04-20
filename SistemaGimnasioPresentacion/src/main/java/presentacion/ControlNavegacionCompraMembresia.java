@@ -271,6 +271,13 @@ public class ControlNavegacionCompraMembresia {
     public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio) throws NegocioException {
         return subsistema2.agregarServicio(servicio);
     }
-    
+    public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio){
+        try {
+            return subsistema2.editarServicio(servicio);
+        } catch (NegocioException ex) {
+            
+        }
+        return null;
+    }
     
 }

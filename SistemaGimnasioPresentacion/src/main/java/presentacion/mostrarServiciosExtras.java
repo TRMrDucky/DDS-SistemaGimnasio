@@ -13,7 +13,8 @@ import interfaz.IManejadorServicioExtra;
  * @author Ramón Zamudio
  */
 public class MostrarServiciosExtras extends javax.swing.JFrame {
-    ControlNavegacionCompraMembresia control;
+    private ControlNavegacionCompraMembresia control;
+    private ServicioExtraDTO servicioExtra;
     /**
      * Creates new form mostrarServiciosExtras
      * @param control
@@ -22,6 +23,7 @@ public class MostrarServiciosExtras extends javax.swing.JFrame {
     public MostrarServiciosExtras(ControlNavegacionCompraMembresia control,String origen,ServicioExtraDTO servicioExtra) {
         initComponents();
         this.control = control;
+        this.servicioExtra = servicioExtra;
         switch(origen){
             case "editar":
                 labelOrigen.setText("Editar Servicio");
@@ -79,6 +81,12 @@ public class MostrarServiciosExtras extends javax.swing.JFrame {
         jLabel5.setText("Descripcion");
 
         textDesc.setColumns(15);
+
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         labelTextoOrigen.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
@@ -150,6 +158,18 @@ public class MostrarServiciosExtras extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if(labelOrigen.getText().equals("Editar Servicio")){
+            ServicioExtraDTO servicio = new ServicioExtraDTO();
+            servicio.setId(servicioExtra.getId());
+            servicio.setNombreServicio(textNombre.getText());
+            servicio.setDescripcion(textDesc.getText());
+            servicio.setPrecio(Double.valueOf(textPrecio.getText()));
+            control.editarServicio(servicio);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

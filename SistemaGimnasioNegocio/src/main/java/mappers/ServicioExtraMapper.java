@@ -15,10 +15,10 @@ import java.util.List;
  */
 public class ServicioExtraMapper {
     public static ServicioExtra toEntity(ServicioExtraDTO servicioExtra){
-        return new ServicioExtra(servicioExtra.getNombreServicio(), servicioExtra.getPrecio(),servicioExtra.getDescripcion());
+        return new ServicioExtra(servicioExtra.getId(),servicioExtra.getNombreServicio(), servicioExtra.getPrecio(),servicioExtra.getDescripcion());
     }
     public static ServicioExtraDTO toDTO(ServicioExtra se){
-        return new ServicioExtraDTO(se.getNombreServicio(),se.getPrecio(),se.getDescripcion());
+        return new ServicioExtraDTO(se.getId(),se.getNombreServicio(),se.getPrecio(),se.getDescripcion());
     }
     public static List<ServicioExtraDTO> toListDTO(List<ServicioExtra> serviciosExtra){
         List<ServicioExtraDTO>servicios = new LinkedList<>();
