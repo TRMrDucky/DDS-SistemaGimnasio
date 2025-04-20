@@ -12,14 +12,14 @@ import interfaz.IManejadorServicioExtra;
  *
  * @author Ramón Zamudio
  */
-public class mostrarServiciosExtras extends javax.swing.JFrame {
+public class MostrarServiciosExtras extends javax.swing.JFrame {
     ControlNavegacionCompraMembresia control;
     /**
      * Creates new form mostrarServiciosExtras
      * @param control
      * @param origen
      */
-    public mostrarServiciosExtras(ControlNavegacionCompraMembresia control,String origen,ServicioExtraDTO servicioExtra) {
+    public MostrarServiciosExtras(ControlNavegacionCompraMembresia control,String origen,ServicioExtraDTO servicioExtra) {
         initComponents();
         this.control = control;
         switch(origen){
@@ -32,9 +32,12 @@ public class mostrarServiciosExtras extends javax.swing.JFrame {
                 labelOrigen.setText("Eliminar Servicio");
                 labelTextoOrigen.setText("Resumen del servicio");
                 jButton1.setText("Eliminar");
-                textNombre.setEnabled(false);
-                textPrecio.setEnabled(false);
+                textNombre.setEditable(false);
+                textPrecio.setEditable(false);
                 textDesc.setEditable(false);
+                textNombre.setText(servicioExtra.getNombreServicio());
+                textPrecio.setText(Double.toString(servicioExtra.getPrecio()));
+                textDesc.setText(servicioExtra.getDescripcion());
                 break;
         }
     }

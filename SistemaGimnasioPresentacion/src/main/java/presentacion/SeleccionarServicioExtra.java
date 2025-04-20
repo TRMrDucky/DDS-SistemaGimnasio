@@ -43,7 +43,7 @@ public class SeleccionarServicioExtra extends javax.swing.JFrame {
             if("eliminar".equals(origen)){
                 jLabel1.setText("Eliminar Servicio");
             }
-            //abrir siguienteForm
+            btnServicio.addActionListener(e->{control.openFormMostrarServiciosExtras(origen, se);});
             jPanel1.add(btnServicio);
         }
         jPanel1.revalidate();

@@ -264,6 +264,9 @@ public class ControlNavegacionCompraMembresia {
     public void openFormSeleccionarServicioExtra(String origen){
         new SeleccionarServicioExtra(this, origen).setVisible(true);
     }
+    public void openFormMostrarServiciosExtras(String origen, ServicioExtraDTO servicioExtra){
+        new MostrarServiciosExtras(this, origen, servicioExtra).setVisible(true);
+    }
     
     public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio) throws NegocioException {
         return subsistema2.agregarServicio(servicio);
