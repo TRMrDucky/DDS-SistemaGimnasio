@@ -4,6 +4,9 @@
  */
 package clases.mock;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  *
  * @author 52644
@@ -13,6 +16,8 @@ public class Cliente {
     private String apellidos;
     private String email;
     private String numeroTelefono;
+    private List<MembresiaReemplazar> membresias;
+    private List<Date> asistencia;
     private int id;
 
     public Cliente(String nombres, String apellidos, String email, String numeroTelefono, int id) {
@@ -72,5 +77,7 @@ public class Cliente {
 
     public Cliente() {
     }
+    
+    
 
 }

@@ -4,100 +4,88 @@
  */
 package clases.mock;
 
-
+import java.util.Date;
 import java.util.List;
-import java.util.stream.Stream;
+import Enumeradores.EnumEstadoMembresia;
 
 /**
  *
- * @author janethcristinagalvanquinonez
+ * @author 52644
  */
 public class Membresia {
+    private int id;
+    private double precio;
+    private List<ServicioExtra> serviciosExtra;
+    private EnumEstadoMembresia estado;
 
-    private int idMembresia;
-    private String tipo;
-    private String estado;
-    private double costo;
-    private List<ServicioExtra> serviciosExtras;
+    public Membresia(double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
+        this.precio = precio;
+        this.serviciosExtra = serviciosExtra;
+        this.estado = estado;
+    }
 
     public Membresia() {
     }
 
-    public Membresia(int idMembresia, String tipo, String estado, Double costo) {
-        this.idMembresia = idMembresia;
-        this.tipo = tipo;
-        this.estado = estado;
-        this.costo = costo;
-    }
-    
-    public Membresia(String tipo, double costo, List<ServicioExtra> serviciosExtras) {
-        this.tipo= tipo;
-        this.costo= costo;
-        this.serviciosExtras = serviciosExtras;
-        
+    public int getId() {
+        return id;
     }
 
-    public Membresia(int idMembresia, String tipo, String estado, double costo, List<ServicioExtra> serviciosExtras) {
-        this.idMembresia = idMembresia;
-        this.tipo = tipo;
-        this.estado = estado;
-        this.costo = costo;
-        this.serviciosExtras = serviciosExtras;
-    }
-    
-    
-    
-    
-
-    public Membresia(String tipo, double costo) {
-        this.tipo = tipo;
-        this.costo = costo;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Membresia(String tipoMembresia, double precio, Stream<Object> map) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public double getPrecio() {
+        return precio;
     }
 
-    public int getIdMembresia() {
-        return idMembresia;
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
-    public void setIdMembresia(int idMembresia) {
-        this.idMembresia = idMembresia;
+    public List<ServicioExtra> getServiciosExtra() {
+        return serviciosExtra;
     }
 
-    public String getTipo() {
-        return tipo;
+    public void setServiciosExtra(List<ServicioExtra> serviciosExtra) {
+        this.serviciosExtra = serviciosExtra;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getEstado() {
+    public EnumEstadoMembresia getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EnumEstadoMembresia estado) {
         this.estado = estado;
     }
 
-    public Double getCosto() {
-        return costo;
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 17 * hash + this.id;
+        return hash;
     }
 
-    public void setCosto(Double costo) {
-        this.costo = costo;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Membresia other = (Membresia) obj;
+        return this.id == other.id;
     }
 
-    public List<ServicioExtra> getServiciosExtras() {
-        return serviciosExtras;
+    @Override
+    public String toString() {
+        return "Membresia{" + "id=" + id + ", precio=" + precio + ", serviciosExtra=" + serviciosExtra + ", estado=" + estado + '}';
     }
 
-    public void setServiciosExtras(List<ServicioExtra> serviciosExtras) {
-        this.serviciosExtras = serviciosExtras;
-    }
     
     
-
 }

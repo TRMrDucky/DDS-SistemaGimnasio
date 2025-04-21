@@ -4,7 +4,7 @@
  */
 package mappers;
 
-import clases.mock.Membresia;
+import clases.mock.MembresiaReemplazar;
 import clases.mock.ServicioExtra;
 import dtos.ServicioExtraDTO;
 import dtos.TipoMembresiaDTO;
@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
  * @author Ramón Zamudio
  */
 public class MembresiaMapper {
-    public static Membresia toEntity(TipoMembresiaDTO membresia){
-        return new Membresia(membresia.getTipoMembresia(), membresia.getPrecio(),
+    public static MembresiaReemplazar toEntity(TipoMembresiaDTO membresia){
+        return new MembresiaReemplazar(membresia.getTipoMembresia(), membresia.getPrecio(),
                 membresia.getServiciosExtras().stream()
                 .map(servicioDTO -> new ServicioExtra(servicioDTO.getId(), servicioDTO.getNombreServicio(), servicioDTO.getPrecio()))
                  .collect(Collectors.toList())
@@ -28,7 +28,7 @@ public class MembresiaMapper {
 
     
     
-    public static TipoMembresiaDTO toDTO(Membresia membresia){
+    public static TipoMembresiaDTO toDTO(MembresiaReemplazar membresia){
         List<ServicioExtraDTO> servicios = (membresia.getServiciosExtras() != null) ?
                 membresia.getServiciosExtras().stream()
                 .map(servicio -> new ServicioExtraDTO(servicio.getId(), servicio.getNombreServicio(), servicio.getPrecio()))
@@ -38,7 +38,7 @@ public class MembresiaMapper {
     }
     
     
-    public static List<TipoMembresiaDTO> toListDTO(List<Membresia>membresias){
+    public static List<TipoMembresiaDTO> toListDTO(List<MembresiaReemplazar>membresias){
         return membresias.stream()
                 .map(MembresiaMapper:: toDTO)
                 .collect(Collectors.toList());
