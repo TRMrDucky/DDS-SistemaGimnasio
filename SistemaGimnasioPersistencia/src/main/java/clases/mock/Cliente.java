@@ -5,6 +5,7 @@
 package clases.mock;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -26,6 +27,8 @@ public class Cliente {
         this.email = email;
         this.numeroTelefono = numeroTelefono;
         this.id = id;
+        this.membresias = new LinkedList();
+        this.asistencia = new LinkedList();
     }
 
     public Cliente(String nombres, String apellidos, String email, String numeroTelefono) {
@@ -33,6 +36,8 @@ public class Cliente {
         this.apellidos = apellidos;
         this.email = email;
         this.numeroTelefono = numeroTelefono;
+        this.membresias = new LinkedList();
+        this.asistencia = new LinkedList();
     }
 
     public String getNombres() {
@@ -76,6 +81,22 @@ public class Cliente {
     }
 
     public Cliente() {
+    }
+
+    public List<MembresiaReemplazar> getMembresias() {
+        return membresias;
+    }
+
+    public void setMembresias(List<MembresiaReemplazar> membresias) {
+        this.membresias = membresias;
+    }
+
+    public List<Date> getAsistencia() {
+        return asistencia;
+    }
+
+    public void setAsistencia(List<Date> asistencia) {
+        this.asistencia = asistencia;
     }
     
     

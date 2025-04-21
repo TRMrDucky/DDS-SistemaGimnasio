@@ -4,6 +4,8 @@
  */
 package dtos;
 
+import java.util.List;
+
 /**
  *
  * @author Ramón Zamudio
@@ -13,6 +15,7 @@ public class ClienteDTO {
     private String apellido;
     private String correo;
     private String telefono;
+    private List<Membresia>;
 
     public ClienteDTO() {
     }
