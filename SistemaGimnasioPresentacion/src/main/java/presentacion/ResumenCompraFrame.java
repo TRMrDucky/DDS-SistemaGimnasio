@@ -19,15 +19,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import Enums.MetodosPagoEnum;
-import java.awt.GridLayout;
 import javax.swing.JComboBox;
+
 /**
  *
  * @author Ramón Zamudio
  */
 public class ResumenCompraFrame extends JFrame {
- 
+
     private ControlNavegacionCompraMembresia control;
     private JTextField txtTotalPagado;
     private JTextField txtMetodoPagoInfo;
@@ -38,8 +37,8 @@ public class ResumenCompraFrame extends JFrame {
         this.control = control;
 
         cargarFrame();
-        cargarNombreCliente(control.obtenerNombreCliente(cliente.getIdCliente()));
-        cargarTelefonoCliente(control.obtenerNumeroCliente(cliente.getIdCliente()));
+        cargarNombreCliente(cliente.getCliente().getNombre());
+        cargarTelefonoCliente(cliente.getCliente().getNumeroTelefono());
         cargarPanelServicios(cliente);
         cargarLabelTotal(cliente);
 
@@ -76,7 +75,7 @@ public class ResumenCompraFrame extends JFrame {
                 return;
             }
 
-            control.procesarPago(cliente, montoPagado);
+            control.procesarPago(totalPagar(cliente), montoPagado);
             control.openFormBuscarCliente();
             dispose();
         });
@@ -86,10 +85,8 @@ public class ResumenCompraFrame extends JFrame {
         btnVolver.setBounds(10, 10, 100, 30);
         btnVolver.addActionListener(e -> {
             control.openFormServiciosExtra(new ClienteRegConMembDTO(
-                cliente.getTipoMembresia(),
-                cliente.getPrecio(),
-                cliente.getServicios(),
-                cliente.getIdCliente()
+                    cliente.getCliente(),
+                    cliente.getMembresia()
             ));
             dispose();
         });
@@ -135,7 +132,7 @@ public class ResumenCompraFrame extends JFrame {
         JLabel lblTotal = new JLabel("Total");
         lblTotal.setBounds(350, 130, 100, 20);
         add(lblTotal);
-        JTextField txtTotal = new JTextField("$" + cliente.getPrecio());
+        JTextField txtTotal = new JTextField("$" + totalPagar(cliente));
         txtTotal.setBounds(350, 150, 100, 25);
         txtTotal.setEditable(false);
         add(txtTotal);
@@ -169,43 +166,52 @@ public class ResumenCompraFrame extends JFrame {
         add(panelServicios);
     }
 
-  public void cargarMetodoPago() {
-    JLabel lblMetodoPago = new JLabel("Método de Pago:");
-    lblMetodoPago.setBounds(350, 250, 120, 20);
-    add(lblMetodoPago);
+    public void cargarMetodoPago() {
+        JLabel lblMetodoPago = new JLabel("Método de Pago:");
+        lblMetodoPago.setBounds(350, 250, 120, 20);
+        add(lblMetodoPago);
 
-    comboMetodoPago = new JComboBox<>(new String[]{"Efectivo", "Tarjeta de Crédito", "PayPal"});
-    comboMetodoPago.setBounds(350, 270, 140, 25);
-    add(comboMetodoPago);
+        comboMetodoPago = new JComboBox<>(new String[]{"Efectivo", "Tarjeta de Crédito", "PayPal"});
+        comboMetodoPago.setBounds(350, 270, 140, 25);
+        add(comboMetodoPago);
 
+        txtMetodoPagoInfo = new JTextField();
 
-    txtMetodoPagoInfo = new JTextField();
+        panelMetodoPago = new JPanel();
+        panelMetodoPago.setLayout(new BoxLayout(panelMetodoPago, BoxLayout.Y_AXIS));
+        panelMetodoPago.setBounds(50, 270, 250, 90);
+        add(panelMetodoPago);
 
-    panelMetodoPago = new JPanel();
-    panelMetodoPago.setLayout(new BoxLayout(panelMetodoPago, BoxLayout.Y_AXIS));
-    panelMetodoPago.setBounds(50, 270, 250, 90);
-    add(panelMetodoPago);
+        comboMetodoPago.addActionListener(e -> {
+            String metodo = (String) comboMetodoPago.getSelectedItem();
+            panelMetodoPago.removeAll();
 
-    comboMetodoPago.addActionListener(e -> {
-        String metodo = (String) comboMetodoPago.getSelectedItem();
-        panelMetodoPago.removeAll();
+            if (metodo.equals("PayPal")) {
+                panelMetodoPago.add(new JLabel("Correo para PayPal:"));
+                txtMetodoPagoInfo.setText("");
+                panelMetodoPago.add(txtMetodoPagoInfo);
+            } else if (metodo.equals("Tarjeta de Crédito")) {
+                panelMetodoPago.add(new JLabel("Número de tarjeta (mín. 13 dígitos):"));
+                txtMetodoPagoInfo.setText("");
+                panelMetodoPago.add(txtMetodoPagoInfo);
+            } else if (metodo.equals("Efectivo")) {
+                panelMetodoPago.add(new JLabel("Confirmar con palabra 'efectivo':"));
+                txtMetodoPagoInfo.setText("");
+                panelMetodoPago.add(txtMetodoPagoInfo);
+            }
 
-        if (metodo.equals("PayPal")) {
-            panelMetodoPago.add(new JLabel("Correo para PayPal:"));
-            txtMetodoPagoInfo.setText(""); 
-            panelMetodoPago.add(txtMetodoPagoInfo);
-        } else if (metodo.equals("Tarjeta de Crédito")) {
-            panelMetodoPago.add(new JLabel("Número de tarjeta (mín. 13 dígitos):"));
-            txtMetodoPagoInfo.setText(""); 
-            panelMetodoPago.add(txtMetodoPagoInfo); 
-        } else if (metodo.equals("Efectivo")) {
-            panelMetodoPago.add(new JLabel("Confirmar con palabra 'efectivo':"));
-            txtMetodoPagoInfo.setText("");
-            panelMetodoPago.add(txtMetodoPagoInfo);
+            panelMetodoPago.revalidate();
+            panelMetodoPago.repaint();
+        });
+    }
+
+    private double totalPagar(ClienteRegConMemYServDTO cliente) {
+        double total = 0;
+        total = cliente.getMembresia().getPrecio();
+        for (ServicioExtraDTO se : cliente.getServicios()) {
+            total += se.getPrecio();
         }
 
-        panelMetodoPago.revalidate();
-        panelMetodoPago.repaint();
-    });
-}
+        return total;
+    }
 }

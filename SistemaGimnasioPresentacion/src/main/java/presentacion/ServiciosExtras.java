@@ -20,6 +20,7 @@ import java.util.List;
 
 /**
  * clase que representa la pantalla para elegir servicios extra
+ *
  * @author Ramón Zamudio
  */
 public class ServiciosExtras extends JFrame {
@@ -29,8 +30,10 @@ public class ServiciosExtras extends JFrame {
     private List<ServicioExtraDTO> serviciosExtras;
     private double costoTotal;
     private JLabel lblCostoTotal;
+
     /**
      * metodo que crea el frame
+     *
      * @param control controlNavegacion
      * @param cliente DTO del cliente recibido de la pantalla anterior
      */
@@ -40,7 +43,7 @@ public class ServiciosExtras extends JFrame {
         this.costoTotal = 0.0;
         this.checkBoxes = new ArrayList<>();
         cargarFrame();
-        
+
         JPanel panel = new JPanel();
         panel.setBackground(new Color(100, 149, 237));
         panel.setLayout(new BorderLayout());
@@ -55,9 +58,9 @@ public class ServiciosExtras extends JFrame {
         serviciosPanel.setBackground(new Color(100, 149, 237));
 
         LinkedList<Long> idsServiciosCliente = new LinkedList<>();
-        
-        if (cliente.getServicios() != null) {
-            for (ServicioExtraDTO servicio : cliente.getServicios()) {
+
+        if (cliente.getMembresia().getServiciosExtra() != null) {
+            for (ServicioExtraDTO servicio : cliente.getMembresia().getServiciosExtra()) {
                 idsServiciosCliente.add(servicio.getId());
             }
         } else {
@@ -65,7 +68,7 @@ public class ServiciosExtras extends JFrame {
         }
 
         for (ServicioExtraDTO servicio : serviciosExtras) {
-            JCheckBox checkBox = new JCheckBox(servicio.getNombreServicio() + " - Costo $" + servicio.getPrecio()+" "+servicio.getDescripcion());
+            JCheckBox checkBox = new JCheckBox(servicio.getNombreServicio() + " - Costo $" + servicio.getPrecio() + " " + servicio.getDescripcion());
             checkBox.setActionCommand(String.valueOf(servicio.getId()));
 
             Long idServicio = servicio.getId();
@@ -110,20 +113,25 @@ public class ServiciosExtras extends JFrame {
 
         btnContinuar.addActionListener(e -> {
             List<ServicioExtraDTO> seleccionadosList = getServiciosSeleccionados();
-            ClienteRegConMemYServDTO clienteConMembresia = new ClienteRegConMemYServDTO(cliente.getTipoMembresia(), cliente.getPrecio() + costoTotal, seleccionadosList, cliente.getIdCliente());
+            ClienteRegConMemYServDTO clienteConMembresia = new ClienteRegConMemYServDTO(
+                    cliente.getCliente(),
+                    cliente.getMembresia(),
+                    seleccionadosList
+            );
             control.mostrarServiciosSeleccionados(seleccionadosList);
             control.openFormResumenCompra(clienteConMembresia);
             dispose();
         });
-        
+
         btnCancelar.addActionListener(e -> {
-            ClienteRegistradoDTO cliente2 = control.obtenerCliente(cliente.getIdCliente());
-           // control.openFormSeleccionarMembresia(cliente2);
+            ClienteRegistradoDTO cliente2 = control.obtenerCliente(cliente.getCliente().getId());
+            // control.openFormSeleccionarMembresia(cliente2);
             dispose();
         });
-        
+
         btnLimpiar.addActionListener(e -> limpiarSeleccion());
     }
+
     /**
      * metodo que carga el frame
      */
@@ -134,8 +142,10 @@ public class ServiciosExtras extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
     }
+
     /**
      * meotdo que obtiene los servicios seleccionados por el cliente
+     *
      * @return regresa una lista de los servicios seleccionados
      */
     public List<ServicioExtraDTO> getServiciosSeleccionados() {
@@ -151,8 +161,10 @@ public class ServiciosExtras extends JFrame {
         }
         return seleccionados;
     }
+
     /**
      * meotdo que actualiza el costo despues de marcar un checkBox
+     *
      * @param checkBox checkbox marcado
      * @param precio precio a sumar al total
      */
@@ -164,6 +176,7 @@ public class ServiciosExtras extends JFrame {
         }
         lblCostoTotal.setText("Costo Total: $" + costoTotal);
     }
+
     /**
      * metodo que quita la seleccion de todos los checkboxes
      */
@@ -176,6 +189,5 @@ public class ServiciosExtras extends JFrame {
         costoTotal = 0;
         lblCostoTotal.setText("Costo Total: $" + costoTotal);
     }
-    
-}
 
+}

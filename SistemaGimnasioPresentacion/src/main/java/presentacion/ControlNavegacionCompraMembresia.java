@@ -164,9 +164,9 @@ public class ControlNavegacionCompraMembresia {
      * @param cliente 
      * @param montoPagado 
      */
-    public void mostrarPagoEnResumen(ClienteRegConMemYServDTO cliente, double montoPagado) {
+    public void mostrarPagoEnResumen(double totalPagar, double montoPagado) {
         try {
-            double total = cliente.getPrecio();
+            double total = totalPagar;
             if (montoPagado > total) {
                 // Si el cliente pagó más, muestra el cambio a devolver
                 double cambio = montoPagado - total;
@@ -247,8 +247,8 @@ public class ControlNavegacionCompraMembresia {
     }
 
     
-    public void procesarPago(ClienteRegConMemYServDTO cliente, double montoPagado) {
-        mostrarPagoEnResumen(cliente, montoPagado);
+    public void procesarPago(double totalPagar, double montoPagado) {
+        mostrarPagoEnResumen(totalPagar, montoPagado);
     }
     
     public List<MembresiaDTO> obtenerListaMembresiasDTO(){

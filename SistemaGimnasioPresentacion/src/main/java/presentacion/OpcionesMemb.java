@@ -19,60 +19,56 @@ import javax.swing.JButton;
  * @author janethcristinagalvanquinonez
  */
 public class OpcionesMemb extends javax.swing.JFrame {
+
     private ControlNavegacionCompraMembresia control;
     private ClienteRegistradoDTO cliente;
-
 
     /**
      * Creates new form OpcionesMemb
      */
     public OpcionesMemb(ControlNavegacionCompraMembresia control, ClienteRegistradoDTO cliente) {
         initComponents();
-        this.control= control;
-        this.cliente= cliente;
+        this.control = control;
+        this.cliente = cliente;
         cargarMembresias();
-        
+
     }
-    
-    public void cargarMembresias(){
+
+    public void cargarMembresias() {
         System.out.println("cargando");
-       // JPanel panelMembresias = new JPanel();
-       panelMemb.removeAll();
-        panelMemb.setPreferredSize(new Dimension(500,500));
-        panelMemb.setLayout(new GridLayout(0,1));
-        List<MembresiaDTO> listaMembresias= control.obtenerListaMembresiasDTO();
-        if(listaMembresias==null || listaMembresias.isEmpty()){
+        // JPanel panelMembresias = new JPanel();
+        panelMemb.removeAll();
+        panelMemb.setPreferredSize(new Dimension(500, 500));
+        panelMemb.setLayout(new GridLayout(0, 1));
+        List<MembresiaDTO> listaMembresias = control.obtenerListaMembresiasDTO();
+        if (listaMembresias == null || listaMembresias.isEmpty()) {
             System.out.println("error no hay memb");
             return;
-        }else{
+        } else {
             System.out.println(listaMembresias.size());
-    
-            
-        for(MembresiaDTO membresia: listaMembresias){
-            String nombresServicios = membresia.getServiciosExtras().stream()
-                    .map(ServicioExtraDTO::getNombreServicio)
-                    .collect(Collectors.joining(", "));
-            String texto= (membresia.getTipoMembresia()+"\n precio $" +membresia.getPrecio());
-            if(!nombresServicios.isEmpty()){
-                texto+= "\nServicios: " + nombresServicios;
+
+            for (MembresiaDTO membresia : listaMembresias) {
+                String nombresServicios = membresia.getServiciosExtra().stream()
+                        .map(ServicioExtraDTO::getNombreServicio)
+                        .collect(Collectors.joining(", "));
+                String texto = (membresia.getNombre()+ "\n precio $" + membresia.getPrecio());
+                if (!nombresServicios.isEmpty()) {
+                    texto += "\nServicios: " + nombresServicios;
+                }
+                JButton boton = new JButton(texto);
+                boton.setPreferredSize(new Dimension(500, 100));
+
+                boton.addActionListener(e -> seleccionarMembresia(membresia));
+                panelMemb.add(boton);
+
             }
-            JButton boton= new JButton(texto);
-            boton.setPreferredSize(new Dimension(500, 100));
-            
-            boton.addActionListener(e-> seleccionarMembresia(membresia));
-            panelMemb.add(boton);
-            
-            
+
         }
-        
-        
-        }
-       // getContentPane().removeAll();
+        // getContentPane().removeAll();
         //getContentPane().setLayout(new BorderLayout());
-        
+
         //JScrollPane scroll = new JScrollPane(panelMemb);
         //scroll.setPreferredSize(new Dimension(200, 300));
-        
 //        
 //        JScrollPane scrollPane = new JScrollPane(panelMemb);
 //        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -80,23 +76,18 @@ public class OpcionesMemb extends javax.swing.JFrame {
 //        panelMemb.revalidate();
 //        panelMemb.repaint();
     }
-        
-        private void seleccionarMembresia(MembresiaDTO membresia){
-            System.out.println("llega");
-          ClienteRegConMembDTO clienteConMemb= new ClienteRegConMembDTO(
-             membresia.getTipoMembresia(),
-             membresia.getPrecio(),
-             membresia.getServiciosExtras(),
-             cliente.getId()
-          );
-            System.out.println(clienteConMemb);
-          control.openFormServiciosExtra(clienteConMemb);
-          dispose();
-                  
-          
 
-}
-    
+    private void seleccionarMembresia(MembresiaDTO membresia) {
+        System.out.println("llega");
+        ClienteRegConMembDTO clienteConMemb = new ClienteRegConMembDTO(
+                cliente,
+                membresia
+        );
+        System.out.println(clienteConMemb);
+        control.openFormServiciosExtra(clienteConMemb);
+        dispose();
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -189,7 +180,6 @@ public class OpcionesMemb extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

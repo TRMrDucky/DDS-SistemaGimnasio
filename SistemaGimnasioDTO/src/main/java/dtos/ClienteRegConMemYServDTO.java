@@ -7,64 +7,47 @@ package dtos;
 import java.util.List;
 
 /**
- *Clase que representa a un cliente con una membresía y servicios adicionales.
+ * Clase que representa a un cliente con una membresía y servicios adicionales.
+ *
  * @author Ramón Zamudio
  */
 public class ClienteRegConMemYServDTO {
-    private String tipoMembresia;
-    private double precio;
-    private List<ServicioExtraDTO>servicios;
-    private int idCliente;
-    /**
-     * Constructor con parámetros.
-     * @param tipoMembresia tipo de membresia
-     * @param precio precio de la membresia
-     * @param servicios servicios seleccionados
-     * @param idCliente id
-     */
-    public ClienteRegConMemYServDTO(String tipoMembresia, double precio, List<ServicioExtraDTO> servicios, int idCliente) {
-        this.tipoMembresia = tipoMembresia;
-        this.precio = precio;
+
+    private ClienteRegistradoDTO cliente;
+    private MembresiaDTO membresia;
+    private List<ServicioExtraDTO> servicios;
+
+    public ClienteRegConMemYServDTO(ClienteRegistradoDTO cliente, MembresiaDTO membresia, List<ServicioExtraDTO> servicios) {
+        this.cliente = cliente;
+        this.membresia = membresia;
         this.servicios = servicios;
-        this.idCliente = idCliente;
     }
 
-    public String getTipoMembresia() {
-        return tipoMembresia;
+   public ClienteRegConMemYServDTO(){}
+
+    public ClienteRegistradoDTO getCliente() {
+        return cliente;
     }
 
-    public double getPrecio() {
-        return precio;
+    public void setCliente(ClienteRegistradoDTO cliente) {
+        this.cliente = cliente;
+    }
+
+    public MembresiaDTO getMembresia() {
+        return membresia;
+    }
+
+    public void setMembresia(MembresiaDTO membresia) {
+        this.membresia = membresia;
     }
 
     public List<ServicioExtraDTO> getServicios() {
         return servicios;
     }
 
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setTipoMembresia(String tipoMembresia) {
-        this.tipoMembresia = tipoMembresia;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
     public void setServicios(List<ServicioExtraDTO> servicios) {
         this.servicios = servicios;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    @Override
-    public String toString() {
-        return "ClienteRegConMemYServ{" + "tipoMembresia=" + tipoMembresia + ", precio=" + precio + ", servicios=" + servicios + ", idCliente=" + idCliente + '}';
-    }
-    
-    
+   
 }
