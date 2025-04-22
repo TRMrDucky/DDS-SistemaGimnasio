@@ -8,7 +8,7 @@ import dtos.ClienteDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
 import dtos.ServicioExtraDTO;
-import dtos.TipoMembresiaDTO;
+import dtos.MembresiaDTO;
 import excepciones.NegocioException;
 import excepciones.RegistroClienteException;
 import interfaces.IManejadorComprasMembresias;
@@ -36,7 +36,7 @@ import java.util.regex.Pattern;
 public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     
-    private List<TipoMembresiaDTO> listaMembresias;
+    private List<MembresiaDTO> listaMembresias;
     private IServicioExtraBO servicioExtraBO;
     private IRegistrarClienteBO registrarClienteBO;
     private IMembresiaBO membresiaBO;
@@ -76,16 +76,16 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 //        listaMembresias = new LinkedList<>();
 //        servicios.add(new ServicioExtraDTO(1, "Entrenador", 150));
 //
-//        listaMembresias.add(new TipoMembresiaDTO("Day Pass", 15));
-//        listaMembresias.add(new TipoMembresiaDTO("7 dias", 105, servicios));
+//        listaMembresias.add(new MembresiaDTO("Day Pass", 15));
+//        listaMembresias.add(new MembresiaDTO("7 dias", 105, servicios));
 //
-//        listaMembresias.add(new TipoMembresiaDTO("10 dias", 150, servicios));
+//        listaMembresias.add(new MembresiaDTO("10 dias", 150, servicios));
 //
-//        listaMembresias.add(new TipoMembresiaDTO("15 dias", 225, servicios));
+//        listaMembresias.add(new MembresiaDTO("15 dias", 225, servicios));
 //
-//        listaMembresias.add(new TipoMembresiaDTO("Mensual", 300));
+//        listaMembresias.add(new MembresiaDTO("Mensual", 300));
 //
-//        listaMembresias.add(new TipoMembresiaDTO("Por visita", 13));
+//        listaMembresias.add(new MembresiaDTO("Por visita", 13));
     }
 
     private boolean validarFormatoCorreo(String email) {
@@ -118,7 +118,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     }
 
     @Override
-    public List<TipoMembresiaDTO> getTiposMembresia() {
+    public List<MembresiaDTO> getTiposMembresia() {
         return membresiaBO.obtenerMembresiasDTO();
     }
   
@@ -232,7 +232,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     }
 
     @Override
-    public List<TipoMembresiaDTO> obtenerMembresiasDTO() {
+    public List<MembresiaDTO> obtenerMembresiasDTO() {
        return membresiaBO.obtenerMembresiasDTO();
     }
 

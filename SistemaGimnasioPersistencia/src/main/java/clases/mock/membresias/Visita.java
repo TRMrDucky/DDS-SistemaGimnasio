@@ -14,24 +14,24 @@ import java.util.List;
  *
  * @author 52644
  */
-public class Visita extends Membresia{
-    private Date fecha;
+public class Visita extends Membresia {
 
-    public Visita(double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
-        super(precio, serviciosExtra, estado);
+    private Date inicio;
+    private Date fin;
+
+    public Visita(String nombre, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
+        super(nombre, precio, serviciosExtra, estado);
         super.setId(6);
     }
 
-    public Visita(Date fecha, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
-        super(precio, serviciosExtra, estado);
-        this.fecha = fecha;
+    public Visita(String nombre, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado, Date inicio) {
+        super(nombre, precio, serviciosExtra, estado);
         super.setId(6);
+        this.inicio = inicio;
+        this.fin = new Date(inicio.getTime() + 86400000L);
     }
-    
-    
 
     public Visita() {
     }
-    
-    
+
 }

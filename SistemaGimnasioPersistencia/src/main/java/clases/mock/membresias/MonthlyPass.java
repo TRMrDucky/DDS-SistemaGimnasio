@@ -20,13 +20,13 @@ public class MonthlyPass extends Membresia{
     private Date fin;
     private final Long DURACION = 2592000000L;
 
-    public MonthlyPass(double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
-        super(precio, serviciosExtra, estado);
+    public MonthlyPass(String nombre, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
+        super(nombre, precio, serviciosExtra, estado);
         super.setId(5);
     }
 
-    public MonthlyPass(Date inicio, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
-        super(precio, serviciosExtra, estado);
+    public MonthlyPass(String nombre, Date inicio, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
+        super(nombre, precio, serviciosExtra, estado);
         this.inicio = inicio;
         super.setId(5);
         this.fin = new Date(inicio.getTime()+DURACION);

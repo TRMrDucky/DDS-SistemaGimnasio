@@ -11,7 +11,7 @@ import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
 import dtos.ServicioExtraDTO;
-import dtos.TipoMembresiaDTO;
+import dtos.MembresiaDTO;
 import excepciones.NegocioException;
 import excepciones.RegistroClienteException;
 import interfaces.IManejadorComprasMembresias;
@@ -251,7 +251,7 @@ public class ControlNavegacionCompraMembresia {
         mostrarPagoEnResumen(cliente, montoPagado);
     }
     
-    public List<TipoMembresiaDTO> obtenerListaMembresiasDTO(){
+    public List<MembresiaDTO> obtenerListaMembresiasDTO(){
         return subsistema.obtenerMembresiasDTO();
     }
 

@@ -54,9 +54,6 @@ public class MembresiaReemplazar {
         this.costo = costo;
     }
 
-    public MembresiaReemplazar(String tipoMembresia, double precio, Stream<Object> map) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     public int getIdMembresia() {
         return idMembresia;

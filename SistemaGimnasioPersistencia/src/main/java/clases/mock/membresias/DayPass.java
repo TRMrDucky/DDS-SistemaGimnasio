@@ -20,13 +20,13 @@ public class DayPass extends Membresia{
     private Date fin;
     private final Long DURACION = 86400000L;
     
-    public DayPass(double precio, List<ServicioExtra> serviciosExtra,EnumEstadoMembresia estado) {
-        super(precio, serviciosExtra, estado);
+    public DayPass(String nombre, double precio, List<ServicioExtra> serviciosExtra,EnumEstadoMembresia estado) {
+        super(nombre, precio, serviciosExtra, estado);
         super.setId(1);
     }
 
-    public DayPass(Date inicio, double precio, List<ServicioExtra> serviciosExtra,EnumEstadoMembresia estado) {
-        super(precio, serviciosExtra, estado);
+    public DayPass(String nombre, Date inicio, double precio, List<ServicioExtra> serviciosExtra,EnumEstadoMembresia estado) {
+        super(nombre, precio, serviciosExtra, estado);
         super.setId(1);
         this.inicio = inicio;
         this.fin = new Date((inicio.getTime()+DURACION));

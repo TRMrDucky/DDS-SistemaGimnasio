@@ -7,7 +7,7 @@ package presentacion;
 import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.ServicioExtraDTO;
-import dtos.TipoMembresiaDTO;
+import dtos.MembresiaDTO;
 import implementaciones.ManejadorComprasMembresias;
 import implementaciones.ManejadorServicioExtra;
 import interfaces.IManejadorComprasMembresias;
@@ -48,7 +48,7 @@ public class OpcionesMemb extends javax.swing.JFrame {
        panelMemb.removeAll();
         panelMemb.setPreferredSize(new Dimension(500,500));
         panelMemb.setLayout(new GridLayout(0,1));
-        List<TipoMembresiaDTO> listaMembresias= control.obtenerListaMembresiasDTO();
+        List<MembresiaDTO> listaMembresias= control.obtenerListaMembresiasDTO();
         if(listaMembresias==null || listaMembresias.isEmpty()){
             System.out.println("error no hay memb");
             return;
@@ -56,7 +56,7 @@ public class OpcionesMemb extends javax.swing.JFrame {
             System.out.println(listaMembresias.size());
     
             
-        for(TipoMembresiaDTO membresia: listaMembresias){
+        for(MembresiaDTO membresia: listaMembresias){
             String nombresServicios = membresia.getServiciosExtras().stream()
                     .map(ServicioExtraDTO::getNombreServicio)
                     .collect(Collectors.joining(", "));
@@ -89,7 +89,7 @@ public class OpcionesMemb extends javax.swing.JFrame {
 //        panelMemb.repaint();
     }
         
-        private void seleccionarMembresia(TipoMembresiaDTO membresia){
+        private void seleccionarMembresia(MembresiaDTO membresia){
             System.out.println("llega");
           ClienteRegConMembDTO clienteConMemb= new ClienteRegConMembDTO(
              membresia.getTipoMembresia(),

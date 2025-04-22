@@ -1,5 +1,5 @@
 package interfaces.bo;
-import dtos.TipoMembresiaDTO;
+import dtos.MembresiaDTO;
 import java.util.List;
 
 /**
@@ -7,6 +7,6 @@ import java.util.List;
  * @author janethcristinagalvanquinonez
  */
 public interface IMembresiaBO {
-    public List<TipoMembresiaDTO> obtenerMembresiasDTO();
+    public List<MembresiaDTO> obtenerMembresiasDTO();
     
 }

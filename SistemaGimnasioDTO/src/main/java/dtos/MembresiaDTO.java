@@ -2,30 +2,44 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package clases.mock;
+package dtos;
 
-import java.util.List;
 import Enumeradores.EnumEstadoMembresia;
+import clases.mock.ServicioExtra;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
- * @author 52644
+ * @author Ramón Zamudio
  */
-public class Membresia {
+public class MembresiaDTO {
+    
     private String nombre;
     private int id;
     private double precio;
     private List<ServicioExtra> serviciosExtra;
     private EnumEstadoMembresia estado;
+    private Date inicio;
+    private Date fin;
+    private Date
 
-    public Membresia(String nombre, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
+    public MembresiaDTO(String nombre, int id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
         this.nombre = nombre;
+        this.id = id;
         this.precio = precio;
         this.serviciosExtra = serviciosExtra;
         this.estado = estado;
     }
 
-    public Membresia() {
+    public MembresiaDTO(){}
+    
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getId() {
@@ -59,44 +73,7 @@ public class Membresia {
     public void setEstado(EnumEstadoMembresia estado) {
         this.estado = estado;
     }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     
-    
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + this.id;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Membresia other = (Membresia) obj;
-        return this.id == other.id;
-    }
-
-    @Override
-    public String toString() {
-        return "Membresia{" + "id=" + id + ", precio=" + precio + ", serviciosExtra=" + serviciosExtra + ", estado=" + estado + '}';
-    }
-
     
     
 }

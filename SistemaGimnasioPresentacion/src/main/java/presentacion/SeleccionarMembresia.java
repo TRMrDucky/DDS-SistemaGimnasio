@@ -6,7 +6,7 @@ package presentacion;
 
 import dtos.ClienteRegistradoDTO;
 import dtos.ServicioExtraDTO;
-import dtos.TipoMembresiaDTO;
+import dtos.MembresiaDTO;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.List;
@@ -55,13 +55,13 @@ public class SeleccionarMembresia extends JFrame {
     }
 
     private void cargarMembresias() {
-    List<TipoMembresiaDTO> listaMembresias = control.obtenerListaMembresiasDTO();
+    List<MembresiaDTO> listaMembresias = control.obtenerListaMembresiasDTO();
     if(listaMembresias==null || listaMembresias.isEmpty()){
         System.out.println("Membresias no disponibles");
         return;
     }
 
-    for (TipoMembresiaDTO membresia : listaMembresias) {
+    for (MembresiaDTO membresia : listaMembresias) {
         String servicios = "";
 
 //        List<ServicioExtraDTO> extras = membresia.getServiciosExtras();

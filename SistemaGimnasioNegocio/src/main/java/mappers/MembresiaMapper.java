@@ -4,12 +4,12 @@
  */
 package mappers;
 
+import clases.mock.Membresia;
 import clases.mock.MembresiaReemplazar;
 import clases.mock.ServicioExtra;
 import dtos.ServicioExtraDTO;
-import dtos.TipoMembresiaDTO;
+import dtos.MembresiaDTO;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
  * @author Ramón Zamudio
  */
 public class MembresiaMapper {
-    public static MembresiaReemplazar toEntity(TipoMembresiaDTO membresia){
-        return new MembresiaReemplazar(membresia.getTipoMembresia(), membresia.getPrecio(),
+    public static Membresia toEntity(MembresiaDTO membresia){
+        return new Membresia(membresia.getTipoMembresia(), membresia.getPrecio(),
                 membresia.getServiciosExtras().stream()
                 .map(servicioDTO -> new ServicioExtra(servicioDTO.getId(), servicioDTO.getNombreServicio(), servicioDTO.getPrecio()))
                  .collect(Collectors.toList())
@@ -28,17 +28,17 @@ public class MembresiaMapper {
 
     
     
-    public static TipoMembresiaDTO toDTO(MembresiaReemplazar membresia){
+    public static MembresiaDTO toDTO(MembresiaReemplazar membresia){
         List<ServicioExtraDTO> servicios = (membresia.getServiciosExtras() != null) ?
                 membresia.getServiciosExtras().stream()
                 .map(servicio -> new ServicioExtraDTO(servicio.getId(), servicio.getNombreServicio(), servicio.getPrecio()))
                 .collect(Collectors.toList()) :
                 Collections.emptyList();
-        return new TipoMembresiaDTO(membresia.getTipo(), membresia.getCosto(), servicios);
+        return new MembresiaDTO(membresia.getTipo(), membresia.getCosto(), servicios);
     }
     
     
-    public static List<TipoMembresiaDTO> toListDTO(List<MembresiaReemplazar>membresias){
+    public static List<MembresiaDTO> toListDTO(List<MembresiaReemplazar>membresias){
         return membresias.stream()
                 .map(MembresiaMapper:: toDTO)
                 .collect(Collectors.toList());

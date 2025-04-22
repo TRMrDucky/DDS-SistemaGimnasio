@@ -4,12 +4,11 @@
  */
 package bos;
 
-import clases.mock.MembresiaReemplazar;
-import dtos.TipoMembresiaDTO;
+import clases.mock.Membresia;
+import dtos.MembresiaDTO;
 import interfaces.bo.IMembresiaBO;
 import interfaces.dao.IMembresiaDAO;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import mappers.MembresiaMapper;
@@ -27,8 +26,8 @@ public class MembresiaBO implements IMembresiaBO {
     }
     
     @Override
-    public List<TipoMembresiaDTO> obtenerMembresiasDTO(){
-        List<MembresiaReemplazar> listaMembresias= membresiaDAO.obtenerMembresias();
+    public List<MembresiaDTO> obtenerMembresiasDTO(){
+        List<Membresia> listaMembresias= membresiaDAO.obtenerMembresias();
         
         if(listaMembresias== null || listaMembresias.isEmpty()){
            return Collections.emptyList();

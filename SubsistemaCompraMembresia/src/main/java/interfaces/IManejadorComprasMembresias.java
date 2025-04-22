@@ -10,7 +10,7 @@ import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
 import dtos.ClienteDTO;
 import dtos.ServicioExtraDTO;
-import dtos.TipoMembresiaDTO;
+import dtos.MembresiaDTO;
 import excepciones.ConsultaDatosClienteException;
 import excepciones.NegocioException;
 import excepciones.RegistroClienteException;
@@ -30,7 +30,7 @@ public interface IManejadorComprasMembresias {
 
    public abstract List<ServicioExtraDTO> obtenerServiciosExtrasDTO();
 
-    public abstract List<TipoMembresiaDTO> getTiposMembresia();
+    public abstract List<MembresiaDTO> getTiposMembresia();
     
     public abstract List<ClienteRegistradoDTO> obtenerListaClientes();
     
@@ -42,7 +42,7 @@ public interface IManejadorComprasMembresias {
     
    // public abstract PagoDTO procesarPago (int idCliente, double monto);
    
-    public abstract List<TipoMembresiaDTO> obtenerMembresiasDTO();
+    public abstract List<MembresiaDTO> obtenerMembresiasDTO();
     
     public PagoDTO procesarPago(int idCliente, double monto, MetodosPagoEnum metodo, Object datosPago);
     
