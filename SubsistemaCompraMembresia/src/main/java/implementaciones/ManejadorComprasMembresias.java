@@ -15,13 +15,11 @@ import interfaces.IManejadorComprasMembresias;
 import interfaces.bo.IMembresiaBO;
 import interfaces.bo.IRegistrarClienteBO;
 import interfaces.bo.IServicioExtraBO;
-import interfaces.infraestructura.IMetodosPago;
 
 
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;

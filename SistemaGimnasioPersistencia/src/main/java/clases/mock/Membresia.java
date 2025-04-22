@@ -12,14 +12,16 @@ import Enumeradores.EnumEstadoMembresia;
  * @author 52644
  */
 public class Membresia {
+
     private String nombre;
     private int id;
     private double precio;
     private List<ServicioExtra> serviciosExtra;
     private EnumEstadoMembresia estado;
 
-    public Membresia(String nombre, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
+    public Membresia(String nombre, int id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
         this.nombre = nombre;
+        this.id = id;
         this.precio = precio;
         this.serviciosExtra = serviciosExtra;
         this.estado = estado;
@@ -68,8 +70,6 @@ public class Membresia {
         this.nombre = nombre;
     }
 
-    
-    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -97,6 +97,4 @@ public class Membresia {
         return "Membresia{" + "id=" + id + ", precio=" + precio + ", serviciosExtra=" + serviciosExtra + ", estado=" + estado + '}';
     }
 
-    
-    
 }

@@ -16,37 +16,34 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import dtos.ClienteRegConMembDTO;
+import mappers.ServicioExtraMapper;
 
 /**
  *
  * @author janethcristinagalvanquinonez
  */
 public class SeleccionarMembresia extends JFrame {
-    
-    
+
     private JPanel panelMembresias;
     private ClienteRegistradoDTO cliente;
-     private ControlNavegacionCompraMembresia control;
-     private ClienteRegConMembDTO clienteMemb;
-    
-    
+    private ControlNavegacionCompraMembresia control;
+    private ClienteRegConMembDTO clienteMemb;
+
     public SeleccionarMembresia(ControlNavegacionCompraMembresia control, ClienteRegistradoDTO cliente) {
         this.control = control;
-        this.cliente = cliente;     
+        this.cliente = cliente;
         inicializarComponentes();
     }
-    
-    
-    
-     private void inicializarComponentes() {
+
+    private void inicializarComponentes() {
         setTitle("Seleccionar Membresía");
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-         setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
 
         panelMembresias = new JPanel();
-        panelMembresias.setLayout(new GridLayout(0, 1)); 
+        panelMembresias.setLayout(new GridLayout(0, 1));
 
         cargarMembresias();
 
@@ -55,14 +52,14 @@ public class SeleccionarMembresia extends JFrame {
     }
 
     private void cargarMembresias() {
-    List<MembresiaDTO> listaMembresias = control.obtenerListaMembresiasDTO();
-    if(listaMembresias==null || listaMembresias.isEmpty()){
-        System.out.println("Membresias no disponibles");
-        return;
-    }
+        List<MembresiaDTO> listaMembresias = control.obtenerListaMembresiasDTO();
+        if (listaMembresias == null || listaMembresias.isEmpty()) {
+            System.out.println("Membresias no disponibles");
+            return;
+        }
 
-    for (MembresiaDTO membresia : listaMembresias) {
-        String servicios = "";
+        for (MembresiaDTO membresia : listaMembresias) {
+            String servicios = "";
 
 //        List<ServicioExtraDTO> extras = membresia.getServiciosExtras();
 //        if (extras != null && !extras.isEmpty()) {
@@ -77,41 +74,33 @@ public class SeleccionarMembresia extends JFrame {
 //            }
 //            servicios = sb.toString();
 //        }
+            String textoBoton = membresia.getNombre() + " - $" + membresia.getPrecio();
+            if (!servicios.isEmpty()) {
+                textoBoton += " (" + servicios + ")";
+            }
 
-        String textoBoton = membresia.getTipoMembresia() + " - $" + membresia.getPrecio();
-        if (!servicios.isEmpty()) {
-            textoBoton += " (" + servicios + ")";
+            JButton btnMembresia = new JButton(textoBoton);
+
+            btnMembresia.addActionListener(e -> {
+                List<ServicioExtraDTO> serviciosExtras = membresia.getServiciosExtra();
+                clienteMemb = new ClienteRegConMembDTO(
+                        cliente,
+                        membresia
+                );
+
+                String mensaje = "Seleccionaste la membresía: " + membresia.getNombre();
+
+                JOptionPane.showMessageDialog(null, mensaje);
+
+                control.openFormServiciosExtra(clienteMemb);
+                dispose();
+            });
+
+            panelMembresias.add(btnMembresia);
         }
 
-        JButton btnMembresia = new JButton(textoBoton);
-
-        btnMembresia.addActionListener(e -> {
-             List<ServicioExtraDTO> serviciosExtras = membresia.getServiciosExtras();
-         clienteMemb = new ClienteRegConMembDTO(
-        membresia.getTipoMembresia(), 
-        membresia.getPrecio(),
-        serviciosExtras,  
-        cliente.getId()
-           
-    );
-          
-          String mensaje = "Seleccionaste la membresía: " + membresia.getTipoMembresia();
-      
-                   
-          JOptionPane.showMessageDialog(null, mensaje);
-
-         control.openFormServiciosExtra(clienteMemb);
-         dispose();
-});
-     
-
-        panelMembresias.add(btnMembresia);
+        panelMembresias.revalidate();
+        panelMembresias.repaint();
     }
 
-    panelMembresias.revalidate();
-    panelMembresias.repaint();
-}
-
-
-    
 }

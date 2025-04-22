@@ -18,25 +18,24 @@ import mappers.MembresiaMapper;
  * @author janethcristinagalvanquinonez
  */
 public class MembresiaBO implements IMembresiaBO {
-    
+
     private final IMembresiaDAO membresiaDAO;
 
     public MembresiaBO(IMembresiaDAO membresiaDAO) {
         this.membresiaDAO = membresiaDAO;
     }
-    
+
     @Override
-    public List<MembresiaDTO> obtenerMembresiasDTO(){
-        List<Membresia> listaMembresias= membresiaDAO.obtenerMembresias();
-        
-        if(listaMembresias== null || listaMembresias.isEmpty()){
-           return Collections.emptyList();
+    public List<MembresiaDTO> obtenerMembresiasDTO() {
+        List<Membresia> listaMembresias = membresiaDAO.obtenerMembresias();
+
+        if (listaMembresias == null || listaMembresias.isEmpty()) {
+            return Collections.emptyList();
         }
-        
+
         return listaMembresias.stream()
                 .map(MembresiaMapper::toDTO)
                 .collect(Collectors.toList());
-        
-        
+
     }
 }

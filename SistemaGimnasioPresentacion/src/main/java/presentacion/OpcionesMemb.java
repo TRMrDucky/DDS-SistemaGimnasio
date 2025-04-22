@@ -8,19 +8,11 @@ import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.ServicioExtraDTO;
 import dtos.MembresiaDTO;
-import implementaciones.ManejadorComprasMembresias;
-import implementaciones.ManejadorServicioExtra;
-import interfaces.IManejadorComprasMembresias;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import interfaz.IManejadorServicioExtra;
 
 /**
  *

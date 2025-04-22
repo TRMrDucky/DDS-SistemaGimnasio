@@ -20,14 +20,12 @@ public class SevenDaysPass extends Membresia {
     private Date fin;
     private final Long DURACION = 604800000L;
 
-    public SevenDaysPass(String nombre, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
-        super(nombre, precio, serviciosExtra,estado);
-        super.setId(2);
+    public SevenDaysPass(String nombre, int id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
+        super(nombre,id, precio, serviciosExtra,estado);
     }
 
-    public SevenDaysPass(String nombre, Date inicio, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
-        super(nombre, precio, serviciosExtra, estado);
-        super.setId(2);
+    public SevenDaysPass(String nombre,int id, Date inicio, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
+        super(nombre,id,  precio, serviciosExtra, estado);
         this.inicio = inicio;
         this.fin = new Date((inicio.getTime()+DURACION));
     }

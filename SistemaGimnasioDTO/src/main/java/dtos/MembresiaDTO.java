@@ -6,7 +6,6 @@ package dtos;
 
 import Enumeradores.EnumEstadoMembresia;
 import clases.mock.ServicioExtra;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,26 +13,25 @@ import java.util.List;
  * @author Ramón Zamudio
  */
 public class MembresiaDTO {
-    
+
     private String nombre;
     private int id;
     private double precio;
-    private List<ServicioExtra> serviciosExtra;
+    private List<ServicioExtraDTO> serviciosExtra;
     private EnumEstadoMembresia estado;
-    private Date inicio;
-    private Date fin;
-    private Date
 
-    public MembresiaDTO(String nombre, int id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
+    public MembresiaDTO(String nombre, int id, double precio, List<ServicioExtraDTO> serviciosExtra, EnumEstadoMembresia estado) {
         this.nombre = nombre;
         this.id = id;
         this.precio = precio;
         this.serviciosExtra = serviciosExtra;
         this.estado = estado;
+
     }
 
-    public MembresiaDTO(){}
-    
+    public MembresiaDTO() {
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -58,11 +56,11 @@ public class MembresiaDTO {
         this.precio = precio;
     }
 
-    public List<ServicioExtra> getServiciosExtra() {
+    public List<ServicioExtraDTO> getServiciosExtra() {
         return serviciosExtra;
     }
 
-    public void setServiciosExtra(List<ServicioExtra> serviciosExtra) {
+    public void setServiciosExtra(List<ServicioExtraDTO> serviciosExtra) {
         this.serviciosExtra = serviciosExtra;
     }
 
@@ -73,7 +71,5 @@ public class MembresiaDTO {
     public void setEstado(EnumEstadoMembresia estado) {
         this.estado = estado;
     }
-    
-    
-    
+
 }

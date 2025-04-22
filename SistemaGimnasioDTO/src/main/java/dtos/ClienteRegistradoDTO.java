@@ -4,33 +4,26 @@
  */
 package dtos;
 
+import clases.mock.Membresia;
+import java.util.List;
+
 /**
  *
  * @author 52644
  */
 public class ClienteRegistradoDTO {
 
-    String nombre;
-    String apellidos;
-    String email;
-    String numeroTelefono;
-    boolean activo;
-    int id;
+    private int id;
+    private String nombre;
+    private String apellidos;
+    private String email;
+    private String numeroTelefono;
 
     public ClienteRegistradoDTO(String nombre, String apellidos, String email, String numeroTelefono, int id) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.email = email;
         this.numeroTelefono = numeroTelefono;
-        this.id = id;
-    }
-
-    public ClienteRegistradoDTO(String nombre, String apellidos, String email, String numeroTelefono, boolean activo, int id) {
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.email = email;
-        this.numeroTelefono = numeroTelefono;
-        this.activo = activo;
         this.id = id;
     }
 
@@ -59,14 +52,6 @@ public class ClienteRegistradoDTO {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public boolean isActivo() {
-        return activo;
-    }
-
-    public void setActivo(boolean activo) {
-        this.activo = activo;
     }
 
     @Override

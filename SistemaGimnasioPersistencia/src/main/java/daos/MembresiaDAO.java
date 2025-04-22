@@ -6,14 +6,12 @@ package daos;
 
 import static Enumeradores.EnumEstadoMembresia.ACTIVA;
 import clases.mock.Membresia;
-import clases.mock.MembresiaReemplazar;
 import clases.mock.ServicioExtra;
 import clases.mock.membresias.DayPass;
 import clases.mock.membresias.FifteenDaysPass;
 import clases.mock.membresias.MonthlyPass;
 import clases.mock.membresias.SevenDaysPass;
 import clases.mock.membresias.TenDaysPass;
-import clases.mock.membresias.Visita;
 
 import interfaces.dao.IMembresiaDAO;
 import java.util.LinkedList;
@@ -33,13 +31,11 @@ public class MembresiaDAO implements IMembresiaDAO {
         listaMembresias = new LinkedList<>();
         List<ServicioExtra> servicios = new LinkedList<>();
 
-        listaMembresias.add(new DayPass("Day Pass",15, new LinkedList<>(), ACTIVA));
-        listaMembresias.add(new SevenDaysPass("Seven Days Pass", 105, obtenerServicio(), ACTIVA));
-        listaMembresias.add(new TenDaysPass("Ten Days Pass",150, obtenerServicio(), ACTIVA));
-        listaMembresias.add(new FifteenDaysPass("Fiteen Days Pass",225, obtenerServicio(), ACTIVA));
-        listaMembresias.add(new MonthlyPass("Monthly Pass",300, new LinkedList<>(), ACTIVA));
-        listaMembresias.add(new Visita("Pase de visita",13, new LinkedList<>(), ACTIVA));
-
+        listaMembresias.add(new DayPass("Day Pass",1,15, new LinkedList<>(), ACTIVA));
+        listaMembresias.add(new SevenDaysPass("Seven Days Pass",2, 105, obtenerServicio(), ACTIVA));
+        listaMembresias.add(new TenDaysPass("Ten Days Pass",3,150, obtenerServicio(), ACTIVA));
+        listaMembresias.add(new FifteenDaysPass("Fiteen Days Pass",4,225, obtenerServicio(), ACTIVA));
+        listaMembresias.add(new MonthlyPass("Monthly Pass",5,300, new LinkedList<>(), ACTIVA));
     }
 
     public List<ServicioExtra> obtenerServicio() {

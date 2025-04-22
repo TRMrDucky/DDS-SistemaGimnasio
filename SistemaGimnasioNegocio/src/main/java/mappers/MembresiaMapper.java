@@ -18,31 +18,31 @@ import java.util.stream.Collectors;
  * @author Ramón Zamudio
  */
 public class MembresiaMapper {
-    public static Membresia toEntity(MembresiaDTO membresia){
-        return new Membresia(membresia.getTipoMembresia(), membresia.getPrecio(),
-                membresia.getServiciosExtras().stream()
-                .map(servicioDTO -> new ServicioExtra(servicioDTO.getId(), servicioDTO.getNombreServicio(), servicioDTO.getPrecio()))
-                 .collect(Collectors.toList())
+
+    public static Membresia toEntity(MembresiaDTO membresia) {
+        return new Membresia(
+                membresia.getNombre(),
+                membresia.getId(),
+                membresia.getPrecio(),
+                ServicioExtraMapper.toListEntity(membresia.getServiciosExtra()),
+                membresia.getEstado()
         );
     }
 
-    
-    
-    public static MembresiaDTO toDTO(MembresiaReemplazar membresia){
-        List<ServicioExtraDTO> servicios = (membresia.getServiciosExtras() != null) ?
-                membresia.getServiciosExtras().stream()
-                .map(servicio -> new ServicioExtraDTO(servicio.getId(), servicio.getNombreServicio(), servicio.getPrecio()))
-                .collect(Collectors.toList()) :
-                Collections.emptyList();
-        return new MembresiaDTO(membresia.getTipo(), membresia.getCosto(), servicios);
+    public static MembresiaDTO toDTO(Membresia membresia) {
+        return new MembresiaDTO(
+                membresia.getNombre(),
+                membresia.getId(),
+                membresia.getPrecio(),
+                ServicioExtraMapper.toListDTO(membresia.getServiciosExtra()),
+                membresia.getEstado()
+        );
     }
-    
-    
-    public static List<MembresiaDTO> toListDTO(List<MembresiaReemplazar>membresias){
+
+    public static List<MembresiaDTO> toListDTO(List<Membresia> membresias) {
         return membresias.stream()
-                .map(MembresiaMapper:: toDTO)
+                .map(MembresiaMapper::toDTO)
                 .collect(Collectors.toList());
     }
-    
-  
+
 }

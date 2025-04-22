@@ -11,56 +11,33 @@ import java.util.List;
  * @author janethcristinagalvanquinonez
  */
 public class ClienteRegConMembDTO {
-    private String tipoMembresia;
-    private double precio;
-    private List<ServicioExtraDTO> servicios;
-    private int idCliente;
+    private ClienteRegistradoDTO cliente;
+    private MembresiaDTO membresia;
     
     //todo
-    public ClienteRegConMembDTO(String tipoMembresia, double precio, List<ServicioExtraDTO> servicios, int idCliente) {
-        this.tipoMembresia = tipoMembresia;
-        this.precio = precio;
-        this.servicios = servicios;
-        this.idCliente = idCliente;
+    public ClienteRegConMembDTO(ClienteRegistradoDTO cliente, MembresiaDTO membresia){
+        this.cliente = cliente;
+        this.membresia = membresia;
     }
 
     public ClienteRegConMembDTO(){}
-    
-    public String getTipoMembresia() {
-        return tipoMembresia;
+
+    public ClienteRegistradoDTO getCliente() {
+        return cliente;
     }
 
-    public void setTipoMembresia(String tipoMembresia) {
-        this.tipoMembresia = tipoMembresia;
+    public void setCliente(ClienteRegistradoDTO cliente) {
+        this.cliente = cliente;
     }
 
-    public double getPrecio() {
-        return precio;
+    public MembresiaDTO getMembresia() {
+        return membresia;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public List<ServicioExtraDTO> getServicios() {
-        return servicios;
-    }
-
-    public void setServicios(List<ServicioExtraDTO> servicios) {
-        this.servicios = servicios;
-    }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    @Override
-    public String toString() {
-        return "SeleccionarMembresiaDTO{" + "tipoMembresia=" + tipoMembresia + ", precio=" + precio + ", servicios=" + servicios + '}';
+    public void setMembresia(MembresiaDTO membresia) {
+        this.membresia = membresia;
     }
     
-    
-
 }
 
 

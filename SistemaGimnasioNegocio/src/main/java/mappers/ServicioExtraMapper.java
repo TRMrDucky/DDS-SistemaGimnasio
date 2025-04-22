@@ -14,16 +14,27 @@ import java.util.List;
  * @author Ramón Zamudio
  */
 public class ServicioExtraMapper {
-    public static ServicioExtra toEntity(ServicioExtraDTO servicioExtra){
-        return new ServicioExtra(servicioExtra.getId(),servicioExtra.getNombreServicio(), servicioExtra.getPrecio(),servicioExtra.getDescripcion());
+
+    public static ServicioExtra toEntity(ServicioExtraDTO servicioExtra) {
+        return new ServicioExtra(servicioExtra.getId(), servicioExtra.getNombreServicio(), servicioExtra.getPrecio(), servicioExtra.getDescripcion());
     }
-    public static ServicioExtraDTO toDTO(ServicioExtra se){
-        return new ServicioExtraDTO(se.getId(),se.getNombreServicio(),se.getPrecio(),se.getDescripcion());
+
+    public static ServicioExtraDTO toDTO(ServicioExtra se) {
+        return new ServicioExtraDTO(se.getId(), se.getNombreServicio(), se.getPrecio(), se.getDescripcion());
     }
-    public static List<ServicioExtraDTO> toListDTO(List<ServicioExtra> serviciosExtra){
-        List<ServicioExtraDTO>servicios = new LinkedList<>();
-        for(ServicioExtra se : serviciosExtra){
-            servicios.add(new ServicioExtraDTO(se.getId(),se.getNombreServicio(),se.getPrecio(),se.getDescripcion()));
+
+    public static List<ServicioExtraDTO> toListDTO(List<ServicioExtra> serviciosExtra) {
+        List<ServicioExtraDTO> servicios = new LinkedList<>();
+        for (ServicioExtra se : serviciosExtra) {
+            servicios.add(new ServicioExtraDTO(se.getId(), se.getNombreServicio(), se.getPrecio(), se.getDescripcion()));
+        }
+        return servicios;
+    }
+
+    public static List<ServicioExtra> toListEntity(List<ServicioExtraDTO> serviciosExtra) {
+        List<ServicioExtra> servicios = new LinkedList<>();
+        for (ServicioExtraDTO se : serviciosExtra) {
+            servicios.add(ServicioExtraMapper.toEntity(se));
         }
         return servicios;
     }
