@@ -5,6 +5,7 @@
 package daos;
 
 import clases.mock.Cliente;
+import clases.mock.Membresia;
 import excepciones.ConsultaDatosClienteException;
 import interfaces.dao.IClienteDAO;
 import java.util.LinkedList;
@@ -84,6 +85,46 @@ public class ClienteDAO implements IClienteDAO {
         throw new ConsultaDatosClienteException(
             "No se pudo cargar los datos del cliente porque el ID no fue encontrado: " + id
         );
+    }
+    
+
+    public Membresia agregarSiNoTiene(Membresia membresia, int id){
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getId() == id) {
+                cliente.getMembresias().add(membresia);
+                return membresia;
+            }
+        }
+        return null;
+    }
+
+    public Membresia actualizarSiTiene(Membresia membresia, int id){
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getId() == id) {
+                List<Membresia> membresias = cliente.getMembresias();
+                for (int i = 0; i < membresias.size(); i++) {
+                    if (membresias.get(i).getId() == membresia.getId()) {
+                        membresias.set(i, membresia); 
+                        return membresia;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean validarSiTieneMem(Membresia membresia, int id){
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getId() == id) {
+                for (Membresia mem : cliente.getMembresias()) {
+                    if (mem.getId() == membresia.getId()) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     

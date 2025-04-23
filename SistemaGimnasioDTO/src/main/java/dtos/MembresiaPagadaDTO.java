@@ -28,6 +28,11 @@ public class MembresiaPagadaDTO extends MembresiaDTO{
         this.inicio = inicio;
         this.fin = fin;
     }
+
+    @Override
+    public String toString() {
+        return "MembresiaPagadaDTO{" + "inicio=" + inicio + ", fin=" + fin + '}';
+    }
     
     
     

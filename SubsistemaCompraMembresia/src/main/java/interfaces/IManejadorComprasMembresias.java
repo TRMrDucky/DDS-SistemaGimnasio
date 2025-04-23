@@ -6,6 +6,7 @@ package interfaces;
 
 import Enums.MetodosPagoEnum;
 import clases.mock.Cliente;
+import clases.mock.Membresia;
 import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
 import dtos.ClienteDTO;

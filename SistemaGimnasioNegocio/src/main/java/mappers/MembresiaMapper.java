@@ -4,12 +4,16 @@
  */
 package mappers;
 
+import Enumeradores.EnumEstadoMembresia;
 import clases.mock.Membresia;
 import clases.mock.MembresiaReemplazar;
 import clases.mock.ServicioExtra;
 import dtos.ServicioExtraDTO;
 import dtos.MembresiaDTO;
+import dtos.MembresiaPagadaDTO;
+import java.time.Instant;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,6 +47,11 @@ public class MembresiaMapper {
         return membresias.stream()
                 .map(MembresiaMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+    
+    public static MembresiaPagadaDTO toMemPagadaDTo(MembresiaDTO membresia){
+        return new MembresiaPagadaDTO(membresia.getNombre(), membresia.getId(), membresia.getPrecio(), 
+                membresia.getServiciosExtra(), membresia.getEstado(),Date.from(Instant.MIN), Date.);
     }
 
 }

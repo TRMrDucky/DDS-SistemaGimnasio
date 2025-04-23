@@ -5,14 +5,18 @@
 package bos;
 
 import clases.mock.Cliente;
+import clases.mock.Membresia;
 import dtos.ClienteDTO;
 import dtos.ClienteRegistradoDTO;
+import dtos.MembresiaDTO;
+import dtos.MembresiaPagadaDTO;
 import excepciones.ConsultaDatosClienteException;
 import excepciones.NegocioException;
 import interfaces.bo.IRegistrarClienteBO;
 import interfaces.dao.IClienteDAO;
 import java.util.List;
 import mappers.ClienteMapper;
+import mappers.MembresiaMapper;
 
 /**
  *
@@ -57,6 +61,15 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
         } catch (ConsultaDatosClienteException e) {
             throw new NegocioException("No se pudo cargar el nombre del cliente porque el ID no fue encontrado", e.getCause());
         }
+    }
+
+    @Override
+    public MembresiaPagadaDTO agregarMembresia(MembresiaDTO membresia, int id) {
+        if(!clienteDAO.validarSiTieneMem(MembresiaMapper.toEntity(membresia), id)){
+            clienteDAO.agregarSiNoTiene(MembresiaMapper.toEntity(membresia), id);
+        }
+        clienteDAO.actualizarSiTiene(MembresiaMapper.toEntity(membresia), id);
+        return null;
     }
 
 }

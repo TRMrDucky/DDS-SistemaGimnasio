@@ -5,6 +5,7 @@
 package interfaces.dao;
 
 import clases.mock.Cliente;
+import clases.mock.Membresia;
 import excepciones.ConsultaDatosClienteException;
 import java.util.List;
 
@@ -18,5 +19,8 @@ public interface IClienteDAO {
     public abstract List<Cliente> obtenerListaClientes();
     public String obtenerNombreCliente(int id) throws ConsultaDatosClienteException;
     public String obtenerNumeroCliente(int id) throws ConsultaDatosClienteException;
-     public Cliente obtenerClienteCompleto(int id) throws ConsultaDatosClienteException ;
+    public Cliente obtenerClienteCompleto(int id) throws ConsultaDatosClienteException ;
+    public boolean validarSiTieneMem(Membresia membresia, int id);
+    public Membresia actualizarSiTiene(Membresia membresia, int id);
+    public Membresia agregarSiNoTiene(Membresia membresia, int id);
 }

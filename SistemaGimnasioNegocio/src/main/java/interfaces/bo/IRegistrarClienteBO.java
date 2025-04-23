@@ -6,6 +6,7 @@ package interfaces.bo;
 
 import dtos.ClienteDTO;
 import dtos.ClienteRegistradoDTO;
+import dtos.MembresiaDTO;
 import excepciones.NegocioException;
 import java.util.List;
 
@@ -18,4 +19,5 @@ public interface IRegistrarClienteBO {
     public abstract List<ClienteRegistradoDTO> obtenerListaClientes();
     public abstract String obtenerNombreCliente(int id) throws NegocioException;
     public abstract String obtenerNumeroCliente(int id) throws NegocioException;
+    public abstract MembresiaDTO agregarMembresia(MembresiaDTO membresia, int id);
 }
