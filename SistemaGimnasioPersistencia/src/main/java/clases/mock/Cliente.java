@@ -17,7 +17,7 @@ public class Cliente {
     private String apellidos;
     private String email;
     private String numeroTelefono;
-    private List<MembresiaReemplazar> membresias;
+    private List<Membresia> membresias;
     private List<Date> asistencia;
     private int id;
 
@@ -83,11 +83,11 @@ public class Cliente {
     public Cliente() {
     }
 
-    public List<MembresiaReemplazar> getMembresias() {
+    public List<Membresia> getMembresias() {
         return membresias;
     }
 
-    public void setMembresias(List<MembresiaReemplazar> membresias) {
+    public void setMembresias(List<Membresia> membresias) {
         this.membresias = membresias;
     }
 
