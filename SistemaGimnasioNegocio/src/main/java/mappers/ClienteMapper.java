@@ -5,10 +5,18 @@
 package mappers;
 
 import clases.mock.Cliente;
+import clases.mock.Membresia;
 import dtos.ClienteDTO;
+import dtos.ClienteRegConMembDTO;
+import dtos.ClienteRegistradoConMembListaDTO;
 import dtos.ClienteRegistradoDTO;
+import dtos.MembresiaDTO;
+import dtos.MembresiaPagadaDTO;
+import dtos.ServicioExtraDTO;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -32,6 +40,45 @@ public class ClienteMapper {
         return listaCLientesDTO;
     }
     
+    /**
+     * Convierte una entidad Membresia a MembresiaPagadaDTO (incluye fechas).
+     */
+    public static MembresiaPagadaDTO toMembresiaPagadaDTO(Membresia m) {
+        if (m == null) return null;
+
+        List<ServicioExtraDTO> extrasDto = null;
+        if (m.getServiciosExtra() != null) {
+            extrasDto = m.getServiciosExtra().stream()
+                .map(ServicioExtraMapper::toDTO)
+                .collect(Collectors.toList());
+        }
+
+        return new MembresiaPagadaDTO(
+            m.getNombre(),
+            m.getId(),
+            m.getPrecio(),
+            extrasDto,
+            m.getEstado(),
+            m.getInicio(),
+            m.getFin()
+        );
+    }
+
+    public static ClienteRegistradoConMembListaDTO toCompletoDTO(Cliente c) {
+        ClienteRegistradoDTO clienteDTO = ClienteRegistradoToDTO(c);
+
+        List<MembresiaPagadaDTO> listaDTO = Collections.emptyList();
+        List<Membresia> membresias = c.getMembresias();
+        if (membresias != null && !membresias.isEmpty()) {
+            listaDTO = membresias.stream()
+                .map(ClienteMapper::toMembresiaPagadaDTO)
+                .collect(Collectors.toList());
+        }
+
+         return new ClienteRegistradoConMembListaDTO(clienteDTO, listaDTO);
+    }
+}
+
     
    
-}
+

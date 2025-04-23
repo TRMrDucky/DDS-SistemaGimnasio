@@ -5,7 +5,11 @@
 package bos;
 
 import clases.mock.Cliente;
+import clases.mock.Membresia;
+import clases.mock.MembresiaReemplazar;
 import dtos.ClienteDTO;
+import dtos.ClienteRegConMembDTO;
+import dtos.ClienteRegistradoConMembListaDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.MembresiaDTO;
 import dtos.MembresiaPagadaDTO;
@@ -13,7 +17,9 @@ import excepciones.ConsultaDatosClienteException;
 import excepciones.NegocioException;
 import interfaces.bo.IRegistrarClienteBO;
 import interfaces.dao.IClienteDAO;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import mappers.ClienteMapper;
 import mappers.MembresiaMapper;
 
@@ -43,9 +49,9 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
         List<ClienteRegistradoDTO> listaClientesDTO = ClienteMapper.toListDTO(listaClientes);
         return listaClientesDTO;
     }
-
     @Override
     public String obtenerNombreCliente(int id) throws NegocioException {
+
         try {
             return clienteDAO.obtenerNombreCliente(id);
         } catch (ConsultaDatosClienteException e) {
@@ -70,5 +76,21 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
         clienteDAO.actualizarSiTiene(MembresiaMapper.toEntity(membresia), id);
         return null;
     }
+    
+        @Override
+  public ClienteRegistradoConMembListaDTO obtenerClienteCompleto(int id) throws NegocioException {
+      try {
+          Cliente cliente = clienteDAO.obtenerClienteCompleto(id);
+          return ClienteMapper.toCompletoDTO(cliente);
+      } catch (ConsultaDatosClienteException e) {
+          throw new NegocioException(
+              "No se pudo cargar los datos completos del cliente porque el ID no fue encontrado: " + id,
+              e
+          );
+      }
+  }
 
-}
+
+
+
+        }

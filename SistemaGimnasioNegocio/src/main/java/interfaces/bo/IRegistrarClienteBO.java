@@ -5,6 +5,8 @@
 package interfaces.bo;
 
 import dtos.ClienteDTO;
+import dtos.ClienteRegConMembDTO;
+import dtos.ClienteRegistradoConMembListaDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.MembresiaDTO;
 import excepciones.NegocioException;
@@ -20,4 +22,5 @@ public interface IRegistrarClienteBO {
     public abstract String obtenerNombreCliente(int id) throws NegocioException;
     public abstract String obtenerNumeroCliente(int id) throws NegocioException;
     public abstract MembresiaDTO agregarMembresia(MembresiaDTO membresia, int id);
+    public abstract ClienteRegistradoConMembListaDTO obtenerClienteCompleto(int id) throws NegocioException;
 }
