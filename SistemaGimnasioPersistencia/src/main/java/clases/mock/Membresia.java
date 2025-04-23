@@ -6,6 +6,7 @@ package clases.mock;
 
 import java.util.List;
 import Enumeradores.EnumEstadoMembresia;
+import java.util.Date;
 
 /**
  *
@@ -18,6 +19,8 @@ public class Membresia {
     private double precio;
     private List<ServicioExtra> serviciosExtra;
     private EnumEstadoMembresia estado;
+    private Date inicio;
+    private Date fin;
 
     public Membresia(String nombre, int id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
         this.nombre = nombre;
@@ -27,6 +30,16 @@ public class Membresia {
         this.estado = estado;
     }
 
+    public Membresia(String nombre, int id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado, Date inicio, Date fin) {
+        this.nombre = nombre;
+        this.id = id;
+        this.precio = precio;
+        this.serviciosExtra = serviciosExtra;
+        this.estado = estado;
+        this.inicio = inicio;
+        this.fin = fin;
+    }
+    
     public Membresia() {
     }
 
@@ -70,6 +83,24 @@ public class Membresia {
         this.nombre = nombre;
     }
 
+    public Date getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(Date inicio) {
+        this.inicio = inicio;
+    }
+
+    public Date getFin() {
+        return fin;
+    }
+
+    public void setFin(Date fin) {
+        this.fin = fin;
+    }
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -96,5 +127,5 @@ public class Membresia {
     public String toString() {
         return "Membresia{" + "id=" + id + ", precio=" + precio + ", serviciosExtra=" + serviciosExtra + ", estado=" + estado + '}';
     }
-
+    
 }
