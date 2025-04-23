@@ -131,7 +131,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void botonCompraMembActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCompraMembActionPerformed
         control.openFormBuscarCliente();
-        dispose();
+   
     }//GEN-LAST:event_botonCompraMembActionPerformed
 
     private void botonCompraMemb1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCompraMemb1ActionPerformed

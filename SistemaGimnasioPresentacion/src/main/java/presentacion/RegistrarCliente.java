@@ -242,6 +242,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
      */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         control.openFormBuscarCliente();
+        dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**

@@ -5,8 +5,6 @@
 package presentacion;
 
 import dtos.ServicioExtraDTO;
-import implementaciones.ManejadorServicioExtra;
-import interfaz.IManejadorServicioExtra;
 
 /**
  *
