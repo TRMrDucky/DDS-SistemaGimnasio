@@ -51,7 +51,7 @@ public class OpcionesMemb extends javax.swing.JFrame {
                 String nombresServicios = membresia.getServiciosExtra().stream()
                         .map(ServicioExtraDTO::getNombreServicio)
                         .collect(Collectors.joining(", "));
-                String texto = (membresia.getNombre()+ "\n precio $" + membresia.getPrecio());
+                String texto = (membresia.getNombre() + "\n precio $" + membresia.getPrecio());
                 if (!nombresServicios.isEmpty()) {
                     texto += "\nServicios: " + nombresServicios;
                 }
@@ -79,6 +79,7 @@ public class OpcionesMemb extends javax.swing.JFrame {
 
     private void seleccionarMembresia(MembresiaDTO membresia) {
         System.out.println("llega");
+        
         ClienteRegConMembDTO clienteConMemb = new ClienteRegConMembDTO(
                 cliente,
                 membresia

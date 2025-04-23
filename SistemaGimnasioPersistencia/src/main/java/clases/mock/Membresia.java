@@ -21,6 +21,21 @@ public class Membresia {
     private EnumEstadoMembresia estado;
     private Date inicio;
     private Date fin;
+    private Long duracion;
+
+    public Membresia(String nombre, int id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado, Date inicio, Long duracion) {
+        this.nombre = nombre;
+        this.id = id;
+        this.precio = precio;
+        this.serviciosExtra = serviciosExtra;
+        this.estado = estado;
+        this.inicio = inicio;
+        this.duracion = duracion;
+        this.fin = new Date(inicio.getTime()+duracion);
+    }
+    
+    
+    
 
     public Membresia(String nombre, int id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
         this.nombre = nombre;
