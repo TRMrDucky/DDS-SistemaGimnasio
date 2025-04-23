@@ -234,11 +234,11 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
        return membresiaBO.obtenerMembresiasDTO();
     }
 
-public PagoDTO procesarPago(int idCliente, double monto, MetodosPagoEnum metodo, Object datosPago) {
-    ProcesadorPago procesador = new ProcesadorPago();
-    boolean aprobado = procesador.procesarPago(metodo, (int) monto, datosPago); 
+    public PagoDTO procesarPago(int idCliente, double monto, MetodosPagoEnum metodo, Object datosPago) {
+        ProcesadorPago procesador = new ProcesadorPago();
+        boolean aprobado = procesador.procesarPago(metodo, (int) monto, datosPago); 
 
-    return new PagoDTO(idCliente, monto, aprobado);
-}
+        return new PagoDTO(idCliente, monto, aprobado);
+    }
  
 }

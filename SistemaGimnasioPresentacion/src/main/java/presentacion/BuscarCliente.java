@@ -80,7 +80,7 @@ public class BuscarCliente extends JFrame {
     }
 
     private void buscarClientes(String nombre) {
-        // Filtrar la lista de ClienteDTO por nombre
+        
         List<ClienteRegistradoDTO> clientesFiltrados = control.getListaClientes().stream()
                 .filter(cliente -> cliente.getNombre().toLowerCase().contains(nombre))
                 .collect(Collectors.toList());

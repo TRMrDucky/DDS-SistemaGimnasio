@@ -72,4 +72,19 @@ public class ClienteDAO implements IClienteDAO {
         }
         throw new ConsultaDatosClienteException("No se pudo cargar el número telefónico del cliente porque el ID no fue encontrado");
     }
+    
+    
+        @Override
+    public Cliente obtenerClienteCompleto(int id) throws ConsultaDatosClienteException {
+        for (Cliente c : listaClientes) {
+            if (c.getId() == id) {
+                return c;
+            }
+        }
+        throw new ConsultaDatosClienteException(
+            "No se pudo cargar los datos del cliente porque el ID no fue encontrado: " + id
+        );
+    }
+
+    
 }

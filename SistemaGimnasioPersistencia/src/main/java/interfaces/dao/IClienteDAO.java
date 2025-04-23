@@ -18,4 +18,5 @@ public interface IClienteDAO {
     public abstract List<Cliente> obtenerListaClientes();
     public String obtenerNombreCliente(int id) throws ConsultaDatosClienteException;
     public String obtenerNumeroCliente(int id) throws ConsultaDatosClienteException;
+     public Cliente obtenerClienteCompleto(int id) throws ConsultaDatosClienteException ;
 }
