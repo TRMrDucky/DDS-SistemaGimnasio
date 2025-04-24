@@ -49,10 +49,7 @@ public class MembresiaMapper {
                 .collect(Collectors.toList());
     }
     
-    public static MembresiaPagadaDTO toMemPagadaDTo(MembresiaDTO membresia){
-        return new MembresiaPagadaDTO(membresia.getNombre(), membresia.getId(), membresia.getPrecio(), 
-                membresia.getServiciosExtra(), membresia.getEstado(),Date.from(Instant.MIN), Date.);
-    }
+    
 
    
 }

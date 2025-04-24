@@ -58,4 +58,9 @@ public class MembresiaDAO implements IMembresiaDAO {
     public List<Membresia> obtenerMembresias() {
         return listaMembresias;
     }
+    
+    @Override
+    public Membresia setearFecha(Membresia membresia){
+        return membresia;
+    }
 }

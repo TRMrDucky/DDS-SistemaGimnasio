@@ -17,5 +17,5 @@ public interface IMembresiaDAO {
     
     public List<Membresia> obtenerMembresias();
     public List<ServicioExtra> obtenerServicio();
-    
+    public Membresia setearFecha(Membresia membresia);
 }

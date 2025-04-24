@@ -8,5 +8,5 @@ import java.util.List;
  */
 public interface IMembresiaBO {
     public List<MembresiaDTO> obtenerMembresiasDTO();
-    
+    public MembresiaDTO setearFecha(MembresiaDTO membresiaDTO);
 }

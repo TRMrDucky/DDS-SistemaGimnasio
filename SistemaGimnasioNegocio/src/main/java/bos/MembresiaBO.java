@@ -38,4 +38,10 @@ public class MembresiaBO implements IMembresiaBO {
                 .collect(Collectors.toList());
 
     }
+    
+    @Override
+    public MembresiaDTO setearFecha(MembresiaDTO membresia) {
+        Membresia membresiaActu = MembresiaMapper.toEntity(membresia);
+        return MembresiaMapper.toDTO(membresiaDAO.setearFecha(membresiaActu));
+    }
 }

@@ -240,5 +240,15 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
         return new PagoDTO(idCliente, monto, aprobado);
     }
+
+    @Override
+    public MembresiaDTO setearFecha(MembresiaDTO membresia) {
+        return membresiaBO.setearFecha(membresia);
+    }
+
+    @Override
+    public MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, int id) {
+        return registrarClienteBO.agregarMembresiaCliente(membresa, id);
+    }
  
 }

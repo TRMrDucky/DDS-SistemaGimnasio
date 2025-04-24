@@ -47,4 +47,6 @@ public interface IManejadorComprasMembresias {
     
     public PagoDTO procesarPago(int idCliente, double monto, MetodosPagoEnum metodo, Object datosPago);
     
+    public abstract MembresiaDTO setearFecha(MembresiaDTO membresia);
+    public abstract MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, int id);
 }

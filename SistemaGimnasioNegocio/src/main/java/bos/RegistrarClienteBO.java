@@ -90,7 +90,14 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
       }
   }
 
+    
 
-
-
+    @Override
+    public MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresiaDTO, int id) {
+        Membresia membresia = MembresiaMapper.toEntity(membresiaDTO);
+        if(!clienteDAO.validarSiTieneMem(membresia, id)){
+            return MembresiaMapper.toDTO(clienteDAO.agregarSiNoTiene(membresia, id));
         }
+        return MembresiaMapper.toDTO(clienteDAO.actualizarSiTiene(membresia, id));
+    }
+}

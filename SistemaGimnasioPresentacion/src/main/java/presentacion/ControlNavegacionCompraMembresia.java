@@ -308,5 +308,12 @@ public class ControlNavegacionCompraMembresia {
                 "Aceptar"
         );
     }
-      
+
+    public MembresiaDTO setearFecha(MembresiaDTO membresia) {
+        return subsistema.setearFecha(membresia);
+    }
+    
+    public MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, int id){
+        return subsistema.agregarMembresiaCliente(membresa, id);
+    } 
 }
