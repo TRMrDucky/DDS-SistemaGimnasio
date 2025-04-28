@@ -265,6 +265,8 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
             Logger.getLogger(ManejadorComprasMembresias.class.getName()).log(Level.SEVERE, null, ex);
             throw new NegocioException("No se pudo cargar la información completa del cliente porque el ID no fue encontrado", ex);
         }
+             
+        
 }
 
   

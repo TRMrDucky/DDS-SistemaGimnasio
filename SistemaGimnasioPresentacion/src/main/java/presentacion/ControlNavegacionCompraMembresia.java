@@ -8,6 +8,7 @@ import Enums.MetodosPagoEnum;
 import dtos.ClienteDTO;
 import dtos.ClienteRegConMemYServDTO;
 import dtos.ClienteRegConMembDTO;
+import dtos.ClienteRegistradoConMembListaDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
 import dtos.ServicioExtraDTO;
@@ -316,4 +317,18 @@ public class ControlNavegacionCompraMembresia {
     public MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, int id){
         return subsistema.agregarMembresiaCliente(membresa, id);
     } 
+    
+    public ClienteRegistradoConMembListaDTO obtenerClienteCompletoPorId(int id) {
+    try {
+    
+        return subsistema.obtenerClienteCompleto(id);
+    } catch (NegocioException ex) {
+   
+        JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+        return null;
+    }
+}
+
+    
+    
 }
