@@ -10,6 +10,7 @@ import clases.mock.Membresia;
 import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
 import dtos.ClienteDTO;
+import dtos.ClienteRegistradoConMembListaDTO;
 import dtos.ServicioExtraDTO;
 import dtos.MembresiaDTO;
 import excepciones.ConsultaDatosClienteException;
@@ -49,4 +50,7 @@ public interface IManejadorComprasMembresias {
     
     public abstract MembresiaDTO setearFecha(MembresiaDTO membresia);
     public abstract MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, int id);
+    
+    
+   public abstract  ClienteRegistradoConMembListaDTO obtenerClienteCompleto(int id) throws NegocioException;
 }

@@ -4,11 +4,14 @@ package implementaciones;
 import Enums.MetodosPagoEnum;
 import ProcesadorPago.ProcesadorPago;
 import bos.FabricaBOs;
+import clases.mock.Cliente;
 import dtos.ClienteDTO;
+import dtos.ClienteRegistradoConMembListaDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
 import dtos.ServicioExtraDTO;
 import dtos.MembresiaDTO;
+import excepciones.ConsultaDatosClienteException;
 import excepciones.NegocioException;
 import excepciones.RegistroClienteException;
 import interfaces.IManejadorComprasMembresias;
@@ -24,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import mappers.ClienteMapper;
 
 /**
  * 
@@ -250,5 +254,21 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     public MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, int id) {
         return registrarClienteBO.agregarMembresiaCliente(membresa, id);
     }
- 
+    
+        @Override
+    public ClienteRegistradoConMembListaDTO obtenerClienteCompleto(int id) throws NegocioException {
+        try {
+
+            return registrarClienteBO.obtenerClienteCompleto(id);
+        } catch (NegocioException ex) {
+
+            Logger.getLogger(ManejadorComprasMembresias.class.getName()).log(Level.SEVERE, null, ex);
+            throw new NegocioException("No se pudo cargar la información completa del cliente porque el ID no fue encontrado", ex);
+        }
 }
+
+  
+}
+
+ 
+

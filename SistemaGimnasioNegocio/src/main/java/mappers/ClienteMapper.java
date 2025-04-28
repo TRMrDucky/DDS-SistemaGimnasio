@@ -45,7 +45,6 @@ public class ClienteMapper {
      */
     public static MembresiaPagadaDTO toMembresiaPagadaDTO(Membresia m) {
         if (m == null) return null;
-
         List<ServicioExtraDTO> extrasDto = null;
         if (m.getServiciosExtra() != null) {
             extrasDto = m.getServiciosExtra().stream()
