@@ -40,7 +40,7 @@ public class MembresiaDAO implements IMembresiaDAO {
 
     public List<ServicioExtra> obtenerServicio() {
         List<ServicioExtra> servicios = new LinkedList<>();
-        List<ServicioExtra> serviciosDisponibles = ServicioExtraDAO.getInstance().obtenerServiciosExtrasDTO();
+        List<ServicioExtra> serviciosDisponibles = ServicioExtraDAO.getInstance().obtenerServiciosExtras();
 
         if (!serviciosDisponibles.isEmpty()) {
             servicios.add(serviciosDisponibles.get(0));

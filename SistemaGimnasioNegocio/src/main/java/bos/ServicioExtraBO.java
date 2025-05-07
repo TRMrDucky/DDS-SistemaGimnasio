@@ -26,7 +26,7 @@ public class ServicioExtraBO implements IServicioExtraBO{
 
     @Override
     public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
-        return ServicioExtraMapper.toListDTO(servicioDAO.obtenerServiciosExtrasDTO());
+        return ServicioExtraMapper.toListDTO(servicioDAO.obtenerServiciosExtras());
     }
 
     @Override

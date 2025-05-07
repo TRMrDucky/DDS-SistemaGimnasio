@@ -39,7 +39,7 @@ public class Cliente {
         this.membresias = new LinkedList();
         this.asistencia = new LinkedList();
     }
-
+    
     public String getNombres() {
         return nombres;
     }

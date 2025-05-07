@@ -4,7 +4,9 @@
  */
 package daos;
 
+import Conexion.ConexionBD;
 import clases.mock.ServicioExtra;
+import com.mongodb.client.MongoCollection;
 import interfaces.dao.IServicioExtraDAO;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,8 +19,10 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
     
     private static ServicioExtraDAO instancia;
     private List<ServicioExtra> listaserviciosExtras;
+    private final MongoCollection<ServicioExtra> coleccion;
     
     private ServicioExtraDAO() {
+        this.coleccion = ConexionBD.getInstance().getCollection("restaurantes",ServicioExtra.class);
         listaserviciosExtras = new LinkedList<>();
         listaserviciosExtras.add(new ServicioExtra(1, "Entrenador", 150,"Entrenador personalizado"));
         listaserviciosExtras.add(new ServicioExtra(2, "Plan Alimenticio", 150,"Plan alimenticio personalizado"));
@@ -35,7 +39,7 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
         return instancia;
     }
     @Override
-    public List<ServicioExtra> obtenerServiciosExtrasDTO() {
+    public List<ServicioExtra> obtenerServiciosExtras() {
         return listaserviciosExtras;
     }
     
