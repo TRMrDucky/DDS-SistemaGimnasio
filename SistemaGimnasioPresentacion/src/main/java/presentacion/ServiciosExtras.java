@@ -57,7 +57,7 @@ public class ServiciosExtras extends JFrame {
         serviciosPanel.setLayout(new GridLayout(0, 1, 10, 10));
         serviciosPanel.setBackground(new Color(100, 149, 237));
 
-        LinkedList<Long> idsServiciosCliente = new LinkedList<>();
+        LinkedList<String> idsServiciosCliente = new LinkedList<>();
 
         if (cliente.getMembresia().getServiciosExtra() != null) {
             for (ServicioExtraDTO servicio : cliente.getMembresia().getServiciosExtra()) {
@@ -71,7 +71,7 @@ public class ServiciosExtras extends JFrame {
             JCheckBox checkBox = new JCheckBox(servicio.getNombreServicio() + " - Costo $" + servicio.getPrecio() + " " + servicio.getDescripcion());
             checkBox.setActionCommand(String.valueOf(servicio.getId()));
 
-            Long idServicio = servicio.getId();
+            String idServicio = servicio.getId();
             if (idsServiciosCliente.stream().anyMatch(id -> idServicio.equals(id))) {
                 checkBox.setSelected(true);
             }
@@ -154,7 +154,7 @@ public class ServiciosExtras extends JFrame {
             if (checkBox.isSelected()) {
                 long id = Long.parseLong(checkBox.getActionCommand());
                 seleccionados.add(serviciosExtras.stream()
-                        .filter(servicio -> servicio.getId() == id)
+                        .filter(servicio -> servicio.getId().equals(id))
                         .findFirst()
                         .orElse(null));
             }

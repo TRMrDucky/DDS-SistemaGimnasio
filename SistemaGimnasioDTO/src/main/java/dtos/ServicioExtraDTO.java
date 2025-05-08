@@ -9,7 +9,7 @@ package dtos;
  * @author Ramón Zamudio
  */
 public class ServicioExtraDTO {
-    private long id;
+    private String id;
     private String nombreServicio;
     private double precio;
     private String descripcion;
@@ -24,7 +24,7 @@ public class ServicioExtraDTO {
      * @param nombreServicio nombre del servicioExtra
      * @param precio precio del servicio
      */
-    public ServicioExtraDTO(long id, String nombreServicio, double precio) {
+    public ServicioExtraDTO(String id, String nombreServicio, double precio) {
         this.id = id;
         this.nombreServicio = nombreServicio;
         this.precio = precio;
@@ -36,14 +36,14 @@ public class ServicioExtraDTO {
         this.descripcion = descripcion;
     }
 
-    public ServicioExtraDTO(long id, String nombreServicio, double precio, String descripcion) {
+    public ServicioExtraDTO(String id, String nombreServicio, double precio, String descripcion) {
         this.id = id;
         this.nombreServicio = nombreServicio;
         this.precio = precio;
         this.descripcion = descripcion;
     }
     
-    public long getId() {
+    public String getId() {
         return id;
     }
 
@@ -55,7 +55,7 @@ public class ServicioExtraDTO {
         return precio;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

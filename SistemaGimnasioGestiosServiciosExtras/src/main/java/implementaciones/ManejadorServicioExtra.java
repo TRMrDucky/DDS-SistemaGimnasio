@@ -7,9 +7,13 @@ package implementaciones;
 import bos.FabricaBOs;
 import dtos.ServicioExtraDTO;
 import excepciones.NegocioException;
+import excepciones.SubsistemaServicioExtraException;
 import interfaces.bo.IServicioExtraBO;
 import java.util.List;
 import interfaz.IManejadorServicioExtra;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,54 +27,105 @@ public class ManejadorServicioExtra implements IManejadorServicioExtra{
     }
     
     @Override
-    public ServicioExtraDTO obtenerServicioExtra(Long id) {
-        if(id == null || id<0){
-            throw new NullPointerException("EL id no puede ser nulo");
+    public ServicioExtraDTO obtenerServicioExtra(String id)throws SubsistemaServicioExtraException {
+        try {
+            return servicioExtraBO.obtenerServicioExtra(id);
+        } catch (NegocioException ex) {
+            return null;
         }
-        return servicioExtraBO.obtenerServicioExtra(id);
     }
 
     @Override
-    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio) throws NegocioException {
-        if(servicio == null){
+    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio)throws SubsistemaServicioExtraException{
+        if(validarServicioNulo(servicio)){
             throw new NullPointerException("El servicio no puede ser nulo");
         }
-        if(servicio.getNombreServicio().isEmpty()){
+        if(validarNombreVacio(servicio.getNombreServicio())){
             throw new NullPointerException("El nombre del servicio no puede ser nulo");
         }
-        if(servicio.getPrecio()<0){
-            throw new NegocioException("El precio no puede ser negativo");
+        if(validarPrecioNulo(servicio.getPrecio())){
+            throw new SubsistemaServicioExtraException("El precio no puede ser negativo");
         }
-        return servicioExtraBO.agregarServicio(servicio);
+        if(validarNombreServicioRepetido(servicio.getNombreServicio())){
+            throw new SubsistemaServicioExtraException("El nombre de un servicio no se puede repetir");
+        }
+        try {
+            return servicioExtraBO.agregarServicio(servicio);
+        } catch (NegocioException ex) {
+            throw new SubsistemaServicioExtraException("Error al agregar el servicio",ex.getCause());
+        }
     }
 
     @Override
-    public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio) throws NegocioException {
-        if(servicio == null){
+    public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio) throws SubsistemaServicioExtraException{
+        if(validarServicioNulo(servicio)){
             throw new NullPointerException("El servicio no puede ser nulo");
         }
-        if(servicio.getNombreServicio().isEmpty()){
+        if(validarNombreVacio(servicio.getNombreServicio())){
             throw new NullPointerException("El nombre del servicio no puede ser nulo");
         }
-        if(servicio.getPrecio()<0){
-            throw new NegocioException("El precio no puede ser negativo");
+        if(validarPrecioNulo(servicio.getPrecio())){
+            throw new SubsistemaServicioExtraException("El precio no puede ser negativo");
         }
-        return servicioExtraBO.editarServicio(servicio);
+        if(validarIdNulo(servicio.getId())){
+            throw new SubsistemaServicioExtraException("El id no puede ser nulo");
+        }
+        try {
+            return servicioExtraBO.editarServicio(servicio);
+        } catch (NegocioException ex) {
+            throw new SubsistemaServicioExtraException("Error al editar el servicio",ex.getCause());
+        }
     }
 
     @Override
-    public boolean eliminarServicioExtra(Long id) {
-        if(id == null || id<0){
-            throw new NullPointerException("EL id no puede ser nulo");
+    public boolean eliminarServicioExtra(String id)throws SubsistemaServicioExtraException {
+        try {
+            if(validarIdNulo(id)){
+                throw new NegocioException("El id no puede ser nulo");
+            }      
+            return servicioExtraBO.eliminarServicioExtra(id);
+        } catch (NegocioException ex) {
+            return false;
         }
-        return servicioExtraBO.eliinarServicioExtra(id);
     }
 
     @Override
-    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
-        return servicioExtraBO.obtenerServiciosExtrasDTO();
+    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO()throws SubsistemaServicioExtraException {
+        try {
+            return servicioExtraBO.obtenerServiciosExtrasDTO();
+        } catch (NegocioException ex) {
+            return null;
+        }
     }
-
     
+    public boolean validarServicioNulo(ServicioExtraDTO servicio){
+        return servicio == null;
+    }
     
+    public boolean validarNombreVacio(String nombre){
+        return nombre.isEmpty();
+    }
+    
+    public boolean validarPrecioNulo(double precio){
+        return precio<0;
+    }
+    
+    public boolean validarIdNulo(String id){
+        return id.isEmpty();
+    }
+    
+    public boolean validarNombreServicioRepetido(String nombre)throws SubsistemaServicioExtraException{
+        List<ServicioExtraDTO> servicios;
+        try {
+            servicios = servicioExtraBO.obtenerServiciosExtrasDTO();
+        } catch (NegocioException ex) {
+            throw new SubsistemaServicioExtraException("Error al obtener los servicios",ex.getCause());
+        }
+        for(ServicioExtraDTO se : servicios){
+            if(se.getNombreServicio().equals(nombre)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

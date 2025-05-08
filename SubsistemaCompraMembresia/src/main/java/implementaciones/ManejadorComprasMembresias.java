@@ -200,7 +200,13 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     @Override
     public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() {
-        return servicioExtraBO.obtenerServiciosExtrasDTO();
+        try {
+            System.out.println("hola1");
+            return servicioExtraBO.obtenerServiciosExtrasDTO();
+        } catch (NegocioException ex) {
+            System.out.println("hola");
+            return null;
+        }
     }
 
     @Override

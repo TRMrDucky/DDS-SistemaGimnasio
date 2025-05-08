@@ -5,15 +5,12 @@
 package presentacion;
 
 import dtos.ServicioExtraDTO;
-import implementaciones.ManejadorComprasMembresias;
-import implementaciones.ManejadorServicioExtra;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-import interfaz.IManejadorServicioExtra;
 
 /**
  *
@@ -24,6 +21,7 @@ public class SeleccionarServicioExtra extends javax.swing.JFrame {
     /**
      * Creates new form SeleccionarServicioExtra
      * @param control
+     * @param origen
      */
     public SeleccionarServicioExtra(ControlNavegacionCompraMembresia control,String origen) {
         initComponents();

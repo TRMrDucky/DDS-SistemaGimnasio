@@ -5,6 +5,9 @@
 package presentacion;
 
 import dtos.ServicioExtraDTO;
+import excepciones.SubsistemaServicioExtraException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -171,7 +174,11 @@ public class MostrarServiciosExtras extends javax.swing.JFrame {
             control.openFormPantallaPrincipal();
             dispose();
         }else{
-            control.eliminarServicio(servicioExtra.getId());
+            try {
+                control.eliminarServicio(servicioExtra.getId());
+            } catch (SubsistemaServicioExtraException ex) {
+                Logger.getLogger(MostrarServiciosExtras.class.getName()).log(Level.SEVERE, null, ex);
+            }
             control.mostrarMensaje("eliminar");
             control.openFormPantallaPrincipal();
             dispose();

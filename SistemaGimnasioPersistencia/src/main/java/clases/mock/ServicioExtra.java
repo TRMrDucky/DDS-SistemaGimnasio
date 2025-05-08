@@ -1,11 +1,13 @@
 package clases.mock;
 
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author Ramón Zamudio
  */
 public class ServicioExtra {
-    private long id;
+    private ObjectId id;
     private String nombreServicio;
     private double precio;
     private String descripcion;
@@ -19,13 +21,13 @@ public class ServicioExtra {
         this.descripcion = descripcion;
     }
     
-    public ServicioExtra(long id, String nombreServicio, double precio) {
+    public ServicioExtra(ObjectId id, String nombreServicio, double precio) {
         this.id = id;
         this.nombreServicio = nombreServicio;
         this.precio = precio;
     }
 
-    public ServicioExtra(long id, String nombreServicio, double precio, String descripcion) {
+    public ServicioExtra(ObjectId id, String nombreServicio, double precio, String descripcion) {
         this.id = id;
         this.nombreServicio = nombreServicio;
         this.precio = precio;
@@ -41,7 +43,7 @@ public class ServicioExtra {
     }
     
     
-    public long getId() {
+    public ObjectId getId() {
         return id;
     }
 
@@ -53,7 +55,7 @@ public class ServicioExtra {
         return precio;
     }
 
-    public void setId(long id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

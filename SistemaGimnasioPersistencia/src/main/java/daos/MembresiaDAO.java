@@ -4,6 +4,7 @@
  */
 package daos;
 
+import Conexion.ConexionBD;
 import static Enumeradores.EnumEstadoMembresia.ACTIVA;
 import clases.mock.Membresia;
 import clases.mock.ServicioExtra;
@@ -12,6 +13,8 @@ import clases.mock.membresias.FifteenDaysPass;
 import clases.mock.membresias.MonthlyPass;
 import clases.mock.membresias.SevenDaysPass;
 import clases.mock.membresias.TenDaysPass;
+import com.mongodb.client.MongoCollection;
+import excepciones.ConsultarServiciosExtraException;
 
 import interfaces.dao.IMembresiaDAO;
 import java.util.LinkedList;
@@ -24,21 +27,14 @@ import java.util.List;
 public class MembresiaDAO implements IMembresiaDAO {
 
     private static final MembresiaDAO instancia = new MembresiaDAO();
-    private List<Membresia> listaMembresias;
+     private final MongoCollection<Membresia> coleccion;
 
-    private MembresiaDAO() {
-
-        listaMembresias = new LinkedList<>();
-        List<ServicioExtra> servicios = new LinkedList<>();
-
-        listaMembresias.add(new DayPass("Day Pass",1,15, new LinkedList<>(), ACTIVA));
-        listaMembresias.add(new SevenDaysPass("Seven Days Pass",2, 105, obtenerServicio(), ACTIVA));
-        listaMembresias.add(new TenDaysPass("Ten Days Pass",3,150, obtenerServicio(), ACTIVA));
-        listaMembresias.add(new FifteenDaysPass("Fiteen Days Pass",4,225, obtenerServicio(), ACTIVA));
-        listaMembresias.add(new MonthlyPass("Monthly Pass",5,300, new LinkedList<>(), ACTIVA));
+    private MembresiaDAO(){
+        this.coleccion = ConexionBD.getInstance().getCollection("membresias",Membresia.class);
     }
 
-    public List<ServicioExtra> obtenerServicio() {
+    @Override
+    public List<ServicioExtra> obtenerServicio() throws ConsultarServiciosExtraException{
         List<ServicioExtra> servicios = new LinkedList<>();
         List<ServicioExtra> serviciosDisponibles = ServicioExtraDAO.getInstance().obtenerServiciosExtras();
 
@@ -56,7 +52,7 @@ public class MembresiaDAO implements IMembresiaDAO {
     }
 
     public List<Membresia> obtenerMembresias() {
-        return listaMembresias;
+        return null; 
     }
     
     @Override

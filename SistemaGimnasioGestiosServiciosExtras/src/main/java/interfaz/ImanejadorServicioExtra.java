@@ -6,6 +6,7 @@ package interfaz;
 
 import dtos.ServicioExtraDTO;
 import excepciones.NegocioException;
+import excepciones.SubsistemaServicioExtraException;
 import java.util.List;
 
 /**
@@ -13,9 +14,9 @@ import java.util.List;
  * @author Ramón Zamudio
  */
 public interface IManejadorServicioExtra {
-    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO();
-    public ServicioExtraDTO obtenerServicioExtra(Long id);
-    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio)throws NegocioException;
-    public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio)throws NegocioException ;
-    public boolean eliminarServicioExtra(Long id);
+    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO()throws SubsistemaServicioExtraException;
+    public ServicioExtraDTO obtenerServicioExtra(String id)throws SubsistemaServicioExtraException;
+    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio)throws SubsistemaServicioExtraException;
+    public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio)throws SubsistemaServicioExtraException ;
+    public boolean eliminarServicioExtra(String id)throws SubsistemaServicioExtraException;
 }

@@ -13,9 +13,9 @@ import java.util.List;
  * @author Ramón Zamudio
  */
 public interface IServicioExtraBO {
-    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO();
-    public ServicioExtraDTO obtenerServicioExtra(Long id);
+    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO()throws NegocioException;
+    public ServicioExtraDTO obtenerServicioExtra(String id)throws NegocioException;
     public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio)throws NegocioException;
     public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio)throws NegocioException ;
-    public boolean eliinarServicioExtra(Long id);
+    public boolean eliminarServicioExtra(String id)throws NegocioException;
 }

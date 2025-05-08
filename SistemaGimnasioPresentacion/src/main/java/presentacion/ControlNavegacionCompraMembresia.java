@@ -15,6 +15,7 @@ import dtos.ServicioExtraDTO;
 import dtos.MembresiaDTO;
 import excepciones.NegocioException;
 import excepciones.RegistroClienteException;
+import excepciones.SubsistemaServicioExtraException;
 import interfaces.IManejadorComprasMembresias;
 import java.util.List;
 import java.util.logging.Level;
@@ -269,18 +270,18 @@ public class ControlNavegacionCompraMembresia {
         new MostrarServiciosExtras(this, origen, servicioExtra).setVisible(true);
     }
     
-    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio) throws NegocioException {
+    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio) throws SubsistemaServicioExtraException {
         return subsistema2.agregarServicio(servicio);
     }
     public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio){
         try {
             return subsistema2.editarServicio(servicio);
-        } catch (NegocioException ex) {
+        } catch (SubsistemaServicioExtraException ex) {
             
         }
         return null;
     }
-    public boolean eliminarServicio(Long id){
+    public boolean eliminarServicio(String id) throws SubsistemaServicioExtraException{
         return subsistema2.eliminarServicioExtra(id);
     }
     public static void mostrarMensaje(String origen) {

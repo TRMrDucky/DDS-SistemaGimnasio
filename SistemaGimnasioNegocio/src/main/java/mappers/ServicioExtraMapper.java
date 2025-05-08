@@ -8,6 +8,7 @@ import clases.mock.ServicioExtra;
 import dtos.ServicioExtraDTO;
 import java.util.LinkedList;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -16,17 +17,21 @@ import java.util.List;
 public class ServicioExtraMapper {
 
     public static ServicioExtra toEntity(ServicioExtraDTO servicioExtra) {
-        return new ServicioExtra(servicioExtra.getId(), servicioExtra.getNombreServicio(), servicioExtra.getPrecio(), servicioExtra.getDescripcion());
+        ServicioExtra se =  new ServicioExtra(servicioExtra.getNombreServicio(), servicioExtra.getPrecio(), servicioExtra.getDescripcion());
+        se.setId(new ObjectId(servicioExtra.getId()));
+        return se;
     }
 
     public static ServicioExtraDTO toDTO(ServicioExtra se) {
-        return new ServicioExtraDTO(se.getId(), se.getNombreServicio(), se.getPrecio(), se.getDescripcion());
+        ServicioExtraDTO servicio =  new ServicioExtraDTO(se.getNombreServicio(), se.getPrecio(), se.getDescripcion());
+        servicio.setId(se.getId().toHexString());
+        return servicio;
     }
 
     public static List<ServicioExtraDTO> toListDTO(List<ServicioExtra> serviciosExtra) {
         List<ServicioExtraDTO> servicios = new LinkedList<>();
         for (ServicioExtra se : serviciosExtra) {
-            servicios.add(new ServicioExtraDTO(se.getId(), se.getNombreServicio(), se.getPrecio(), se.getDescripcion()));
+            servicios.add(new ServicioExtraDTO(se.getId().toHexString(), se.getNombreServicio(), se.getPrecio(), se.getDescripcion()));
         }
         return servicios;
     }

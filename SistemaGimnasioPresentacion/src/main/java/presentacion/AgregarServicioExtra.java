@@ -6,6 +6,7 @@ package presentacion;
 
 import dtos.ServicioExtraDTO;
 import excepciones.NegocioException;
+import excepciones.SubsistemaServicioExtraException;
 import implementaciones.ManejadorServicioExtra;
 import interfaz.IManejadorServicioExtra;
 
@@ -118,7 +119,7 @@ public class AgregarServicioExtra extends javax.swing.JFrame {
                 control.openFormPantallaPrincipal();
                 dispose();
             }
-        } catch (NegocioException ex) {
+        } catch (SubsistemaServicioExtraException ex) {
         }
         
     }//GEN-LAST:event_btnAceptarActionPerformed
