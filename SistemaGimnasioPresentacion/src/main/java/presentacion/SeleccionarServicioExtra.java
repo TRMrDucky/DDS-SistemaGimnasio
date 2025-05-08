@@ -21,13 +21,18 @@ public class SeleccionarServicioExtra extends javax.swing.JFrame {
     /**
      * Creates new form SeleccionarServicioExtra
      * @param control
-     * @param origen
      */
     public SeleccionarServicioExtra(ControlNavegacionCompraMembresia control,String origen) {
         initComponents();
         List<ServicioExtraDTO> listaServicios = control.obtenerServiciosExtrasDTO();
         jPanel1.removeAll();
         jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
+        if("editar".equals(origen)){
+                jLabel1.setText("Editar Servicio");
+            }
+            if("eliminar".equals(origen)){
+                jLabel1.setText("Eliminar Servicio");
+            }
         for(ServicioExtraDTO se : listaServicios){
             JButton btnServicio = new JButton(se.getNombreServicio());
             btnServicio.setPreferredSize(new Dimension(jPanel1.getWidth(), 50)); 
@@ -35,12 +40,7 @@ public class SeleccionarServicioExtra extends javax.swing.JFrame {
             btnServicio.setHorizontalAlignment(SwingConstants.CENTER);
             btnServicio.setVerticalAlignment(SwingConstants.CENTER); 
             btnServicio.setAlignmentX(Component.CENTER_ALIGNMENT);
-            if("editar".equals(origen)){
-                jLabel1.setText("Editar Servicio");
-            }
-            if("eliminar".equals(origen)){
-                jLabel1.setText("Eliminar Servicio");
-            }
+            
             btnServicio.addActionListener(e->{control.openFormMostrarServiciosExtras(origen, se);});
             jPanel1.add(btnServicio);
         }
