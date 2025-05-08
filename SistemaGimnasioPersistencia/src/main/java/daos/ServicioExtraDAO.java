@@ -44,14 +44,11 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
     @Override
     public List<ServicioExtra> obtenerServiciosExtras()throws ConsultarServiciosExtraException{
         try {
-        List<ServicioExtra> servicios = coleccion.find().into(new ArrayList<>());
-        System.out.println("DEBUG - Se encontraron " + servicios.size() + " servicios extra.");
-        return servicios;
-    } catch (Exception e) {
-        System.err.println("ERROR - Falló la consulta de servicios extra:");
-        e.printStackTrace(); // Imprime el error completo
-        throw new ConsultarServiciosExtraException("Error al consultar los servicios extra", e);
-    }
+            List<ServicioExtra> servicios = coleccion.find().into(new ArrayList<>());
+            return servicios;
+        } catch (Exception e) {
+            throw new ConsultarServiciosExtraException("Error al consultar los servicios extra", e);
+        }
     }
 
     @Override
