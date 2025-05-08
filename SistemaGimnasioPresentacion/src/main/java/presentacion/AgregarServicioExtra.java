@@ -113,14 +113,15 @@ public class AgregarServicioExtra extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        servicioNuevo = new ServicioExtraDTO(textNombre.getText(), Double.parseDouble(textPrecio.getText()), textDesc.getText());
         try {
+            servicioNuevo = new ServicioExtraDTO(textNombre.getText(), Double.parseDouble(textPrecio.getText()), textDesc.getText());
             if(control.agregarServicio(servicioNuevo)!=null){
-                control.mostrarMensaje("agregar");
+                control.mostrarMensajeServiciosExtra("agregar");
                 control.openFormPantallaPrincipal();
                 dispose();
             }
-        } catch (SubsistemaServicioExtraException ex) {
+        } catch (SubsistemaServicioExtraException | NumberFormatException ex) {
+            control.mostrarMensajeErrorServiciosExtra("agregar");
         }
         
     }//GEN-LAST:event_btnAceptarActionPerformed

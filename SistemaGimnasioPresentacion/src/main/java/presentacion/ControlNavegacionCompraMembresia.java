@@ -284,7 +284,7 @@ public class ControlNavegacionCompraMembresia {
     public boolean eliminarServicio(String id) throws SubsistemaServicioExtraException{
         return subsistema2.eliminarServicioExtra(id);
     }
-    public static void mostrarMensaje(String origen) {
+    public void mostrarMensajeServiciosExtra(String origen) {
         String mensaje = "";
 
         switch (origen.toLowerCase()) {
@@ -296,6 +296,33 @@ public class ControlNavegacionCompraMembresia {
                 break;
             case "eliminar":
                 mensaje = "Servicio extra eliminado correctamente.";
+                break;
+        }
+
+        int opcion = JOptionPane.showOptionDialog(
+                null,
+                mensaje,
+                "Información",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                new Object[]{"Aceptar"},
+                "Aceptar"
+        );
+    }
+    
+    public void mostrarMensajeErrorServiciosExtra(String origen) {
+        String mensaje = "";
+
+        switch (origen.toLowerCase()) {
+            case "agregar":
+                mensaje = "Hubo un error en la agregacion del servicio extra";
+                break;
+            case "editar":
+                mensaje = "El servicio Extra no se pudo editar correctamente";
+                break;
+            case "eliminar":
+                mensaje = "Error al eliminar el servicio extra";
                 break;
         }
 
