@@ -8,6 +8,17 @@ package excepciones;
  *
  * @author janethcristinagalvanquinonez
  */
-public class AgregarMembresiaException {
+public class AgregarMembresiaException extends Exception{
+
+    public AgregarMembresiaException() {
+    }
+
+    public AgregarMembresiaException(String message) {
+        super(message);
+    }
+
+    public AgregarMembresiaException(String message, Throwable cause) {
+        super(message, cause);
+    }
     
 }
