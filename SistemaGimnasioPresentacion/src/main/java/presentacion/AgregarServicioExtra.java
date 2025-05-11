@@ -124,6 +124,7 @@ public class AgregarServicioExtra extends javax.swing.JFrame {
             control.mostrarMensajeErrorServiciosExtra("agregar");
         }
         
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**

@@ -21,6 +21,7 @@ public class ClienteRegConMemYServDTO {
         this.cliente = cliente;
         this.membresia = membresia;
         this.servicios = servicios;
+        
     }
 
    public ClienteRegConMemYServDTO(){}
