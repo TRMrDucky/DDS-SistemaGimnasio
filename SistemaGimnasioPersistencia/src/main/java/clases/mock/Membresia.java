@@ -22,6 +22,7 @@ public class Membresia {
     private Date inicio;
     private Date fin;
     private Long duracion;
+    private final Long DURACION_DIA = 86400000L;
 
     public Membresia(String nombre, int id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado, Date inicio, Long duracion) {
         this.nombre = nombre;
