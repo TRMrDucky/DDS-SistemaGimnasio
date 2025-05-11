@@ -23,7 +23,6 @@ public class MostrarServiciosExtras extends javax.swing.JFrame {
      */
     public MostrarServiciosExtras(ControlNavegacionCompraMembresia control,String origen,ServicioExtraDTO servicioExtra) {
         initComponents();
-        getContentPane().setBackground(new java.awt.Color(48, 150, 244));
         this.control = control;
         this.servicioExtra = servicioExtra;
         switch(origen){
@@ -97,49 +96,51 @@ public class MostrarServiciosExtras extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(288, 288, 288)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(textPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGap(98, 98, 98)
-                                    .addComponent(jLabel4)
-                                    .addGap(100, 100, 100))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(86, 86, 86)
-                                        .addComponent(jLabel5)
-                                        .addGap(83, 83, 83))))
-                            .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(352, 352, 352)
-                        .addComponent(jLabel3)
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel2))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(textPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addGap(98, 98, 98)
+                                            .addComponent(jLabel4)
+                                            .addGap(100, 100, 100))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(textDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGap(86, 86, 86)
+                                                .addComponent(jLabel5)
+                                                .addGap(83, 83, 83))))
+                                    .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(102, 102, 102)
+                                .addComponent(jLabel3))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(labelTextoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labelTextoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)))
-                .addContainerGap(222, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(labelOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(190, 190, 190))
+                        .addGap(140, 140, 140)
+                        .addComponent(labelOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(168, 168, 168))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(labelOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(123, 123, 123)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(labelOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addComponent(labelTextoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addComponent(jLabel3)
@@ -155,7 +156,7 @@ public class MostrarServiciosExtras extends javax.swing.JFrame {
                 .addComponent(textDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(45, 45, 45))
         );
 
         pack();
@@ -164,22 +165,26 @@ public class MostrarServiciosExtras extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if(labelOrigen.getText().equals("Editar Servicio")){
-            ServicioExtraDTO servicio = new ServicioExtraDTO();
-            servicio.setId(servicioExtra.getId());
-            servicio.setNombreServicio(textNombre.getText());
-            servicio.setDescripcion(textDesc.getText());
-            servicio.setPrecio(Double.valueOf(textPrecio.getText()));
-            control.editarServicio(servicio);
-            control.mostrarMensaje("editar");
-            control.openFormPantallaPrincipal();
-            dispose();
+            try{
+                ServicioExtraDTO servicio = new ServicioExtraDTO();
+                servicio.setId(servicioExtra.getId());
+                servicio.setNombreServicio(textNombre.getText());
+                servicio.setDescripcion(textDesc.getText());
+                servicio.setPrecio(Double.valueOf(textPrecio.getText()));
+                control.editarServicio(servicio);
+                control.mostrarMensajeServiciosExtra("editar");
+                control.openFormPantallaPrincipal();
+                dispose();
+            }catch(Exception e){
+                control.mostrarMensajeErrorServiciosExtra("editar");
+            }
         }else{
             try {
                 control.eliminarServicio(servicioExtra.getId());
             } catch (SubsistemaServicioExtraException ex) {
-                Logger.getLogger(MostrarServiciosExtras.class.getName()).log(Level.SEVERE, null, ex);
+                control.mostrarMensajeErrorServiciosExtra("eliminar");
             }
-            control.mostrarMensaje("eliminar");
+            control.mostrarMensajeServiciosExtra("eliminar");
             control.openFormPantallaPrincipal();
             dispose();
         }

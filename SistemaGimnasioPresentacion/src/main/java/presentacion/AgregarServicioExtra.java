@@ -72,25 +72,26 @@ public class AgregarServicioExtra extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(229, 229, 229)
+                .addContainerGap(340, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(textPrecio)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel1)
-                        .addComponent(textNombre)
-                        .addComponent(textDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(194, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(178, 178, 178))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(textPrecio)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1)
+                                .addComponent(textNombre)
+                                .addComponent(textDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(335, 335, 335))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(322, 322, 322))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(87, 87, 87)
+                .addGap(107, 107, 107)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -102,9 +103,9 @@ public class AgregarServicioExtra extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addGap(38, 38, 38)
                 .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,14 +113,15 @@ public class AgregarServicioExtra extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        servicioNuevo = new ServicioExtraDTO(textNombre.getText(), Double.parseDouble(textPrecio.getText()), textDesc.getText());
         try {
+            servicioNuevo = new ServicioExtraDTO(textNombre.getText(), Double.parseDouble(textPrecio.getText()), textDesc.getText());
             if(control.agregarServicio(servicioNuevo)!=null){
-                control.mostrarMensaje("agregar");
+                control.mostrarMensajeServiciosExtra("agregar");
                 control.openFormPantallaPrincipal();
                 dispose();
             }
-        } catch (SubsistemaServicioExtraException ex) {
+        } catch (SubsistemaServicioExtraException | NumberFormatException ex) {
+            control.mostrarMensajeErrorServiciosExtra("agregar");
         }
         
     }//GEN-LAST:event_btnAceptarActionPerformed

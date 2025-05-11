@@ -5,7 +5,6 @@
 package interfaz;
 
 import dtos.ServicioExtraDTO;
-import excepciones.NegocioException;
 import excepciones.SubsistemaServicioExtraException;
 import java.util.List;
 

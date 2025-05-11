@@ -17,10 +17,12 @@ import org.bson.types.ObjectId;
 public class ServicioExtraMapper {
 
     public static ServicioExtra toEntity(ServicioExtraDTO servicioExtra) {
-        ServicioExtra se =  new ServicioExtra(servicioExtra.getNombreServicio(), servicioExtra.getPrecio(), servicioExtra.getDescripcion());
+    ServicioExtra se = new ServicioExtra(servicioExtra.getNombreServicio(),servicioExtra.getPrecio(),servicioExtra.getDescripcion());
+    if (servicioExtra.getId() != null && !servicioExtra.getId().isEmpty()) {
         se.setId(new ObjectId(servicioExtra.getId()));
-        return se;
     }
+    return se;
+}
 
     public static ServicioExtraDTO toDTO(ServicioExtra se) {
         ServicioExtraDTO servicio =  new ServicioExtraDTO(se.getNombreServicio(), se.getPrecio(), se.getDescripcion());
