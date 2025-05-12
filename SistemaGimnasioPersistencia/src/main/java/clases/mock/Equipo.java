@@ -14,21 +14,18 @@ import org.bson.types.ObjectId;
  */
 public class Equipo {
     
-  private ObjectId idEquipo;
-  private List<Mantenimiento> mantenimientos;
-  private String nombre;
-  private String marca;
-  private String modelo;
-  private String numeroSerie;
-  private Date fechaAdquisicion;
-  private String estado;
+    private ObjectId idEquipo;
+    private String nombre;
+    private String marca;
+    private String modelo;
+    private String numeroSerie;
+    private Date fechaAdquisicion;
+    private String estado;
 
   public Equipo() {
     }
 
-    public Equipo(ObjectId idEquipo, List<Mantenimiento> mantenimientos, String nombre, String marca, String modelo, String numeroSerie, Date fechaAdquisicion, String estado) {
-        this.idEquipo = idEquipo;
-        this.mantenimientos = mantenimientos;
+    public Equipo(String nombre, String marca, String modelo, String numeroSerie, Date fechaAdquisicion, String estado) {
         this.nombre = nombre;
         this.marca = marca;
         this.modelo = modelo;
@@ -36,32 +33,13 @@ public class Equipo {
         this.fechaAdquisicion = fechaAdquisicion;
         this.estado = estado;
     }
-
-    public Equipo(List<Mantenimiento> mantenimientos, String nombre, String marca, String modelo, String numeroSerie, Date fechaAdquisicion, String estado) {
-        this.mantenimientos = mantenimientos;
-        this.nombre = nombre;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.numeroSerie = numeroSerie;
-        this.fechaAdquisicion = fechaAdquisicion;
-        this.estado = estado;
-    }
-    
-
+  
     public ObjectId getIdEquipo() {
         return idEquipo;
     }
 
     public void setIdEquipo(ObjectId idEquipo) {
         this.idEquipo = idEquipo;
-    }
-
-    public List<Mantenimiento> getMantenimientos() {
-        return mantenimientos;
-    }
-
-    public void setMantenimientos(List<Mantenimiento> mantenimientos) {
-        this.mantenimientos = mantenimientos;
     }
 
     public String getNombre() {
@@ -114,8 +92,10 @@ public class Equipo {
 
     @Override
     public String toString() {
-        return "Equipo{" + "idEquipo=" + idEquipo + ", mantenimientos=" + mantenimientos + ", nombre=" + nombre + ", marca=" + marca + ", modelo=" + modelo + ", numeroSerie=" + numeroSerie + ", fechaAdquisicion=" + fechaAdquisicion + ", estado=" + estado + '}';
+        return "Equipo{" + "idEquipo=" + idEquipo + ", nombre=" + nombre + ", marca=" + marca + ", modelo=" + modelo + ", numeroSerie=" + numeroSerie + ", fechaAdquisicion=" + fechaAdquisicion + ", estado=" + estado + '}';
     }
+    
+    
   
     
     
