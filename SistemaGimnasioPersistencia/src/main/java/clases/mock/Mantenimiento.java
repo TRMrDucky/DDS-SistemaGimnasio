@@ -14,17 +14,27 @@ import org.bson.types.ObjectId;
 public class Mantenimiento {
    
     private ObjectId idMantenimiento;
-    private Equipo idEquipo;
+    private ObjectId idEquipo;
     private Date fechaMantenimiento;
     private String tipoMantenimiento;
     private float costo;
     private String observaciones;
     private Date fechaSeguimiento;
-    
+
     public Mantenimiento() {
     }
-   
+
+    public Mantenimiento(ObjectId idEquipo, Date fechaMantenimiento, String tipoMantenimiento, float costo, String observaciones, Date fechaSeguimiento) {
+        this.idEquipo = idEquipo;
+        this.fechaMantenimiento = fechaMantenimiento;
+        this.tipoMantenimiento = tipoMantenimiento;
+        this.costo = costo;
+        this.observaciones = observaciones;
+        this.fechaSeguimiento = fechaSeguimiento;
+    }
+
     
+
     public ObjectId getIdMantenimiento() {
         return idMantenimiento;
     }
@@ -33,14 +43,14 @@ public class Mantenimiento {
         this.idMantenimiento = idMantenimiento;
     }
 
-    public Equipo getIdEquipo() {
+    public ObjectId getIdEquipo() {
         return idEquipo;
     }
 
-    public void setIdEquipo(Equipo idEquipo) {
+    public void setIdEquipo(ObjectId idEquipo) {
         this.idEquipo = idEquipo;
     }
-    
+
     public Date getFechaMantenimiento() {
         return fechaMantenimiento;
     }
@@ -85,6 +95,7 @@ public class Mantenimiento {
     public String toString() {
         return "Mantenimiento{" + "idMantenimiento=" + idMantenimiento + ", idEquipo=" + idEquipo + ", fechaMantenimiento=" + fechaMantenimiento + ", tipoMantenimiento=" + tipoMantenimiento + ", costo=" + costo + ", observaciones=" + observaciones + ", fechaSeguimiento=" + fechaSeguimiento + '}';
     }
+
     
     
 
