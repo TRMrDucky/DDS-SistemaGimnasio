@@ -6,6 +6,7 @@ package clases.mock;
 
 import java.util.Date;
 import java.util.List;
+import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.types.ObjectId;
 
 /**
@@ -14,6 +15,7 @@ import org.bson.types.ObjectId;
  */
 public class Equipo {
     
+    @BsonId
     private ObjectId idEquipo;
     private String nombre;
     private String marca;
