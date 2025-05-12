@@ -7,6 +7,7 @@ import org.bson.types.ObjectId;
  * @author Ramón Zamudio
  */
 public class ServicioExtra {
+    
     private ObjectId id;
     private String nombreServicio;
     private double precio;
