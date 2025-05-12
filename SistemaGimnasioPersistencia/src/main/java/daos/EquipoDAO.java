@@ -61,12 +61,8 @@ public class EquipoDAO implements IEquipoDAO {
             Filters.regex("marca", patron)
         );
 
-        return coleccion.find(filtroBusqueda)
-                        .projection(Projections.fields(
-                            Projections.include("nombre", "numeroSerie", "marca"),
-                            Projections.include("_id")
-                        ))
-                        .into(new ArrayList<>());
+      return coleccion.find(filtroBusqueda).into(new ArrayList<>());
+
     } catch (Exception e) {
         throw new ConsultarEquipoException("Error al buscar equipos por filtro", e);
     }
