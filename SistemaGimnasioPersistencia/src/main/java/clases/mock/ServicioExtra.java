@@ -72,6 +72,12 @@ public class ServicioExtra {
     public String toString() {
         return "ServicioExtraDTO{" + "id=" + id + ", nombreServicio=" + nombreServicio + ", precio=" + precio + '}';
     }
+    public String getIdString(){
+        return id.toString();
+    }
     
+    public void setIdString(String id){
+        this.id = new ObjectId(id);
+    }    
 
 }
