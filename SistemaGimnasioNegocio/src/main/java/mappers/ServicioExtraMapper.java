@@ -19,21 +19,21 @@ public class ServicioExtraMapper {
     public static ServicioExtra toEntity(ServicioExtraDTO servicioExtra) {
     ServicioExtra se = new ServicioExtra(servicioExtra.getNombreServicio(),servicioExtra.getPrecio(),servicioExtra.getDescripcion());
     if (servicioExtra.getId() != null && !servicioExtra.getId().isEmpty()) {
-        se.setId(new ObjectId(servicioExtra.getId()));
+        se.setIdString(servicioExtra.getId());
     }
     return se;
 }
 
     public static ServicioExtraDTO toDTO(ServicioExtra se) {
         ServicioExtraDTO servicio =  new ServicioExtraDTO(se.getNombreServicio(), se.getPrecio(), se.getDescripcion());
-        servicio.setId(se.getId().toHexString());
+        servicio.setId(se.getIdString());
         return servicio;
     }
 
     public static List<ServicioExtraDTO> toListDTO(List<ServicioExtra> serviciosExtra) {
         List<ServicioExtraDTO> servicios = new LinkedList<>();
         for (ServicioExtra se : serviciosExtra) {
-            servicios.add(new ServicioExtraDTO(se.getId().toHexString(), se.getNombreServicio(), se.getPrecio(), se.getDescripcion()));
+            servicios.add(ServicioExtraMapper.toDTO(se));
         }
         return servicios;
     }

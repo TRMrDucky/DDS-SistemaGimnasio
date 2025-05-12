@@ -26,6 +26,7 @@ public class SeleccionarServicioExtra extends javax.swing.JFrame {
     public SeleccionarServicioExtra(ControlNavegacionCompraMembresia control,String origen) {
         initComponents();
         List<ServicioExtraDTO> listaServicios = control.obtenerServiciosExtrasDTO();
+        getContentPane().setBackground(new java.awt.Color(48, 150, 244));
         jPanel1.removeAll();
         jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
         if("editar".equals(origen)){
