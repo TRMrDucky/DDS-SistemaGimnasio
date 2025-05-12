@@ -6,6 +6,8 @@ package bos;
 
 import clases.mock.Membresia;
 import dtos.MembresiaDTO;
+import excepciones.AgregarMembresiaException;
+import excepciones.NegocioException;
 import interfaces.bo.IMembresiaBO;
 import interfaces.dao.IMembresiaDAO;
 import java.util.Collections;
@@ -23,6 +25,15 @@ public class MembresiaBO implements IMembresiaBO {
 
     public MembresiaBO(IMembresiaDAO membresiaDAO) {
         this.membresiaDAO = membresiaDAO;
+    }
+    
+    public MembresiaDTO agregarMembresia(MembresiaDTO membresia) throws NegocioException{
+        try{
+            return MembresiaMapper.toDTO(membresiaDAO.agregarMembresia(MembresiaMapper.toEntity(membresia)));
+        } catch(AgregarMembresiaException e){
+            throw new NegocioException("Error al agregar membresia "+e);
+        }
+        
     }
 
     @Override
