@@ -5,7 +5,7 @@
 package bos;
 
 import daos.ClienteDAO;
-import daos.MembresiaDAO;
+import daos.MembresiaMockDAO;
 import daos.ServicioExtraDAO;
 
 /**
@@ -27,7 +27,7 @@ public class FabricaBOs {
     }
     
     public static MembresiaBO getInstanceMembresiaBO(){
-        MembresiaDAO membresiaDAO= MembresiaDAO.getInstance();
+        MembresiaMockDAO membresiaDAO= MembresiaMockDAO.getInstance();
         MembresiaBO membresiaBO= new MembresiaBO(membresiaDAO);
         return membresiaBO;
     }
