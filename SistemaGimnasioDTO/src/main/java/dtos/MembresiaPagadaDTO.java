@@ -21,7 +21,7 @@ public class MembresiaPagadaDTO extends MembresiaDTO{
     public MembresiaPagadaDTO(String nombre, int id, double precio, List<ServicioExtraDTO> serviciosExtra, EnumEstadoMembresia estado, Date inicio, Date fin) {
         super(nombre, id, precio, serviciosExtra, estado);
         this.inicio = inicio;
-        this.fin = fin;
+       this.fin = fin;
     }
 
     public MembresiaPagadaDTO(Date inicio, Date fin) {

@@ -30,9 +30,27 @@ public class Membresia {
         this.precio = precio;
         this.serviciosExtra = serviciosExtra;
         this.estado = estado;
-        this.inicio = inicio;
+        this.inicio = new Date();
         this.duracion = duracion;
-        this.fin = new Date(inicio.getTime()+duracion);
+        this.fin =  new Date(this.inicio.getTime() + (duracion * DURACION_DIA));
+    }
+
+    public Membresia(String nombre, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado, Date inicio, Date fin, Long duracion) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.serviciosExtra = serviciosExtra;
+        this.estado = estado;
+        this.inicio = inicio;
+        this.fin = fin;
+        this.duracion = duracion;
+    }
+
+    public Membresia(String nombre, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado, Long duracion) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.serviciosExtra = serviciosExtra;
+        this.estado = estado;
+        this.duracion = duracion;
     }
     
     

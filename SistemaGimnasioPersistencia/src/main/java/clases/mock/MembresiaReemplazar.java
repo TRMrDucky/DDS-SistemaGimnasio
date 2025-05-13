@@ -36,6 +36,8 @@ public class MembresiaReemplazar {
         this.serviciosExtras = serviciosExtras;
         
     }
+    
+    
 
     public MembresiaReemplazar(int idMembresia, String tipo, String estado, double costo, List<ServicioExtra> serviciosExtras) {
         this.idMembresia = idMembresia;
