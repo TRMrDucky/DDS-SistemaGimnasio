@@ -10,7 +10,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Projections;
 import com.mongodb.client.result.DeleteResult;
-import com.mongodb.client.result.InsertOneResult;
+
 import excepciones.AgregarEquipoException;
 import excepciones.ConsultarEquipoException;
 import excepciones.EliminarEquipoException;
@@ -82,10 +82,8 @@ public class EquipoDAO implements IEquipoDAO {
     @Override
     public Equipo agregarEquipo(Equipo equipo) throws AgregarEquipoException {
         try {
-            InsertOneResult resultado = coleccion.insertOne(equipo);
-            if (!resultado.wasAcknowledged()) {
-                throw new AgregarEquipoException("La inserción no fue reconocida por el servidor");
-            }
+          coleccion.insertOne(equipo);
+           
             return equipo;
         } catch (Exception e) {
             throw new AgregarEquipoException("Error al agregar equipo a la base de datos", e);

@@ -8,7 +8,7 @@ import Conexion.ConexionBD;
 import clases.mock.Mantenimiento;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
-import com.mongodb.client.result.InsertOneResult;
+
 import excepciones.ConsultarMantenimientoException;
 import excepciones.RegistrarMantenimientoException;
 import interfaces.dao.IMantenimientoDAO;
@@ -40,10 +40,8 @@ public class MantenimientoDAO implements IMantenimientoDAO {
      @Override
     public Mantenimiento registrarMantenimiento(Mantenimiento mantenimiento) throws RegistrarMantenimientoException {
         try {
-            InsertOneResult resultado = coleccion.insertOne(mantenimiento);
-            if (!resultado.wasAcknowledged()) {
-                throw new RegistrarMantenimientoException("La inserción no fue reconocida por el servidor.");
-            }
+         coleccion.insertOne(mantenimiento);
+            
             return mantenimiento;
         } catch (Exception e) {
             throw new RegistrarMantenimientoException("Error al registrar el mantenimiento.", e);
