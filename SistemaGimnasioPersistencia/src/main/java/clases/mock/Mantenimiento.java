@@ -12,7 +12,7 @@ import org.bson.types.ObjectId;
  * @author Cricri
  */
 public class Mantenimiento {
-   
+   //considerarar consistencia,consulta
     private ObjectId idMantenimiento;
     private ObjectId idEquipo;
     private Date fechaMantenimiento;

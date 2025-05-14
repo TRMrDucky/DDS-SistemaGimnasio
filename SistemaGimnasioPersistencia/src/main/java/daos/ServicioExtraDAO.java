@@ -10,7 +10,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.DeleteResult;
-import com.mongodb.client.result.InsertOneResult;
 import com.mongodb.client.result.UpdateResult;
 import excepciones.AgregarServicioExtraException;
 import excepciones.ConsultarServiciosExtraException;
@@ -66,10 +65,7 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
     @Override
     public ServicioExtra agregarServicio(ServicioExtra servicio)throws AgregarServicioExtraException{
         try{
-            InsertOneResult resultado = coleccion.insertOne(servicio);
-            if(!resultado.wasAcknowledged()){
-                throw new AgregarServicioExtraException("La insercion no fue reconocida por el servidor");
-            }
+            coleccion.insertOne(servicio);
             return servicio;
         }catch(Exception e){
             throw new AgregarServicioExtraException("Error en la agregacion del servicio en la base de datos", e.getCause());
