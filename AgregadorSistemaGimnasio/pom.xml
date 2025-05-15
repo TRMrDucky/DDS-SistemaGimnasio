@@ -14,6 +14,7 @@
         <module>../SistemaGimnasioDTO</module>
         <module>../SistemaGimnasioGestiosServiciosExtras</module>
         <module>../SistemaGimnasioGestionMembresias</module>
+        <module>../SubsistemaGimnasioMantenimientoEquipos</module>
     </modules>
     <dependencies>
         <dependency>
