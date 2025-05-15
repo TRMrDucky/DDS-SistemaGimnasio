@@ -71,6 +71,13 @@ public class ControlNavegacionCompraMembresia {
         em.setVisible(true);
 //
     }
+    
+    public void openFormAgregarMembresia(){
+        new AgregarMembresia(this).setVisible(true);
+    }
+    public void openFormOpcionesModuloMembresia(){
+        new SeleccionarOpcionMemb(this).setVisible(true);
+    }
 
     /**
      * Devuelve la lista de clientes
