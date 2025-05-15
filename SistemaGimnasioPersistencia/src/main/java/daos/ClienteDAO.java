@@ -38,11 +38,11 @@ public class ClienteDAO implements IClienteDAO {
     private ClienteDAO() {
         listaClientes = new LinkedList<>();
         listaClientes.add(new Cliente("Pedro", "Sola Meza",
-                "pedro.sola@hotmail.com", "6441348130", "1"));
+                "pedro.sola@hotmail.com", "6441348130", "68110d3cb41a0ec85044152e"));
         listaClientes.add(new Cliente("Vanessa Paola", "Solano Lopez",
-                "vapo23@gmail.com", "6441385760", "2"));
+                "vapo23@gmail.com", "6441385760", "68110d3cb41a0ec85043152e"));
         listaClientes.add(new Cliente("Alondra Lizeth", "Aviles",
-                "pedro.sola@hotmail.com", "6442878593", "3"));
+                "pedro.sola@hotmail.com", "6442878593", "68110d3cb41a0ec85044142e"));
     }
 
     public static ClienteDAO getInstance() {
