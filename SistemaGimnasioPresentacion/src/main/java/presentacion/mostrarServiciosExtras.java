@@ -64,7 +64,7 @@ public class MostrarServiciosExtras extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         labelTextoOrigen = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(48, 150, 244));
 
         labelOrigen.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
