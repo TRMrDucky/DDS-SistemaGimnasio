@@ -13,6 +13,7 @@
         <module>../SubsistemaCompraMembresia</module>
         <module>../SistemaGimnasioDTO</module>
         <module>../SistemaGimnasioGestiosServiciosExtras</module>
+        <module>../SistemaGimnasioGestionMembresias</module>
     </modules>
     <dependencies>
         <dependency>

@@ -113,9 +113,9 @@ public class Membresia {
         return id;
     }
 
-//    public void int(ObjectId id) {
-//        this.id = id;
-//    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public double getPrecio() {
         return precio;
