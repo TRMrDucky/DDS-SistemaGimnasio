@@ -5,7 +5,9 @@
 package presentacion;
 
 import dtos.ServicioExtraDTO;
+import java.awt.GridLayout;
 import java.util.List;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 
 /**
@@ -21,15 +23,22 @@ public class AgregarMembresia extends javax.swing.JFrame {
     public AgregarMembresia(ControlNavegacionCompraMembresia control) {
         initComponents();
         this.control= control;
+        cargarServiciosExtras();
         
     }
     
-    public void cargarServiciosExtras(JComboBox<String> comboServicios){
+    public void cargarServiciosExtras(){
+        panelServicios.setLayout(new GridLayout(0, 1));
+        panelServicios.removeAll();
         List<ServicioExtraDTO> servicios= control.obtenerServiciosExtrasDTO();
-        comboServicios.removeAllItems();
+    
         for(ServicioExtraDTO servicio: servicios){
-            comboServicios.addItem(servicio.getNombreServicio());
+            JCheckBox serv= new JCheckBox(servicio.getNombreServicio());
+            panelServicios.add(serv);
+            System.out.println(serv);
         }
+        panelServicios.revalidate();
+        panelServicios.repaint();
     }
 
     /**
@@ -52,7 +61,7 @@ public class AgregarMembresia extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        panelServicios = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -109,16 +118,16 @@ public class AgregarMembresia extends javax.swing.JFrame {
         jLabel4.setText("SERVICIOS EXTRAS:");
         jLabel4.setToolTipText("");
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        panelServicios.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelServiciosLayout = new javax.swing.GroupLayout(panelServicios);
+        panelServicios.setLayout(panelServiciosLayout);
+        panelServiciosLayout.setHorizontalGroup(
+            panelServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 192, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelServiciosLayout.setVerticalGroup(
+            panelServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -141,7 +150,7 @@ public class AgregarMembresia extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(panelServicios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -165,7 +174,7 @@ public class AgregarMembresia extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelServicios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
@@ -242,10 +251,10 @@ public class AgregarMembresia extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JPanel panelServicios;
     // End of variables declaration//GEN-END:variables
 }
