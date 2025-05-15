@@ -4,9 +4,19 @@
  */
 package presentacion;
 
+import Enumeradores.EnumEstadoMembresia;
+import dtos.MembresiaDTO;
 import dtos.ServicioExtraDTO;
+import excepciones.DuracionException;
+import excepciones.NombreVacioException;
+import excepciones.PrecioVacioException;
+import excepciones.SubsistemaMembresiaException;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 
@@ -17,6 +27,7 @@ import javax.swing.JComboBox;
 public class AgregarMembresia extends javax.swing.JFrame {
     
     private ControlNavegacionCompraMembresia control;
+    private List<JCheckBox> listaCheckBoxes = new ArrayList<>();
     /**
      * Creates new form AgregarMembresia
      */
@@ -27,7 +38,7 @@ public class AgregarMembresia extends javax.swing.JFrame {
         
     }
     
-    public void cargarServiciosExtras(){
+    private void cargarServiciosExtras(){
         panelServicios.setLayout(new GridLayout(0, 1));
         panelServicios.removeAll();
         List<ServicioExtraDTO> servicios= control.obtenerServiciosExtrasDTO();
@@ -35,10 +46,54 @@ public class AgregarMembresia extends javax.swing.JFrame {
         for(ServicioExtraDTO servicio: servicios){
             JCheckBox serv= new JCheckBox(servicio.getNombreServicio());
             panelServicios.add(serv);
+            listaCheckBoxes.add(serv);
             System.out.println(serv);
         }
         panelServicios.revalidate();
         panelServicios.repaint();
+    }
+    
+    private List<ServicioExtraDTO> serviciosSeleccionados(){
+        return listaCheckBoxes.stream()
+                .filter(JCheckBox::isSelected)
+                .map(check -> new ServicioExtraDTO(check.getText(), 0))
+                .collect(Collectors.toList());
+    }
+    
+    private void agregarMembresia(){
+        
+        if (control == null) {
+        System.err.println("Error: `control` está NULL antes de agregar la membresía.");
+        return;
+}
+
+        String nombre= campoNombre.getText();
+        long duracionDias = Long.parseLong(campoDias.getText());
+        long duracionMilisegundos = duracionDias * 86400000L;
+                
+        double precio= Double.parseDouble(campoCosto.getText());
+        
+         List<ServicioExtraDTO> serviciosSeleccionados = serviciosSeleccionados(); 
+         MembresiaDTO membresia= new MembresiaDTO(nombre, precio, serviciosSeleccionados, EnumEstadoMembresia.ACTIVA, duracionMilisegundos);
+          System.out.println(membresia);
+          System.out.println("Nombre: " + membresia.getNombre());
+            System.out.println("Precio: " + membresia.getPrecio());
+            System.out.println("Servicios: " + membresia.getServiciosExtra());
+            System.out.println("Duración en milisegundos: " + membresia.getDuracion());
+
+        try {
+            control.agregarMembresia(membresia);
+           
+        } catch (SubsistemaMembresiaException ex) {
+            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NombreVacioException ex) {
+            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PrecioVacioException ex) {
+            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DuracionException ex) {
+            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
     }
 
     /**
@@ -54,14 +109,15 @@ public class AgregarMembresia extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        campoNombre = new javax.swing.JTextField();
+        campoDias = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        campoCosto = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         panelServicios = new javax.swing.JPanel();
+        botonAgregar = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -88,18 +144,11 @@ public class AgregarMembresia extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 217, 255));
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField3.setText("nombre...");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
+        campoNombre.setBackground(new java.awt.Color(255, 255, 255));
+        campoNombre.setForeground(new java.awt.Color(51, 51, 51));
 
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField5.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField5.setText("dias...");
+        campoDias.setBackground(new java.awt.Color(255, 255, 255));
+        campoDias.setForeground(new java.awt.Color(102, 102, 102));
 
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("NOMBRE DE MEMBRESIA");
@@ -110,9 +159,8 @@ public class AgregarMembresia extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("COSTO ");
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField2.setText("$...");
+        campoCosto.setBackground(new java.awt.Color(255, 255, 255));
+        campoCosto.setForeground(new java.awt.Color(102, 102, 102));
 
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("SERVICIOS EXTRAS:");
@@ -131,26 +179,39 @@ public class AgregarMembresia extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        botonAgregar.setBackground(new java.awt.Color(204, 0, 204));
+        botonAgregar.setText("AGREGAR");
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField3)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(78, 78, 78)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(panelServicios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(campoNombre)
+                                .addComponent(campoDias, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(78, 78, 78)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(panelServicios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -165,17 +226,19 @@ public class AgregarMembresia extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(campoDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(campoCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelServicios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -233,9 +296,9 @@ public class AgregarMembresia extends javax.swing.JFrame {
         pack();
     }//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+       agregarMembresia();
+    }//GEN-LAST:event_botonAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,6 +306,10 @@ public class AgregarMembresia extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAgregar;
+    private javax.swing.JTextField campoCosto;
+    private javax.swing.JTextField campoDias;
+    private javax.swing.JTextField campoNombre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -252,9 +319,6 @@ public class AgregarMembresia extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JPanel panelServicios;
     // End of variables declaration//GEN-END:variables
 }

@@ -13,10 +13,15 @@ import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
 import dtos.ServicioExtraDTO;
 import dtos.MembresiaDTO;
+import excepciones.DuracionException;
 import excepciones.NegocioException;
+import excepciones.NombreVacioException;
+import excepciones.PrecioVacioException;
 import excepciones.RegistroClienteException;
+import excepciones.SubsistemaMembresiaException;
 import excepciones.SubsistemaServicioExtraException;
 import interfaces.IManejadorComprasMembresias;
+import interfaz.IManejadorMembresia;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,10 +36,14 @@ public class ControlNavegacionCompraMembresia {
 
     private IManejadorComprasMembresias subsistema;
     private IManejadorServicioExtra subsistema2;
+    private IManejadorMembresia subsistemaMembresias;
+   
     
-    public ControlNavegacionCompraMembresia(IManejadorComprasMembresias subsistema,IManejadorServicioExtra subsistema2 ){
+    public ControlNavegacionCompraMembresia(IManejadorComprasMembresias subsistema,IManejadorServicioExtra subsistema2 , IManejadorMembresia subsistemaMembresias){
         this.subsistema = subsistema;
         this.subsistema2 = subsistema2;
+        this.subsistemaMembresias= subsistemaMembresias;
+        
     }
 
     
@@ -75,6 +84,13 @@ public class ControlNavegacionCompraMembresia {
     public void openFormAgregarMembresia(){
         new AgregarMembresia(this).setVisible(true);
     }
+    
+    public MembresiaDTO agregarMembresia(MembresiaDTO membresia) throws SubsistemaMembresiaException, NombreVacioException, PrecioVacioException, DuracionException{
+        System.out.println("llega");
+        return subsistemaMembresias.agregarMembresia(membresia);
+       
+    }
+    
     public void openFormOpcionesModuloMembresia(){
         new SeleccionarOpcionMemb(this).setVisible(true);
     }

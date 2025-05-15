@@ -38,6 +38,16 @@ public class MembresiaDTO {
         this.duracion = duracion;
     }
 
+    public MembresiaDTO(String nombre, double precio, List<ServicioExtraDTO> serviciosExtra, EnumEstadoMembresia estado, Long duracion) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.serviciosExtra = serviciosExtra;
+        this.estado = estado;
+        this.duracion = duracion;
+    }
+    
+    
+
     public MembresiaDTO() {
     }
 
@@ -52,7 +62,7 @@ public class MembresiaDTO {
     public int getId() {
         return id;
     }
-
+//
     public void setId(int id) {
         this.id = id;
     }

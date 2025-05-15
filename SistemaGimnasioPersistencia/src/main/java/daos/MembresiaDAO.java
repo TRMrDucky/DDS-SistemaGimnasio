@@ -9,11 +9,11 @@ import Enumeradores.EnumEstadoMembresia;
 import static Enumeradores.EnumEstadoMembresia.ACTIVA;
 import clases.mock.Membresia;
 import clases.mock.ServicioExtra;
-import clases.mock.membresias.DayPass;
-import clases.mock.membresias.FifteenDaysPass;
-import clases.mock.membresias.MonthlyPass;
-import clases.mock.membresias.SevenDaysPass;
-import clases.mock.membresias.TenDaysPass;
+//import clases.mock.membresias.DayPass;
+//import clases.mock.membresias.FifteenDaysPass;
+//import clases.mock.membresias.MonthlyPass;
+//import clases.mock.membresias.SevenDaysPass;
+//import clases.mock.membresias.TenDaysPass;
 import com.mongodb.client.MongoCollection;
 
 import excepciones.ConsultarServiciosExtraException;
@@ -67,9 +67,12 @@ public class MembresiaDAO implements IMembresiaDAO {
     
     
     
+    @Override
     public Membresia agregarMembresia(Membresia membresia) throws AgregarMembresiaException{
             try{
+                System.out.println("llegaper");
             MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
+                System.out.println("a pers llega como "+membresia);
             coleccion.insertOne(membresia);
             
          
