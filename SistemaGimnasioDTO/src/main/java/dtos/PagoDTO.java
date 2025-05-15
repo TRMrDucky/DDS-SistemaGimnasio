@@ -11,30 +11,31 @@ import java.time.LocalDate;
  * @author Jose
  */
 public class PagoDTO {
-     private int idCliente;
+
+    private String idCliente;
     private double monto;
     private boolean aprobado;
-    
-    public PagoDTO(int idCliente, double monto, boolean aprobado) {
+
+    public PagoDTO(String idCliente, double monto, boolean aprobado) {
         this.idCliente = idCliente;
         this.monto = monto;
         this.aprobado = aprobado;
     }
 
-    public int getIdCliente() { 
-        return idCliente; 
-    }
-   
-    public double getMonto() { 
-        return monto; 
-    }
-    
-    public boolean isAprobado() { 
-        return aprobado; 
+    public String getIdCliente() {
+        return idCliente;
     }
 
-    public void setAprobado(boolean aprobado) { 
-        this.aprobado = aprobado; 
+    public double getMonto() {
+        return monto;
+    }
+
+    public boolean isAprobado() {
+        return aprobado;
+    }
+
+    public void setAprobado(boolean aprobado) {
+        this.aprobado = aprobado;
     }
 
     @Override
@@ -42,6 +43,3 @@ public class PagoDTO {
         return "PagoDTO{" + "idCliente=" + idCliente + ", monto=" + monto + ", aprobado=" + aprobado + '}';
     }
 }
-    
-    
-

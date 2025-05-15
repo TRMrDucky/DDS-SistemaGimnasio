@@ -7,6 +7,7 @@ package clases.mock;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -19,14 +20,14 @@ public class Cliente {
     private String numeroTelefono;
     private List<Membresia> membresias;
     private List<Date> asistencia;
-    private int id;
+    private ObjectId id;
 
-    public Cliente(String nombres, String apellidos, String email, String numeroTelefono, int id) {
+    public Cliente(String nombres, String apellidos, String email, String numeroTelefono, String id) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.email = email;
         this.numeroTelefono = numeroTelefono;
-        this.id = id;
+        this.id = new ObjectId(id);
         this.membresias = new LinkedList();
         this.asistencia = new LinkedList();
     }
@@ -72,12 +73,12 @@ public class Cliente {
         this.numeroTelefono = numeroTelefono;
     }
 
-    public int getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = new ObjectId(id);
     }
 
     public Cliente() {
@@ -97,6 +98,11 @@ public class Cliente {
 
     public void setAsistencia(List<Date> asistencia) {
         this.asistencia = asistencia;
+    }
+    
+    public Date addAsistencia(Date asistencia){
+        this.asistencia.add(asistencia);
+        return asistencia;
     }
     
     

@@ -6,9 +6,7 @@ package bos;
 
 import clases.mock.Cliente;
 import clases.mock.Membresia;
-import clases.mock.MembresiaReemplazar;
 import dtos.ClienteDTO;
-import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoConMembListaDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.MembresiaDTO;
@@ -17,9 +15,7 @@ import excepciones.ConsultaDatosClienteException;
 import excepciones.NegocioException;
 import interfaces.bo.IRegistrarClienteBO;
 import interfaces.dao.IClienteDAO;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import mappers.ClienteMapper;
 import mappers.MembresiaMapper;
 
@@ -50,7 +46,7 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
         return listaClientesDTO;
     }
     @Override
-    public String obtenerNombreCliente(int id) throws NegocioException {
+    public String obtenerNombreCliente(String id) throws NegocioException {
 
         try {
             return clienteDAO.obtenerNombreCliente(id);
@@ -60,7 +56,7 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
     }
 
     @Override
-    public String obtenerNumeroCliente(int id) throws NegocioException {
+    public String obtenerNumeroCliente(String id) throws NegocioException {
         try {
             return clienteDAO.obtenerNumeroCliente(id);
         } catch (ConsultaDatosClienteException e) {
@@ -69,7 +65,7 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
     }
 
     @Override
-    public MembresiaPagadaDTO agregarMembresia(MembresiaDTO membresia, int id) {
+    public MembresiaPagadaDTO agregarMembresia(MembresiaDTO membresia, String id) {
         if(!clienteDAO.validarSiTieneMem(MembresiaMapper.toEntity(membresia), id)){
             clienteDAO.agregarSiNoTiene(MembresiaMapper.toEntity(membresia), id);
         }
@@ -78,7 +74,7 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
     }
     
         @Override
-  public ClienteRegistradoConMembListaDTO obtenerClienteCompleto(int id) throws NegocioException {
+  public ClienteRegistradoConMembListaDTO obtenerClienteCompleto(String id) throws NegocioException {
       try {
           Cliente cliente = clienteDAO.obtenerClienteCompleto(id);
           return ClienteMapper.toCompletoDTO(cliente);
@@ -93,7 +89,7 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
     
 
     @Override
-    public MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresiaDTO, int id) {
+    public MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresiaDTO, String id) {
         Membresia membresia = MembresiaMapper.toEntity(membresiaDTO);
         if(!clienteDAO.validarSiTieneMem(membresia, id)){
             return MembresiaMapper.toDTO(clienteDAO.agregarSiNoTiene(membresia, id));

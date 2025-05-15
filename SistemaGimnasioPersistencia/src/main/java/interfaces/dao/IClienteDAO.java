@@ -8,6 +8,7 @@ import clases.mock.Cliente;
 import clases.mock.Membresia;
 import excepciones.ConsultaDatosClienteException;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -17,10 +18,10 @@ public interface IClienteDAO {
     
     public abstract Cliente registrarCliente(Cliente cliente);
     public abstract List<Cliente> obtenerListaClientes();
-    public String obtenerNombreCliente(int id) throws ConsultaDatosClienteException;
-    public String obtenerNumeroCliente(int id) throws ConsultaDatosClienteException;
-    public Cliente obtenerClienteCompleto(int id) throws ConsultaDatosClienteException ;
-    public boolean validarSiTieneMem(Membresia membresia, int id);
-    public Membresia actualizarSiTiene(Membresia membresia, int id);
-    public Membresia agregarSiNoTiene(Membresia membresia, int id);
+    public String obtenerNombreCliente(String id) throws ConsultaDatosClienteException;
+    public String obtenerNumeroCliente(String id) throws ConsultaDatosClienteException;
+    public Cliente obtenerClienteCompleto(String id) throws ConsultaDatosClienteException ;
+    public boolean validarSiTieneMem(Membresia membresia, String id);
+    public Membresia actualizarSiTiene(Membresia membresia, String id);
+    public Membresia agregarSiNoTiene(Membresia membresia, String id);
 }

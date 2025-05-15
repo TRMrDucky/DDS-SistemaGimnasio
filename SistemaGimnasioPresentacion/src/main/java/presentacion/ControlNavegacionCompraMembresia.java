@@ -190,7 +190,7 @@ public class ControlNavegacionCompraMembresia {
      * @param id id del cliente
      * @return un string que representa el nombre completo
      */
-    public String obtenerNombreCliente(int id) {
+    public String obtenerNombreCliente(String id) {
         System.out.println(id);
         try {
             return subsistema.obtenerNombreCliente(id);
@@ -205,7 +205,7 @@ public class ControlNavegacionCompraMembresia {
      * @param id id del cliente a buscar
      * @return 
      */
-    public ClienteRegistradoDTO obtenerCliente(int id) {
+    public ClienteRegistradoDTO obtenerCliente(String id) {
         return subsistema.buscarClienteporID(id);
     }
 
@@ -215,7 +215,7 @@ public class ControlNavegacionCompraMembresia {
      * @param id id del cliente
      * @return un string que representa el numero de teléfono
      */
-    public String obtenerNumeroCliente(int id) {
+    public String obtenerNumeroCliente(String id) {
          System.out.println(id);
         try {
             return subsistema.obtenerNumeroCliente(id);
@@ -342,11 +342,11 @@ public class ControlNavegacionCompraMembresia {
         return subsistema.setearFecha(membresia);
     }
     
-    public MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, int id){
+    public MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, String id){
         return subsistema.agregarMembresiaCliente(membresa, id);
     } 
     
-    public ClienteRegistradoConMembListaDTO obtenerClienteCompletoPorId(int id) {
+    public ClienteRegistradoConMembListaDTO obtenerClienteCompletoPorId(String id) {
     try {
     
         return subsistema.obtenerClienteCompleto(id);

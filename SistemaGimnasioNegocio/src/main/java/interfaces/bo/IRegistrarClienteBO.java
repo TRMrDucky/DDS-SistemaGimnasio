@@ -4,9 +4,7 @@
  */
 package interfaces.bo;
 
-import clases.mock.Membresia;
 import dtos.ClienteDTO;
-import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoConMembListaDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.MembresiaDTO;
@@ -20,9 +18,9 @@ import java.util.List;
 public interface IRegistrarClienteBO {
     public abstract ClienteRegistradoDTO registrarCliente(ClienteDTO cliente);
     public abstract List<ClienteRegistradoDTO> obtenerListaClientes();
-    public abstract String obtenerNombreCliente(int id) throws NegocioException;
-    public abstract String obtenerNumeroCliente(int id) throws NegocioException;
-    public abstract MembresiaDTO agregarMembresia(MembresiaDTO membresia, int id);
-    public abstract ClienteRegistradoConMembListaDTO obtenerClienteCompleto(int id) throws NegocioException;
-    public abstract MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, int id);
+    public abstract String obtenerNombreCliente(String id) throws NegocioException;
+    public abstract String obtenerNumeroCliente(String id) throws NegocioException;
+    public abstract MembresiaDTO agregarMembresia(MembresiaDTO membresia, String id);
+    public abstract ClienteRegistradoConMembListaDTO obtenerClienteCompleto(String id) throws NegocioException;
+    public abstract MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, String id);
 }

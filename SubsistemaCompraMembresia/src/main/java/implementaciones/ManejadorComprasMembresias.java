@@ -4,14 +4,12 @@ package implementaciones;
 import Enums.MetodosPagoEnum;
 import ProcesadorPago.ProcesadorPago;
 import bos.FabricaBOs;
-import clases.mock.Cliente;
 import dtos.ClienteDTO;
 import dtos.ClienteRegistradoConMembListaDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
 import dtos.ServicioExtraDTO;
 import dtos.MembresiaDTO;
-import excepciones.ConsultaDatosClienteException;
 import excepciones.NegocioException;
 import excepciones.RegistroClienteException;
 import interfaces.IManejadorComprasMembresias;
@@ -27,7 +25,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import mappers.ClienteMapper;
 
 /**
  * 
@@ -215,7 +212,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     }
 
     @Override
-    public String obtenerNombreCliente(int id) throws NegocioException {
+    public String obtenerNombreCliente(String id) throws NegocioException {
         try {
             return registrarClienteBO.obtenerNombreCliente(id);
         } catch (NegocioException ex) {
@@ -225,7 +222,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     }
 
     @Override
-    public String obtenerNumeroCliente(int id) throws NegocioException {
+    public String obtenerNumeroCliente(String id) throws NegocioException {
         try {
             return registrarClienteBO.obtenerNumeroCliente(id);
         } catch (NegocioException ex) {
@@ -235,7 +232,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     }
 
     @Override
-    public ClienteRegistradoDTO buscarClienteporID(int id) {
+    public ClienteRegistradoDTO buscarClienteporID(String id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -244,7 +241,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
        return membresiaBO.obtenerMembresiasDTO();
     }
 
-    public PagoDTO procesarPago(int idCliente, double monto, MetodosPagoEnum metodo, Object datosPago) {
+    public PagoDTO procesarPago(String idCliente, double monto, MetodosPagoEnum metodo, Object datosPago) {
         ProcesadorPago procesador = new ProcesadorPago();
         boolean aprobado = procesador.procesarPago(metodo, (int) monto, datosPago); 
 
@@ -257,12 +254,12 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     }
 
     @Override
-    public MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, int id) {
+    public MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, String id) {
         return registrarClienteBO.agregarMembresiaCliente(membresa, id);
     }
     
         @Override
-    public ClienteRegistradoConMembListaDTO obtenerClienteCompleto(int id) throws NegocioException {
+    public ClienteRegistradoConMembListaDTO obtenerClienteCompleto(String id) throws NegocioException {
         try {
 
             return registrarClienteBO.obtenerClienteCompleto(id);
@@ -274,6 +271,11 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
              
         
 }
+
+    @Override
+    public PagoDTO procesarPago(int idCliente, double monto, MetodosPagoEnum metodo, Object datosPago) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
   
 }

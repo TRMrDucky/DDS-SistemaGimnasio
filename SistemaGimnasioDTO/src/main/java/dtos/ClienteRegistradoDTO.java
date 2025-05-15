@@ -13,13 +13,13 @@ import java.util.List;
  */
 public class ClienteRegistradoDTO {
 
-    private int id;
+    private String id;
     private String nombre;
     private String apellidos;
     private String email;
     private String numeroTelefono;
 
-    public ClienteRegistradoDTO(String nombre, String apellidos, String email, String numeroTelefono, int id) {
+    public ClienteRegistradoDTO(String nombre, String apellidos, String email, String numeroTelefono, String id) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.email = email;
@@ -46,11 +46,11 @@ public class ClienteRegistradoDTO {
         return numeroTelefono;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -7,10 +7,8 @@ package mappers;
 import clases.mock.Cliente;
 import clases.mock.Membresia;
 import dtos.ClienteDTO;
-import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoConMembListaDTO;
 import dtos.ClienteRegistradoDTO;
-import dtos.MembresiaDTO;
 import dtos.MembresiaPagadaDTO;
 import dtos.ServicioExtraDTO;
 import java.util.Collections;
@@ -27,15 +25,15 @@ public class ClienteMapper {
         return new Cliente(cliente.getNombre(), cliente.getApellido(), cliente.getCorreo(), cliente.getTelefono());
     }
     public static ClienteRegistradoDTO toDTO(Cliente cliente){
-        return new ClienteRegistradoDTO(cliente.getNombres(), cliente.getApellidos(), cliente.getEmail(), cliente.getNumeroTelefono(), cliente.getId());
+        return new ClienteRegistradoDTO(cliente.getNombres(), cliente.getApellidos(), cliente.getEmail(), cliente.getNumeroTelefono(), cliente.getId().toString());
     }
     public static ClienteRegistradoDTO ClienteRegistradoToDTO(Cliente cliente){
-        return new ClienteRegistradoDTO(cliente.getNombres(), cliente.getApellidos(), cliente.getEmail(), cliente.getNumeroTelefono(), cliente.getId());
+        return new ClienteRegistradoDTO(cliente.getNombres(), cliente.getApellidos(), cliente.getEmail(), cliente.getNumeroTelefono(), cliente.getId().toString());
     }
     public static List<ClienteRegistradoDTO>toListDTO(List<Cliente>clientes){
         List<ClienteRegistradoDTO>listaCLientesDTO = new LinkedList<>();
         for(Cliente cliente : clientes){
-            listaCLientesDTO.add(new ClienteRegistradoDTO(cliente.getNombres(), cliente.getApellidos(), cliente.getEmail(), cliente.getNumeroTelefono(), cliente.getId()));
+            listaCLientesDTO.add(new ClienteRegistradoDTO(cliente.getNombres(), cliente.getApellidos(), cliente.getEmail(), cliente.getNumeroTelefono(), cliente.getId().toString()));
         }
         return listaCLientesDTO;
     }

@@ -36,11 +36,11 @@ public interface IManejadorComprasMembresias {
     
     public abstract List<ClienteRegistradoDTO> obtenerListaClientes();
     
-    public abstract String obtenerNombreCliente(int id) throws NegocioException;
+    public abstract String obtenerNombreCliente(String id) throws NegocioException;
     
-    public abstract String obtenerNumeroCliente(int id) throws NegocioException;
+    public abstract String obtenerNumeroCliente(String id) throws NegocioException;
     
-    public abstract ClienteRegistradoDTO buscarClienteporID(int id);
+    public abstract ClienteRegistradoDTO buscarClienteporID(String id);
     
    // public abstract PagoDTO procesarPago (int idCliente, double monto);
    
@@ -49,8 +49,8 @@ public interface IManejadorComprasMembresias {
     public PagoDTO procesarPago(int idCliente, double monto, MetodosPagoEnum metodo, Object datosPago);
     
     public abstract MembresiaDTO setearFecha(MembresiaDTO membresia);
-    public abstract MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, int id);
+    public abstract MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, String id);
     
     
-   public abstract  ClienteRegistradoConMembListaDTO obtenerClienteCompleto(int id) throws NegocioException;
+   public abstract  ClienteRegistradoConMembListaDTO obtenerClienteCompleto(String id) throws NegocioException;
 }

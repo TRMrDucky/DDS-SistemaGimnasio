@@ -34,7 +34,4 @@ public class ConexionBD {
         
         return mongoClient.getDatabase(DATA_BASE_NAME);
     }
-    
-    
-    
 }
