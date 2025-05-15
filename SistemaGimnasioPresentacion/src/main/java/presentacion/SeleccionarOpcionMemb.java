@@ -9,12 +9,14 @@ package presentacion;
  * @author janethcristinagalvanquinonez
  */
 public class SeleccionarOpcionMemb extends javax.swing.JFrame {
+    ControlNavegacionCompraMembresia control;
 
     /**
      * Creates new form SeleccionarOpcionMemb
      */
-    public SeleccionarOpcionMemb() {
+    public SeleccionarOpcionMemb(ControlNavegacionCompraMembresia control) {
         initComponents();
+        this.control= control;
     }
 
     /**
@@ -51,6 +53,11 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(102, 0, 102));
         jButton1.setFont(new java.awt.Font("Hiragino Mincho ProN", 1, 18)); // NOI18N
         jButton1.setText("AGREGAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openFormAgregarMembresia(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -125,40 +132,14 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_OPCIONESActionPerformed
 
+    private void openFormAgregarMembresia(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFormAgregarMembresia
+       control.openFormAgregarMembresia();
+    }//GEN-LAST:event_openFormAgregarMembresia
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SeleccionarOpcionMemb.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SeleccionarOpcionMemb.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SeleccionarOpcionMemb.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SeleccionarOpcionMemb.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SeleccionarOpcionMemb().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField OPCIONES;

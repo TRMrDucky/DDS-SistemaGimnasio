@@ -7,6 +7,7 @@ package clases.mock;
 import java.util.List;
 import Enumeradores.EnumEstadoMembresia;
 import java.util.Date;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -34,6 +35,16 @@ public class Membresia {
         this.duracion = duracion;
         this.fin =  new Date(this.inicio.getTime() + (duracion * DURACION_DIA));
     }
+
+    public Membresia(String nombre, double precio, List<ServicioExtra> serviciosExtra, Long duracion) {
+       
+        this.nombre = nombre;
+        this.precio = precio;
+        this.serviciosExtra = serviciosExtra;
+        this.duracion = duracion;
+    }
+    
+    
 
     public Membresia(String nombre, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado, Date inicio, Date fin, Long duracion) {
         this.nombre = nombre;
@@ -73,6 +84,27 @@ public class Membresia {
         this.inicio = inicio;
         this.fin = fin;
     }
+
+    public Membresia(String nombre, int id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado, Date inicio, Date fin, Long duracion) {
+        this.nombre = nombre;
+        this.id = id;
+        this.precio = precio;
+        this.serviciosExtra = serviciosExtra;
+        this.estado = estado;
+        this.inicio = inicio;
+        this.fin = fin;
+        this.duracion = duracion;
+    }
+    
+    
+
+    public Long getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(Long duracion) {
+        this.duracion = duracion;
+    }
     
     public Membresia() {
     }
@@ -81,9 +113,9 @@ public class Membresia {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public void int(ObjectId id) {
+//        this.id = id;
+//    }
 
     public double getPrecio() {
         return precio;
@@ -134,13 +166,13 @@ public class Membresia {
     }
     
     
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + this.id;
-        return hash;
-    }
+//
+//    @Override
+//    public int hashCode() {
+//        int hash = 3;
+//        hash = 17 * hash + this.id;
+//        return hash;
+//    }
 
     @Override
     public boolean equals(Object obj) {

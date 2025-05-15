@@ -27,10 +27,8 @@ import org.bson.types.ObjectId;
 public class ServicioExtraDAO implements IServicioExtraDAO {
     
     private static ServicioExtraDAO instancia;
-    private final MongoCollection<ServicioExtra> coleccion;
     
     private ServicioExtraDAO() {
-        this.coleccion = ConexionBD.getInstance().getCollection("serviciosExtra",ServicioExtra.class);
     }
     
     public static ServicioExtraDAO getInstance() {
@@ -45,6 +43,7 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
     @Override
     public List<ServicioExtra> obtenerServiciosExtras()throws ConsultarServiciosExtraException{
         try {
+            MongoCollection<ServicioExtra> coleccion = ConexionBD.getInstance().getCollection("serviciosExtra",ServicioExtra.class);
             List<ServicioExtra> servicios = coleccion.find().into(new ArrayList<>());
             return servicios;
         } catch (Exception e) {
@@ -55,6 +54,7 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
     @Override
     public ServicioExtra obtenerServicioExtra(String id)throws ConsultarServiciosExtraException{
         try{
+            MongoCollection<ServicioExtra> coleccion = ConexionBD.getInstance().getCollection("serviciosExtra",ServicioExtra.class);
             ObjectId idHex = new ObjectId(id);
             return coleccion.find(Filters.eq("_id", idHex)).first();
         }catch(Exception e){
@@ -65,6 +65,7 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
     @Override
     public ServicioExtra agregarServicio(ServicioExtra servicio)throws AgregarServicioExtraException{
         try{
+            MongoCollection<ServicioExtra> coleccion = ConexionBD.getInstance().getCollection("serviciosExtra",ServicioExtra.class);
             coleccion.insertOne(servicio);
             return servicio;
         }catch(Exception e){
@@ -75,6 +76,7 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
     @Override
     public ServicioExtra editarServicio(ServicioExtra servicio)throws EditarServicioExtraException {
         try{
+            MongoCollection<ServicioExtra> coleccion = ConexionBD.getInstance().getCollection("serviciosExtra",ServicioExtra.class);
             UpdateResult result = coleccion.updateOne(
                 Filters.eq("_id", servicio.getId()),
                 Updates.combine(
@@ -95,6 +97,7 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
     @Override
     public boolean eliminarServicioExtra(String id) throws EliminarServicioExtraException{
         try{
+            MongoCollection<ServicioExtra> coleccion = ConexionBD.getInstance().getCollection("serviciosExtra",ServicioExtra.class);
             ObjectId idHex = new ObjectId(id);
             DeleteResult result = coleccion.deleteMany(Filters.eq("_id", idHex));
             if(!result.wasAcknowledged()){

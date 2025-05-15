@@ -47,9 +47,10 @@
               <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="botonCompraMemb1" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
-                      <Component id="botonCompraMemb" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jButton1" max="32767" attributes="0"/>
+                      <Component id="botonCompraMemb1" alignment="0" pref="253" max="32767" attributes="0"/>
+                      <Component id="botonCompraMemb" alignment="0" pref="253" max="32767" attributes="0"/>
                       <Component id="jLabel2" min="-2" pref="222" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="249" max="-2" attributes="0"/>
                   </Group>
@@ -73,7 +74,9 @@
                   <Component id="botonCompraMemb" min="-2" pref="47" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="botonCompraMemb1" min="-2" pref="47" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="243" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jButton1" min="-2" pref="37" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="188" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -141,6 +144,17 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCompraMemb1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="0" red="66" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="GESTION DE MEMBRESIAS"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OpenFormGestionMembresias"/>
           </Events>
         </Component>
       </SubComponents>
