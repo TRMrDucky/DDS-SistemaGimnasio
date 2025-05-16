@@ -51,20 +51,20 @@ public class MembresiaMockDAO implements IMembresiaDAO {
        Date inicioDayPass = new Date();
        Long duracionDayPass = 1L;
        Date finDayPass = new Date(inicioDayPass.getTime() + (duracionDayPass * DURACION_DIA));
-       listaMembresias.add(new Membresia("Day Pass", 1, 15, servicios, EnumEstadoMembresia.ACTIVA, inicioDayPass, finDayPass));
+       listaMembresias.add(new Membresia("Day Pass", new ObjectId(), 15, servicios, EnumEstadoMembresia.ACTIVA, inicioDayPass, finDayPass));
        
        
        //7 dias
        Date inicio7Dias = new Date();
        Long duracion7Dias = 7L;
        Date fin7Dias = new Date(inicio7Dias.getTime() + (duracion7Dias * DURACION_DIA));
-       listaMembresias.add(new Membresia("7 dias", 2, 105, servicios, EnumEstadoMembresia.ACTIVA, inicio7Dias, fin7Dias));
+       listaMembresias.add(new Membresia("7 dias", new ObjectId(), 105, servicios, EnumEstadoMembresia.ACTIVA, inicio7Dias, fin7Dias));
        
        //10 dias
        Date inicio10Dias = new Date();
        Long duracion10Dias = 10L;
        Date fin10Dias = new Date(inicio10Dias.getTime() + (duracion10Dias * DURACION_DIA));
-       listaMembresias.add(new Membresia("10 dias", 3, 150, servicios, EnumEstadoMembresia.ACTIVA, inicio10Dias, fin10Dias));
+       listaMembresias.add(new Membresia("10 dias", new ObjectId(), 150, servicios, EnumEstadoMembresia.ACTIVA, inicio10Dias, fin10Dias));
        
        
        
@@ -72,20 +72,20 @@ public class MembresiaMockDAO implements IMembresiaDAO {
         Date inicio15Dias = new Date();
         Long duracion15Dias = 15L;
         Date fin15Dias = new Date(inicio15Dias.getTime() + (duracion15Dias * DURACION_DIA));
-        listaMembresias.add(new Membresia("15 dias", 3, 150, servicios, EnumEstadoMembresia.ACTIVA, inicio15Dias, fin15Dias));
+        listaMembresias.add(new Membresia("15 dias", new ObjectId(), 150, servicios, EnumEstadoMembresia.ACTIVA, inicio15Dias, fin15Dias));
         
         
         //30 dias
         Date inicioMensual = new Date();
         Long duracionMensual = 30L;
         Date finMensual = new Date(inicioMensual.getTime() + (duracionMensual * DURACION_DIA));
-        listaMembresias.add(new Membresia("Mensual", 5, 300, servicios, EnumEstadoMembresia.ACTIVA, inicioMensual, finMensual));
+        listaMembresias.add(new Membresia("Mensual", new ObjectId(), 300, servicios, EnumEstadoMembresia.ACTIVA, inicioMensual, finMensual));
         
         //1 dia
         Date inicioPorVisita = new Date();
         Long duracionVisita = 1L;
         Date finVisita = new Date(inicioPorVisita.getTime() + (duracionVisita * DURACION_DIA));
-        listaMembresias.add(new Membresia("Por visita", 6, 13, servicios, EnumEstadoMembresia.ACTIVA, inicioPorVisita, finVisita));
+        listaMembresias.add(new Membresia("Por visita", new ObjectId(), 13, servicios, EnumEstadoMembresia.ACTIVA, inicioPorVisita, finVisita));
         
         
         

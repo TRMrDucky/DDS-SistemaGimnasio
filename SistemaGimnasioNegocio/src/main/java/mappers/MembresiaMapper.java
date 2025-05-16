@@ -14,6 +14,7 @@ import dtos.MembresiaPagadaDTO;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,30 +25,42 @@ import java.util.stream.Collectors;
 public class MembresiaMapper {
 
     public static Membresia toEntity(MembresiaDTO membresia) {
-        return new Membresia(
+        Membresia membresiaEntidad=  new Membresia(
                 membresia.getNombre(),
-                membresia.getId(),
+              //  membresia.getId(),
                 membresia.getPrecio(),
                 ServicioExtraMapper.toListEntity(membresia.getServiciosExtra()),
-                membresia.getEstado()
+                membresia.getEstado(),
+                membresia.getDuracion()
         );
+        if(membresia.getId() !=null && !membresia.getId().isEmpty()){
+            membresiaEntidad.setIdString(membresia.getId());
+        }
+        return membresiaEntidad;
     }
 
     public static MembresiaDTO toDTO(Membresia membresia) {
-        return new MembresiaDTO(
+        MembresiaDTO membresiaDTO= new MembresiaDTO(
                 membresia.getNombre(),
-                membresia.getId(),
+             //   membresia.getId(),
                 membresia.getPrecio(),
                 ServicioExtraMapper.toListDTO(membresia.getServiciosExtra()),
-                membresia.getEstado()
+                membresia.getEstado(),
+                membresia.getDuracion()
                 
         );
+         membresiaDTO.setId(membresia.getIdString());
+         return membresiaDTO;
     }
 
     public static List<MembresiaDTO> toListDTO(List<Membresia> membresias) {
-        return membresias.stream()
-                .map(MembresiaMapper::toDTO)
-                .collect(Collectors.toList());
+       List<MembresiaDTO> membresiasDTO= new LinkedList<>();
+        for (Membresia membresia: membresias){
+            membresiasDTO.add(MembresiaMapper.toDTO(membresia));
+            
+        }
+        return membresiasDTO;
+       
     }
     
     

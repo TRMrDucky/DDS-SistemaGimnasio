@@ -14,13 +14,13 @@ import java.util.List;
 public class MembresiaDTO {
 
     private String nombre;
-    private int id;
+    private String id;
     private double precio;
     private List<ServicioExtraDTO> serviciosExtra;
     private EnumEstadoMembresia estado;
     private Long duracion;
 
-    public MembresiaDTO(String nombre, int id, double precio, List<ServicioExtraDTO> serviciosExtra, EnumEstadoMembresia estado) {
+    public MembresiaDTO(String nombre, String id, double precio, List<ServicioExtraDTO> serviciosExtra, EnumEstadoMembresia estado) {
         this.nombre = nombre;
         this.id = id;
         this.precio = precio;
@@ -29,7 +29,16 @@ public class MembresiaDTO {
 //
     }
 
-    public MembresiaDTO(String nombre, int id, double precio, List<ServicioExtraDTO> serviciosExtra, EnumEstadoMembresia estado, Long duracion) {
+    public MembresiaDTO(String nombre, double precio, List<ServicioExtraDTO> serviciosExtra, Long duracion) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.serviciosExtra = serviciosExtra;
+        this.duracion = duracion;
+    }
+    
+    
+
+    public MembresiaDTO(String nombre, String id, double precio, List<ServicioExtraDTO> serviciosExtra, EnumEstadoMembresia estado, Long duracion) {
         this.nombre = nombre;
         this.id = id;
         this.precio = precio;
@@ -45,6 +54,15 @@ public class MembresiaDTO {
         this.estado = estado;
         this.duracion = duracion;
     }
+
+    public MembresiaDTO(String nombre, double precio, List<ServicioExtraDTO> serviciosExtra, EnumEstadoMembresia estado) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.serviciosExtra = serviciosExtra;
+        this.estado = estado;
+    }
+    
+    
     
     
 
@@ -59,11 +77,11 @@ public class MembresiaDTO {
         this.nombre = nombre;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 //
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -98,6 +116,13 @@ public class MembresiaDTO {
     public void setDuracion(Long duracion) {
         this.duracion = duracion;
     }
+
+    @Override
+    public String toString() {
+        return "MembresiaDTO{" + "nombre=" + nombre + ", id=" + id + ", precio=" + precio + ", serviciosExtra=" + serviciosExtra + ", estado=" + estado + ", duracion=" + duracion + '}';
+    }
+    
+    
     
 
 }

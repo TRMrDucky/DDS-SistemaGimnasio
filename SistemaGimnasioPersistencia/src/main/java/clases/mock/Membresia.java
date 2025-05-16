@@ -16,7 +16,7 @@ import org.bson.types.ObjectId;
 public class Membresia {
 
     private String nombre;
-    private int id;
+    private ObjectId id;
     private double precio;
     private List<ServicioExtra> serviciosExtra;
     private EnumEstadoMembresia estado;
@@ -25,7 +25,7 @@ public class Membresia {
     private Long duracion;
     private final Long DURACION_DIA = 86400000L;
 
-    public Membresia(String nombre, int id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado, Date inicio, Long duracion) {
+    public Membresia(String nombre, ObjectId id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado, Date inicio, Long duracion) {
         this.nombre = nombre;
         this.id = id;
         this.precio = precio;
@@ -43,6 +43,14 @@ public class Membresia {
         this.serviciosExtra = serviciosExtra;
         this.duracion = duracion;
     }
+
+    public Membresia(String nombre, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.serviciosExtra = serviciosExtra;
+        this.estado = estado;
+    }
+    
     
     
 
@@ -67,7 +75,7 @@ public class Membresia {
     
     
 
-    public Membresia(String nombre, int id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
+    public Membresia(String nombre, ObjectId id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado) {
         this.nombre = nombre;
         this.id = id;
         this.precio = precio;
@@ -75,7 +83,7 @@ public class Membresia {
         this.estado = estado;
     }
 
-    public Membresia(String nombre, int id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado, Date inicio, Date fin) {
+    public Membresia(String nombre, ObjectId id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado, Date inicio, Date fin) {
         this.nombre = nombre;
         this.id = id;
         this.precio = precio;
@@ -85,7 +93,7 @@ public class Membresia {
         this.fin = fin;
     }
 
-    public Membresia(String nombre, int id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado, Date inicio, Date fin, Long duracion) {
+    public Membresia(String nombre, ObjectId id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado, Date inicio, Date fin, Long duracion) {
         this.nombre = nombre;
         this.id = id;
         this.precio = precio;
@@ -95,6 +103,16 @@ public class Membresia {
         this.fin = fin;
         this.duracion = duracion;
     }
+
+    public Membresia(String nombre, ObjectId id, double precio, List<ServicioExtra> serviciosExtra, EnumEstadoMembresia estado, Long duracion) {
+        this.nombre = nombre;
+        this.id = id;
+        this.precio = precio;
+        this.serviciosExtra = serviciosExtra;
+        this.estado = estado;
+        this.duracion = duracion;
+    }
+    
     
     
 
@@ -109,11 +127,11 @@ public class Membresia {
     public Membresia() {
     }
 
-    public int getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -191,7 +209,16 @@ public class Membresia {
 
     @Override
     public String toString() {
-        return "Membresia{" + "id=" + id + ", precio=" + precio + ", serviciosExtra=" + serviciosExtra + ", estado=" + estado + '}';
+        return "Membresia{" + "nombre=" + nombre + ", id=" + id + ", precio=" + precio + ", serviciosExtra=" + serviciosExtra + ", estado=" + estado + ", inicio=" + inicio + ", fin=" + fin + ", duracion=" + duracion + ", DURACION_DIA=" +  '}';
+    }
+
+    
+    public String getIdString(){
+        return id.toString();
+    }
+    
+    public void setIdString(String id){
+        this.id= new ObjectId(id);
     }
     
 }

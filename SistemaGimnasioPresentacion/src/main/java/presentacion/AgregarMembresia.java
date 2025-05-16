@@ -82,8 +82,19 @@ public class AgregarMembresia extends javax.swing.JFrame {
             System.out.println("Duración en milisegundos: " + membresia.getDuracion());
 
         try {
+            // try {
             control.agregarMembresia(membresia);
            
+//        } catch (SubsistemaMembresiaException ex) {
+//            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (NombreVacioException ex) {
+//            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (PrecioVacioException ex) {
+//            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (DuracionException ex) {
+//            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//         
         } catch (SubsistemaMembresiaException ex) {
             Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NombreVacioException ex) {
@@ -93,7 +104,6 @@ public class AgregarMembresia extends javax.swing.JFrame {
         } catch (DuracionException ex) {
             Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
     }
 
     /**

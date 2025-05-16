@@ -52,7 +52,7 @@ public class ClienteMapper {
 
         return new MembresiaPagadaDTO(
             m.getNombre(),
-            m.getId(),
+            m.getId().toString(),
             m.getPrecio(),
             extrasDto,
             m.getEstado(),
