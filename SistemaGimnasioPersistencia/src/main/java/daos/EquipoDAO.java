@@ -27,11 +27,9 @@ import org.bson.types.ObjectId;
  */
 public class EquipoDAO implements IEquipoDAO {
     
-    private static EquipoDAO instancia;
-    private final MongoCollection<Equipo> coleccion;
+   private static EquipoDAO instancia;
 
     private EquipoDAO() {
-        this.coleccion = ConexionBD.getInstance().getCollection("equipos", Equipo.class);
     }
 
     public static EquipoDAO getInstance() {
@@ -44,34 +42,35 @@ public class EquipoDAO implements IEquipoDAO {
     @Override
     public List<Equipo> obtenerEquipos() throws ConsultarEquipoException {
         try {
+            MongoCollection<Equipo> coleccion = ConexionBD.getInstance().getCollection("equipos", Equipo.class);
             return coleccion.find().into(new ArrayList<>());
         } catch (Exception e) {
             throw new ConsultarEquipoException("Error al consultar los equipos", e);
         }
     }
-    
+
     @Override
     public List<Equipo> buscarEquiposPorFiltro(String filtro) throws ConsultarEquipoException {
-    try {
-        Pattern patron = Pattern.compile(filtro, Pattern.CASE_INSENSITIVE);
-        
-        Bson filtroBusqueda = Filters.or(
-            Filters.regex("nombre", patron),
-            Filters.regex("numeroSerie", patron),
-            Filters.regex("marca", patron)
-        );
+        try {
+            MongoCollection<Equipo> coleccion = ConexionBD.getInstance().getCollection("equipos", Equipo.class);
+            Pattern patron = Pattern.compile(filtro, Pattern.CASE_INSENSITIVE);
 
-      return coleccion.find(filtroBusqueda).into(new ArrayList<>());
+            Bson filtroBusqueda = Filters.or(
+                Filters.regex("nombre", patron),
+                Filters.regex("numeroSerie", patron),
+                Filters.regex("marca", patron)
+            );
 
-    } catch (Exception e) {
-        throw new ConsultarEquipoException("Error al buscar equipos por filtro", e);
+            return coleccion.find(filtroBusqueda).into(new ArrayList<>());
+        } catch (Exception e) {
+            throw new ConsultarEquipoException("Error al buscar equipos por filtro", e);
+        }
     }
-}
-
 
     @Override
     public Equipo obtenerEquipo(String id) throws ConsultarEquipoException {
         try {
+            MongoCollection<Equipo> coleccion = ConexionBD.getInstance().getCollection("equipos", Equipo.class);
             ObjectId idHex = new ObjectId(id);
             return coleccion.find(Filters.eq("_id", idHex)).first();
         } catch (Exception e) {
@@ -82,18 +81,18 @@ public class EquipoDAO implements IEquipoDAO {
     @Override
     public Equipo agregarEquipo(Equipo equipo) throws AgregarEquipoException {
         try {
-          coleccion.insertOne(equipo);
-           
+            MongoCollection<Equipo> coleccion = ConexionBD.getInstance().getCollection("equipos", Equipo.class);
+            coleccion.insertOne(equipo);
             return equipo;
         } catch (Exception e) {
             throw new AgregarEquipoException("Error al agregar equipo a la base de datos", e);
         }
     }
 
-   
     @Override
     public boolean eliminarEquipo(String id) throws EliminarEquipoException {
         try {
+            MongoCollection<Equipo> coleccion = ConexionBD.getInstance().getCollection("equipos", Equipo.class);
             ObjectId idHex = new ObjectId(id);
             DeleteResult result = coleccion.deleteOne(Filters.eq("_id", idHex));
             if (!result.wasAcknowledged()) {

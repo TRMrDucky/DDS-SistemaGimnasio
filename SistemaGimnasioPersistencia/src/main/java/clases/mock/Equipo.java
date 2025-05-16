@@ -83,7 +83,14 @@ public class Equipo {
     public void setFechaAdquisicion(Date fechaAdquisicion) {
         this.fechaAdquisicion = fechaAdquisicion;
     }
-
+    
+    public String getIdEquipoString() {
+        return idEquipo.toString();
+    }
+    
+    public void setIdEquipoString(String id){
+        this.idEquipo = new ObjectId(id);
+    }    
 
     @Override
     public String toString() {

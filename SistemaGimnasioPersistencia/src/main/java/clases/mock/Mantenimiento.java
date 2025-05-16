@@ -90,6 +90,23 @@ public class Mantenimiento {
     public void setFechaSeguimiento(Date fechaSeguimiento) {
         this.fechaSeguimiento = fechaSeguimiento;
     }
+    
+      public String getIdMantenimientoString(){
+         return (idMantenimiento != null) ? idMantenimiento.toString() : null;
+    }
+    
+    public void setIdMantenimientoString(String id){
+        this.idMantenimiento = new ObjectId(id);
+    }    
+    
+    public String getIdEquipoString() {
+        return idEquipo.toString();
+}
+    
+     public void setIdEquipoString(String id){
+        this.idEquipo = new ObjectId(id);
+    }    
+    
 
     @Override
     public String toString() {
