@@ -41,10 +41,11 @@ public class MembresiaBO implements IMembresiaBO {
     @Override
     public List<MembresiaDTO> obtenerMembresiasDTO() {
         List<Membresia> listaMembresias = membresiaDAO.obtenerMembresias();
-
-        if (listaMembresias == null || listaMembresias.isEmpty()) {
-            return Collections.emptyList();
+        for(Membresia membresia: listaMembresias){
+            System.out.println(membresia);
         }
+
+        
 
         return listaMembresias.stream()
                 .map(MembresiaMapper::toDTO)
@@ -53,8 +54,22 @@ public class MembresiaBO implements IMembresiaBO {
     }
     
     @Override
+    public List<MembresiaDTO> consultarMembresias(){
+        return membresiaDAO.consultarMembresias()
+        
+                .stream()
+                .map(MembresiaMapper::toDTO)
+                .collect(Collectors.toList());
+                
+        
+        
+    }
+    
+    @Override
     public MembresiaDTO setearFecha(MembresiaDTO membresia) {
         Membresia membresiaActu = MembresiaMapper.toEntity(membresia);
         return MembresiaMapper.toDTO(membresiaDAO.setearFecha(membresiaActu));
     }
+
+   
 }

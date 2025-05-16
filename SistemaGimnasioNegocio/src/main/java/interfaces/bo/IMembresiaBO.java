@@ -11,4 +11,5 @@ public interface IMembresiaBO {
     public List<MembresiaDTO> obtenerMembresiasDTO();
     public MembresiaDTO setearFecha(MembresiaDTO membresiaDTO);
     public MembresiaDTO agregarMembresia(MembresiaDTO membresia) throws NegocioException;
+     public List<MembresiaDTO> consultarMembresias();
 }

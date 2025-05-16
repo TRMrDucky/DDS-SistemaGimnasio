@@ -85,10 +85,17 @@ public class ControlNavegacionCompraMembresia {
         new AgregarMembresia(this).setVisible(true);
     }
     
+    public void openFormConsultarMembresias(){
+        new ConsultarMembresias(this).setVisible(true);
+    }
+    
     public MembresiaDTO agregarMembresia(MembresiaDTO membresia) throws SubsistemaMembresiaException, NombreVacioException, PrecioVacioException, DuracionException{
         System.out.println("llega");
         return subsistemaMembresias.agregarMembresia(membresia);
        
+    }
+     public List<MembresiaDTO> consultarMembresias(){
+        return subsistemaMembresias.consultarMembresias();
     }
     
     public void openFormOpcionesModuloMembresia(){
@@ -368,6 +375,8 @@ public class ControlNavegacionCompraMembresia {
     public MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, String id){
         return subsistema.agregarMembresiaCliente(membresa, id);
     } 
+    
+   
     
     public ClienteRegistradoConMembListaDTO obtenerClienteCompletoPorId(String id) {
     try {

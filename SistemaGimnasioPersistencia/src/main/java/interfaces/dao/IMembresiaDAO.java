@@ -21,4 +21,5 @@ public interface IMembresiaDAO {
     public List<ServicioExtra> obtenerServicio()throws ConsultarServiciosExtraException;
     public Membresia setearFecha(Membresia membresia);
      public Membresia agregarMembresia(Membresia membresia) throws AgregarMembresiaException;
+     public List<Membresia> consultarMembresias();
 }

@@ -15,11 +15,13 @@ import clases.mock.ServicioExtra;
 //import clases.mock.membresias.SevenDaysPass;
 //import clases.mock.membresias.TenDaysPass;
 import com.mongodb.client.MongoCollection;
+import static com.mongodb.client.model.Filters.eq;
 
 import excepciones.ConsultarServiciosExtraException;
 import excepciones.AgregarMembresiaException;
 
 import interfaces.dao.IMembresiaDAO;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -84,6 +86,12 @@ public class MembresiaDAO implements IMembresiaDAO {
             } 
  
     }
+    
+    public List<Membresia> consultarMembresias(){
+        MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
+        return coleccion.find().into(new ArrayList<>()); 
+        
+    }
 
 //    public List<Membresia> obtenerMembresias() {
 //        return listaMembresias; 
@@ -98,6 +106,12 @@ public class MembresiaDAO implements IMembresiaDAO {
     public List<Membresia> obtenerMembresias() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    public List<Membresia> consultarMembresiasA() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+   
     
     
 }

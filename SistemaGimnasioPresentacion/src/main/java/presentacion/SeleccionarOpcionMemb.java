@@ -32,6 +32,7 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         OPCIONES = new javax.swing.JTextField();
+        botonEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,6 +89,15 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
+        botonEliminar.setBackground(new java.awt.Color(102, 0, 102));
+        botonEliminar.setFont(new java.awt.Font("Hiragino Mincho ProN", 1, 18)); // NOI18N
+        botonEliminar.setText("ELIMINAR");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminaropenFormAgregarMembresia(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
@@ -100,7 +110,9 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGap(173, 173, 173)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(164, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
@@ -111,7 +123,9 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 226, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 168, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,6 +150,10 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
        control.openFormAgregarMembresia();
     }//GEN-LAST:event_openFormAgregarMembresia
 
+    private void botonEliminaropenFormAgregarMembresia(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminaropenFormAgregarMembresia
+        control.openFormConsultarMembresias();
+    }//GEN-LAST:event_botonEliminaropenFormAgregarMembresia
+
     /**
      * @param args the command line arguments
      */
@@ -143,6 +161,7 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField OPCIONES;
+    private javax.swing.JButton botonEliminar;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
