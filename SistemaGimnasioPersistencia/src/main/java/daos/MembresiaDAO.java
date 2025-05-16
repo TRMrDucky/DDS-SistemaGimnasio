@@ -71,6 +71,7 @@ public class MembresiaDAO implements IMembresiaDAO {
     public Membresia agregarMembresia(Membresia membresia) throws AgregarMembresiaException{
             try{
                 System.out.println("llegaper");
+                System.out.println(membresia);
             MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
                 System.out.println("a pers llega como "+membresia);
             coleccion.insertOne(membresia);

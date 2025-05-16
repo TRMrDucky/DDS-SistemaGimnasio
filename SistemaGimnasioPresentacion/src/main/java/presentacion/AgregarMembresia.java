@@ -54,10 +54,15 @@ public class AgregarMembresia extends javax.swing.JFrame {
     }
     
     private List<ServicioExtraDTO> serviciosSeleccionados(){
+        List<ServicioExtraDTO> serviciosDisponibles = control.obtenerServiciosExtrasDTO();
         return listaCheckBoxes.stream()
                 .filter(JCheckBox::isSelected)
-                .map(check -> new ServicioExtraDTO(check.getText(), 0))
+                .map(check -> serviciosDisponibles.stream()
+                        .filter(serv -> serv.getNombreServicio().equals(check.getText()))
+                        .findFirst().get())
                 .collect(Collectors.toList());
+                        
+                
     }
     
     private void agregarMembresia(){

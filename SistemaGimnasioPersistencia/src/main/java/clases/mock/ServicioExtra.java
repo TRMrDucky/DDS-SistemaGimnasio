@@ -28,6 +28,13 @@ public class ServicioExtra {
         this.precio = precio;
     }
 
+    public ServicioExtra(String nombreServicio, double precio) {
+        this.nombreServicio = nombreServicio;
+        this.precio = precio;
+    }
+    
+    
+
     public ServicioExtra(ObjectId id, String nombreServicio, double precio, String descripcion) {
         this.id = id;
         this.nombreServicio = nombreServicio;
@@ -70,7 +77,7 @@ public class ServicioExtra {
 
     @Override
     public String toString() {
-        return "ServicioExtraDTO{" + "id=" + id + ", nombreServicio=" + nombreServicio + ", precio=" + precio + '}';
+        return "ServicioExtra{" + "id=" + id + ", nombreServicio=" + nombreServicio + ", precio=" + precio + '}';
     }
     public String getIdString(){
         return id.toString();
