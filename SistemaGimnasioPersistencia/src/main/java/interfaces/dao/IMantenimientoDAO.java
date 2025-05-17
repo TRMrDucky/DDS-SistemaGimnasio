@@ -5,7 +5,9 @@
 package interfaces.dao;
 
 import clases.mock.Mantenimiento;
+import dtos.HistorialEquipoDTO;
 import excepciones.ConsultarMantenimientoException;
+import excepciones.EliminarMantenimientoException;
 import excepciones.RegistrarMantenimientoException;
 import java.util.List;
 
@@ -16,5 +18,6 @@ import java.util.List;
 public interface IMantenimientoDAO {
     
      public Mantenimiento registrarMantenimiento(Mantenimiento mantenimiento) throws RegistrarMantenimientoException;
-     public List<Mantenimiento> obtenerHistorialPorEquipo(String idEquipo) throws ConsultarMantenimientoException;
+     public List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) throws ConsultarMantenimientoException;
+     public boolean eliminarMantenimientosPorEquipo(String idEquipo) throws EliminarMantenimientoException;
 }

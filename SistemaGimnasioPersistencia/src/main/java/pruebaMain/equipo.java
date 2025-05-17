@@ -9,6 +9,7 @@ import clases.mock.Mantenimiento;
 import com.mongodb.client.MongoClients;
 import daos.EquipoDAO;
 import daos.MantenimientoDAO;
+import dtos.HistorialEquipoDTO;
 import excepciones.AgregarEquipoException;
 import excepciones.ConsultarEquipoException;
 import excepciones.ConsultarMantenimientoException;
@@ -72,7 +73,7 @@ public class equipo {
         }
           */ 
 
-
+ /**
       try {
           
             MantenimientoDAO dao = MantenimientoDAO.getInstance();
@@ -104,11 +105,39 @@ public class equipo {
               e.printStackTrace(); 
         }
         
+        */ 
+ 
+    
+       
+        MantenimientoDAO dao = MantenimientoDAO.getInstance();
 
-   
-}
+       //ObjectId("6827d9e666b49a049f5d13c8")
+        String idEquipo = "6827d4c03b3f7d7e13b5eeae";
 
+        try {
+            List<HistorialEquipoDTO> historial = dao.obtenerHistorialPorEquipo(idEquipo);
+
+            if (historial.isEmpty()) {
+                System.out.println("No se encontraron mantenimientos para ese equipo.");
+            } else {
+                for (HistorialEquipoDTO dto : historial) {
+                    System.out.println(dto);
+                }
+            }
+
+        } catch (ConsultarMantenimientoException e) {
+            System.err.println("Error al consultar el historial: " + e.getMessage());
+            e.printStackTrace();
+        }
+            
+ 
+      
     }
+}
+   
+
+
+    
     
 
     
