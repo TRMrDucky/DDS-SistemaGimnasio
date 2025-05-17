@@ -18,6 +18,7 @@ import com.mongodb.client.MongoCollection;
 
 import excepciones.ConsultarServiciosExtraException;
 import excepciones.AgregarMembresiaException;
+import excepciones.EliminarMembresiaException;
 
 import interfaces.dao.IMembresiaDAO;
 import java.util.Date;
@@ -155,6 +156,11 @@ public class MembresiaMockDAO implements IMembresiaDAO {
 
     @Override
     public List<Membresia> consultarMembresias() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean eliminarMembresia(String id) throws EliminarMembresiaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

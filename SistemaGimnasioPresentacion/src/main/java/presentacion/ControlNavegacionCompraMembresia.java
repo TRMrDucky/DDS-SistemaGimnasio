@@ -101,6 +101,13 @@ public class ControlNavegacionCompraMembresia {
     public void openFormOpcionesModuloMembresia(){
         new SeleccionarOpcionMemb(this).setVisible(true);
     }
+    
+    public boolean eliminarMembresia(String id) throws SubsistemaMembresiaException{
+        
+     return subsistemaMembresias.eliminarMembresia(id);
+       
+    }
+    
 
     /**
      * Devuelve la lista de clientes

@@ -15,10 +15,13 @@ import clases.mock.ServicioExtra;
 //import clases.mock.membresias.SevenDaysPass;
 //import clases.mock.membresias.TenDaysPass;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
+import com.mongodb.client.result.DeleteResult;
 
 import excepciones.ConsultarServiciosExtraException;
 import excepciones.AgregarMembresiaException;
+import excepciones.EliminarMembresiaException;
 
 import interfaces.dao.IMembresiaDAO;
 import java.util.ArrayList;
@@ -92,9 +95,24 @@ public class MembresiaDAO implements IMembresiaDAO {
         return coleccion.find().into(new ArrayList<>()); 
         
     }
+    
+    public boolean eliminarMembresia(String id) throws EliminarMembresiaException{
+        try{
+            
+        MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
+        ObjectId objectId = new ObjectId(id);
+        DeleteResult resultado = coleccion.deleteOne(Filters.eq("_id", objectId));
+        return resultado.getDeletedCount() > 0;
+        
+        } catch(Exception e){
+            
+            throw new EliminarMembresiaException("Error al eliminar membresia");
+        }
+       
+    }
 
-//    public List<Membresia> obtenerMembresias() {
-//        return listaMembresias; 
+ //   public List<Membresia> obtenerMembresias() {
+  //      return listaMembresias; 
 //    }
     
     @Override

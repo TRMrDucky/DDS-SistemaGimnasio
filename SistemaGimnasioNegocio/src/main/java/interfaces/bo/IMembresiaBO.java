@@ -12,4 +12,5 @@ public interface IMembresiaBO {
     public MembresiaDTO setearFecha(MembresiaDTO membresiaDTO);
     public MembresiaDTO agregarMembresia(MembresiaDTO membresia) throws NegocioException;
      public List<MembresiaDTO> consultarMembresias();
+     public boolean eliminarMembresia(String id) throws NegocioException;
 }

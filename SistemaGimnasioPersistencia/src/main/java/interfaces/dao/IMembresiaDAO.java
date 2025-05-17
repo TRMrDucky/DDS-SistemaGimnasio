@@ -8,6 +8,7 @@ import clases.mock.Membresia;
 import clases.mock.ServicioExtra;
 import excepciones.AgregarMembresiaException;
 import excepciones.ConsultarServiciosExtraException;
+import excepciones.EliminarMembresiaException;
 import java.util.List;
 
 /**
@@ -22,4 +23,5 @@ public interface IMembresiaDAO {
     public Membresia setearFecha(Membresia membresia);
      public Membresia agregarMembresia(Membresia membresia) throws AgregarMembresiaException;
      public List<Membresia> consultarMembresias();
+     public boolean eliminarMembresia(String id) throws EliminarMembresiaException;
 }

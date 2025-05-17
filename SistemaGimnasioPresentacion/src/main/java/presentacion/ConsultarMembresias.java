@@ -10,7 +10,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
@@ -35,12 +38,17 @@ public class ConsultarMembresias extends javax.swing.JFrame {
         cargarMembresias();
     }
     
+    private List<JCheckBox> listaCheckBoxes = new ArrayList<>();
+    
     public void cargarMembresias(){
         List<MembresiaDTO> membresias= control.consultarMembresias();
         
-        System.out.println(membresias);
+      //  System.out.println(membresias);
         panelMembresias.setLayout(new GridLayout(0, 1));
         panelMembresias.removeAll();
+        listaCheckBoxes.clear();
+        
+        
         labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         for (MembresiaDTO membresia: membresias){
             JPanel panel= new JPanel();
@@ -49,6 +57,7 @@ public class ConsultarMembresias extends javax.swing.JFrame {
             panel.setPreferredSize(new Dimension(250, 150));
             panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
             JCheckBox checkBox = new JCheckBox(membresia.getNombre());
+            listaCheckBoxes.add(checkBox);
             JLabel costoLabel = new JLabel("COSTO: $" + membresia.getPrecio());
             
             String servicios= "Servicios: ";
@@ -85,6 +94,21 @@ public class ConsultarMembresias extends javax.swing.JFrame {
        panelPrincipal.revalidate();
        panelPrincipal.repaint();
     }
+    
+    private List<MembresiaDTO> membresiasSeleccionadas(){
+        List<MembresiaDTO> membresiasDisponibles= control.consultarMembresias();
+        return listaCheckBoxes.stream()
+                .filter(JCheckBox::isSelected)
+                .map(check -> membresiasDisponibles.stream()
+                        .filter(m -> m.getNombre().equals(check.getText()))
+                        .findFirst()
+                        .orElse(null))
+                .filter(Objects::nonNull)
+                 .collect(Collectors.toList());
+       
+           
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -127,6 +151,11 @@ public class ConsultarMembresias extends javax.swing.JFrame {
         );
 
         botonSiguiente.setText("SIGUIENTE");
+        botonSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSiguienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -176,6 +205,15 @@ public class ConsultarMembresias extends javax.swing.JFrame {
 
         pack();
     }//GEN-END:initComponents
+
+    private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
+       List<MembresiaDTO> seleccionadas= membresiasSeleccionadas();
+       //ahorita lo borro
+       for(MembresiaDTO membresia: seleccionadas){
+           System.out.println(membresia.getNombre());
+           System.out.println(membresia.getId());
+       }
+    }//GEN-LAST:event_botonSiguienteActionPerformed
 
     /**
      * @param args the command line arguments

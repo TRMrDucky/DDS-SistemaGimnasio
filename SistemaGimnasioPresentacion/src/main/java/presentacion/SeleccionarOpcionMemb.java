@@ -33,6 +33,8 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         botonEliminar = new javax.swing.JButton();
+        botonActualizar = new javax.swing.JButton();
+        botonConsultar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +94,24 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
             }
         });
 
+        botonActualizar.setBackground(new java.awt.Color(102, 0, 102));
+        botonActualizar.setFont(new java.awt.Font("Hiragino Mincho ProN", 1, 18)); // NOI18N
+        botonActualizar.setText("ACTUALIZAR");
+        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizaropenFormAgregarMembresia(evt);
+            }
+        });
+
+        botonConsultar1.setBackground(new java.awt.Color(102, 0, 102));
+        botonConsultar1.setFont(new java.awt.Font("Hiragino Mincho ProN", 1, 18)); // NOI18N
+        botonConsultar1.setText("CONSULTAR");
+        botonConsultar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonConsultar1openFormAgregarMembresia(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
@@ -103,7 +123,9 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
                         .addGap(173, 173, 173)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonConsultar1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonActualizar)))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGap(125, 125, 125)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -115,11 +137,15 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 168, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonConsultar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,7 +168,16 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
 
     private void botonEliminaropenFormAgregarMembresia(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminaropenFormAgregarMembresia
         control.openFormConsultarMembresias();
+        
     }//GEN-LAST:event_botonEliminaropenFormAgregarMembresia
+
+    private void botonActualizaropenFormAgregarMembresia(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizaropenFormAgregarMembresia
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonActualizaropenFormAgregarMembresia
+
+    private void botonConsultar1openFormAgregarMembresia(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultar1openFormAgregarMembresia
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonConsultar1openFormAgregarMembresia
 
     /**
      * @param args the command line arguments
@@ -150,6 +185,8 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonActualizar;
+    private javax.swing.JButton botonConsultar1;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
