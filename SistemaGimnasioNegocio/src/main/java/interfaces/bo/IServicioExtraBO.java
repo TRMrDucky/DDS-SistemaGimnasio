@@ -5,7 +5,9 @@
 package interfaces.bo;
 
 import dtos.ServicioExtraDTO;
-import excepciones.NegocioException;
+import excepciones.AgregarServicioExtraNegocioException;
+import excepciones.ConsultarServicioExtraNegocioException;
+import excepciones.EditarServicioExtraNegocioException;
 import java.util.List;
 
 /**
@@ -13,9 +15,9 @@ import java.util.List;
  * @author Ramón Zamudio
  */
 public interface IServicioExtraBO {
-    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO()throws NegocioException;
-    public ServicioExtraDTO obtenerServicioExtra(String id)throws NegocioException;
-    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio)throws NegocioException;
-    public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio)throws NegocioException ;
-    public boolean eliminarServicioExtra(String id)throws NegocioException;
+    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO()throws ConsultarServicioExtraNegocioException;
+    public ServicioExtraDTO obtenerServicioExtra(String id)throws ConsultarServicioExtraNegocioException;
+    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio)throws AgregarServicioExtraNegocioException;
+    public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio)throws EditarServicioExtraNegocioException ;
+    public boolean eliminarServicioExtra(String id);
 }

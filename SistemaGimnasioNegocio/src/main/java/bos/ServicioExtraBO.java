@@ -7,10 +7,12 @@ package bos;
 import interfaces.dao.IServicioExtraDAO;
 import dtos.ServicioExtraDTO;
 import excepciones.AgregarServicioExtraException;
+import excepciones.AgregarServicioExtraNegocioException;
+import excepciones.ConsultarServicioExtraNegocioException;
 import excepciones.ConsultarServiciosExtraException;
 import excepciones.EditarServicioExtraException;
+import excepciones.EditarServicioExtraNegocioException;
 import excepciones.EliminarServicioExtraException;
-import excepciones.NegocioException;
 import interfaces.bo.IServicioExtraBO;
 import java.util.List;
 import mappers.ServicioExtraMapper;
@@ -27,43 +29,43 @@ public class ServicioExtraBO implements IServicioExtraBO{
     }
 
     @Override
-    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() throws NegocioException {
+    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() throws ConsultarServicioExtraNegocioException {
         try {
             return ServicioExtraMapper.toListDTO(servicioDAO.obtenerServiciosExtras());
         } catch (ConsultarServiciosExtraException ex) {
-            throw new NegocioException("Error al consultar los servicios extra", ex.getCause());
+            throw new ConsultarServicioExtraNegocioException("Error al consultar los servicios extra", ex.getCause());
         }
     }
 
     @Override
-    public ServicioExtraDTO obtenerServicioExtra(String id) throws NegocioException {
+    public ServicioExtraDTO obtenerServicioExtra(String id) throws ConsultarServicioExtraNegocioException {
         try {
             return ServicioExtraMapper.toDTO(servicioDAO.obtenerServicioExtra(id));
         } catch (ConsultarServiciosExtraException ex) {
-            throw new NegocioException("Error al consultar los servicios extra", ex.getCause());
+            throw new ConsultarServicioExtraNegocioException("Error al consultar los servicios extra", ex.getCause());
         }
     }
 
     @Override
-    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio)throws NegocioException {
+    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio)throws AgregarServicioExtraNegocioException {
         try {
             return ServicioExtraMapper.toDTO(servicioDAO.agregarServicio(ServicioExtraMapper.toEntity(servicio)));
         } catch (AgregarServicioExtraException ex) {
-            throw new NegocioException("Error al agregar el servicio", ex.getCause());
+            throw new AgregarServicioExtraNegocioException("Error al agregar el servicio", ex.getCause());
         }
     }
 
     @Override
-    public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio)throws NegocioException {
+    public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio)throws EditarServicioExtraNegocioException {
         try {
             return ServicioExtraMapper.toDTO(servicioDAO.editarServicio(ServicioExtraMapper.toEntity(servicio)));
         } catch (EditarServicioExtraException ex) {
-            throw new NegocioException("Error al actualizar el servicio", ex.getCause());
+            throw new EditarServicioExtraNegocioException("Error al actualizar el servicio", ex.getCause());
         }
     }
 
     @Override
-    public boolean eliminarServicioExtra(String id) throws NegocioException {
+    public boolean eliminarServicioExtra(String id) {
         try {
             return servicioDAO.eliminarServicioExtra(id);
         } catch (EliminarServicioExtraException ex) {
