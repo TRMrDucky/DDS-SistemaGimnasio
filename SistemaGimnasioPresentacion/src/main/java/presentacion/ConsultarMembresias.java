@@ -17,6 +17,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -40,9 +41,10 @@ public class ConsultarMembresias extends javax.swing.JFrame {
         System.out.println(membresias);
         panelMembresias.setLayout(new GridLayout(0, 1));
         panelMembresias.removeAll();
-        
+        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         for (MembresiaDTO membresia: membresias){
             JPanel panel= new JPanel();
+            panel.setBackground(new Color(255,204,255));
             panel.setLayout(new GridLayout(4, 1));
             panel.setPreferredSize(new Dimension(250, 150));
             panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
@@ -74,8 +76,11 @@ public class ConsultarMembresias extends javax.swing.JFrame {
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         
        // panelPrincipal.removeAll();
+   
        panelPrincipal.setLayout(new BorderLayout());
+       panelPrincipal.add(labelTitulo, BorderLayout.NORTH);
        panelPrincipal.add(scrollPane, BorderLayout.CENTER); 
+       panelPrincipal.add(botonSiguiente, BorderLayout.SOUTH);
 
        panelPrincipal.revalidate();
        panelPrincipal.repaint();
@@ -90,38 +95,25 @@ public class ConsultarMembresias extends javax.swing.JFrame {
     private void initComponents() {//GEN-BEGIN:initComponents
 
         panelPrincipal = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        labelTitulo = new javax.swing.JLabel();
+        labelTexto = new javax.swing.JLabel();
         panelMembresias = new javax.swing.JPanel();
+        botonSiguiente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(153, 0, 153));
+        labelTitulo.setBackground(new java.awt.Color(51, 51, 51));
+        labelTitulo.setFont(new java.awt.Font("Snell Roundhand", 1, 36)); // NOI18N
+        labelTitulo.setForeground(new java.awt.Color(51, 51, 51));
+        labelTitulo.setText("membresias");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 24, Short.MAX_VALUE)
-        );
+        labelTexto.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        labelTexto.setForeground(new java.awt.Color(0, 0, 0));
+        labelTexto.setText("Seleccione una membresia");
 
-        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel1.setFont(new java.awt.Font("Snell Roundhand", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("membresias");
-
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Seleccione una membresia");
-
-        panelMembresias.setBackground(new java.awt.Color(204, 204, 204));
+        panelMembresias.setBackground(new java.awt.Color(255, 204, 255));
 
         javax.swing.GroupLayout panelMembresiasLayout = new javax.swing.GroupLayout(panelMembresias);
         panelMembresias.setLayout(panelMembresiasLayout);
@@ -134,36 +126,41 @@ public class ConsultarMembresias extends javax.swing.JFrame {
             .addGap(0, 159, Short.MAX_VALUE)
         );
 
+        botonSiguiente.setText("SIGUIENTE");
+
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59))
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGap(92, 92, 92)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addComponent(panelMembresias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(panelMembresias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(botonSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(labelTexto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelMembresias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 41, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonSiguiente)
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -216,9 +213,9 @@ public class ConsultarMembresias extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton botonSiguiente;
+    private javax.swing.JLabel labelTexto;
+    private javax.swing.JLabel labelTitulo;
     private javax.swing.JPanel panelMembresias;
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
