@@ -5,6 +5,7 @@
 package presentacion;
 
 import dtos.ServicioExtraDTO;
+import excepciones.AgregarServicioExtraSubsistemaException;
 import excepciones.NegocioException;
 import excepciones.SubsistemaServicioExtraException;
 import implementaciones.ManejadorServicioExtra;
@@ -120,7 +121,7 @@ public class AgregarServicioExtra extends javax.swing.JFrame {
                 control.openFormPantallaPrincipal();
                 dispose();
             }
-        } catch (SubsistemaServicioExtraException | NumberFormatException ex) {
+        } catch (AgregarServicioExtraSubsistemaException | NumberFormatException ex) {
             control.mostrarMensajeErrorServiciosExtra("agregar");
         }
         
