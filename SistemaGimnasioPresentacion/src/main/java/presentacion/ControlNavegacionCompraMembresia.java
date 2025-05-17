@@ -13,7 +13,9 @@ import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
 import dtos.ServicioExtraDTO;
 import dtos.MembresiaDTO;
+import excepciones.AgregarServicioExtraSubsistemaException;
 import excepciones.DuracionException;
+import excepciones.EditarServicioExtraSubsitemaException;
 import excepciones.NegocioException;
 import excepciones.NombreVacioException;
 import excepciones.PrecioVacioException;
@@ -307,13 +309,17 @@ public class ControlNavegacionCompraMembresia {
         new MostrarServiciosExtras(this, origen, servicioExtra).setVisible(true);
     }
     
-    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio) throws SubsistemaServicioExtraException {
-        return subsistema2.agregarServicio(servicio);
+    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio) throws AgregarServicioExtraSubsistemaException {
+        try{
+            return subsistema2.agregarServicio(servicio);
+        }catch(AgregarServicioExtraSubsistemaException ex){
+            throw new AgregarServicioExtraSubsistemaException("Error al agregar el servicio");
+        }
     }
     public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio){
         try {
             return subsistema2.editarServicio(servicio);
-        } catch (SubsistemaServicioExtraException ex) {
+        } catch (EditarServicioExtraSubsitemaException ex) {
             
         }
         return null;
