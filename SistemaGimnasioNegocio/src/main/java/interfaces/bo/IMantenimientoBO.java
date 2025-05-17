@@ -14,7 +14,7 @@ import java.util.List;
  * @author Cricri
  */
 public interface IMantenimientoBO {
-     MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimientoDTO) throws NegocioException;
-    List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) throws NegocioException;
-    boolean eliminarMantenimientosPorEquipo(String idEquipo) throws NegocioException;
+   public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimientoDTO) throws NegocioException;
+   public List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) throws NegocioException;
+   public boolean eliminarMantenimientosPorEquipo(String idEquipo) throws NegocioException;
 }

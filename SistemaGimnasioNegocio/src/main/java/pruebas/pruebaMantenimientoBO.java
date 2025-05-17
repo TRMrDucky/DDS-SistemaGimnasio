@@ -25,11 +25,11 @@ public class pruebaMantenimientoBO {
      */
     public static void main(String[] args) {
                try {
-            // Instancia de DAO y BO
+
             IMantenimientoDAO mantenimientoDAO = MantenimientoDAO.getInstance();
             IMantenimientoBO mantenimientoBO = new MantenimientoBO(mantenimientoDAO);
 
-            // ID del equipo al que se le hará mantenimiento (puedes reemplazarlo con uno válido de tu BD)
+            
             String idEquipo = "68268ee7ee194609c2353533"; 
 
             // Crear un nuevo mantenimiento

@@ -4,6 +4,7 @@
  */
 package interfaces.bo;
 
+import bos.MantenimientoBO;
 import dtos.EquipoDTO;
 import excepciones.NegocioException;
 import java.util.List;
@@ -14,11 +15,12 @@ import java.util.List;
  */
 public interface IEquipoBO {
   
-    List<EquipoDTO> obtenerTodosEquipos() throws NegocioException;
-    List<EquipoDTO> buscarEquiposPorFiltro(String filtro) throws NegocioException;
-    EquipoDTO obtenerEquipoPorId(String id) throws NegocioException;
-    EquipoDTO agregarEquipo(EquipoDTO equipoDTO) throws NegocioException;
-    boolean eliminarEquipo(String id) throws NegocioException;
+    public  List<EquipoDTO> obtenerTodosEquipos() throws NegocioException;
+    public  List<EquipoDTO> buscarEquiposPorFiltro(String filtro) throws NegocioException;
+    public   EquipoDTO obtenerEquipoPorId(String id) throws NegocioException;
+    public   EquipoDTO agregarEquipo(EquipoDTO equipoDTO) throws NegocioException;
+    public   boolean eliminarEquipo(String id) throws NegocioException;
+    public  boolean eliminarEquipoYAsociados(String id) throws NegocioException;
     
 }
 

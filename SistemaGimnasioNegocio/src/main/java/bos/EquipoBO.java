@@ -11,6 +11,7 @@ import excepciones.ConsultarEquipoException;
 import excepciones.EliminarEquipoException;
 import excepciones.NegocioException;
 import interfaces.bo.IEquipoBO;
+import interfaces.bo.IMantenimientoBO;
 import interfaces.dao.IEquipoDAO;
 import java.util.List;
 import mappers.EquipoMapper;
@@ -20,10 +21,12 @@ import mappers.EquipoMapper;
  * @author Cricri
  */
 public class EquipoBO implements IEquipoBO {
-      private IEquipoDAO equipoDAO;
+    private final IEquipoDAO equipoDAO;
+    private final IMantenimientoBO mantenimientoBO;
 
-    public EquipoBO(IEquipoDAO equipoDAO) {
+    public EquipoBO(IEquipoDAO equipoDAO, IMantenimientoBO mantenimientoBO) {
         this.equipoDAO = equipoDAO;
+        this.mantenimientoBO = mantenimientoBO;
     }
 
     @Override
@@ -74,6 +77,22 @@ public class EquipoBO implements IEquipoBO {
             return equipoDAO.eliminarEquipo(id);
         } catch (EliminarEquipoException ex) {
             throw new NegocioException("Error al eliminar el equipo", ex.getCause());
+        }
+    }
+    
+     @Override
+     public boolean eliminarEquipoYAsociados(String id) throws NegocioException {
+        try {
+           
+            boolean mantenimientosEliminados = mantenimientoBO.eliminarMantenimientosPorEquipo(id);
+
+        
+            boolean equipoEliminado = eliminarEquipo(id);
+
+
+            return mantenimientosEliminados && equipoEliminado;
+        } catch (NegocioException ex) {
+            throw new NegocioException("Error al eliminar el equipo y sus mantenimientos asociados", ex.getCause());
         }
     }
 }

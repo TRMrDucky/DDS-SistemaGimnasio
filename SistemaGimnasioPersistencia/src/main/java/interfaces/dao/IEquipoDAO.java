@@ -15,9 +15,9 @@ import java.util.List;
  * @author Cricri
  */
 public interface IEquipoDAO {
-    List<Equipo> obtenerEquipos() throws ConsultarEquipoException;
-    Equipo obtenerEquipo(String id) throws ConsultarEquipoException;
-    List<Equipo> buscarEquiposPorFiltro(String filtro) throws ConsultarEquipoException;
-    Equipo agregarEquipo(Equipo equipo) throws AgregarEquipoException;
-    boolean eliminarEquipo(String id) throws EliminarEquipoException;
+   public List<Equipo> obtenerEquipos() throws ConsultarEquipoException;
+   public Equipo obtenerEquipo(String id) throws ConsultarEquipoException;
+    public List<Equipo> buscarEquiposPorFiltro(String filtro) throws ConsultarEquipoException;
+    public Equipo agregarEquipo(Equipo equipo) throws AgregarEquipoException;
+     public boolean eliminarEquipo(String id) throws EliminarEquipoException;
 }
