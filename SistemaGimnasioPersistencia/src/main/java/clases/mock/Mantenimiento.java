@@ -5,6 +5,7 @@
 package clases.mock;
 
 import java.util.Date;
+import org.bson.codecs.pojo.annotations.BsonIgnore;
 import org.bson.types.ObjectId;
 
 /**
@@ -92,6 +93,7 @@ public class Mantenimiento {
         this.fechaSeguimiento = fechaSeguimiento;
     }
     
+       @BsonIgnore
       public String getIdMantenimientoString(){
          return (idMantenimiento != null) ? idMantenimiento.toString() : null;
     }
@@ -100,6 +102,7 @@ public class Mantenimiento {
         this.idMantenimiento = new ObjectId(id);
     }    
     
+    @BsonIgnore
     public String getIdEquipoString() {
         return idEquipo.toString();
 }

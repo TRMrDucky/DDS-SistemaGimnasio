@@ -79,7 +79,8 @@ public class MantenimientoDAO implements IMantenimientoDAO {
               Date fechaSeguimiento = doc.getDate("fechaSeguimiento");
 
               Document equipoData = (Document) doc.get("equipoData");
-              String nombreEquipo = equipoData != null ? equipoData.getString("nombreEquipo") : "Desconocido";
+              String nombreEquipo = equipoData != null ? equipoData.getString("nombre") : "Desconocido";
+
 
               HistorialEquipoDTO dto = new HistorialEquipoDTO(
                   nombreMantenimiento,
