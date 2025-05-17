@@ -54,11 +54,11 @@ public class equipo {
          
         
 
-
+ /**
         Equipo equipo = new Equipo();
-        equipo.setNombre("predicador");
-        equipo.setNumeroSerie("Predi-2025-88888");
-        equipo.setMarca("PrediFit");
+        equipo.setNombre("hack");
+        equipo.setNumeroSerie("hack-2025-9999");
+        equipo.setMarca("hackfit");
         equipo.setFechaAdquisicion(new Date()); 
     
 
@@ -70,30 +70,30 @@ public class equipo {
             System.err.println("Error al agregar equipo: " + e.getMessage());
             e.printStackTrace();
         }
-          
+          */ 
 
-/**
+
       try {
           
             MantenimientoDAO dao = MantenimientoDAO.getInstance();
 
             
             Mantenimiento nuevo = new Mantenimiento(
-                new ObjectId("6821572acac34c3d0d82fb13"), // <-- Cambia por un idEquipo válido en tu colección
+                new ObjectId("6827d4c03b3f7d7e13b5eeae"),
                 new Date(), // Fecha del mantenimiento
-                "Preventivo", // Tipo de mantenimiento
+                "Cambio de aceite", // nombreMantenimiento
                 800.0f, // Costo
-                "Revisión general y limpieza interna", // Observaciones
+                "Revisión general y limpieza interna", 
                 new Date() // Fecha de seguimiento
             );
 
             // Registrar el mantenimiento
             Mantenimiento registrado = dao.registrarMantenimiento(nuevo);
 
-            // Mostrar resultado (puedes quitar el id si no quieres mostrarlo)
+            // Mostrar resultado 
             System.out.println("Mantenimiento registrado:");
             System.out.println("ID del equipo: " + registrado.getIdEquipo());
-            System.out.println("Tipo: " + registrado.getTipoMantenimiento());
+            System.out.println("Nombre: " + registrado.getNombreMantenimiento());
             System.out.println("Costo: $" + registrado.getCosto());
             System.out.println("Observaciones: " + registrado.getObservaciones());
             System.out.println("Fecha mantenimiento: " + registrado.getFechaMantenimiento());
@@ -103,7 +103,7 @@ public class equipo {
             System.err.println(" Error al registrar mantenimiento: " + e.getMessage());
               e.printStackTrace(); 
         }
-        */
+        
 
    
 }

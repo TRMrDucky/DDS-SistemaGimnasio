@@ -19,7 +19,7 @@ public class MantenimientoMapper {
         Mantenimiento mantenimiento = new Mantenimiento();
         mantenimiento.setIdEquipoString(dto.getIdEquipo()); 
         mantenimiento.setFechaMantenimiento(dto.getFechaMantenimiento());
-        mantenimiento.setTipoMantenimiento(dto.getTipoMantenimiento());
+        mantenimiento.setNombreMantenimiento(dto.getTipoMantenimiento());
         mantenimiento.setCosto(dto.getCosto());
         mantenimiento.setObservaciones(dto.getObservaciones());
         mantenimiento.setFechaSeguimiento(dto.getFechaSeguimiento());
@@ -34,7 +34,7 @@ public class MantenimientoMapper {
         MantenimientoDTO dto = new MantenimientoDTO(
             entidad.getIdEquipoString(),
             entidad.getFechaMantenimiento(),
-            entidad.getTipoMantenimiento(),
+            entidad.getNombreMantenimiento(),
             entidad.getCosto(),
             entidad.getObservaciones(),
             entidad.getFechaSeguimiento()

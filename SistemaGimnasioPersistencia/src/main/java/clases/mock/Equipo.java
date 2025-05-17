@@ -7,6 +7,7 @@ package clases.mock;
 import java.util.Date;
 import java.util.List;
 import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.codecs.pojo.annotations.BsonIgnore;
 import org.bson.types.ObjectId;
 
 /**
@@ -84,6 +85,7 @@ public class Equipo {
         this.fechaAdquisicion = fechaAdquisicion;
     }
     
+    @BsonIgnore
     public String getIdEquipoString() {
         return idEquipo.toString();
     }
@@ -96,9 +98,6 @@ public class Equipo {
     public String toString() {
         return "Equipo{" + "idEquipo=" + idEquipo + ", nombre=" + nombre + ", marca=" + marca + ", modelo=" + modelo + ", numeroSerie=" + numeroSerie + ", fechaAdquisicion=" + fechaAdquisicion + '}';
     }
-    
-    
-  
     
     
 

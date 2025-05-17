@@ -16,7 +16,7 @@ public class Mantenimiento {
     private ObjectId idMantenimiento;
     private ObjectId idEquipo;
     private Date fechaMantenimiento;
-    private String tipoMantenimiento;
+    private String nombreMantenimiento;
     private float costo;
     private String observaciones;
     private Date fechaSeguimiento;
@@ -24,10 +24,10 @@ public class Mantenimiento {
     public Mantenimiento() {
     }
 
-    public Mantenimiento(ObjectId idEquipo, Date fechaMantenimiento, String tipoMantenimiento, float costo, String observaciones, Date fechaSeguimiento) {
+    public Mantenimiento(ObjectId idEquipo, Date fechaMantenimiento, String nombreMantenimiento, float costo, String observaciones, Date fechaSeguimiento) {
         this.idEquipo = idEquipo;
         this.fechaMantenimiento = fechaMantenimiento;
-        this.tipoMantenimiento = tipoMantenimiento;
+        this.nombreMantenimiento = nombreMantenimiento;
         this.costo = costo;
         this.observaciones = observaciones;
         this.fechaSeguimiento = fechaSeguimiento;
@@ -59,13 +59,14 @@ public class Mantenimiento {
         this.fechaMantenimiento = fechaMantenimiento;
     }
 
-    public String getTipoMantenimiento() {
-        return tipoMantenimiento;
+    public String getNombreMantenimiento() {
+        return nombreMantenimiento;
     }
 
-    public void setTipoMantenimiento(String tipoMantenimiento) {
-        this.tipoMantenimiento = tipoMantenimiento;
+    public void setNombreMantenimiento(String nombreMantenimiento) {
+        this.nombreMantenimiento = nombreMantenimiento;
     }
+
 
     public float getCosto() {
         return costo;
@@ -110,7 +111,7 @@ public class Mantenimiento {
 
     @Override
     public String toString() {
-        return "Mantenimiento{" + "idMantenimiento=" + idMantenimiento + ", idEquipo=" + idEquipo + ", fechaMantenimiento=" + fechaMantenimiento + ", tipoMantenimiento=" + tipoMantenimiento + ", costo=" + costo + ", observaciones=" + observaciones + ", fechaSeguimiento=" + fechaSeguimiento + '}';
+        return "Mantenimiento{" + "idMantenimiento=" + idMantenimiento + ", idEquipo=" + idEquipo + ", fechaMantenimiento=" + fechaMantenimiento + ", nombreMantenimiento=" + nombreMantenimiento + ", costo=" + costo + ", observaciones=" + observaciones + ", fechaSeguimiento=" + fechaSeguimiento + '}';
     }
 
     
