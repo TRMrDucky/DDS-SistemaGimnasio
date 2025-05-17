@@ -7,6 +7,10 @@ package interfaz;
 import dtos.EquipoDTO;
 import dtos.HistorialEquipoDTO;
 import dtos.MantenimientoDTO;
+import excepciones.FiltroVacioException;
+import excepciones.IdEquipoVacioException;
+import excepciones.NombreEquipoVacioException;
+import excepciones.ObservacionesVaciasException;
 import excepciones.SubsistemaMantenimientoEquiposException;
 import java.util.List;
 
@@ -17,12 +21,12 @@ import java.util.List;
 public interface IManejadorMantenimientoEquipos {
     
    public List<EquipoDTO> obtenerTodosEquipos() throws SubsistemaMantenimientoEquiposException;
-   public List<EquipoDTO> buscarEquiposPorFiltro(String filtro) throws SubsistemaMantenimientoEquiposException;
-   public EquipoDTO obtenerEquipoPorId(String id) throws SubsistemaMantenimientoEquiposException;
-   public EquipoDTO agregarEquipo(EquipoDTO equipo) throws SubsistemaMantenimientoEquiposException;
-   public boolean eliminarEquipoYAsociados(String id) throws SubsistemaMantenimientoEquiposException;
-   public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) throws SubsistemaMantenimientoEquiposException;
-   public List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) throws SubsistemaMantenimientoEquiposException;
+   public List<EquipoDTO> buscarEquiposPorFiltro(String filtro) throws SubsistemaMantenimientoEquiposException, FiltroVacioException;
+   public EquipoDTO obtenerEquipoPorId(String id) throws SubsistemaMantenimientoEquiposException,IdEquipoVacioException;
+   public EquipoDTO agregarEquipo(EquipoDTO equipo) throws SubsistemaMantenimientoEquiposException,NombreEquipoVacioException;
+   public boolean eliminarEquipoYAsociados(String id) throws SubsistemaMantenimientoEquiposException,IdEquipoVacioException;
+   public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) throws SubsistemaMantenimientoEquiposException,IdEquipoVacioException, ObservacionesVaciasException ;
+   public List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) throws SubsistemaMantenimientoEquiposException,IdEquipoVacioException;
 }
 
 
