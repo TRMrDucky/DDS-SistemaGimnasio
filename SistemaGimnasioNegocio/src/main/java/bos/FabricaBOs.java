@@ -5,6 +5,8 @@
 package bos;
 
 import daos.ClienteDAO;
+import daos.EquipoDAO;
+import daos.MantenimientoDAO;
 import daos.MembresiaDAO;
 import daos.MembresiaMockDAO;
 import daos.ServicioExtraDAO;
@@ -33,4 +35,18 @@ public class FabricaBOs {
         return membresiaBO;
     }
     
+     public static MantenimientoBO getInstanceMantenimientoBO() {
+        MantenimientoDAO mantenimientoDAO = MantenimientoDAO.getInstance();
+        MantenimientoBO mantenimientoBO = new MantenimientoBO(mantenimientoDAO);
+        return mantenimientoBO;
+    }
+
+    public static EquipoBO getInstanceEquipoBO() {
+        EquipoDAO equipoDAO = EquipoDAO.getInstance();
+        MantenimientoBO mantenimientoBO = getInstanceMantenimientoBO();
+        EquipoBO equipoBO = new EquipoBO(equipoDAO, mantenimientoBO);
+        return equipoBO;
+    }
 }
+    
+
