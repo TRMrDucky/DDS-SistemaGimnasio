@@ -5,6 +5,9 @@
 package interfaz;
 
 import dtos.ServicioExtraDTO;
+import excepciones.AgregarServicioExtraSubsistemaException;
+import excepciones.ConsultarServicioExtraSubsistemaException;
+import excepciones.EditarServicioExtraSubsitemaException;
 import excepciones.SubsistemaServicioExtraException;
 import java.util.List;
 
@@ -13,9 +16,9 @@ import java.util.List;
  * @author Ramón Zamudio
  */
 public interface IManejadorServicioExtra {
-    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO()throws SubsistemaServicioExtraException;
-    public ServicioExtraDTO obtenerServicioExtra(String id)throws SubsistemaServicioExtraException;
-    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio)throws SubsistemaServicioExtraException;
-    public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio)throws SubsistemaServicioExtraException ;
-    public boolean eliminarServicioExtra(String id)throws SubsistemaServicioExtraException;
+    public List<ServicioExtraDTO> obtenerServiciosExtrasDTO()throws ConsultarServicioExtraSubsistemaException;
+    public ServicioExtraDTO obtenerServicioExtra(String id)throws ConsultarServicioExtraSubsistemaException;
+    public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio)throws AgregarServicioExtraSubsistemaException;
+    public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio)throws EditarServicioExtraSubsitemaException ;
+    public boolean eliminarServicioExtra(String id)throws  SubsistemaServicioExtraException;
 }

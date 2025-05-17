@@ -10,6 +10,7 @@ import dtos.ClienteRegistradoDTO;
 import dtos.PagoDTO;
 import dtos.ServicioExtraDTO;
 import dtos.MembresiaDTO;
+import excepciones.ConsultarServicioExtraNegocioException;
 import excepciones.NegocioException;
 import excepciones.RegistroClienteException;
 import interfaces.IManejadorComprasMembresias;
@@ -200,7 +201,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
         try {
             System.out.println("hola1");
             return servicioExtraBO.obtenerServiciosExtrasDTO();
-        } catch (NegocioException ex) {
+        } catch (ConsultarServicioExtraNegocioException ex) {
             System.out.println("hola");
             return null;
         }
