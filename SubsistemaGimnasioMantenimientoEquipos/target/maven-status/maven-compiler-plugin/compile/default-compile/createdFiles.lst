@@ -1,1 +1,4 @@
-com\mycompany\subsistemagimnasiomantenimientoequipos\SubsistemaGimnasioMantenimientoEquipos.class
+interfaz/IManejadorMantenimientoEquipos.class
+excepciones/SubsistemaMantenimientoEquiposException.class
+pruebas/SubsistemaGimnasioMantenimientoEquipos.class
+implementaciones/ManejadorMantenimientoEquipos.class

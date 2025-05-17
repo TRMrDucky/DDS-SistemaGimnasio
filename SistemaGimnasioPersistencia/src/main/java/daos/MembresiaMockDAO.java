@@ -15,6 +15,7 @@ import clases.mock.ServicioExtra;
 //import clases.mock.membresias.SevenDaysPass;
 //import clases.mock.membresias.TenDaysPass;
 import com.mongodb.client.MongoCollection;
+import excepciones.ActualizarMembresiaException;
 
 import excepciones.ConsultarServiciosExtraException;
 import excepciones.AgregarMembresiaException;
@@ -161,6 +162,11 @@ public class MembresiaMockDAO implements IMembresiaDAO {
 
     @Override
     public boolean eliminarMembresia(String id) throws EliminarMembresiaException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Membresia actualizarMembresia(Membresia membresia) throws ActualizarMembresiaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -89,6 +90,7 @@ public class AgregarMembresia extends javax.swing.JFrame {
         try {
             // try {
             control.agregarMembresia(membresia);
+            JOptionPane.showMessageDialog(this, "Membresia guardada", "Exito", JOptionPane.INFORMATION_MESSAGE);
            
 //        } catch (SubsistemaMembresiaException ex) {
 //            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);

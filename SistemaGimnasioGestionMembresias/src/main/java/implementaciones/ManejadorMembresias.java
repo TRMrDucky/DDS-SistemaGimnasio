@@ -46,20 +46,20 @@ public class ManejadorMembresias implements IManejadorMembresia{
         try{
             System.out.println("Membresía recibida en ManejadorMembresias: " + membresia);
 
-            if (membresia == null) {
-                throw new SubsistemaMembresiaException("Error: La membresía es NULL en ManejadorMembresias.");
-            }
+//            if (membresia == null) {
+//                throw new SubsistemaMembresiaException("Error: La membresía es NULL en ManejadorMembresias.");
+//            }
             System.out.println("antes de enviar a bo"+ membresia);
             if (membresiaBO == null) {
                 throw new SubsistemaMembresiaException("la bo es null en el manejador");
             }
-            MembresiaDTO resultado = membresiaBO.agregarMembresia(membresia);
+           // MembresiaDTO resultado = membresiaBO.agregarMembresia(membresia);
             //return resultado;
-            System.out.println("si se mando a bo"+resultado);
+          //  System.out.println("si se mando a bo"+resultado);
            // return resultado;
            return membresiaBO.agregarMembresia(membresia);
         } catch (NegocioException ex) {
-            throw new SubsistemaMembresiaException("Error al agregar la membresia "+ex.getCause());
+            throw new SubsistemaMembresiaException("Error al agregar la membresia "+ex.getMessage());
         }
         
         
@@ -82,6 +82,10 @@ public class ManejadorMembresias implements IManejadorMembresia{
         }
          
     }
+    
+//    public MembresiaDTO actualizarMembresia(MembresiaDTO mmebresia){
+//        
+//    }
     
      public boolean validarIdNulo(String id){
         return id.isEmpty();

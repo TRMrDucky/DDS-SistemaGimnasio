@@ -18,6 +18,8 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
         initComponents();
         this.control= control;
     }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -167,7 +169,7 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
     }//GEN-LAST:event_openFormAgregarMembresia
 
     private void botonEliminaropenFormAgregarMembresia(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminaropenFormAgregarMembresia
-        control.openFormConsultarMembresias();
+        control.openFormConsultarMembresias("Eliminar");
         
     }//GEN-LAST:event_botonEliminaropenFormAgregarMembresia
 

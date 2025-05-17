@@ -6,6 +6,7 @@ package bos;
 
 import clases.mock.Membresia;
 import dtos.MembresiaDTO;
+import excepciones.ActualizarMembresiaException;
 import excepciones.AgregarMembresiaException;
 import excepciones.EliminarMembresiaException;
 import excepciones.NegocioException;
@@ -69,7 +70,15 @@ public class MembresiaBO implements IMembresiaBO {
         } catch (EliminarMembresiaException ex) {
             return false;
         }
-        //.
+        
+    }
+    
+    public MembresiaDTO actualizarMembresia(MembresiaDTO membresia) throws NegocioException{
+        try{
+            return MembresiaMapper.toDTO(membresiaDAO.actualizarMembresia(MembresiaMapper.toEntity(membresia)));
+        } catch(ActualizarMembresiaException e){
+            throw new NegocioException("Error al actualizar membresia");
+        }
     }
 
     @Override

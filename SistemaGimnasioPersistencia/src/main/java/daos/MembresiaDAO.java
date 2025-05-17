@@ -17,7 +17,10 @@ import clases.mock.ServicioExtra;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
+import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.UpdateResult;
+import excepciones.ActualizarMembresiaException;
 
 import excepciones.ConsultarServiciosExtraException;
 import excepciones.AgregarMembresiaException;
@@ -109,6 +112,25 @@ public class MembresiaDAO implements IMembresiaDAO {
             throw new EliminarMembresiaException("Error al eliminar membresia");
         }
        
+    }
+    
+    public Membresia actualizarMembresia(Membresia membresia) throws ActualizarMembresiaException{
+        
+        try{
+            MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
+            UpdateResult result = coleccion.updateOne(
+                    Filters.eq("_id", membresia.getId()),
+                    Updates.combine(
+                            Updates.set("nombre", membresia.getNombre()),
+                            Updates.set("precio", membresia.getPrecio()),
+                            Updates.set("duracion", membresia.getDuracion()),
+                            Updates.set("estado", membresia.getEstado().name())
+                    )
+            );
+            return membresia;
+        } catch(Exception e){
+            throw new ActualizarMembresiaException("Error al actualizar membresia");
+        }
     }
 
  //   public List<Membresia> obtenerMembresias() {
