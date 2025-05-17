@@ -6,6 +6,7 @@ package presentacion;
 
 import dtos.MembresiaDTO;
 import dtos.ServicioExtraDTO;
+import excepciones.SubsistemaMembresiaException;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,11 +14,14 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -29,12 +33,14 @@ import javax.swing.SwingConstants;
 public class ConsultarMembresias extends javax.swing.JFrame {
     
     private ControlNavegacionCompraMembresia control;
+    private String accionSeleccionada;
     /**
      * Creates new form ConsultarMembresias
      */
-    public ConsultarMembresias(ControlNavegacionCompraMembresia control) {
+    public ConsultarMembresias(ControlNavegacionCompraMembresia control, String accion) {
         initComponents();
         this.control= control;
+        this.accionSeleccionada= accion;
         cargarMembresias();
     }
     
@@ -107,6 +113,26 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                  .collect(Collectors.toList());
        
            
+    }
+    private void accion(String accion, String idMembresia) throws SubsistemaMembresiaException{
+        boolean resultado= false;
+        switch(accion){
+            case "Eliminar":
+            {
+               
+                    resultado= control.eliminarMembresia(idMembresia);
+                    if(resultado){
+                        JOptionPane.showMessageDialog(null, "Membresía eliminada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "No se pudo eliminar la membresía.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    
+            }
+                break;
+
+        }
+        
     }
     
 
@@ -212,6 +238,13 @@ public class ConsultarMembresias extends javax.swing.JFrame {
        for(MembresiaDTO membresia: seleccionadas){
            System.out.println(membresia.getNombre());
            System.out.println(membresia.getId());
+       
+           try {
+               accion(accionSeleccionada, membresia.getId());
+           } catch (SubsistemaMembresiaException ex) {
+             //  Logger.getLogger(ConsultarMembresias.class.getName()).log(Level.SEVERE, null, ex);
+           }
+               
        }
     }//GEN-LAST:event_botonSiguienteActionPerformed
 

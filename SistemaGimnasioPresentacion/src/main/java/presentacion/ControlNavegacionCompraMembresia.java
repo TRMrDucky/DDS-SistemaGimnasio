@@ -87,8 +87,8 @@ public class ControlNavegacionCompraMembresia {
         new AgregarMembresia(this).setVisible(true);
     }
     
-    public void openFormConsultarMembresias(){
-        new ConsultarMembresias(this).setVisible(true);
+    public void openFormConsultarMembresias(String accion){
+        new ConsultarMembresias(this, accion).setVisible(true);
     }
     
     public MembresiaDTO agregarMembresia(MembresiaDTO membresia) throws SubsistemaMembresiaException, NombreVacioException, PrecioVacioException, DuracionException{

@@ -6,6 +6,7 @@ package interfaces.dao;
 
 import clases.mock.Membresia;
 import clases.mock.ServicioExtra;
+import excepciones.ActualizarMembresiaException;
 import excepciones.AgregarMembresiaException;
 import excepciones.ConsultarServiciosExtraException;
 import excepciones.EliminarMembresiaException;
@@ -24,4 +25,5 @@ public interface IMembresiaDAO {
      public Membresia agregarMembresia(Membresia membresia) throws AgregarMembresiaException;
      public List<Membresia> consultarMembresias();
      public boolean eliminarMembresia(String id) throws EliminarMembresiaException;
+     public Membresia actualizarMembresia(Membresia membresia) throws ActualizarMembresiaException;
 }
