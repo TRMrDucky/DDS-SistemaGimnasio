@@ -15,6 +15,7 @@ import excepciones.SubsistemaMembresiaException;
 import interfaces.bo.IMembresiaBO; 
 import interfaz.IManejadorMembresia;
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -63,6 +64,30 @@ public class ManejadorMembresias implements IManejadorMembresia{
         
         
     }
+    
+    
+   
+    public List<MembresiaDTO> consultarMembresias(){
+        return membresiaBO.consultarMembresias();
+    }
+    
+    public boolean eliminarMembresia(String id) throws SubsistemaMembresiaException{
+        try{
+         if (validarIdNulo(id)){
+             throw new NegocioException("error, membresia con ID nulo");
+         }
+         return membresiaBO.eliminarMembresia(id);
+        } catch(NegocioException e){
+            return false;
+        }
+         
+    }
+    
+     public boolean validarIdNulo(String id){
+        return id.isEmpty();
+    }
+    
+    
     
     public boolean validarNombreVacio(String nombre){
        return nombre==null && nombre.trim().isEmpty();

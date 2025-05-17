@@ -9,6 +9,7 @@ import excepciones.DuracionException;
 import excepciones.NombreVacioException;
 import excepciones.PrecioVacioException;
 import excepciones.SubsistemaMembresiaException;
+import java.util.List;
 
 /**
  *
@@ -16,4 +17,7 @@ import excepciones.SubsistemaMembresiaException;
  */
 public interface IManejadorMembresia {
      public MembresiaDTO agregarMembresia(MembresiaDTO membresia) throws SubsistemaMembresiaException, NombreVacioException, PrecioVacioException, DuracionException;
+     public boolean eliminarMembresia(String id) throws SubsistemaMembresiaException;
+     public List<MembresiaDTO> consultarMembresias();
+             
 }
