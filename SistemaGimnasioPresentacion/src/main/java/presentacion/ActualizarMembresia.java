@@ -20,9 +20,9 @@ public class ActualizarMembresia extends javax.swing.JFrame {
     /**
      * Creates new form ActualizarMembresia
      */
-    public ActualizarMembresia(MembresiaDTO membresiaSeleccionada) {
+    public ActualizarMembresia(ControlNavegacionCompraMembresia control) {
         initComponents();
-       // this.control= control;
+        this.control= control;
         cargarServiciosExtras();
     }
     

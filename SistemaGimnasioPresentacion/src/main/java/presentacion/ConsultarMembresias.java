@@ -133,15 +133,15 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                     
             
             case "Actualizar":
-                if (membresia != null && cambios != null){
-                MembresiaDTO membresiaActualizada= control.actualizarMembresia(membresia, cambios);
-                if(membresiaActualizada!= null){
-                    JOptionPane.showMessageDialog(null, "Membresía actualizada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else{
-                     JOptionPane.showMessageDialog(null, "No se pudo actualizar la membresía.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-                }
+                //if (membresia != null && cambios != null){
+                //MembresiaDTO membresiaActualizada= control.actualizarMembresia(membresia, cambios);
+//                if(membresiaActualizada!= null){
+//                    JOptionPane.showMessageDialog(null, "Membresía actualizada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+//                }
+            //   else{
+             //        JOptionPane.showMessageDialog(null, "No se pudo actualizar la membresía.", "Error", JOptionPane.ERROR_MESSAGE);
+            //    }
+            //    }
                 break;
                 
 
@@ -256,13 +256,13 @@ public class ConsultarMembresias extends javax.swing.JFrame {
        
            try {
                if (accionSeleccionada.equals("Actualizar")) {
-                   control.openFormActualizarMembresia(membresiaSeleccionada);
-                   Map<String, Object> cambios = new HashMap<>();
-                   cambios.put("nombre", membresia.getNombre());
-                    cambios.put("precio", membresia.getPrecio());
-                    cambios.put("duracion", membresia.getDuracion());
-                     cambios.put("serviciosExtra", membresia.getServiciosExtra()); 
-                     accion(accionSeleccionada, membresia.getId(), membresia, cambios);
+                //   control.openFormActualizarMembresia(membresiaSeleccionada);
+//                   Map<String, Object> cambios = new HashMap<>();
+//                   cambios.put("nombre", membresia.getNombre());
+//                    cambios.put("precio", membresia.getPrecio());
+//                    cambios.put("duracion", membresia.getDuracion());
+//                     cambios.put("serviciosExtra", membresia.getServiciosExtra()); 
+                    // accion(accionSeleccionada, membresia.getId(), membresia, cambios);
                }
               if(accionSeleccionada.equals("Eliminar")){
                    boolean eliminada = control.eliminarMembresia(membresia.getId());
