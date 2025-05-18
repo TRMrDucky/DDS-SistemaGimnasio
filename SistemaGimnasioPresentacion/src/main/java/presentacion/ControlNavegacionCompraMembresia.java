@@ -263,6 +263,21 @@ public class ControlNavegacionCompraMembresia {
         return subsistema.obtenerServiciosExtrasDTO();
     }
     
+    
+    
+    
+    private ClienteRegistradoDTO clienteSeleccionado;
+
+   public void setClienteSeleccionado(ClienteRegistradoDTO cliente) {
+       this.clienteSeleccionado = cliente;
+       System.out.println("Cliente seleccionado: " + cliente.getNombre());
+   }
+
+   public ClienteRegistradoDTO getClienteSeleccionado() {
+       return clienteSeleccionado;
+   }
+
+    
 /**
  * metodo que muestra los servicios extras seleccionados
  * @param seleccionados 
