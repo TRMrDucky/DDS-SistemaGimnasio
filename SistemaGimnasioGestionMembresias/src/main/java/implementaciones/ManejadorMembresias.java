@@ -16,6 +16,7 @@ import interfaces.bo.IMembresiaBO;
 import interfaz.IManejadorMembresia;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -83,9 +84,22 @@ public class ManejadorMembresias implements IManejadorMembresia{
          
     }
     
-//    public MembresiaDTO actualizarMembresia(MembresiaDTO mmebresia){
-//        
-//    }
+    public MembresiaDTO actualizarMembresia(MembresiaDTO membresia, Map<String, Object> cambios) throws SubsistemaMembresiaException{
+        try {
+            if (validarIdNulo(membresia.getId())){
+                try {
+                    throw new NegocioException("error, membresia con ID nulo");
+                } catch (NegocioException ex) {
+                    Logger.getLogger(ManejadorMembresias.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            return membresiaBO.actualizarMembresia(membresia, cambios);
+        } catch (NegocioException ex) {
+         //   Logger.getLogger(ManejadorMembresias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+        
+    }
     
      public boolean validarIdNulo(String id){
         return id.isEmpty();

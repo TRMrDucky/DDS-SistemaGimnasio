@@ -41,6 +41,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import interfaz.IManejadorServicioExtra;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  *
@@ -146,6 +147,22 @@ public class ControlNavegacionCompraMembresia {
     
     public void openFormConsultarMembresias(String accion){
         new ConsultarMembresias(this, accion).setVisible(true);
+    }
+    
+    public void openFormActualizarMembresia(MembresiaDTO membresiaSeleccionada){
+        new ActualizarMembresia(membresiaSeleccionada).setVisible(true);
+    }
+    
+    public MembresiaDTO actualizarMembresia(MembresiaDTO membresia, Map<String, Object> cambios) throws SubsistemaMembresiaException{
+        try {
+            return subsistemaMembresias.actualizarMembresia(membresia, cambios);
+        } catch (SubsistemaMembresiaException ex) {
+           // Logger.getLogger(ControlNavegacionCompraMembresia.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NegocioException ex) {
+          //  Logger.getLogger(ControlNavegacionCompraMembresia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+        
     }
     
     public MembresiaDTO agregarMembresia(MembresiaDTO membresia) throws SubsistemaMembresiaException, NombreVacioException, PrecioVacioException, DuracionException{
