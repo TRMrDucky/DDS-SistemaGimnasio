@@ -1,5 +1,6 @@
 package interfaces.bo;
 import dtos.MembresiaDTO;
+import excepciones.EliminarServicioDeMembresiasException;
 import excepciones.NegocioException;
 import java.util.List;
 
@@ -14,4 +15,5 @@ public interface IMembresiaBO {
      public List<MembresiaDTO> consultarMembresias();
      public boolean eliminarMembresia(String id) throws NegocioException;
      public MembresiaDTO actualizarMembresia(MembresiaDTO membresia) throws NegocioException;
+     public boolean eliminarServicioDeMembresias(String idServicio)throws  EliminarServicioDeMembresiasException;
 }

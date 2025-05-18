@@ -19,7 +19,8 @@ public class FabricaBOs {
     
     public static ServicioExtraBO getInstanceServicioExtraBO(){
         ServicioExtraDAO servicioExtraDAO = ServicioExtraDAO.getInstance();
-        ServicioExtraBO servicioExtraBO = new ServicioExtraBO(servicioExtraDAO);
+        MembresiaDAO membresiaDAO= MembresiaDAO.getInstance();
+        ServicioExtraBO servicioExtraBO = new ServicioExtraBO(servicioExtraDAO, membresiaDAO);
         return servicioExtraBO;
     }
     

@@ -4,6 +4,7 @@
  */
 package bos;
 
+import daos.MembresiaDAO;
 import interfaces.dao.IServicioExtraDAO;
 import dtos.ServicioExtraDTO;
 import excepciones.AgregarServicioExtraException;
@@ -12,9 +13,13 @@ import excepciones.ConsultarServicioExtraNegocioException;
 import excepciones.ConsultarServiciosExtraException;
 import excepciones.EditarServicioExtraException;
 import excepciones.EditarServicioExtraNegocioException;
+import excepciones.EliminarServicioDeMembresiasException;
 import excepciones.EliminarServicioExtraException;
 import interfaces.bo.IServicioExtraBO;
+import interfaces.dao.IMembresiaDAO;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import mappers.ServicioExtraMapper;
 
 /**
@@ -23,9 +28,11 @@ import mappers.ServicioExtraMapper;
  */
 public class ServicioExtraBO implements IServicioExtraBO{
     private IServicioExtraDAO servicioDAO;
-
-    public ServicioExtraBO(IServicioExtraDAO servicioDAO) {
+    private IMembresiaDAO membresiaDAO;
+    
+    public ServicioExtraBO(IServicioExtraDAO servicioDAO, IMembresiaDAO membresiaDAO)  {
         this.servicioDAO = servicioDAO;
+        this.membresiaDAO= membresiaDAO;
     }
 
     @Override
@@ -67,11 +74,20 @@ public class ServicioExtraBO implements IServicioExtraBO{
     @Override
     public boolean eliminarServicioExtra(String id) {
         try {
-            return servicioDAO.eliminarServicioExtra(id);
+            boolean servicioEliminado= servicioDAO.eliminarServicioExtra(id);
+            if(servicioEliminado){
+                boolean actualizadoEnMembresias= membresiaDAO.eliminarServicioDeMembresias(id);
+                return actualizadoEnMembresias;
+            }
+            return false;
         } catch (EliminarServicioExtraException ex) {
             return false;
+        
+    }   catch (EliminarServicioDeMembresiasException ex) {
+            //Logger.getLogger(ServicioExtraBO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
-    }
 
 
+}
 }
