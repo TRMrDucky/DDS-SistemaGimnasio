@@ -6,8 +6,10 @@ package bos;
 
 import clases.mock.Membresia;
 import dtos.MembresiaDTO;
+import dtos.ServicioExtraDTO;
 import excepciones.ActualizarMembresiaException;
 import excepciones.AgregarMembresiaException;
+import excepciones.EditarServicioEnMembresiaException;
 import excepciones.EliminarMembresiaException;
 import excepciones.EliminarServicioDeMembresiasException;
 import excepciones.NegocioException;
@@ -19,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import mappers.MembresiaMapper;
+import mappers.ServicioExtraMapper;
 
 /**
  *
@@ -87,6 +90,15 @@ public class MembresiaBO implements IMembresiaBO {
             return membresiaDAO.eliminarServicioDeMembresias(idServicio);
         } catch(EliminarServicioDeMembresiasException e){
             throw new EliminarServicioDeMembresiasException("Error al eliminar servicio de membresia");
+        }
+    }
+    
+    public boolean editarServicioDeMembresias(String idServicio, ServicioExtraDTO servicioActualizado) throws EditarServicioEnMembresiaException{
+        try{
+            return membresiaDAO.editarServicioEnMembresias(idServicio, ServicioExtraMapper.toEntity(servicioActualizado));
+            
+        } catch(EditarServicioEnMembresiaException e){
+            throw new EditarServicioEnMembresiaException("error al editar servicio en membresia");
         }
     }
 

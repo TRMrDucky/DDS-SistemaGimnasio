@@ -11,6 +11,7 @@ import excepciones.AgregarServicioExtraException;
 import excepciones.AgregarServicioExtraNegocioException;
 import excepciones.ConsultarServicioExtraNegocioException;
 import excepciones.ConsultarServiciosExtraException;
+import excepciones.EditarServicioEnMembresiaException;
 import excepciones.EditarServicioExtraException;
 import excepciones.EditarServicioExtraNegocioException;
 import excepciones.EliminarServicioDeMembresiasException;
@@ -65,10 +66,18 @@ public class ServicioExtraBO implements IServicioExtraBO{
     @Override
     public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio)throws EditarServicioExtraNegocioException {
         try {
-            return ServicioExtraMapper.toDTO(servicioDAO.editarServicio(ServicioExtraMapper.toEntity(servicio)));
+            ServicioExtraDTO servicioEditado= ServicioExtraMapper.toDTO(servicioDAO.editarServicio(ServicioExtraMapper.toEntity(servicio)));
+            if(servicioEditado!=null){
+                boolean membActualizada= membresiaDAO.editarServicioEnMembresias(servicioEditado.getId(), ServicioExtraMapper.toEntity(servicioEditado));
+                
+            }
+            return servicioEditado;
         } catch (EditarServicioExtraException ex) {
             throw new EditarServicioExtraNegocioException("Error al actualizar el servicio", ex.getCause());
+        } catch (EditarServicioEnMembresiaException ex) {
+          //  Logger.getLogger(ServicioExtraBO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
     @Override

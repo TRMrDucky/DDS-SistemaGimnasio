@@ -24,6 +24,7 @@ import excepciones.ActualizarMembresiaException;
 
 import excepciones.ConsultarServiciosExtraException;
 import excepciones.AgregarMembresiaException;
+import excepciones.EditarServicioEnMembresiaException;
 import excepciones.EliminarMembresiaException;
 import excepciones.EliminarServicioDeMembresiasException;
 
@@ -128,6 +129,22 @@ public class MembresiaDAO implements IMembresiaDAO {
         } catch(Exception e){
             throw new EliminarServicioDeMembresiasException("Error al eliminar servicio de membresia asociada");
         }
+    }
+    
+    public boolean editarServicioEnMembresias(String idServicio, ServicioExtra servicioActualizado) throws EditarServicioEnMembresiaException {
+        try{
+            MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
+            UpdateResult resultado = coleccion.updateMany(
+                    Filters.elemMatch("serviciosExtra", Filters.eq("_id", new ObjectId(idServicio))),
+                    new Document("$set", new Document("serviciosExtra.$", servicioActualizado))
+            );
+            
+            return resultado.getModifiedCount() > 0;
+
+        } catch(Exception e){
+            throw new EditarServicioEnMembresiaException("Error al editar servicio en membresia");
+        }
+        
     }
     
     public Membresia actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws ActualizarMembresiaException{
