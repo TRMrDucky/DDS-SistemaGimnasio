@@ -39,8 +39,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import interfaz.IManejadorServicioExtra;
 import java.util.ArrayList;
+import interfaz.IManejadorServiciosExtra;
 
 /**
  *
@@ -49,13 +49,13 @@ import java.util.ArrayList;
 public class ControlNavegacionCompraMembresia {
 
     private IManejadorComprasMembresias subsistema;
-    private IManejadorServicioExtra subsistema2;
+    private IManejadorServiciosExtra subsistema2;
     private IManejadorMembresia subsistemaMembresias;
     private IManejadorMantenimientoEquipos subsistemaMantenimientoEquipos;
    
    
     
-    public ControlNavegacionCompraMembresia(IManejadorComprasMembresias subsistema,IManejadorServicioExtra subsistema2 , IManejadorMembresia subsistemaMembresias,IManejadorMantenimientoEquipos subsistemaMantenimientoEquipos){
+    public ControlNavegacionCompraMembresia(IManejadorComprasMembresias subsistema,IManejadorServiciosExtra subsistema2 , IManejadorMembresia subsistemaMembresias,IManejadorMantenimientoEquipos subsistemaMantenimientoEquipos){
         this.subsistema = subsistema;
         this.subsistema2 = subsistema2;
         this.subsistemaMembresias= subsistemaMembresias;

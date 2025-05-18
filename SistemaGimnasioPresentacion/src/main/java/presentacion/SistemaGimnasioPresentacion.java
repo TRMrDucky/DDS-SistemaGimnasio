@@ -10,7 +10,7 @@ import implementaciones.ManejadorServicioExtra;
 import interfaces.IManejadorComprasMembresias;
 import interfaz.IManejadorMantenimientoEquipos;
 import interfaz.IManejadorMembresia;
-import interfaz.IManejadorServicioExtra;
+import interfaz.IManejadorServiciosExtra;
 
 /**
  *
@@ -22,7 +22,7 @@ public class SistemaGimnasioPresentacion {
     public static void main(String[] args) {
         System.out.println("Hello World!");
         IManejadorComprasMembresias subsistema = new ManejadorComprasMembresias();
-        IManejadorServicioExtra subsistema2 = new ManejadorServicioExtra();
+        IManejadorServiciosExtra subsistema2 = new ManejadorServicioExtra();
         IManejadorMembresia subsistemaMembresias= new ManejadorMembresias();
         IManejadorMantenimientoEquipos subsistemaMantenimientoEquipos=new ManejadorMantenimientoEquipos();
         ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia(subsistema,subsistema2, subsistemaMembresias, subsistemaMantenimientoEquipos);

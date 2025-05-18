@@ -7,7 +7,7 @@ package presentacion;
 import implementaciones.ManejadorComprasMembresias;
 import implementaciones.ManejadorServicioExtra;
 import javax.smartcardio.ATR;
-import interfaz.IManejadorServicioExtra;
+import interfaz.IManejadorServiciosExtra;
 
 /**
  *

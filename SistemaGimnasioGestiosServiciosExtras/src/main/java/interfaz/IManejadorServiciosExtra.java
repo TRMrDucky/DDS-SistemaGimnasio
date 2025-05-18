@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author Ramón Zamudio
  */
-public interface IManejadorServicioExtra {
+public interface IManejadorServiciosExtra {
     public List<ServicioExtraDTO> obtenerServiciosExtrasDTO()throws ConsultarServicioExtraSubsistemaException;
     public ServicioExtraDTO obtenerServicioExtra(String id)throws ConsultarServicioExtraSubsistemaException;
     public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio)throws AgregarServicioExtraSubsistemaException;

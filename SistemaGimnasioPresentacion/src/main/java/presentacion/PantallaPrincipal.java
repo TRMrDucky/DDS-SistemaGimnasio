@@ -7,7 +7,7 @@ package presentacion;
 import implementaciones.ManejadorComprasMembresias;
 import implementaciones.ManejadorServicioExtra;
 import interfaces.IManejadorComprasMembresias;
-import interfaz.IManejadorServicioExtra;
+import interfaz.IManejadorServiciosExtra;
 
 /**
  *

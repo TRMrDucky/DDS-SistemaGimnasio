@@ -9,7 +9,7 @@ import excepciones.AgregarServicioExtraSubsistemaException;
 import excepciones.NegocioException;
 import excepciones.SubsistemaServicioExtraException;
 import implementaciones.ManejadorServicioExtra;
-import interfaz.IManejadorServicioExtra;
+import interfaz.IManejadorServiciosExtra;
 
 
 /**

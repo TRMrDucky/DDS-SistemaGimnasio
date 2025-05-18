@@ -16,15 +16,15 @@ import excepciones.NegocioException;
 import excepciones.SubsistemaServicioExtraException;
 import interfaces.bo.IServicioExtraBO;
 import java.util.List;
-import interfaz.IManejadorServicioExtra;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import interfaz.IManejadorServiciosExtra;
 
 /**
  *
  * @author Ramón Zamudio
  */
-public class ManejadorServicioExtra implements IManejadorServicioExtra{
+public class ManejadorServicioExtra implements IManejadorServiciosExtra{
     private IServicioExtraBO servicioExtraBO;
 
     public ManejadorServicioExtra() {
