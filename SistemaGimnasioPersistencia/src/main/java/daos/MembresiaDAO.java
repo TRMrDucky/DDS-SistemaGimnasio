@@ -25,12 +25,15 @@ import excepciones.ActualizarMembresiaException;
 import excepciones.ConsultarServiciosExtraException;
 import excepciones.AgregarMembresiaException;
 import excepciones.EliminarMembresiaException;
+import excepciones.EliminarServicioDeMembresiasException;
 
 import interfaces.dao.IMembresiaDAO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
 /**
@@ -114,20 +117,30 @@ public class MembresiaDAO implements IMembresiaDAO {
        
     }
     
-    public Membresia actualizarMembresia(Membresia membresia) throws ActualizarMembresiaException{
+    public boolean eliminarServicioDeMembresias(String idServicio) throws EliminarServicioDeMembresiasException{
+        try{
+            MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
+            UpdateResult result = coleccion.updateMany(
+                    Filters.elemMatch("serviciosExtra", Filters.eq("_id", new ObjectId(idServicio))), 
+                    new Document("$pull", new Document("serviciosExtra", new Document("_id", new ObjectId(idServicio))))
+            );
+            return result.getModifiedCount() > 0;
+        } catch(Exception e){
+            throw new EliminarServicioDeMembresiasException("Error al eliminar servicio de membresia asociada");
+        }
+    }
+    
+    public Membresia actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws ActualizarMembresiaException{
         
         try{
             MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
-            UpdateResult result = coleccion.updateOne(
-                    Filters.eq("_id", membresia.getId()),
-                    Updates.combine(
-                            Updates.set("nombre", membresia.getNombre()),
-                            Updates.set("precio", membresia.getPrecio()),
-                            Updates.set("duracion", membresia.getDuracion()),
-                            Updates.set("estado", membresia.getEstado().name())
-                    )
-            );
-            return membresia;
+           Document filtro= new Document("_id", new ObjectId(idMembresia));
+            Document update = new Document("$set", new Document(cambios));
+
+            UpdateResult result = coleccion.updateOne(filtro, update);
+            Membresia membresiaActualizada = coleccion.find(filtro).first();
+            return membresiaActualizada;
+  
         } catch(Exception e){
             throw new ActualizarMembresiaException("Error al actualizar membresia");
         }
@@ -148,6 +161,11 @@ public class MembresiaDAO implements IMembresiaDAO {
     }
 
     public List<Membresia> consultarMembresiasA() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Membresia actualizarMembresia(Membresia membresia) throws ActualizarMembresiaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

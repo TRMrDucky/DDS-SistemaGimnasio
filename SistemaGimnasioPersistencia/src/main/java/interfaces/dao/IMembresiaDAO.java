@@ -10,7 +10,9 @@ import excepciones.ActualizarMembresiaException;
 import excepciones.AgregarMembresiaException;
 import excepciones.ConsultarServiciosExtraException;
 import excepciones.EliminarMembresiaException;
+import excepciones.EliminarServicioDeMembresiasException;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -26,4 +28,6 @@ public interface IMembresiaDAO {
      public List<Membresia> consultarMembresias();
      public boolean eliminarMembresia(String id) throws EliminarMembresiaException;
      public Membresia actualizarMembresia(Membresia membresia) throws ActualizarMembresiaException;
+     public Membresia actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws ActualizarMembresiaException;
+     public boolean eliminarServicioDeMembresias(String idServicio) throws EliminarServicioDeMembresiasException;
 }

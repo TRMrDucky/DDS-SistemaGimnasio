@@ -9,6 +9,7 @@ import dtos.MembresiaDTO;
 import excepciones.ActualizarMembresiaException;
 import excepciones.AgregarMembresiaException;
 import excepciones.EliminarMembresiaException;
+import excepciones.EliminarServicioDeMembresiasException;
 import excepciones.NegocioException;
 import interfaces.bo.IMembresiaBO;
 import interfaces.dao.IMembresiaDAO;
@@ -80,11 +81,21 @@ public class MembresiaBO implements IMembresiaBO {
             throw new NegocioException("Error al actualizar membresia");
         }
     }
+    
+    public boolean eliminarServicioDeMembresias(String idServicio)throws  EliminarServicioDeMembresiasException{
+        try{
+            return membresiaDAO.eliminarServicioDeMembresias(idServicio);
+        } catch(EliminarServicioDeMembresiasException e){
+            throw new EliminarServicioDeMembresiasException("Error al eliminar servicio de membresia");
+        }
+    }
 
     @Override
     public MembresiaDTO setearFecha(MembresiaDTO membresia) {
         Membresia membresiaActu = MembresiaMapper.toEntity(membresia);
         return MembresiaMapper.toDTO(membresiaDAO.setearFecha(membresiaActu));
     }
+    
+    
 
 }

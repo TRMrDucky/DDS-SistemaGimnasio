@@ -20,11 +20,13 @@ import excepciones.ActualizarMembresiaException;
 import excepciones.ConsultarServiciosExtraException;
 import excepciones.AgregarMembresiaException;
 import excepciones.EliminarMembresiaException;
+import excepciones.EliminarServicioDeMembresiasException;
 
 import interfaces.dao.IMembresiaDAO;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import org.bson.types.ObjectId;
 
 /**
@@ -167,6 +169,16 @@ public class MembresiaMockDAO implements IMembresiaDAO {
 
     @Override
     public Membresia actualizarMembresia(Membresia membresia) throws ActualizarMembresiaException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Membresia actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws ActualizarMembresiaException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean eliminarServicioDeMembresias(String idServicio) throws EliminarServicioDeMembresiasException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
