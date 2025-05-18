@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package presentacion;
+import dtos.EquipoDTO;
 import enums.ModoUso;
  import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -14,79 +15,105 @@ import java.awt.event.*;
  * @author Cricri
  */
 public class PantallaBuscadorEquipos extends JDialog{
+   private final ControlNavegacionCompraMembresia control;
     private JTextField campoBusqueda;
-    private JTable tablaResultados;
-    private JButton btnSeleccionar;
+    private  JTable tablaResultados;
+    private  JButton btnSeleccionar;
     private ModoUso modoUso;
+    private DefaultTableModel modeloTabla;
 
-    public PantallaBuscadorEquipos(ModoUso modoUso) {
+
+    public PantallaBuscadorEquipos(ModoUso modoUso, ControlNavegacionCompraMembresia control) {
         this.modoUso = modoUso;
-        setTitle("Buscar Equipo");
-        setSize(600, 400);
+        this.control = control;
+        initComponents();
+        cargarEquiposIniciales();
+    }
+
+    private void initComponents() {
+        setTitle("Buscar Equipo - " + modoUso.toString().replace("_", " "));
+        setSize(800, 600);
         setLocationRelativeTo(null);
         setModal(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        configurarInterfaz();
-        configurarEventos();
-    }
 
-    private void configurarInterfaz() {
-        JPanel panelPrincipal = new JPanel(new BorderLayout(10, 10));
+        // Modelo de tabla
+        String[] columnas = {"ID", "Nombre", "Número de Serie", "Marca", "Modelo","Fecha Adquisicion"};
+        modeloTabla = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 
-        // Panel de búsqueda
-        JPanel panelBusqueda = new JPanel();
-        campoBusqueda = new JTextField(20);
+        // Componentes
+        campoBusqueda = new JTextField(30);
         JButton btnBuscar = new JButton("Buscar");
-        panelBusqueda.add(new JLabel("Buscar: "));
+        btnSeleccionar = new JButton("Seleccionar");
+        tablaResultados = new JTable(modeloTabla);
+        tablaResultados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        // Configurar eventos
+        btnBuscar.addActionListener(e -> buscarEquipos());
+        btnSeleccionar.addActionListener(e -> seleccionarEquipo());
+        campoBusqueda.addActionListener(e -> buscarEquipos());
+        
+        // Configurar interfaz
+        JPanel panelBusqueda = new JPanel();
+        panelBusqueda.add(new JLabel("Buscar:"));
         panelBusqueda.add(campoBusqueda);
         panelBusqueda.add(btnBuscar);
 
-        // Tabla de resultados
-        String[] columnas = {"Nombre del equipo", "ID", "Estado"};
-        Object[][] datos = {
-                {"Máquina Prensadora", "123456", "FitBoard"},
-                {"Máquina Curl", "345987", "FitBoard"},
-                {"Máquina Piernas", "398577", "FitGym"}
-        };
-        tablaResultados = new JTable(new DefaultTableModel(datos, columnas));
-        JScrollPane scrollTabla = new JScrollPane(tablaResultados);
+        JPanel panelBotones = new JPanel();
+        panelBotones.add(btnSeleccionar);
 
-        
-        btnSeleccionar = new JButton("Seleccionar equipo");
-
-        panelPrincipal.add(panelBusqueda, BorderLayout.NORTH);
-        panelPrincipal.add(scrollTabla, BorderLayout.CENTER);
-        panelPrincipal.add(btnSeleccionar, BorderLayout.SOUTH);
-
-        setContentPane(panelPrincipal);
+        add(panelBusqueda, BorderLayout.NORTH);
+        add(new JScrollPane(tablaResultados), BorderLayout.CENTER);
+        add(panelBotones, BorderLayout.SOUTH);
     }
 
-    private void configurarEventos() {
-        btnSeleccionar.addActionListener(e -> {
-            String equipoSeleccionado = obtenerEquipoSeleccionado();
-            if (equipoSeleccionado != null) {
-                manejarSeleccion(equipoSeleccionado);
-            }
-        });
+    private void cargarEquiposIniciales() {
+        // Cargar todos los equipos al iniciar
+        List<EquipoDTO> equipos = control.obtenerTodosEquipos();
+        actualizarTabla(equipos);
     }
 
-    private String obtenerEquipoSeleccionado() {
-        int fila = tablaResultados.getSelectedRow();
-        if (fila >= 0) {
-            return tablaResultados.getValueAt(fila, 0).toString();
-        } else {
-            JOptionPane.showMessageDialog(this, "Selecciona un equipo primero.");
-            return null;
+    private void buscarEquipos() {
+        String filtro = campoBusqueda.getText().trim();
+        List<EquipoDTO> equipos = control.buscarEquiposPorFiltro(filtro);
+        actualizarTabla(equipos);
+    }
+
+    private void actualizarTabla(List<EquipoDTO> equipos) {
+        modeloTabla.setRowCount(0);
+        for (EquipoDTO equipo : equipos) {
+            modeloTabla.addRow(new Object[]{
+                equipo.getId(),
+                equipo.getNombre(),
+                equipo.getNumeroSerie(),
+                equipo.getMarca(),
+                equipo.getModelo(),
+                equipo.getFechaAdquisicion()
+            });
         }
     }
 
-    private void manejarSeleccion(String equipo) {
+    private void seleccionarEquipo() {
+        int filaSeleccionada = tablaResultados.getSelectedRow();
+        if (filaSeleccionada < 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione un equipo de la lista", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String idEquipo = modeloTabla.getValueAt(filaSeleccionada, 0).toString();
+        EquipoDTO equipo = control.obtenerEquipoPorId(idEquipo);
+
         switch (modoUso) {
             case REGISTRO_MANTENIMIENTO:
-                abrirPantallaRegistroMantenimiento(equipo);
+                abrirRegistroMantenimiento(equipo);
                 break;
             case CONSULTA_HISTORIAL:
-                abrirPantallaHistorial(equipo);
+                abrirHistorialMantenimiento(equipo);
                 break;
             case ELIMINAR_EQUIPO:
                 confirmarEliminacion(equipo);
@@ -94,34 +121,33 @@ public class PantallaBuscadorEquipos extends JDialog{
         }
     }
 
-    private void abrirPantallaRegistroMantenimiento(String equipo) {
-        JOptionPane.showMessageDialog(this, "Abrir pantalla de registro para: " + equipo);
-        // new PantallaRegistroMantenimiento(equipo).setVisible(true);
+    private void abrirRegistroMantenimiento(EquipoDTO equipo) {
+        new PantallaRegistroMantenimiento(control, equipo).setVisible(true);
+        dispose(); // Cierra el buscador después de abrir el formulario
     }
 
-    private void abrirPantallaHistorial(String equipo) {
-        JOptionPane.showMessageDialog(this, "Abrir historial para: " + equipo);
-        // new PantallaHistorial(equipo).setVisible(true);
+    private void abrirHistorialMantenimiento(EquipoDTO equipo) {
+        new PantallaHistorialMantenimiento(control, equipo).setVisible(true);
+        dispose();
     }
 
-    private void confirmarEliminacion(String equipo) {
-        int confirm = JOptionPane.showConfirmDialog(this, "¿Dar de baja el equipo " + equipo + "?", "Confirmar", JOptionPane.YES_NO_OPTION);
-        if (confirm == JOptionPane.YES_OPTION) {
-            eliminarEquipo(equipo);
+    private void confirmarEliminacion(EquipoDTO equipo) {
+        int confirmacion = JOptionPane.showConfirmDialog(
+            this,
+            "¿Está seguro de eliminar el equipo " + equipo.getNombre() + "?",
+            "Confirmar eliminación",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            boolean eliminado = control.eliminarEquipoYAsociados(equipo.getId());
+            if (eliminado) {
+                JOptionPane.showMessageDialog(this, "Equipo eliminado exitosamente");
+                buscarEquipos(); // Refrescar la lista
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al eliminar el equipo", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-    }
-
-    private void eliminarEquipo(String equipo) {
-        JOptionPane.showMessageDialog(this, "Equipo " + equipo + " eliminado.");
-        // Aquí iría la lógica de eliminación real
-    }
-
-  
-    // Prueba rápida
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new PantallaBuscadorEquipos(ModoUso.REGISTRO_MANTENIMIENTO).setVisible(true);
-        });
     }
 }
 
