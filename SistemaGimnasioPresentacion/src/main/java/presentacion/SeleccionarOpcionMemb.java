@@ -174,7 +174,7 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEliminaropenFormAgregarMembresia
 
     private void botonActualizaropenFormAgregarMembresia(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizaropenFormAgregarMembresia
-        // TODO add your handling code here:
+        control.openFormConsultarMembresias("Actualizar");
     }//GEN-LAST:event_botonActualizaropenFormAgregarMembresia
 
     private void botonConsultar1openFormAgregarMembresia(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultar1openFormAgregarMembresia

@@ -12,7 +12,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -114,11 +116,11 @@ public class ConsultarMembresias extends javax.swing.JFrame {
        
            
     }
-    private void accion(String accion, String idMembresia) throws SubsistemaMembresiaException{
+    private void accion(String accion, String idMembresia, MembresiaDTO membresia, Map<String, Object> cambios) throws SubsistemaMembresiaException{
         boolean resultado= false;
         switch(accion){
             case "Eliminar":
-            {
+            
                
                     resultado= control.eliminarMembresia(idMembresia);
                     if(resultado){
@@ -127,9 +129,21 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                     else{
                         JOptionPane.showMessageDialog(null, "No se pudo eliminar la membresía.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
+                    break;
                     
-            }
+            
+            case "Actualizar":
+                if (membresia != null && cambios != null){
+                MembresiaDTO membresiaActualizada= control.actualizarMembresia(membresia, cambios);
+                if(membresiaActualizada!= null){
+                    JOptionPane.showMessageDialog(null, "Membresía actualizada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                     JOptionPane.showMessageDialog(null, "No se pudo actualizar la membresía.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                }
                 break;
+                
 
         }
         
@@ -234,13 +248,31 @@ public class ConsultarMembresias extends javax.swing.JFrame {
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
        List<MembresiaDTO> seleccionadas= membresiasSeleccionadas();
+       MembresiaDTO membresiaSeleccionada = seleccionadas.get(0);
        //ahorita lo borro
        for(MembresiaDTO membresia: seleccionadas){
            System.out.println(membresia.getNombre());
            System.out.println(membresia.getId());
        
            try {
-               accion(accionSeleccionada, membresia.getId());
+               if (accionSeleccionada.equals("Actualizar")) {
+                   control.openFormActualizarMembresia(membresiaSeleccionada);
+//                   Map<String, Object> cambios = new HashMap<>();
+//                   cambios.put("nombre", membresia.getNombre());
+//                    cambios.put("precio", membresia.getPrecio());
+//                    cambios.put("duracion", membresia.getDuracion());
+//                     cambios.put("serviciosExtra", membresia.getServiciosExtra()); 
+                    // accion(accionSeleccionada, membresia.getId(), membresia, cambios);
+               }
+              if(accionSeleccionada.equals("Eliminar")){
+                   boolean eliminada = control.eliminarMembresia(membresia.getId());
+                   if(eliminada){
+                       JOptionPane.showMessageDialog(null, "Membresía eliminada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                   } else{
+                       JOptionPane.showMessageDialog(null, "No se pudo eliminar la membresía con ID: " + membresia.getId(), "Error", JOptionPane.ERROR_MESSAGE);
+                   }
+              }
+               
            } catch (SubsistemaMembresiaException ex) {
              //  Logger.getLogger(ConsultarMembresias.class.getName()).log(Level.SEVERE, null, ex);
            }

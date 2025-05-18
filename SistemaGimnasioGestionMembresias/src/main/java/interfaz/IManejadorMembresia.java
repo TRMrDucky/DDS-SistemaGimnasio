@@ -6,10 +6,12 @@ package interfaz;
 
 import dtos.MembresiaDTO;
 import excepciones.DuracionException;
+import excepciones.NegocioException;
 import excepciones.NombreVacioException;
 import excepciones.PrecioVacioException;
 import excepciones.SubsistemaMembresiaException;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -19,5 +21,6 @@ public interface IManejadorMembresia {
      public MembresiaDTO agregarMembresia(MembresiaDTO membresia) throws SubsistemaMembresiaException, NombreVacioException, PrecioVacioException, DuracionException;
      public boolean eliminarMembresia(String id) throws SubsistemaMembresiaException;
      public List<MembresiaDTO> consultarMembresias();
+     public MembresiaDTO actualizarMembresia(MembresiaDTO membresia, Map<String, Object> cambios) throws SubsistemaMembresiaException, NegocioException;
              
 }

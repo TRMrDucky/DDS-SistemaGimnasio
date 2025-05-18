@@ -17,6 +17,7 @@ import interfaces.bo.IMembresiaBO;
 import interfaces.dao.IMembresiaDAO;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -77,7 +78,7 @@ public class MembresiaBO implements IMembresiaBO {
         
     }
     
-    public MembresiaDTO actualizarMembresia(MembresiaDTO membresia) throws NegocioException{
+    public MembresiaDTO actualizarMembresia(MembresiaDTO membresia, Map<String, Object> cambios) throws NegocioException{
         try{
             return MembresiaMapper.toDTO(membresiaDAO.actualizarMembresia(MembresiaMapper.toEntity(membresia)));
         } catch(ActualizarMembresiaException e){
