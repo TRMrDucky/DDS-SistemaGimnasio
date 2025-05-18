@@ -140,23 +140,29 @@ public class PantallaBuscadorEquipos extends JDialog{
     }
 
     private void confirmarEliminacion(EquipoDTO equipo) {
-        int confirmacion = JOptionPane.showConfirmDialog(
-            this,
-            "¿Está seguro de eliminar el equipo " + equipo.getNombre() + "?",
-            "Confirmar eliminación",
-            JOptionPane.YES_NO_OPTION
-        );
+    int confirmacion = JOptionPane.showConfirmDialog(
+        this,
+        "¿Está seguro de eliminar el equipo " + equipo.getNombre() + "?",
+        "Confirmar eliminación",
+        JOptionPane.YES_NO_OPTION
+    );
 
-        if (confirmacion == JOptionPane.YES_OPTION) {
-            boolean eliminado = control.eliminarEquipoYAsociados(equipo.getId());
-            if (eliminado) {
-                JOptionPane.showMessageDialog(this, "Equipo eliminado exitosamente");
-                buscarEquipos(); // Refrescar la lista
+    if (confirmacion == JOptionPane.YES_OPTION) {
+        boolean eliminado = control.eliminarEquipoYAsociados(equipo.getId());
+        if (eliminado) {
+            JOptionPane.showMessageDialog(this, "Equipo eliminado exitosamente");
+
+            String filtro = campoBusqueda.getText().trim();
+            if (!filtro.isEmpty()) {
+                buscarEquipos();
             } else {
-                JOptionPane.showMessageDialog(this, "Error al eliminar el equipo", "Error", JOptionPane.ERROR_MESSAGE);
+                cargarEquiposIniciales();
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al eliminar el equipo", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+}
 }
 
 

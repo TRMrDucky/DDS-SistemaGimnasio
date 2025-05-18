@@ -49,12 +49,11 @@ public class PantallaRegistroMantenimiento extends JFrame {
     }
 
     private void initComponents() {
-        JPanel panel = new JPanel(new GridLayout(7, 2, 10, 10)); // 7 filas: ahora sí mostramos nombre
+        JPanel panel = new JPanel(new GridLayout(7, 2, 10, 10)); 
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Mostrar nombre del equipo como referencia
         JLabel labelNombreEquipo = new JLabel("Equipo Seleccionado:");
-        JLabel valorNombreEquipo = new JLabel(equipoSeleccionado.getNombre()); // nombre visible
+        JLabel valorNombreEquipo = new JLabel(equipoSeleccionado.getNombre());
         panel.add(labelNombreEquipo);
         panel.add(valorNombreEquipo);
 
