@@ -27,8 +27,6 @@ public class RegistrarCliente extends javax.swing.JFrame {
 
     }
 
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -219,18 +217,18 @@ public class RegistrarCliente extends javax.swing.JFrame {
         ClienteDTO registrarClienteDTO = new ClienteDTO(nombres, apellidos,
                 email, numeroTelefono);
         ClienteRegistradoDTO cliente = control.registrarCliente(registrarClienteDTO);
-        if(!(cliente==null)){
-            
-        campoNombres.setText(null);
-        campoApellidos.setText(null);
-        campoEmail.setText(null);
-        campoNumeroTelefono.setText(null);
+        if (!(cliente == null)) {
 
-        //Aqui se debe llamar a ControlNavegacionCompraMembresia y pasar como parametro 
-        //ClienteRegistradoDTO y Subsistema
-        //ControlNavegacionCompraMembresia control= new ControlNavegacionCompraMembresia();
-        control.openFormOpcionesMembresia(cliente);
-        dispose();
+            campoNombres.setText(null);
+            campoApellidos.setText(null);
+            campoEmail.setText(null);
+            campoNumeroTelefono.setText(null);
+
+            //Aqui se debe llamar a ControlNavegacionCompraMembresia y pasar como parametro 
+            //ClienteRegistradoDTO y Subsistema
+            //ControlNavegacionCompraMembresia control= new ControlNavegacionCompraMembresia();
+            control.openFormOpcionesMembresia(cliente);
+            dispose();
         }
 
     }//GEN-LAST:event_btnAceptarActionPerformed
@@ -248,7 +246,6 @@ public class RegistrarCliente extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel EtiquetaSuperior;

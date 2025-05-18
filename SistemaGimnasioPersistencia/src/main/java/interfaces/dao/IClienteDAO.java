@@ -7,6 +7,7 @@ package interfaces.dao;
 import clases.mock.Cliente;
 import clases.mock.Membresia;
 import excepciones.ConsultaDatosClienteException;
+import excepciones.RegistroClienteException;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -24,4 +25,6 @@ public interface IClienteDAO {
     public boolean validarSiTieneMem(Membresia membresia, String id);
     public Membresia actualizarSiTiene(Membresia membresia, String id);
     public Membresia agregarSiNoTiene(Membresia membresia, String id);
+
+    public Cliente registrarClienteMongo(Cliente clienteRegistrar)throws RegistroClienteException;
 }

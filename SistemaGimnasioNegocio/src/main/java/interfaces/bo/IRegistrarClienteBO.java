@@ -9,6 +9,7 @@ import dtos.ClienteRegistradoConMembListaDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.MembresiaDTO;
 import excepciones.NegocioException;
+import excepciones.RegistroClienteException;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
  * @author 52644
  */
 public interface IRegistrarClienteBO {
-    public abstract ClienteRegistradoDTO registrarCliente(ClienteDTO cliente);
+    public abstract ClienteRegistradoDTO registrarCliente(ClienteDTO cliente)throws RegistroClienteException;
     public abstract List<ClienteRegistradoDTO> obtenerListaClientes();
     public abstract String obtenerNombreCliente(String id) throws NegocioException;
     public abstract String obtenerNumeroCliente(String id) throws NegocioException;

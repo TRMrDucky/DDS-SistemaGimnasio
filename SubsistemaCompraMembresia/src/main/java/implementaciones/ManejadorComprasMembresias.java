@@ -1,6 +1,5 @@
 package implementaciones;
 
-
 import Enums.MetodosPagoEnum;
 import ProcesadorPago.ProcesadorPago;
 import bos.FabricaBOs;
@@ -18,24 +17,21 @@ import interfaces.bo.IMembresiaBO;
 import interfaces.bo.IRegistrarClienteBO;
 import interfaces.bo.IServicioExtraBO;
 
-
-
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
- * 
+ *
  *
  * @author 52644
  */
-
 public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
-    
     private List<MembresiaDTO> listaMembresias;
     private IServicioExtraBO servicioExtraBO;
     private IRegistrarClienteBO registrarClienteBO;
@@ -43,49 +39,36 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     @Override
     public ClienteRegistradoDTO registrarCliente(ClienteDTO registrarClienteDTO) throws RegistroClienteException {
-        if (registrarClienteDTO.getNombre().isBlank() || registrarClienteDTO.getApellido().isBlank()
-                || registrarClienteDTO.getCorreo().isBlank() || registrarClienteDTO.getTelefono().isBlank()) {
-            throw new RegistroClienteException("Ningun campo puede permanecer vacio");
-        }
+        try {
+            if (registrarClienteDTO.getNombre().isBlank() || registrarClienteDTO.getApellido().isBlank()
+                    || registrarClienteDTO.getCorreo().isBlank() || registrarClienteDTO.getTelefono().isBlank()) {
+                throw new RegistroClienteException("Ningun campo puede permanecer vacio");
+            }
 
-        if (!validarFormatoCorreo(registrarClienteDTO.getCorreo())) {
-            throw new RegistroClienteException("Formato Email no valido");
-        }
+            if (!validarFormatoCorreo(registrarClienteDTO.getCorreo())) {
+                throw new RegistroClienteException("Formato Email no valido");
+            }
 
-        if (validarRegistroCorreo(registrarClienteDTO.getCorreo())) {
-            throw new RegistroClienteException("Correo ya registrado");
-        }
+            if (!validarTelefono(registrarClienteDTO.getTelefono())) {
+                throw new RegistroClienteException("Verifica el numero de teléfono");
+            }
 
-        if (validarRegistroNumeroTelefonico(registrarClienteDTO.getTelefono())) {
-            throw new RegistroClienteException("Numero telefonico ya registrado");
-        }
+            ClienteRegistradoDTO cliente = registrarClienteBO.registrarCliente(registrarClienteDTO);
 
-        ClienteRegistradoDTO cliente = registrarClienteBO.registrarCliente(registrarClienteDTO);
-        
-        return cliente;
+            return cliente;
+
+        } catch (RegistroClienteException e) {
+            JOptionPane exception = new JOptionPane(e.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
     }
 
     public ManejadorComprasMembresias() {
         this.servicioExtraBO = FabricaBOs.getInstanceServicioExtraBO();
         this.registrarClienteBO = FabricaBOs.getInstanceRegistrarClienteBO();
-        this.membresiaBO= FabricaBOs.getInstanceMembresiaBO();
-        
-        
+        this.membresiaBO = FabricaBOs.getInstanceMembresiaBO();
 
-//        List<ServicioExtraDTO> servicios = new ArrayList();
-//        listaMembresias = new LinkedList<>();
-//        servicios.add(new ServicioExtraDTO(1, "Entrenador", 150));
-//
-//        listaMembresias.add(new MembresiaDTO("Day Pass", 15));
-//        listaMembresias.add(new MembresiaDTO("7 dias", 105, servicios));
-//
-//        listaMembresias.add(new MembresiaDTO("10 dias", 150, servicios));
-//
-//        listaMembresias.add(new MembresiaDTO("15 dias", 225, servicios));
-//
-//        listaMembresias.add(new MembresiaDTO("Mensual", 300));
-//
-//        listaMembresias.add(new MembresiaDTO("Por visita", 13));
+
     }
 
     private boolean validarFormatoCorreo(String email) {
@@ -96,21 +79,13 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     }
 
-    private boolean validarRegistroCorreo(String email) {
-        return registrarClienteBO.obtenerListaClientes().stream()
-                .map(ClienteRegistradoDTO::getEmail)
-                .filter(Objects::nonNull)
-                .anyMatch(e -> e.equalsIgnoreCase(email));
+    private boolean validarTelefono(String telefono) {
+        Pattern patronTelefono = Pattern.compile(
+                "^[0-9]{10}$");
+        Matcher matcher = patronTelefono.matcher(telefono);
+        return matcher.matches();
     }
 
-    private boolean validarRegistroNumeroTelefonico(String numeroTelefono) {
-        return registrarClienteBO.obtenerListaClientes().stream()
-                .map(ClienteRegistradoDTO::getNumeroTelefono)
-                .filter(Objects::nonNull)
-                .anyMatch(e -> e.equals(numeroTelefono));
-    }
-
-    
     //MODIFICADO
     @Override
     public List<ClienteRegistradoDTO> getListaClientes() {
@@ -121,9 +96,9 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     public List<MembresiaDTO> getTiposMembresia() {
         return membresiaBO.obtenerMembresiasDTO();
     }
-  
 
- /*
+
+    /*
     @Override
     public List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono) {
         // Validar que los parámetros no sean null
@@ -188,9 +163,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
             
     }
     
-    */
-
-
+     */
     @Override
     public List<ClienteRegistradoDTO> buscarCliente(String nombre, String numeroTelefono) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -239,12 +212,12 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     @Override
     public List<MembresiaDTO> obtenerMembresiasDTO() {
-       return membresiaBO.obtenerMembresiasDTO();
+        return membresiaBO.obtenerMembresiasDTO();
     }
 
     public PagoDTO procesarPago(String idCliente, double monto, MetodosPagoEnum metodo, Object datosPago) {
         ProcesadorPago procesador = new ProcesadorPago();
-        boolean aprobado = procesador.procesarPago(metodo, (int) monto, datosPago); 
+        boolean aprobado = procesador.procesarPago(metodo, (int) monto, datosPago);
 
         return new PagoDTO(idCliente, monto, aprobado);
     }
@@ -258,8 +231,8 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     public MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, String id) {
         return registrarClienteBO.agregarMembresiaCliente(membresa, id);
     }
-    
-        @Override
+
+    @Override
     public ClienteRegistradoConMembListaDTO obtenerClienteCompleto(String id) throws NegocioException {
         try {
 
@@ -269,17 +242,12 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
             Logger.getLogger(ManejadorComprasMembresias.class.getName()).log(Level.SEVERE, null, ex);
             throw new NegocioException("No se pudo cargar la información completa del cliente porque el ID no fue encontrado", ex);
         }
-             
-        
-}
+
+    }
 
     @Override
     public PagoDTO procesarPago(int idCliente, double monto, MetodosPagoEnum metodo, Object datosPago) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-  
 }
-
- 
-

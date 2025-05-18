@@ -13,6 +13,7 @@ import dtos.MembresiaDTO;
 import dtos.MembresiaPagadaDTO;
 import excepciones.ConsultaDatosClienteException;
 import excepciones.NegocioException;
+import excepciones.RegistroClienteException;
 import interfaces.bo.IRegistrarClienteBO;
 import interfaces.dao.IClienteDAO;
 import java.util.List;
@@ -32,9 +33,9 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
     }
 
     @Override
-    public ClienteRegistradoDTO registrarCliente(ClienteDTO cliente) {
+    public ClienteRegistradoDTO registrarCliente(ClienteDTO cliente) throws RegistroClienteException{
         Cliente clienteRegistrar = ClienteMapper.toEntity(cliente);
-        Cliente clienteRegistrado = clienteDAO.registrarCliente(clienteRegistrar);
+        Cliente clienteRegistrado = clienteDAO.registrarClienteMongo(clienteRegistrar);
         ClienteRegistradoDTO clienteRegistradoDTO = ClienteMapper.ClienteRegistradoToDTO(clienteRegistrado);
         return clienteRegistradoDTO;
     }

@@ -22,12 +22,15 @@ public class Cliente {
     private List<Date> asistencia;
     private ObjectId id;
 
-    public Cliente(String nombres, String apellidos, String email, String numeroTelefono, String id) {
+      public Cliente() {
+    }
+    
+    public Cliente(String nombres, String apellidos, String email, String numeroTelefono, ObjectId id) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.email = email;
         this.numeroTelefono = numeroTelefono;
-        this.id = new ObjectId(id);
+        this.id = id;
         this.membresias = new LinkedList();
         this.asistencia = new LinkedList();
     }
@@ -77,12 +80,10 @@ public class Cliente {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = new ObjectId(id);
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
-    public Cliente() {
-    }
 
     public List<Membresia> getMembresias() {
         return membresias;
@@ -103,6 +104,11 @@ public class Cliente {
     public Date addAsistencia(Date asistencia){
         this.asistencia.add(asistencia);
         return asistencia;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "nombres=" + nombres + ", apellidos=" + apellidos + ", email=" + email + ", numeroTelefono=" + numeroTelefono + ", membresias=" + membresias + ", asistencia=" + asistencia + '}';
     }
     
     
