@@ -85,7 +85,7 @@ public class BuscarCliente extends JFrame {
                     int fila = tablaClientes.getSelectedRow();
                     if (fila >= 0 && fila < clientesMostrados.size()) {
                         ClienteRegistradoDTO seleccionado = clientesMostrados.get(fila);
-                        control.setClienteSeleccionado(seleccionado);
+                        control.openFormMostrarInfoCliente(seleccionado);
                         dispose(); 
                     }
                 }

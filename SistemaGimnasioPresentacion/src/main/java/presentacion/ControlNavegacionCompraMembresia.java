@@ -199,6 +199,7 @@ public class ControlNavegacionCompraMembresia {
     
     
     
+    
 //    public ClienteRegConMembDTO clienteMembresia (ClienteRegistradoDTO clienteRegDTO, MembresiaSeleccionadaDTO membSeleccionadaDTO) {
 //        
 //        if (clienteRegDTO == null || membSeleccionadaDTO == null) {
@@ -516,5 +517,8 @@ public class ControlNavegacionCompraMembresia {
         }
     }
  
+    public void openFormMostrarInfoCliente(ClienteRegistradoDTO cliente){
+        new MostrarInfoCliente(cliente);
+    }
     
 }
