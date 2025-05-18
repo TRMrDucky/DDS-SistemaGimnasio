@@ -16,6 +16,7 @@ import dtos.MantenimientoDTO;
 import dtos.PagoDTO;
 import dtos.ServicioExtraDTO;
 import dtos.MembresiaDTO;
+import enums.ModoUso;
 import excepciones.AgregarServicioExtraSubsistemaException;
 import excepciones.DuracionException;
 import excepciones.EditarServicioExtraSubsitemaException;
@@ -99,7 +100,21 @@ public class ControlNavegacionCompraMembresia {
         RegistrarEquipoForm form = new RegistrarEquipoForm(this);
         form.setVisible(true);
     }
+        
+        public void openFormPantallaRegistroMantenimiento(EquipoDTO equipoSeleccionado) {
+            PantallaRegistroMantenimiento form = new PantallaRegistroMantenimiento(this, equipoSeleccionado);
+            form.setVisible(true);
+    }
 
+       public void openFormPantallaHistorialMantenimiento(EquipoDTO equipoSeleccionado) {
+            PantallaHistorialMantenimiento form = new PantallaHistorialMantenimiento(this, equipoSeleccionado);
+            form.setVisible(true);
+    }
+       
+    public void openFormPantallaBuscadorEquipos(ModoUso modoUso) {
+     PantallaBuscadorEquipos buscador = new PantallaBuscadorEquipos(modoUso, this);
+     buscador.setVisible(true);
+     }
 
     /**
      * Genera una nueva instancia de seleccionarMembresia

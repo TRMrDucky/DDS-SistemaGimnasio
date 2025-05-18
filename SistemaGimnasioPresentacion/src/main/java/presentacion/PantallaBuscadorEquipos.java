@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-/**
+
 package presentacion;
 import dtos.EquipoDTO;
 import enums.ModoUso;
@@ -20,9 +20,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 
-/**
- *
- * @author Cricri
+
  
 public class PantallaBuscadorEquipos extends JDialog{
    private final ControlNavegacionCompraMembresia control;
@@ -132,9 +130,9 @@ public class PantallaBuscadorEquipos extends JDialog{
     }
 
     private void abrirRegistroMantenimiento(EquipoDTO equipo) {
-        new PantallaRegistroMantenimiento(control, equipo).setVisible(true);
-        dispose(); // Cierra el buscador después de abrir el formulario
-    }
+       new PantallaRegistroMantenimiento(control, equipo).setVisible(true);
+       dispose();
+   }
 
     private void abrirHistorialMantenimiento(EquipoDTO equipo) {
         new PantallaHistorialMantenimiento(control, equipo).setVisible(true);
@@ -160,7 +158,7 @@ public class PantallaBuscadorEquipos extends JDialog{
         }
     }
 }
-*/
+
 
    
 
