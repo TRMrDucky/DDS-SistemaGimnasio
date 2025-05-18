@@ -27,7 +27,7 @@ import javax.swing.JTextField;
  * @author Cricri
  */
 public class PantallaRegistroMantenimiento extends JFrame {
- 
+     
     private JTextField textTipoMantenimiento;
     private JTextField textCosto;
     private JTextArea textObservaciones;
