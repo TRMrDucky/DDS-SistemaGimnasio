@@ -11,16 +11,21 @@ import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoConMembListaDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.EquipoDTO;
+import dtos.HistorialEquipoDTO;
+import dtos.MantenimientoDTO;
 import dtos.PagoDTO;
 import dtos.ServicioExtraDTO;
 import dtos.MembresiaDTO;
 import excepciones.AgregarServicioExtraSubsistemaException;
 import excepciones.DuracionException;
 import excepciones.EditarServicioExtraSubsitemaException;
+import excepciones.FiltroVacioException;
+import excepciones.IdEquipoVacioException;
 import excepciones.NegocioException;
 import excepciones.NombreEquipoVacioException;
 import excepciones.NombreVacioException;
 import excepciones.NumeroSerieVacioException;
+import excepciones.ObservacionesVaciasException;
 import excepciones.PrecioVacioException;
 import excepciones.RegistroClienteException;
 import excepciones.SubsistemaMantenimientoEquiposException;
@@ -34,6 +39,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import interfaz.IManejadorServicioExtra;
+import java.util.ArrayList;
 
 /**
  *
@@ -426,7 +432,17 @@ public class ControlNavegacionCompraMembresia {
     } 
     
    
-    
+        public List<EquipoDTO> buscarEquiposPorFiltro(String filtro) {
+        try {
+            return subsistemaMantenimientoEquipos.buscarEquiposPorFiltro(filtro);
+        } catch (FiltroVacioException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Filtro inválido", JOptionPane.WARNING_MESSAGE);
+        } catch (SubsistemaMantenimientoEquiposException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error en la búsqueda de equipos", JOptionPane.ERROR_MESSAGE);
+        }
+        return new ArrayList<>();
+    }
+
     public ClienteRegistradoConMembListaDTO obtenerClienteCompletoPorId(String id) {
     try {
     
@@ -437,6 +453,53 @@ public class ControlNavegacionCompraMembresia {
         return null;
     }
 }
+    
+    public List<EquipoDTO> obtenerTodosEquipos() {
+    try {
+        return subsistemaMantenimientoEquipos.obtenerTodosEquipos();
+    } catch (SubsistemaMantenimientoEquiposException e) {
+        JOptionPane.showMessageDialog(null, e.getMessage(), "Error al obtener equipos", JOptionPane.ERROR_MESSAGE);
+        return new ArrayList<>();
+    }
+}
+
+
+
+    public EquipoDTO obtenerEquipoPorId(String id) {
+        try {
+            return subsistemaMantenimientoEquipos.obtenerEquipoPorId(id);
+        } catch (IdEquipoVacioException | SubsistemaMantenimientoEquiposException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error al obtener equipo por ID", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    }
+
+    public boolean eliminarEquipoYAsociados(String id) {
+        try {
+            return subsistemaMantenimientoEquipos.eliminarEquipoYAsociados(id);
+        } catch (IdEquipoVacioException | SubsistemaMantenimientoEquiposException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error al eliminar equipo", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+
+    public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) {
+        try {
+            return subsistemaMantenimientoEquipos.registrarMantenimiento(mantenimiento);
+        } catch (IdEquipoVacioException | ObservacionesVaciasException | SubsistemaMantenimientoEquiposException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error al registrar mantenimiento", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    }
+
+    public List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) {
+        try {
+            return subsistemaMantenimientoEquipos.obtenerHistorialPorEquipo(idEquipo);
+        } catch (IdEquipoVacioException | SubsistemaMantenimientoEquiposException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error al obtener historial", JOptionPane.ERROR_MESSAGE);
+            return new ArrayList<>();
+        }
+    }
 
     
     

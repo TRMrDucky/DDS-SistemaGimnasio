@@ -51,7 +51,7 @@ public class PantallaBuscadorEquipos extends JDialog{
         tablaResultados = new JTable(new DefaultTableModel(datos, columnas));
         JScrollPane scrollTabla = new JScrollPane(tablaResultados);
 
-        // Botón seleccionar
+        
         btnSeleccionar = new JButton("Seleccionar equipo");
 
         panelPrincipal.add(panelBusqueda, BorderLayout.NORTH);
@@ -116,12 +116,7 @@ public class PantallaBuscadorEquipos extends JDialog{
         // Aquí iría la lógica de eliminación real
     }
 
-    public enum ModoUso {
-        REGISTRO_MANTENIMIENTO,
-        CONSULTA_HISTORIAL,
-        ELIMINAR_EQUIPO
-    }
-
+  
     // Prueba rápida
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {

@@ -34,8 +34,6 @@ public class ManejadorMantenimientoEquipos implements IManejadorMantenimientoEqu
         this.mantenimientoBO = FabricaBOs.getInstanceMantenimientoBO();
     }
     
-   
-
     @Override
     public List<EquipoDTO> obtenerTodosEquipos() throws SubsistemaMantenimientoEquiposException {
         try {
