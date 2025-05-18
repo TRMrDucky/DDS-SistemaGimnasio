@@ -133,15 +133,15 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                     
             
             case "Actualizar":
-                if (membresia != null && cambios != null){
-                MembresiaDTO membresiaActualizada= control.actualizarMembresia(membresia, cambios);
-                if(membresiaActualizada!= null){
-                    JOptionPane.showMessageDialog(null, "Membresía actualizada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else{
-                     JOptionPane.showMessageDialog(null, "No se pudo actualizar la membresía.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-                }
+                //if (membresia != null && cambios != null){
+                //MembresiaDTO membresiaActualizada= control.actualizarMembresia(membresia, cambios);
+//                if(membresiaActualizada!= null){
+//                    JOptionPane.showMessageDialog(null, "Membresía actualizada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+//                }
+            //   else{
+             //        JOptionPane.showMessageDialog(null, "No se pudo actualizar la membresía.", "Error", JOptionPane.ERROR_MESSAGE);
+            //    }
+            //    }
                 break;
                 
 
