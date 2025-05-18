@@ -32,6 +32,8 @@ public class ManejadorMantenimientoEquipos implements IManejadorMantenimientoEqu
         this.equipoBO = FabricaBOs.getInstanceEquipoBO();
         this.mantenimientoBO = FabricaBOs.getInstanceMantenimientoBO();
     }
+    
+   
 
     @Override
     public List<EquipoDTO> obtenerTodosEquipos() throws SubsistemaMantenimientoEquiposException {
@@ -77,13 +79,16 @@ public class ManejadorMantenimientoEquipos implements IManejadorMantenimientoEqu
         if (equipo.getNombre() == null || equipo.getNombre().trim().isEmpty()) {
             throw new NombreEquipoVacioException("El nombre del equipo no puede ser nulo o vacío");
         }
+      
+        if (equipo.getNumeroSerie() == null || equipo.getNumeroSerie().trim().isEmpty()) {
+            throw new NombreEquipoVacioException("El número de serie no puede ser nulo o vacío");
+        }
         try {
             return equipoBO.agregarEquipo(equipo);
         } catch (NegocioException ex) {
             throw new SubsistemaMantenimientoEquiposException("Error al agregar equipo", ex.getCause());
         }
     }
-
     @Override
     public boolean eliminarEquipoYAsociados(String id) 
             throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException {

@@ -4,10 +4,14 @@
  */
 package presentacion;
 
+import javax.swing.JDialog;
+
 /**
  *
  * @author Cricri
  */
-public class HistorialEquipoDialog {
+public class HistorialEquipoDialog extends JDialog {
+    
+    
     
 }

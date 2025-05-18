@@ -10,6 +10,7 @@ import dtos.ClienteRegConMemYServDTO;
 import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoConMembListaDTO;
 import dtos.ClienteRegistradoDTO;
+import dtos.EquipoDTO;
 import dtos.PagoDTO;
 import dtos.ServicioExtraDTO;
 import dtos.MembresiaDTO;
@@ -17,12 +18,15 @@ import excepciones.AgregarServicioExtraSubsistemaException;
 import excepciones.DuracionException;
 import excepciones.EditarServicioExtraSubsitemaException;
 import excepciones.NegocioException;
+import excepciones.NombreEquipoVacioException;
 import excepciones.NombreVacioException;
 import excepciones.PrecioVacioException;
 import excepciones.RegistroClienteException;
+import excepciones.SubsistemaMantenimientoEquiposException;
 import excepciones.SubsistemaMembresiaException;
 import excepciones.SubsistemaServicioExtraException;
 import interfaces.IManejadorComprasMembresias;
+import interfaz.IManejadorMantenimientoEquipos;
 import interfaz.IManejadorMembresia;
 import java.util.List;
 import java.util.logging.Level;
@@ -39,14 +43,26 @@ public class ControlNavegacionCompraMembresia {
     private IManejadorComprasMembresias subsistema;
     private IManejadorServicioExtra subsistema2;
     private IManejadorMembresia subsistemaMembresias;
+    private IManejadorMantenimientoEquipos subsistemaMantenimientoEquipos;
+   
    
     
-    public ControlNavegacionCompraMembresia(IManejadorComprasMembresias subsistema,IManejadorServicioExtra subsistema2 , IManejadorMembresia subsistemaMembresias){
+    public ControlNavegacionCompraMembresia(IManejadorComprasMembresias subsistema,IManejadorServicioExtra subsistema2 , IManejadorMembresia subsistemaMembresias,IManejadorMantenimientoEquipos subsistemaMantenimientoEquipos){
         this.subsistema = subsistema;
         this.subsistema2 = subsistema2;
         this.subsistemaMembresias= subsistemaMembresias;
+        this.subsistemaMantenimientoEquipos=subsistemaMantenimientoEquipos;
         
     }
+    
+     public EquipoDTO registrarEquipo(EquipoDTO equipo) throws NombreEquipoVacioException {
+    try {
+        return subsistemaMantenimientoEquipos.agregarEquipo(equipo);
+    } catch (SubsistemaMantenimientoEquiposException e) {
+        JOptionPane.showMessageDialog(null, e.getMessage(), "Error al registrar equipo", JOptionPane.ERROR_MESSAGE);
+        return null;
+    }
+}
 
     
     
@@ -65,6 +81,13 @@ public class ControlNavegacionCompraMembresia {
         BuscarCliente bc = new BuscarCliente(this);
         bc.setVisible(true);
     }
+    
+    
+        public void openFormRegistrarEquipo() {
+        RegistrarEquipoForm form = new RegistrarEquipoForm(this);
+        form.setVisible(true);
+    }
+
 
     /**
      * Genera una nueva instancia de seleccionarMembresia
@@ -75,8 +98,15 @@ public class ControlNavegacionCompraMembresia {
 //    }
 
     /**
-     * Genera una nueva instancia de seleccionarMembresia
+     * Genera una nueva 
+    public void openFormOpcionesMembresia(ClienteRegistradoDTO cliente) {
+        OpcionesMemb em = new OpcionesMemb(this, cliente);
+        em.setVisible(true);
+//
+    }
+     instancia de seleccionarMembresia
      */
+    
     public void openFormOpcionesMembresia(ClienteRegistradoDTO cliente) {
         OpcionesMemb em = new OpcionesMemb(this, cliente);
         em.setVisible(true);

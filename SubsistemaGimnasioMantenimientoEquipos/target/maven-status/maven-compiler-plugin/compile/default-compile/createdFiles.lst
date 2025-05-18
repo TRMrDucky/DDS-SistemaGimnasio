@@ -1,11 +1,8 @@
-<<<<<<< Updated upstream
-interfaz/IManejadorMantenimientoEquipos.class
-excepciones/SubsistemaMantenimientoEquiposException.class
-pruebas/SubsistemaGimnasioMantenimientoEquipos.class
-implementaciones/ManejadorMantenimientoEquipos.class
-=======
+excepciones\ObservacionesVaciasException.class
+excepciones\NombreEquipoVacioException.class
 excepciones\SubsistemaMantenimientoEquiposException.class
 implementaciones\ManejadorMantenimientoEquipos.class
+excepciones\IdEquipoVacioException.class
+excepciones\FiltroVacioException.class
 interfaz\IManejadorMantenimientoEquipos.class
 pruebas\SubsistemaGimnasioMantenimientoEquipos.class
->>>>>>> Stashed changes

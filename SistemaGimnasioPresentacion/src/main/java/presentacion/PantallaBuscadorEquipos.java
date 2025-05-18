@@ -14,7 +14,7 @@ import java.awt.event.*;
  * @author Cricri
  */
 public class PantallaBuscadorEquipos extends JDialog{
-  private JTextField campoBusqueda;
+    private JTextField campoBusqueda;
     private JTable tablaResultados;
     private JButton btnSeleccionar;
     private ModoUso modoUso;
