@@ -256,7 +256,7 @@ public class ConsultarMembresias extends javax.swing.JFrame {
        
            try {
                if (accionSeleccionada.equals("Actualizar")) {
-                   control.openFormActualizarMembresia(membresiaSeleccionada);
+                //   control.openFormActualizarMembresia(membresiaSeleccionada);
 //                   Map<String, Object> cambios = new HashMap<>();
 //                   cambios.put("nombre", membresia.getNombre());
 //                    cambios.put("precio", membresia.getPrecio());
