@@ -163,6 +163,7 @@ public class ConsultarMembresias extends javax.swing.JFrame {
         labelTexto = new javax.swing.JLabel();
         panelMembresias = new javax.swing.JPanel();
         botonSiguiente = new javax.swing.JButton();
+        botonAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -197,6 +198,16 @@ public class ConsultarMembresias extends javax.swing.JFrame {
             }
         });
 
+        botonAtras.setBackground(new java.awt.Color(204, 204, 255));
+        botonAtras.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        botonAtras.setForeground(new java.awt.Color(0, 0, 0));
+        botonAtras.setText("<");
+        botonAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAtrasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
@@ -215,13 +226,16 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                         .addComponent(panelMembresias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGap(125, 125, 125)
-                        .addComponent(botonSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(botonSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addContainerGap()
+                .addComponent(botonAtras)
+                .addGap(3, 3, 3)
                 .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelTexto)
@@ -280,6 +294,10 @@ public class ConsultarMembresias extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_botonSiguienteActionPerformed
 
+    private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
+         control.openFormOpcionesModuloMembresia();
+    }//GEN-LAST:event_botonAtrasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -316,6 +334,7 @@ public class ConsultarMembresias extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonSiguiente;
     private javax.swing.JLabel labelTexto;
     private javax.swing.JLabel labelTitulo;

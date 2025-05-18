@@ -161,6 +161,10 @@ public class ControlNavegacionCompraMembresia {
         new SeleccionarOpcionMemb(this).setVisible(true);
     }
     
+    public void openFormPantallaprincipal(){
+        new PantallaPrincipal(this).setVisible(true);
+    }
+    
     public boolean eliminarMembresia(String id) throws SubsistemaMembresiaException{
         
      return subsistemaMembresias.eliminarMembresia(id);
