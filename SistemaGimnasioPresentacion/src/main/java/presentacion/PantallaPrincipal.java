@@ -172,7 +172,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_OpenFormGestionMembresias
 
     private void btnMantenimientoEqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMantenimientoEqActionPerformed
-        control.openFormRegistrarEquipo();
+        control.openFormSeleccionOpcionMantenimientoEquipos();
     }//GEN-LAST:event_btnMantenimientoEqActionPerformed
 
     /**

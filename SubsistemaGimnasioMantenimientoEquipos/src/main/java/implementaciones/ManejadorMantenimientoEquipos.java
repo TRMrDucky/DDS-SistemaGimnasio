@@ -12,6 +12,7 @@ import excepciones.FiltroVacioException;
 import excepciones.IdEquipoVacioException;
 import excepciones.NegocioException;
 import excepciones.NombreEquipoVacioException;
+import excepciones.NumeroSerieVacioException;
 import excepciones.ObservacionesVaciasException;
 import excepciones.SubsistemaMantenimientoEquiposException;
 import interfaces.bo.IEquipoBO;
@@ -72,7 +73,7 @@ public class ManejadorMantenimientoEquipos implements IManejadorMantenimientoEqu
 
     @Override
     public EquipoDTO agregarEquipo(EquipoDTO equipo) 
-            throws SubsistemaMantenimientoEquiposException, NombreEquipoVacioException {
+            throws SubsistemaMantenimientoEquiposException, NombreEquipoVacioException,NumeroSerieVacioException  {
         if (equipo == null) {
             throw new NullPointerException("El equipo no puede ser nulo");
         }
@@ -81,7 +82,7 @@ public class ManejadorMantenimientoEquipos implements IManejadorMantenimientoEqu
         }
       
         if (equipo.getNumeroSerie() == null || equipo.getNumeroSerie().trim().isEmpty()) {
-            throw new NombreEquipoVacioException("El número de serie no puede ser nulo o vacío");
+            throw new NumeroSerieVacioException ("El número de serie no puede ser nulo o vacío");
         }
         try {
             return equipoBO.agregarEquipo(equipo);

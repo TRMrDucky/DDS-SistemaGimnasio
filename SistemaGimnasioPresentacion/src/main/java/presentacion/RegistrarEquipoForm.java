@@ -32,7 +32,7 @@ public class RegistrarEquipoForm extends JFrame {
     public RegistrarEquipoForm(ControlNavegacionCompraMembresia control) {
         this.control = control;
         setTitle("Registrar Nuevo Equipo");
-        setSize(400, 450);
+        setSize(600, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initComponents();
@@ -42,7 +42,7 @@ public class RegistrarEquipoForm extends JFrame {
         JPanel panel = new JPanel(new GridLayout(6, 2, 10, 10));
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        JLabel labelNombre = new JLabel("Nombre:");
+        JLabel labelNombre = new JLabel("Nombre: " + "(Campo obligatorio)");
         textNombre = new JTextField();
 
         JLabel labelMarca = new JLabel("Marca:");
@@ -51,10 +51,10 @@ public class RegistrarEquipoForm extends JFrame {
         JLabel labelModelo = new JLabel("Modelo:");
         textModelo = new JTextField();
 
-        JLabel labelNumeroSerie = new JLabel("Número de Serie:");
+        JLabel labelNumeroSerie = new JLabel("Número de Serie:" + "(Campo obligatorio)");
         textNumeroSerie = new JTextField();
 
-        JLabel labelFecha = new JLabel("Fecha de Adquisición:");
+        JLabel labelFecha = new JLabel("Fecha de Adquisición:" + "(Campo obligatorio)");
         datePicker = new DatePicker();
 
         btnRegistrar = new JButton("Registrar Equipo");

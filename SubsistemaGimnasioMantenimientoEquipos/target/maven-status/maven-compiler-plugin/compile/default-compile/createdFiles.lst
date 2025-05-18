@@ -1,5 +1,6 @@
 excepciones\ObservacionesVaciasException.class
 excepciones\NombreEquipoVacioException.class
+excepciones\NumeroSerieVacioException.class
 excepciones\SubsistemaMantenimientoEquiposException.class
 implementaciones\ManejadorMantenimientoEquipos.class
 excepciones\IdEquipoVacioException.class

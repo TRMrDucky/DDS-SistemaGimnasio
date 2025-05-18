@@ -20,6 +20,7 @@ import excepciones.EditarServicioExtraSubsitemaException;
 import excepciones.NegocioException;
 import excepciones.NombreEquipoVacioException;
 import excepciones.NombreVacioException;
+import excepciones.NumeroSerieVacioException;
 import excepciones.PrecioVacioException;
 import excepciones.RegistroClienteException;
 import excepciones.SubsistemaMantenimientoEquiposException;
@@ -55,7 +56,7 @@ public class ControlNavegacionCompraMembresia {
         
     }
     
-     public EquipoDTO registrarEquipo(EquipoDTO equipo) throws NombreEquipoVacioException {
+     public EquipoDTO registrarEquipo(EquipoDTO equipo) throws NombreEquipoVacioException, NumeroSerieVacioException {
     try {
         return subsistemaMantenimientoEquipos.agregarEquipo(equipo);
     } catch (SubsistemaMantenimientoEquiposException e) {
@@ -72,6 +73,11 @@ public class ControlNavegacionCompraMembresia {
     public void openFormRegistrarCliente() {
         RegistrarCliente rc = new RegistrarCliente(this);
         rc.setVisible(true);
+    }
+    
+    public void openFormSeleccionOpcionMantenimientoEquipos(){
+        SeleccionOpcionMantenimientoEquipos scme= new SeleccionOpcionMantenimientoEquipos(this);
+        scme.setVisible(true);
     }
 
     /**
