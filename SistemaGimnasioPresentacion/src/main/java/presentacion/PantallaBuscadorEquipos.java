@@ -5,10 +5,19 @@
 package presentacion;
 import dtos.EquipoDTO;
 import enums.ModoUso;
- import javax.swing.*;
+import java.awt.BorderLayout;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.awt.event.*;
+
 
 /**
  *
