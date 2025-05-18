@@ -6,6 +6,7 @@
 package presentacion;
 import dtos.EquipoDTO;
 import enums.ModoUso;
+import excepciones.IdEquipoVacioException;
 import java.awt.BorderLayout;
 import java.util.List;
 import javax.swing.JButton;
@@ -107,15 +108,14 @@ public class PantallaBuscadorEquipos extends JDialog{
     }
 
     private void seleccionarEquipo() {
-        int filaSeleccionada = tablaResultados.getSelectedRow();
-        if (filaSeleccionada < 0) {
-            JOptionPane.showMessageDialog(this, "Seleccione un equipo de la lista", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+    int filaSeleccionada = tablaResultados.getSelectedRow();
+    if (filaSeleccionada < 0) {
+        JOptionPane.showMessageDialog(this, "Seleccione un equipo de la lista", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
 
-        String idEquipo = modeloTabla.getValueAt(filaSeleccionada, 0).toString();
-        EquipoDTO equipo = control.obtenerEquipoPorId(idEquipo);
-
+    String idEquipo = modeloTabla.getValueAt(filaSeleccionada, 0).toString();
+    EquipoDTO equipo = control.obtenerEquipoPorId(idEquipo);
         switch (modoUso) {
             case REGISTRO_MANTENIMIENTO:
                 abrirRegistroMantenimiento(equipo);

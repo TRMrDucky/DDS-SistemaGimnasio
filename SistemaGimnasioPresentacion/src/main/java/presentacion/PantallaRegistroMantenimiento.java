@@ -27,8 +27,7 @@ import javax.swing.JTextField;
  * @author Cricri
  */
 public class PantallaRegistroMantenimiento extends JFrame {
-    
-    private JTextField textIdEquipo;
+ 
     private JTextField textTipoMantenimiento;
     private JTextField textCosto;
     private JTextArea textObservaciones;
@@ -36,10 +35,10 @@ public class PantallaRegistroMantenimiento extends JFrame {
     private DatePicker datePickerSeguimiento;
     private JButton btnRegistrar;
 
-    private ControlNavegacionCompraMembresia control; 
-     private EquipoDTO equipoSeleccionado;
+    private ControlNavegacionCompraMembresia control;
+    private EquipoDTO equipoSeleccionado;
 
-    public PantallaRegistroMantenimiento(ControlNavegacionCompraMembresia control,EquipoDTO equipo) {
+    public PantallaRegistroMantenimiento(ControlNavegacionCompraMembresia control, EquipoDTO equipo) {
         this.control = control;
         this.equipoSeleccionado = equipo;
         setTitle("Registrar Mantenimiento");
@@ -48,24 +47,21 @@ public class PantallaRegistroMantenimiento extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initComponents();
     }
-    private void inicializarValores() {
-        if (equipoSeleccionado != null) {
-            textIdEquipo.setText(equipoSeleccionado.getId()); 
-            textIdEquipo.setEditable(false);
-        }
-    }
 
     private void initComponents() {
-        JPanel panel = new JPanel(new GridLayout(7, 2, 10, 10));
+        JPanel panel = new JPanel(new GridLayout(7, 2, 10, 10)); // 7 filas: ahora sí mostramos nombre
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        JLabel labelIdEquipo = new JLabel("ID del Equipo: (Obligatorio)");
-        textIdEquipo = new JTextField();
+        // Mostrar nombre del equipo como referencia
+        JLabel labelNombreEquipo = new JLabel("Equipo Seleccionado:");
+        JLabel valorNombreEquipo = new JLabel(equipoSeleccionado.getNombre()); // nombre visible
+        panel.add(labelNombreEquipo);
+        panel.add(valorNombreEquipo);
 
         JLabel labelFechaMantenimiento = new JLabel("Fecha de Mantenimiento: (Obligatorio)");
         datePickerMantenimiento = new DatePicker();
 
-        JLabel labelTipo = new JLabel("Tipo de Mantenimiento: (Obligatorio)");
+        JLabel labelTipo = new JLabel("Nombre del Mantenimiento: (Obligatorio)");
         textTipoMantenimiento = new JTextField();
 
         JLabel labelCosto = new JLabel("Costo: (Obligatorio)");
@@ -81,8 +77,6 @@ public class PantallaRegistroMantenimiento extends JFrame {
         btnRegistrar = new JButton("Registrar Mantenimiento");
         btnRegistrar.addActionListener(this::registrarMantenimiento);
 
-        panel.add(labelIdEquipo);
-        panel.add(textIdEquipo);
         panel.add(labelFechaMantenimiento);
         panel.add(datePickerMantenimiento);
         panel.add(labelTipo);
@@ -93,7 +87,7 @@ public class PantallaRegistroMantenimiento extends JFrame {
         panel.add(scrollObs);
         panel.add(labelFechaSeguimiento);
         panel.add(datePickerSeguimiento);
-        panel.add(new JLabel());
+        panel.add(new JLabel()); // espacio en blanco
         panel.add(btnRegistrar);
 
         add(panel);
@@ -101,7 +95,7 @@ public class PantallaRegistroMantenimiento extends JFrame {
 
     private void registrarMantenimiento(ActionEvent evt) {
         try {
-            String idEquipo = textIdEquipo.getText().trim();
+            String idEquipo = equipoSeleccionado.getId(); 
             LocalDate fechaMant = datePickerMantenimiento.getDate();
             String tipo = textTipoMantenimiento.getText().trim();
             String costoStr = textCosto.getText().trim();
@@ -129,4 +123,3 @@ public class PantallaRegistroMantenimiento extends JFrame {
         }
     }
 }
-

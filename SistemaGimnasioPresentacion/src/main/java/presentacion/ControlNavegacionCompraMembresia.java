@@ -498,10 +498,10 @@ public class ControlNavegacionCompraMembresia {
         }
     }
 
-    public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) {
+    public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) throws IdEquipoVacioException {
         try {
             return subsistemaMantenimientoEquipos.registrarMantenimiento(mantenimiento);
-        } catch (IdEquipoVacioException | ObservacionesVaciasException | SubsistemaMantenimientoEquiposException e) {
+        } catch (ObservacionesVaciasException | SubsistemaMantenimientoEquiposException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error al registrar mantenimiento", JOptionPane.ERROR_MESSAGE);
             return null;
         }

@@ -26,7 +26,7 @@ public interface IManejadorMantenimientoEquipos {
    public EquipoDTO obtenerEquipoPorId(String id) throws SubsistemaMantenimientoEquiposException,IdEquipoVacioException;
    public EquipoDTO agregarEquipo(EquipoDTO equipo) throws SubsistemaMantenimientoEquiposException,NombreEquipoVacioException,NumeroSerieVacioException ;
    public boolean eliminarEquipoYAsociados(String id) throws SubsistemaMantenimientoEquiposException,IdEquipoVacioException;
-   public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) throws SubsistemaMantenimientoEquiposException,IdEquipoVacioException, ObservacionesVaciasException ;
+   public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException,ObservacionesVaciasException ;
    public List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) throws SubsistemaMantenimientoEquiposException,IdEquipoVacioException;
 }
 
