@@ -91,7 +91,7 @@ public class MembresiaBO implements IMembresiaBO {
         try{
             return MembresiaMapper.toDTO(membresiaDAO.actualizarMembresia(idMembresia, cambios));
         } catch(ActualizarMembresiaException e){
-            throw new NegocioException("Error al actualizar membresia");
+            throw new NegocioException("Error al actualizar membresia" +e.getMessage());
         }
     }
     

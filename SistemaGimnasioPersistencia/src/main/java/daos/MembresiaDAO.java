@@ -165,7 +165,7 @@ public class MembresiaDAO implements IMembresiaDAO {
             return membresiaActualizada;
   
         } catch(Exception e){
-            throw new ActualizarMembresiaException("Error al actualizar membresia");
+            throw new ActualizarMembresiaException("Error al actualizar membresia" + e.getMessage());
         }
     }
     

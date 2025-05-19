@@ -4,10 +4,12 @@
  */
 package interfaces.dao;
 
+import Enumeradores.EnumEstadoMembresia;
 import clases.mock.Membresia;
 import clases.mock.ServicioExtra;
 import excepciones.ActualizarMembresiaException;
 import excepciones.AgregarMembresiaException;
+import excepciones.ConsultarMembresiasDesactivadasException;
 import excepciones.ConsultarServiciosExtraException;
 import excepciones.EditarServicioEnMembresiaException;
 import excepciones.EliminarMembresiaException;
@@ -32,5 +34,6 @@ public interface IMembresiaDAO {
      public Membresia actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws ActualizarMembresiaException;
      public boolean eliminarServicioDeMembresias(String idServicio) throws EliminarServicioDeMembresiasException;
      public boolean editarServicioEnMembresias(String idServicio, ServicioExtra servicioActualizado) throws EditarServicioEnMembresiaException;
+      public List<Membresia> consultarMembresiasPorEstado(EnumEstadoMembresia estado);
      
 }

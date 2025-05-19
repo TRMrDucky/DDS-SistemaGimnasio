@@ -4,6 +4,7 @@
  */
 package interfaz;
 
+import Enumeradores.EnumEstadoMembresia;
 import dtos.MembresiaDTO;
 import excepciones.DuracionException;
 import excepciones.NegocioException;
@@ -22,6 +23,6 @@ public interface IManejadorMembresia {
      public boolean eliminarMembresia(String id) throws SubsistemaMembresiaException;
      public List<MembresiaDTO> consultarMembresias();
      public MembresiaDTO actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws SubsistemaMembresiaException, NegocioException;
-     public List<MembresiaDTO> consultarMembresiasDesactivadas();
+     public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado);
              
 }

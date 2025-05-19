@@ -170,7 +170,27 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                 
             case "Activar":
                 cambios.put("estado", EnumEstadoMembresia.ACTIVA);
+                MembresiaDTO membresiaActualizada= control.actualizarMembresia(idMembresia, cambios);
                 
+                if(membresiaActualizada!=null){
+                    JOptionPane.showMessageDialog(null, "Membresía activada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    System.out.println(membresiaActualizada);
+                    JOptionPane.showMessageDialog(null, "Error al activar membresia", "Error", JOptionPane.INFORMATION_MESSAGE);
+                   
+                }
+                break;
+                
+                case "Desactivar":
+                cambios.put("estado", EnumEstadoMembresia.INACTIVA);
+                MembresiaDTO membresiaDesactualizada= control.actualizarMembresia(idMembresia, cambios);
+                if(membresiaDesactualizada!=null){
+                    JOptionPane.showMessageDialog(null, "Membresía desacactivada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    System.out.println(membresiaDesactualizada);
+                    JOptionPane.showMessageDialog(null, "Error al desactivar membresia", "Error", JOptionPane.INFORMATION_MESSAGE);
+                }
+                break;
                 
 
         }
@@ -318,7 +338,18 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                   ClienteRegConMembDTO clienteConMemb = new ClienteRegConMembDTO(cliente, membresiaSeleccionada);
                    control.openFormServiciosExtra(clienteConMemb);
                   
+              } if(accionSeleccionada.equals("Activar")){
+                  Map<String, Object> cambios = new HashMap<>();
+                  cambios.put("estado", EnumEstadoMembresia.ACTIVA);
+                   accion(accionSeleccionada, membresia.getId(), membresia, cambios);
+                  
+              } if(accionSeleccionada.equals("Desactivar")){
+                  Map<String, Object> cambios = new HashMap<>();
+                  cambios.put("estado", EnumEstadoMembresia.INACTIVA);
+                   accion(accionSeleccionada, membresia.getId(), membresia, cambios);
+                  
               }
+              
                
            } catch (SubsistemaMembresiaException ex) {
              //  Logger.getLogger(ConsultarMembresias.class.getName()).log(Level.SEVERE, null, ex);

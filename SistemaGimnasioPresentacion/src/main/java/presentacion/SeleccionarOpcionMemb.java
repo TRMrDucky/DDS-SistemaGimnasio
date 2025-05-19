@@ -120,10 +120,20 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
         botonActivar.setBackground(new java.awt.Color(102, 0, 102));
         botonActivar.setFont(new java.awt.Font("Hiragino Mincho ProN", 1, 18)); // NOI18N
         botonActivar.setText("ACTIVAR");
+        botonActivar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActivarActionPerformed(evt);
+            }
+        });
 
         botonDesactivar.setBackground(new java.awt.Color(102, 0, 102));
         botonDesactivar.setFont(new java.awt.Font("Hiragino Mincho ProN", 1, 18)); // NOI18N
         botonDesactivar.setText("DESACTIVAR");
+        botonDesactivar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonDesactivarActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(102, 0, 102));
         jButton1.setFont(new java.awt.Font("Hiragino Mincho ProN", 1, 18)); // NOI18N
@@ -215,6 +225,14 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
        control.openFormPantallaPrincipal();
     }//GEN-LAST:event_botonAtrasActionPerformed
+
+    private void botonDesactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDesactivarActionPerformed
+         control.openFormConsultarMembresias("Desactivar", null);
+    }//GEN-LAST:event_botonDesactivarActionPerformed
+
+    private void botonActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActivarActionPerformed
+         control.openFormConsultarMembresias("Activar", null);
+    }//GEN-LAST:event_botonActivarActionPerformed
 
     /**
      * @param args the command line arguments
