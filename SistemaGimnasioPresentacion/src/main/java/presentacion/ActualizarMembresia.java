@@ -107,6 +107,11 @@ public class ActualizarMembresia extends javax.swing.JFrame {
               if (comp instanceof JCheckBox checkBox && checkBox.isSelected()) {
                   for (ServicioExtraDTO servicio : serviciosDisponibles) {
                        if (servicio.getNombreServicio().equals(checkBox.getText())) {
+                       servicio.setId(membresia.getServiciosExtra().stream()
+                               .filter(s -> s.getNombreServicio().equals(servicio.getNombreServicio()))
+                               .map(ServicioExtraDTO::getId)
+                               .findFirst()
+                               .orElse(servicio.getId()));
                        nuevosServicios.add(servicio);
                        break;
                        
@@ -196,6 +201,7 @@ public class ActualizarMembresia extends javax.swing.JFrame {
         campoEditarDuracion = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         labelTiulo = new javax.swing.JLabel();
+        botonAtras = new javax.swing.JButton();
 
         botonNombre1.setText("EDITAR ");
         botonNombre1.addActionListener(new java.awt.event.ActionListener() {
@@ -489,6 +495,16 @@ public class ActualizarMembresia extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        botonAtras.setBackground(new java.awt.Color(204, 204, 255));
+        botonAtras.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        botonAtras.setForeground(new java.awt.Color(0, 0, 0));
+        botonAtras.setText("<");
+        botonAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAtrasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelInfoLayout = new javax.swing.GroupLayout(panelInfo);
         panelInfo.setLayout(panelInfoLayout);
         panelInfoLayout.setHorizontalGroup(
@@ -496,7 +512,9 @@ public class ActualizarMembresia extends javax.swing.JFrame {
             .addGroup(panelInfoLayout.createSequentialGroup()
                 .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelInfoLayout.createSequentialGroup()
-                        .addGap(101, 101, 101)
+                        .addContainerGap()
+                        .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelInfoLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
@@ -507,10 +525,12 @@ public class ActualizarMembresia extends javax.swing.JFrame {
             panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
@@ -589,6 +609,10 @@ public class ActualizarMembresia extends javax.swing.JFrame {
        actualizarMembresia();
     }//GEN-LAST:event_botonActualizarActionPerformed
 
+    private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
+        control.openFormOpcionesModuloMembresia();
+    }//GEN-LAST:event_botonAtrasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -596,6 +620,7 @@ public class ActualizarMembresia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizar;
+    private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonCosto;
     private javax.swing.JButton botonDuracion;
     private javax.swing.JButton botonNombre;

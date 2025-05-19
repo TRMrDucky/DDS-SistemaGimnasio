@@ -4,6 +4,8 @@
  */
 package presentacion;
 
+import dtos.ClienteRegConMembDTO;
+import dtos.ClienteRegistradoDTO;
 import dtos.MembresiaDTO;
 import dtos.ServicioExtraDTO;
 import excepciones.SubsistemaMembresiaException;
@@ -36,13 +38,15 @@ public class ConsultarMembresias extends javax.swing.JFrame {
     
     private ControlNavegacionCompraMembresia control;
     private String accionSeleccionada;
+    private ClienteRegistradoDTO cliente;
     /**
      * Creates new form ConsultarMembresias
      */
-    public ConsultarMembresias(ControlNavegacionCompraMembresia control, String accion) {
+    public ConsultarMembresias(ControlNavegacionCompraMembresia control, String accion,  ClienteRegistradoDTO cliente) {
         initComponents();
         this.control= control;
         this.accionSeleccionada= accion;
+        this.cliente= cliente;
         cargarMembresias();
     }
     
@@ -132,7 +136,7 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                     break;
                     
             
-            case "Actualizar":
+           // case "Actualizar":
                 //if (membresia != null && cambios != null){
                 //MembresiaDTO membresiaActualizada= control.actualizarMembresia(membresia, cambios);
 //                if(membresiaActualizada!= null){
@@ -142,6 +146,11 @@ public class ConsultarMembresias extends javax.swing.JFrame {
              //        JOptionPane.showMessageDialog(null, "No se pudo actualizar la membresía.", "Error", JOptionPane.ERROR_MESSAGE);
             //    }
             //    }
+                    
+            case "Compra" :
+//                ClienteRegConMembDTO clienteConMemb = new ClienteRegConMembDTO(cliente, membresia);
+//                control.openFormServiciosExtra(clienteConMemb);
+                
                 break;
                 
 
@@ -286,6 +295,10 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                    } else{
                        JOptionPane.showMessageDialog(null, "No se pudo eliminar la membresía con ID: " + membresia.getId(), "Error", JOptionPane.ERROR_MESSAGE);
                    }
+              } if(accionSeleccionada.equals("Compra")){
+                  ClienteRegConMembDTO clienteConMemb = new ClienteRegConMembDTO(cliente, membresiaSeleccionada);
+                   control.openFormServiciosExtra(clienteConMemb);
+                  
               }
                
            } catch (SubsistemaMembresiaException ex) {

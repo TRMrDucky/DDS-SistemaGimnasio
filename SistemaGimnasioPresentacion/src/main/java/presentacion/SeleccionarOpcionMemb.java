@@ -183,12 +183,12 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
     }//GEN-LAST:event_openFormAgregarMembresia
 
     private void botonEliminaropenFormAgregarMembresia(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminaropenFormAgregarMembresia
-        control.openFormConsultarMembresias("Eliminar");
+        control.openFormConsultarMembresias("Eliminar", null);
         
     }//GEN-LAST:event_botonEliminaropenFormAgregarMembresia
 
     private void botonActualizaropenFormAgregarMembresia(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizaropenFormAgregarMembresia
-        control.openFormConsultarMembresias("Actualizar");
+        control.openFormConsultarMembresias("Actualizar", null);
     }//GEN-LAST:event_botonActualizaropenFormAgregarMembresia
 
     private void botonConsultar1openFormAgregarMembresia(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultar1openFormAgregarMembresia

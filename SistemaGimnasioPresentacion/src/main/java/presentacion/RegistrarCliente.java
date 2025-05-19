@@ -227,7 +227,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
             //Aqui se debe llamar a ControlNavegacionCompraMembresia y pasar como parametro 
             //ClienteRegistradoDTO y Subsistema
             //ControlNavegacionCompraMembresia control= new ControlNavegacionCompraMembresia();
-            control.openFormOpcionesMembresia(cliente);
+            control.openFormConsultarMembresias("Compra", cliente);
             dispose();
         }
 
