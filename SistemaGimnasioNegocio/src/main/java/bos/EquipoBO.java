@@ -5,15 +5,19 @@
 package bos;
 
 import clases.mock.Equipo;
+import daos.MantenimientoDAO;
 import dtos.EquipoDTO;
 import excepciones.AgregarEquipoException;
 import excepciones.ConsultarEquipoException;
 import excepciones.EliminarEquipoException;
+import excepciones.EliminarMantenimientoException;
 import excepciones.NegocioException;
 import interfaces.bo.IEquipoBO;
 import interfaces.bo.IMantenimientoBO;
 import interfaces.dao.IEquipoDAO;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import mappers.EquipoMapper;
 
 /**
@@ -79,20 +83,22 @@ public class EquipoBO implements IEquipoBO {
             throw new NegocioException("Error al eliminar el equipo", ex.getCause());
         }
     }
-    
-     @Override
-     public boolean eliminarEquipoYAsociados(String id) throws NegocioException {
-        try {
-           
-            boolean mantenimientosEliminados = mantenimientoBO.eliminarMantenimientosPorEquipo(id);
 
-        
-            boolean equipoEliminado = eliminarEquipo(id);
+    @Override
+       public boolean eliminarEquipoYAsociados(String id) throws NegocioException {
+    try {
+        boolean mantenimientosEliminados = mantenimientoBO.eliminarMantenimientosPorEquipo(id);
+        boolean equipoEliminado = equipoDAO.eliminarEquipo(id);
 
-
-            return mantenimientosEliminados && equipoEliminado;
-        } catch (NegocioException ex) {
-            throw new NegocioException("Error al eliminar el equipo y sus mantenimientos asociados", ex.getCause());
+        if (!mantenimientosEliminados || !equipoEliminado) {
+            throw new NegocioException("Error al eliminar parte de la entidad equipo o sus mantenimientos asociados.");
         }
+        
+        return true;
+    } catch (EliminarEquipoException ex) {
+        Logger.getLogger(EquipoBO.class.getName()).log(Level.SEVERE, "Error al eliminar equipo y mantenimientos", ex);
+        throw new NegocioException("Error al eliminar el equipo y sus mantenimientos asociados", ex);
     }
 }
+}
+

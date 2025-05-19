@@ -30,9 +30,9 @@ import org.bson.types.ObjectId;
  */
 public class MantenimientoDAO implements IMantenimientoDAO {
     
-     private static MantenimientoDAO instancia;
+    private static MantenimientoDAO instancia;
 
-    private MantenimientoDAO() {
+    public MantenimientoDAO() {
     }
 
     public static MantenimientoDAO getInstance() {
@@ -103,6 +103,7 @@ public class MantenimientoDAO implements IMantenimientoDAO {
 
 
 
+     @Override
     public boolean eliminarMantenimientosPorEquipo(String idEquipo) throws EliminarMantenimientoException {
         try {
             MongoCollection<Mantenimiento> coleccion = ConexionBD.getInstance().getCollection("mantenimientos", Mantenimiento.class);
