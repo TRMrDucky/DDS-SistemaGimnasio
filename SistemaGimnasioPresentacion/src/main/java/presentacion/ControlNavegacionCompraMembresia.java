@@ -41,6 +41,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import interfaz.IManejadorServiciosExtra;
+import java.util.Map;
 
 /**
  *
@@ -170,6 +171,19 @@ public class ControlNavegacionCompraMembresia {
      return subsistemaMembresias.eliminarMembresia(id);
        
     }
+    
+    public void openFormActualizarMembresia(MembresiaDTO membresia){
+        new ActualizarMembresia(this, membresia).setVisible(true);
+    }
+    
+    public MembresiaDTO actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws SubsistemaMembresiaException{
+        try {
+            return subsistemaMembresias.actualizarMembresia(idMembresia, cambios);
+        } catch (NegocioException ex) {
+            Logger.getLogger(ControlNavegacionCompraMembresia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    } 
     
 
     /**
@@ -524,5 +538,7 @@ public class ControlNavegacionCompraMembresia {
     public void openFormMostrarInfoCliente(ClienteRegistradoDTO cliente){
         new MostrarInfoCliente(cliente);
     }
+
+    
     
 }

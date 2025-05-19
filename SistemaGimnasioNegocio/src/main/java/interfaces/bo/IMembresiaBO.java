@@ -17,7 +17,7 @@ public interface IMembresiaBO {
     public MembresiaDTO agregarMembresia(MembresiaDTO membresia) throws NegocioException;
      public List<MembresiaDTO> consultarMembresias();
      public boolean eliminarMembresia(String id) throws NegocioException;
-     public MembresiaDTO actualizarMembresia(MembresiaDTO membresia, Map<String, Object> cambios) throws NegocioException;
+     public MembresiaDTO actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws NegocioException;
      public boolean eliminarServicioDeMembresias(String idServicio)throws  EliminarServicioDeMembresiasException;
       public boolean editarServicioDeMembresias(String idServicio, ServicioExtraDTO servicioActualizado) throws EditarServicioEnMembresiaException;
 }

@@ -84,16 +84,16 @@ public class ManejadorMembresias implements IManejadorMembresia{
          
     }
     
-    public MembresiaDTO actualizarMembresia(MembresiaDTO membresia, Map<String, Object> cambios) throws SubsistemaMembresiaException{
+    public MembresiaDTO actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws SubsistemaMembresiaException{
         try {
-            if (validarIdNulo(membresia.getId())){
+            if (validarIdNulo(idMembresia)){
                 try {
                     throw new NegocioException("error, membresia con ID nulo");
                 } catch (NegocioException ex) {
                     Logger.getLogger(ManejadorMembresias.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            return membresiaBO.actualizarMembresia(membresia, cambios);
+            return membresiaBO.actualizarMembresia(idMembresia, cambios);
         } catch (NegocioException ex) {
          //   Logger.getLogger(ManejadorMembresias.class.getName()).log(Level.SEVERE, null, ex);
         }

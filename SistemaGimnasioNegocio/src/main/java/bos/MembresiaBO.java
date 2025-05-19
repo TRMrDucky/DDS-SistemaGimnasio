@@ -78,9 +78,9 @@ public class MembresiaBO implements IMembresiaBO {
         
     }
     
-    public MembresiaDTO actualizarMembresia(MembresiaDTO membresia, Map<String, Object> cambios) throws NegocioException{
+    public MembresiaDTO actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws NegocioException{
         try{
-            return MembresiaMapper.toDTO(membresiaDAO.actualizarMembresia(MembresiaMapper.toEntity(membresia)));
+            return MembresiaMapper.toDTO(membresiaDAO.actualizarMembresia(idMembresia, cambios));
         } catch(ActualizarMembresiaException e){
             throw new NegocioException("Error al actualizar membresia");
         }
