@@ -17,7 +17,6 @@ import org.bson.types.ObjectId;
  */
 public interface IClienteDAO {
     
-    public abstract Cliente registrarCliente(Cliente cliente);
     public abstract List<Cliente> obtenerListaClientes();
     public String obtenerNombreCliente(String id) throws ConsultaDatosClienteException;
     public String obtenerNumeroCliente(String id) throws ConsultaDatosClienteException;

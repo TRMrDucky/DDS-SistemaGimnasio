@@ -53,17 +53,6 @@ public class ClienteDAO implements IClienteDAO {
     }
 
     @Override
-    public Cliente registrarCliente(Cliente cliente) {
-        System.out.println(cliente.getApellidos());
-        System.out.println(cliente.getEmail());
-  //      cliente.setId(keyCliente);
-        keyCliente++;
-        listaClientes.add(cliente);
-        return cliente;
-
-    }
-
-    @Override
     public Cliente registrarClienteMongo(Cliente cliente) throws RegistroClienteException {
         if (verificarCorreo(cliente.getEmail())) {
             throw new RegistroClienteException("Correo ya registrado");
