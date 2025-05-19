@@ -7,7 +7,9 @@ package presentacion;
 import dtos.MembresiaDTO;
 import dtos.ServicioExtraDTO;
 import excepciones.SubsistemaMembresiaException;
+import java.awt.Component;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +32,7 @@ public class ActualizarMembresia extends javax.swing.JFrame {
         this.control= control;
         this.membresia= membresia;
         cargarServiciosExtras();
+        serviciosSeleccionados();
         llenarCampos();
     }
     
@@ -37,9 +40,14 @@ public class ActualizarMembresia extends javax.swing.JFrame {
         panelServicios.setLayout(new GridLayout(0, 1));
         panelServicios.removeAll();
         List<ServicioExtraDTO> servicios= control.obtenerServiciosExtrasDTO();
-    
+//        List<String> serviciosActuales = membresia.getServiciosExtra().stream()
+//                .map(ServicioExtraDTO::getNombreServicio)
+//                .toList();
+        
         for(ServicioExtraDTO servicio: servicios){
             JCheckBox serv= new JCheckBox(servicio.getNombreServicio());
+          ///  serv.setSelected(serviciosActuales.contains(servicio.getNombreServicio()));
+            
             panelServicios.add(serv);
 //            listaCheckBoxes.add(serv);
             System.out.println(serv);
@@ -49,6 +57,24 @@ public class ActualizarMembresia extends javax.swing.JFrame {
         panelEscribirNombre.setVisible(false);
          panelEscribirCosto.setVisible(false);
          panelEscribirDuracion.setVisible(false);
+         
+    }
+    
+    
+    
+    private void serviciosSeleccionados(){
+       List<String> serviciosMemb = membresia.getServiciosExtra().stream()
+                                          .map(ServicioExtraDTO::getNombreServicio)
+                                          .toList();
+       for (Component comp : panelServicios.getComponents()) {
+           
+           if (comp instanceof JCheckBox checkBox) {
+                checkBox.setSelected(serviciosMemb.contains(checkBox.getText()));
+           }
+           
+
+        }
+        
     }
     
     private void actualizarMembresia(){
@@ -74,6 +100,25 @@ public class ActualizarMembresia extends javax.swing.JFrame {
               cambios.put("precio", nuevoPrecio);
               
          }
+         List<ServicioExtraDTO> nuevosServicios = new ArrayList<>();
+          List<ServicioExtraDTO> serviciosDisponibles = control.obtenerServiciosExtrasDTO();
+
+         for (Component comp : panelServicios.getComponents()) {
+              if (comp instanceof JCheckBox checkBox && checkBox.isSelected()) {
+                  for (ServicioExtraDTO servicio : serviciosDisponibles) {
+                       if (servicio.getNombreServicio().equals(checkBox.getText())) {
+                       nuevosServicios.add(servicio);
+                       break;
+                       
+                  }
+              }
+             
+         }
+}
+              membresia.setServiciosExtra(nuevosServicios);
+              cambios.put("serviciosExtra", nuevosServicios);
+              
+         
          
          if (!cambios.isEmpty()) {
              try{
@@ -90,9 +135,10 @@ public class ActualizarMembresia extends javax.swing.JFrame {
              }
          }
          
-         
+         }
         
-    }
+    
+
     
     private void llenarCampos(){
         labelNombreOriginal.setText(membresia.getNombre());
