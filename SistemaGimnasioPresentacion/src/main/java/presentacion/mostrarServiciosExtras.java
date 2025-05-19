@@ -29,6 +29,9 @@ public class MostrarServiciosExtras extends javax.swing.JFrame {
                 labelOrigen.setText("Editar Servicio");
                 labelTextoOrigen.setText("Ingresa los nuevos valores");
                 jButton1.setText("Actualizar");
+                textNombre.setText(servicioExtra.getNombreServicio());
+                textPrecio.setText(Double.toString(servicioExtra.getPrecio()));
+                textDesc.setText(servicioExtra.getDescripcion());
                 break;
             case "eliminar":
                 labelOrigen.setText("Eliminar Servicio");
