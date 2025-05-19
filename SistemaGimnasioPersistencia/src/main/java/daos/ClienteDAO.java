@@ -66,7 +66,8 @@ public class ClienteDAO implements IClienteDAO {
         coleccion.insertOne(c);
         return c;
     }
-
+    
+    //todo
     @Override
     public List<Cliente> obtenerListaClientes() {
         return this.listaClientes;
@@ -93,7 +94,8 @@ public class ClienteDAO implements IClienteDAO {
         }
         throw new ConsultaDatosClienteException("No se pudo cargar el número telefónico del cliente porque el ID no fue encontrado");
     }
-
+    
+    //todo
     @Override
     public Cliente obtenerClienteCompleto(String id) throws ConsultaDatosClienteException {
         ObjectId oid = new ObjectId(id);
@@ -107,6 +109,7 @@ public class ClienteDAO implements IClienteDAO {
         );
     }
 
+    //todo
     public Membresia agregarSiNoTiene(Membresia membresia, String id) {
         ObjectId oid = new ObjectId(id);
         for (Cliente cliente : listaClientes) {
@@ -117,7 +120,8 @@ public class ClienteDAO implements IClienteDAO {
         }
         return null;
     }
-
+    
+    //todo
     public Membresia actualizarSiTiene(Membresia membresia, String id) {
         ObjectId oid = new ObjectId(id);
         for (Cliente cliente : listaClientes) {
@@ -133,7 +137,8 @@ public class ClienteDAO implements IClienteDAO {
         }
         return null;
     }
-
+    
+    //todo
     @Override
     public boolean validarSiTieneMem(Membresia membresia, String id) {
         ObjectId oid = new ObjectId(id);
