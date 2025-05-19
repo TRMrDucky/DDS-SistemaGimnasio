@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import Enumeradores.EnumEstadoMembresia;
 import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.MembresiaDTO;
@@ -54,8 +55,22 @@ public class ConsultarMembresias extends javax.swing.JFrame {
     
     public void cargarMembresias(){
         List<MembresiaDTO> membresias= control.consultarMembresias();
-        
+        switch (accionSeleccionada) {
+            case "Activar":
+                membresias = control.consultarMembresiasPorEstado(EnumEstadoMembresia.INACTIVA);
+                break;
+             case "Desactivar":
+                 membresias = control.consultarMembresiasPorEstado(EnumEstadoMembresia.ACTIVA);
+                 break;
+             default:
+                 membresias = control.consultarMembresias();
+                 break;
+                 
+             
+                 
+        }
       //  System.out.println(membresias);
+      panelMembresias.removeAll();;
         panelMembresias.setLayout(new GridLayout(0, 1));
         panelMembresias.removeAll();
         listaCheckBoxes.clear();
@@ -152,6 +167,10 @@ public class ConsultarMembresias extends javax.swing.JFrame {
 //                control.openFormServiciosExtra(clienteConMemb);
                 
                 break;
+                
+            case "Activar":
+                cambios.put("estado", EnumEstadoMembresia.ACTIVA);
+                
                 
 
         }

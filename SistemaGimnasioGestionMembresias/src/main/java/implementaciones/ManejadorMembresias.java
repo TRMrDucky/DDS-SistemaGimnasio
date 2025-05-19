@@ -6,6 +6,7 @@ package implementaciones;
 
 import Enumeradores.EnumEstadoMembresia;
 import bos.FabricaBOs;
+import clases.mock.Membresia;
 import dtos.MembresiaDTO;
 import excepciones.DuracionException;
 import excepciones.NegocioException;
@@ -71,6 +72,11 @@ public class ManejadorMembresias implements IManejadorMembresia{
     public List<MembresiaDTO> consultarMembresias(){
         return membresiaBO.consultarMembresias();
     }
+    
+    public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado){
+        return membresiaBO.consultarMembresiasPorEstado(estado);
+    }
+    
     
     public boolean eliminarMembresia(String id) throws SubsistemaMembresiaException{
         try{

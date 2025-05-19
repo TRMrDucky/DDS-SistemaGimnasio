@@ -188,6 +188,12 @@ public class MembresiaMockDAO implements IMembresiaDAO {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+
+    @Override
+    public List<Membresia> consultarMembresiasPorEstado(EnumEstadoMembresia estado) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
     
 }

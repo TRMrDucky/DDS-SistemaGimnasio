@@ -4,11 +4,13 @@
  */
 package bos;
 
+import Enumeradores.EnumEstadoMembresia;
 import clases.mock.Membresia;
 import dtos.MembresiaDTO;
 import dtos.ServicioExtraDTO;
 import excepciones.ActualizarMembresiaException;
 import excepciones.AgregarMembresiaException;
+import excepciones.ConsultarMembresiasDesactivadasException;
 import excepciones.EditarServicioEnMembresiaException;
 import excepciones.EliminarMembresiaException;
 import excepciones.EliminarServicioDeMembresiasException;
@@ -63,6 +65,13 @@ public class MembresiaBO implements IMembresiaBO {
     @Override
     public List<MembresiaDTO> consultarMembresias() {
         return membresiaDAO.consultarMembresias()
+                .stream()
+                .map(MembresiaMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+    
+     public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado){
+        return membresiaDAO.consultarMembresiasPorEstado(estado)
                 .stream()
                 .map(MembresiaMapper::toDTO)
                 .collect(Collectors.toList());

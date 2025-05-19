@@ -24,6 +24,7 @@ import excepciones.ActualizarMembresiaException;
 
 import excepciones.ConsultarServiciosExtraException;
 import excepciones.AgregarMembresiaException;
+import excepciones.ConsultarMembresiasDesactivadasException;
 import excepciones.EditarServicioEnMembresiaException;
 import excepciones.EliminarMembresiaException;
 import excepciones.EliminarServicioDeMembresiasException;
@@ -103,6 +104,11 @@ public class MembresiaDAO implements IMembresiaDAO {
         
     }
     
+    public List<Membresia> consultarMembresiasPorEstado(EnumEstadoMembresia estado){
+        MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
+        return coleccion.find(Filters.eq("estado", estado.name())).into(new ArrayList<>());
+    }
+    
     public boolean eliminarMembresia(String id) throws EliminarMembresiaException{
         try{
             
@@ -162,6 +168,8 @@ public class MembresiaDAO implements IMembresiaDAO {
             throw new ActualizarMembresiaException("Error al actualizar membresia");
         }
     }
+    
+    
 
  //   public List<Membresia> obtenerMembresias() {
   //      return listaMembresias; 

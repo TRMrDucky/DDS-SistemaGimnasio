@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import Enumeradores.EnumEstadoMembresia;
 import Enums.MetodosPagoEnum;
 import dtos.ClienteDTO;
 import dtos.ClienteRegConMemYServDTO;
@@ -156,6 +157,10 @@ public class ControlNavegacionCompraMembresia {
     }
      public List<MembresiaDTO> consultarMembresias(){
         return subsistemaMembresias.consultarMembresias();
+    }
+     
+     public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado){
+        return subsistemaMembresias.consultarMembresiasPorEstado(estado);
     }
     
     public void openFormOpcionesModuloMembresia(){

@@ -22,5 +22,6 @@ public interface IManejadorMembresia {
      public boolean eliminarMembresia(String id) throws SubsistemaMembresiaException;
      public List<MembresiaDTO> consultarMembresias();
      public MembresiaDTO actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws SubsistemaMembresiaException, NegocioException;
+     public List<MembresiaDTO> consultarMembresiasDesactivadas();
              
 }

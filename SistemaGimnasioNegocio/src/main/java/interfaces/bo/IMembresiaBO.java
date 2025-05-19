@@ -1,4 +1,6 @@
 package interfaces.bo;
+import Enumeradores.EnumEstadoMembresia;
+import clases.mock.Membresia;
 import dtos.MembresiaDTO;
 import dtos.ServicioExtraDTO;
 import excepciones.EditarServicioEnMembresiaException;
@@ -20,4 +22,5 @@ public interface IMembresiaBO {
      public MembresiaDTO actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws NegocioException;
      public boolean eliminarServicioDeMembresias(String idServicio)throws  EliminarServicioDeMembresiasException;
       public boolean editarServicioDeMembresias(String idServicio, ServicioExtraDTO servicioActualizado) throws EditarServicioEnMembresiaException;
+      public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado);
 }
