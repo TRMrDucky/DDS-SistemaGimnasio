@@ -183,12 +183,19 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                 
                 case "Desactivar":
                 cambios.put("estado", EnumEstadoMembresia.INACTIVA);
+                    System.out.println(idMembresia);
+                    System.out.println(accion);
+                    System.out.println(cambios);
+                    try{
                 MembresiaDTO membresiaDesactualizada= control.actualizarMembresia(idMembresia, cambios);
-                if(membresiaDesactualizada!=null){
+                //if(membresiaDesactualizada!=null){
                     JOptionPane.showMessageDialog(null, "Membresía desacactivada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                }else{
-                    System.out.println(membresiaDesactualizada);
-                    JOptionPane.showMessageDialog(null, "Error al desactivar membresia", "Error", JOptionPane.INFORMATION_MESSAGE);
+                } catch(SubsistemaMembresiaException e){
+                    
+                
+                 //   System.out.println(membresiaDesactualizada);
+                    JOptionPane.showMessageDialog(null, "Error al desactivar membresía: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    
                 }
                 break;
                 

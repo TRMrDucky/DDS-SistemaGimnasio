@@ -32,6 +32,7 @@ import excepciones.EliminarServicioDeMembresiasException;
 import interfaces.dao.IMembresiaDAO;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -156,15 +157,33 @@ public class MembresiaDAO implements IMembresiaDAO {
     public Membresia actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws ActualizarMembresiaException{
         
         try{
+            System.out.println("en pers"+idMembresia);
+            System.out.println("en pers"+cambios);
+            
             MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
+            Map<String, Object> cambiosString = new HashMap<>();
+            for (Map.Entry<String, Object> entry : cambios.entrySet()) {
+                Object val = entry.getValue();
+                if (val instanceof Enum) {
+                    cambiosString.put(entry.getKey(), ((Enum<?>) val).name());
+                } else{
+                    cambiosString.put(entry.getKey(), val);
+                }
+            }
            Document filtro= new Document("_id", new ObjectId(idMembresia));
-            Document update = new Document("$set", new Document(cambios));
+            Document update = new Document("$set", new Document(cambiosString));
 
             UpdateResult result = coleccion.updateOne(filtro, update);
+             System.out.println("documentos modificados " + result.getModifiedCount());
             Membresia membresiaActualizada = coleccion.find(filtro).first();
+            System.out.println(idMembresia);
+            System.out.println(cambios);
+            System.out.println("memb act"+membresiaActualizada);
+           
             return membresiaActualizada;
   
         } catch(Exception e){
+            e.printStackTrace(); 
             throw new ActualizarMembresiaException("Error al actualizar membresia" + e.getMessage());
         }
     }

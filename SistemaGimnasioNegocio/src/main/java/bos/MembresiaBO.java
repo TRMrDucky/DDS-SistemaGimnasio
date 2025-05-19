@@ -88,6 +88,8 @@ public class MembresiaBO implements IMembresiaBO {
     }
     
     public MembresiaDTO actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws NegocioException{
+        System.out.println("en bo "+idMembresia);
+        System.out.println("en bo "+cambios);
         try{
             return MembresiaMapper.toDTO(membresiaDAO.actualizarMembresia(idMembresia, cambios));
         } catch(ActualizarMembresiaException e){

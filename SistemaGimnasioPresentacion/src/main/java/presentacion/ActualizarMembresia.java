@@ -50,7 +50,7 @@ public class ActualizarMembresia extends javax.swing.JFrame {
             
             panelServicios.add(serv);
 //            listaCheckBoxes.add(serv);
-            System.out.println(serv);
+           // System.out.println(serv);
         }
         panelServicios.revalidate();
         panelServicios.repaint();

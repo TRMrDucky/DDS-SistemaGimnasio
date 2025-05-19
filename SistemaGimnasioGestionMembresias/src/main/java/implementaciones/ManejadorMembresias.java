@@ -99,6 +99,8 @@ public class ManejadorMembresias implements IManejadorMembresia{
                     Logger.getLogger(ManejadorMembresias.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            System.out.println("en manejador "+idMembresia);
+            System.out.println("en manejador "+cambios);
             return membresiaBO.actualizarMembresia(idMembresia, cambios);
         } catch (NegocioException ex) {
          //   Logger.getLogger(ManejadorMembresias.class.getName()).log(Level.SEVERE, null, ex);
