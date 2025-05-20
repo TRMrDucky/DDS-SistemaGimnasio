@@ -6,6 +6,7 @@ package presentacion;
 
 import Enumeradores.EnumEstadoMembresia;
 import Enums.MetodosPagoEnum;
+import Interfaz.ISubsistemaModificarCliente;
 import dtos.ClienteDTO;
 import dtos.ClienteRegConMemYServDTO;
 import dtos.ClienteRegConMembDTO;
@@ -54,12 +55,16 @@ public class ControlNavegacionCompraMembresia {
     private IManejadorServiciosExtra subsistema2;
     private IManejadorMembresia subsistemaMembresias;
     private IManejadorMantenimientoEquipos subsistemaMantenimientoEquipos;
+    private ISubsistemaModificarCliente subsistemaModificarCliente;
 
-    public ControlNavegacionCompraMembresia(IManejadorComprasMembresias subsistema, IManejadorServiciosExtra subsistema2, IManejadorMembresia subsistemaMembresias, IManejadorMantenimientoEquipos subsistemaMantenimientoEquipos) {
+    public ControlNavegacionCompraMembresia(IManejadorComprasMembresias subsistema, IManejadorServiciosExtra subsistema2, 
+            IManejadorMembresia subsistemaMembresias, IManejadorMantenimientoEquipos subsistemaMantenimientoEquipos,
+            ISubsistemaModificarCliente subsistemaModificarCliente) {
         this.subsistema = subsistema;
         this.subsistema2 = subsistema2;
         this.subsistemaMembresias = subsistemaMembresias;
         this.subsistemaMantenimientoEquipos = subsistemaMantenimientoEquipos;
+        this.subsistemaModificarCliente = subsistemaModificarCliente;
 
     }
 
@@ -550,6 +555,10 @@ public class ControlNavegacionCompraMembresia {
 
     public void openFormMostrarInfoCliente(ClienteRegistradoDTO cliente) {
         new MostrarInfoCliente(cliente);
+    }
+    
+    public void eliminarCliente(ClienteRegistradoDTO cliente){
+        Subsistema
     }
 
 }

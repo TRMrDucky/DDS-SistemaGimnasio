@@ -157,7 +157,7 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
         
         if (opcion == JOptionPane.YES_OPTION) {
 
-            eliminarCliente(cliente); 
+            //eliminarCliente(cliente); 
             JOptionPane.showMessageDialog(null, "Cliente eliminado exitosamente");
         }
         }

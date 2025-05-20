@@ -39,7 +39,7 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
 
     @Override
     public ClienteRegistradoDTO registrarCliente(ClienteDTO registrarClienteDTO) throws RegistroClienteException {
-        try {
+        
             if (registrarClienteDTO.getNombre().isBlank() || registrarClienteDTO.getApellido().isBlank()
                     || registrarClienteDTO.getCorreo().isBlank() || registrarClienteDTO.getTelefono().isBlank()) {
                 throw new RegistroClienteException("Ningun campo puede permanecer vacio");
@@ -56,11 +56,6 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
             ClienteRegistradoDTO cliente = registrarClienteBO.registrarCliente(registrarClienteDTO);
 
             return cliente;
-
-        } catch (RegistroClienteException e) {
-            JOptionPane exception = new JOptionPane(e.getMessage(), JOptionPane.ERROR_MESSAGE);
-        }
-        return null;
     }
 
     public ManejadorComprasMembresias() {
