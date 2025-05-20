@@ -57,7 +57,7 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
         });
 
         lblNumeroTelefono.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblNumeroTelefono.setText("Numero teléfono: ");
+        lblNumeroTelefono.setText("Identificador:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
