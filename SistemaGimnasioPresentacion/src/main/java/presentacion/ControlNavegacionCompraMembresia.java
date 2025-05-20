@@ -558,7 +558,7 @@ public class ControlNavegacionCompraMembresia {
     }
     
     public void eliminarCliente(ClienteRegistradoDTO cliente){
-        Subsistema
+        subsistemaModificarCliente.eliminarCliente(cliente);
     }
 
 }

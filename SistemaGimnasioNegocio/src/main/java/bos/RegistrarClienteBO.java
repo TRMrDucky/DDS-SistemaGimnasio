@@ -97,4 +97,9 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
         }
         return MembresiaMapper.toDTO(clienteDAO.actualizarSiTiene(membresia, id));
     }
+    
+    @Override
+    public ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente){
+        return null;
+    }
 }

@@ -18,5 +18,10 @@
             <artifactId>SistemaGimnasioDTO</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>SistemaGimnasioNegocio</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>

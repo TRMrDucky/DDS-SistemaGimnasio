@@ -5,7 +5,9 @@
 package Implementacion;
 
 import Interfaz.ISubsistemaModificarCliente;
+import bos.FabricaBOs;
 import dtos.ClienteRegistradoDTO;
+import interfaces.bo.IRegistrarClienteBO;
 
 /**
  *
@@ -13,9 +15,16 @@ import dtos.ClienteRegistradoDTO;
  */
 public class SubsistemaModificarCliente implements ISubsistemaModificarCliente {
     
+    private IRegistrarClienteBO registrarClienteBO;
+    
+    public SubsistemaModificarCliente(){
+        this.registrarClienteBO = FabricaBOs.getInstanceRegistrarClienteBO();
+    }
+    
     @Override 
     public ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente){
-        
+        this.registrarClienteBO.eliminarCliente(cliente);
+        return cliente;
     }
     
 }
