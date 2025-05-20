@@ -178,8 +178,8 @@ public class ControlNavegacionCompraMembresia {
         new ActualizarMembresia(this, membresia).setVisible(true);
     }
 
-    public MembresiaDTO actualizarMembresia(String idMembresia, MembresiaDTO membresiaActualizada) throws SubsistemaMembresiaException {
-        return subsistemaMembresias.actualizarMembresia(idMembresia, membresiaActualizada);
+    public MembresiaDTO actualizarMembresia(MembresiaDTO membresiaActualizada) throws SubsistemaMembresiaException {
+        return subsistemaMembresias.actualizarMembresia(membresiaActualizada);
        
 
 

@@ -154,22 +154,27 @@ public class MembresiaDAO implements IMembresiaDAO {
         
     }
     
-    public Membresia actualizarMembresia(String idMembresia, Membresia membresiaActualizada) throws ActualizarMembresiaException{
+    public Membresia actualizarMembresia(Membresia membresiaActualizada) throws ActualizarMembresiaException{
         
         try{ 
             MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
-            
-           Document filtro= new Document("_id", new ObjectId(idMembresia));
-           Membresia membresia = coleccion.find(filtro).first();
-           membresia.setNombre(membresiaActualizada.getNombre());
-           membresia.setDuracion(membresiaActualizada.getDuracion());
-           
-           Document update = new Document("$set", membresia);
-
-            UpdateResult result = coleccion.updateOne(filtro, update);
-            
+            UpdateResult result = coleccion.updateOne(
+                    Filters.eq("_id", membresiaActualizada.getId()),
+                    Updates.combine(
+                            Updates.set("nombre", membresiaActualizada.getNombre()),
+                            Updates.set("duracion", membresiaActualizada.getDuracion()),
+                            Updates.set("precio", membresiaActualizada.getPrecio()),
+                            Updates.set("estado", membresiaActualizada.getEstado()),
+                            Updates.set("serviciosExtra", membresiaActualizada.getServiciosExtra())
+                    )
+            );
+            if (result.getModifiedCount() == 0) {
+                throw new ActualizarMembresiaException("No se edito ningun cambio en la membresia");
+            }
             return membresiaActualizada;
-  
+           
+            
+            
         } catch(Exception e){
             e.printStackTrace(); 
             throw new ActualizarMembresiaException("Error al actualizar membresia" + e.getMessage());
@@ -196,11 +201,7 @@ public class MembresiaDAO implements IMembresiaDAO {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public Membresia actualizarMembresia(Membresia membresia) throws ActualizarMembresiaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+   
    
     
     

@@ -169,12 +169,6 @@ public class MembresiaMockDAO implements IMembresiaDAO {
     }
 
     @Override
-    public Membresia actualizarMembresia(Membresia membresia) throws ActualizarMembresiaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-
-    @Override
     public boolean eliminarServicioDeMembresias(String idServicio) throws EliminarServicioDeMembresiasException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -191,10 +185,9 @@ public class MembresiaMockDAO implements IMembresiaDAO {
     }
 
     @Override
-    public Membresia actualizarMembresia(String idMembresia, Membresia membresiaActualizada) throws ActualizarMembresiaException {
+    public Membresia actualizarMembresia(Membresia membresiaActualizada) throws ActualizarMembresiaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    
     
 }

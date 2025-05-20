@@ -90,9 +90,9 @@ public class ManejadorMembresias implements IManejadorMembresia{
          
     }
     
-    public MembresiaDTO actualizarMembresia(String idMembresia, MembresiaDTO membresiaActualizada) throws SubsistemaMembresiaException{
+    public MembresiaDTO actualizarMembresia(MembresiaDTO membresiaActualizada) throws SubsistemaMembresiaException{
         try {
-            if (validarIdNulo(idMembresia)){
+            if (validarIdNulo(membresiaActualizada.getId())){
                 try {
                     throw new NegocioException("error, membresia con ID nulo");
                 } catch (NegocioException ex) {
@@ -100,7 +100,7 @@ public class ManejadorMembresias implements IManejadorMembresia{
                 }
             }
            
-            return membresiaBO.actualizarMembresia(idMembresia, membresiaActualizada);
+            return membresiaBO.actualizarMembresia(membresiaActualizada);
         } catch (NegocioException ex) {
          //   Logger.getLogger(ManejadorMembresias.class.getName()).log(Level.SEVERE, null, ex);
         }
