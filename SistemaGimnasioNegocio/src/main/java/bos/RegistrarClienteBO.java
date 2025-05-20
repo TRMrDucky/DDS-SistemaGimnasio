@@ -11,6 +11,7 @@ import dtos.ClienteRegistradoConMembListaDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.MembresiaDTO;
 import dtos.MembresiaPagadaDTO;
+import excepciones.AgregarMembresiaClienteException;
 import excepciones.ConsultaDatosClienteException;
 import excepciones.ModificarClienteException;
 import excepciones.NegocioException;
@@ -67,12 +68,15 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
     }
 
     @Override
-    public MembresiaPagadaDTO agregarMembresia(MembresiaDTO membresia, String id) {
+    public MembresiaDTO agregarMembresia(MembresiaDTO membresia, String id) throws NegocioException {
+        try{
         if(!clienteDAO.validarSiTieneMem(MembresiaMapper.toEntity(membresia), id)){
-            clienteDAO.agregarSiNoTiene(MembresiaMapper.toEntity(membresia), id);
+            return MembresiaMapper.toDTO(clienteDAO.agregarSiNoTiene(id,MembresiaMapper.toEntity(membresia)));
         }
-        clienteDAO.actualizarSiTiene(MembresiaMapper.toEntity(membresia), id);
-        return null;
+        return MembresiaMapper.toDTO(clienteDAO.actualizarSiTiene(MembresiaMapper.toEntity(membresia), id));
+        }catch(AgregarMembresiaClienteException e){
+            throw new NegocioException("Error al agregar la membresia al cliete", e);
+        }
     }
     
         @Override
@@ -87,17 +91,6 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
           );
       }
   }
-
-    
-
-    @Override
-    public MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresiaDTO, String id) {
-        Membresia membresia = MembresiaMapper.toEntity(membresiaDTO);
-        if(!clienteDAO.validarSiTieneMem(membresia, id)){
-            return MembresiaMapper.toDTO(clienteDAO.agregarSiNoTiene(membresia, id));
-        }
-        return MembresiaMapper.toDTO(clienteDAO.actualizarSiTiene(membresia, id));
-    }
     
     @Override
     public ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente)throws ModificarClienteException{

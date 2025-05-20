@@ -4,6 +4,7 @@
  */
 package interfaces.bo;
 
+import clases.mock.Membresia;
 import dtos.ClienteDTO;
 import dtos.ClienteRegConMemYServDTO;
 import dtos.ClienteRegistradoConMembListaDTO;
@@ -23,8 +24,7 @@ public interface IRegistrarClienteBO {
     public abstract List<ClienteRegistradoDTO> obtenerListaClientes();
     public abstract String obtenerNombreCliente(String id) throws NegocioException;
     public abstract String obtenerNumeroCliente(String id) throws NegocioException;
-    public abstract MembresiaDTO agregarMembresia(MembresiaDTO membresia, String id);
+    public abstract MembresiaDTO agregarMembresia(MembresiaDTO membresia, String id) throws NegocioException;
     public abstract ClienteRegistradoConMembListaDTO obtenerClienteCompleto(String id) throws NegocioException;
-    public abstract MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, String id);
     public abstract ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente) throws ModificarClienteException;
 }

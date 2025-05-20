@@ -223,8 +223,33 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
     }
 
     @Override
-    public MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, String id) {
-        return registrarClienteBO.agregarMembresiaCliente(membresa, id);
+    public MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresia, String id) {
+        try {
+            if (membresia == null) {
+                throw new IllegalArgumentException("La membresía no puede ser nula.");
+            }
+            if (id == null || id.isBlank()) {
+                throw new IllegalArgumentException("El ID del cliente no puede ser nulo o vacío.");
+            }
+            if (membresia.getNombre() == null || membresia.getNombre().isBlank()) {
+                throw new IllegalArgumentException("El nombre de la membresía no puede ser nulo o vacío.");
+            }
+            if (membresia.getPrecio() <= 0) {
+                throw new IllegalArgumentException("El precio debe ser mayor a 0.");
+            }
+            if (membresia.getEstado() == null) {
+                throw new IllegalArgumentException("El estado de la membresía no puede ser nulo.");
+            }
+            if (membresia.getDuracion() == null || membresia.getDuracion() <= 0) {
+                throw new IllegalArgumentException("La duración debe ser mayor a 0.");
+            }
+            return registrarClienteBO.agregarMembresia(membresia, id);
+        } catch (NegocioException ex) {
+            System.err.println("Error de negocio: " + ex.getMessage());
+        } catch (IllegalArgumentException ex) {
+            System.err.println("Error de validación: " + ex.getMessage());
+        }
+        return null;
     }
 
     @Override

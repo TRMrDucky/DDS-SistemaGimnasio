@@ -74,8 +74,10 @@ public class ResumenCompraFrame extends JFrame {
                 JOptionPane.showMessageDialog(this, "Confirme escribiendo 'efectivo' en el campo.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
             control.procesarPago(totalPagar(cliente), montoPagado);
+            if(totalPagar(cliente)<montoPagado){
+                control.agregarMembresiaCliente(cliente.getMembresia(), cliente.getCliente().getId());
+            }
             control.openFormBuscarCliente();
             dispose();
         });

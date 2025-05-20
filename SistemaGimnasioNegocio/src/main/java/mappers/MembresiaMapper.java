@@ -4,7 +4,6 @@
  */
 package mappers;
 
-import Enumeradores.EnumEstadoMembresia;
 import clases.mock.Membresia;
 import clases.mock.MembresiaReemplazar;
 import clases.mock.ServicioExtra;
@@ -61,6 +60,14 @@ public class MembresiaMapper {
         }
         return membresiasDTO;
        
+    }
+    
+    public static MembresiaPagadaDTO memToMemPagadaDTO(Membresia mem){
+        if(mem.getServiciosExtra()!=null){
+            List<ServicioExtraDTO> servicios = ServicioExtraMapper.toListDTO(mem.getServiciosExtra());
+            return new MembresiaPagadaDTO(mem.getNombre(), mem.getIdString(), mem.getPrecio(), servicios, mem.getEstado(), mem.getInicio(), mem.getFin());
+        }
+        return new MembresiaPagadaDTO(mem.getNombre(), mem.getIdString(), mem.getPrecio(), new  LinkedList<ServicioExtraDTO>(), mem.getEstado(), mem.getInicio(), mem.getFin());
     }
     
     
