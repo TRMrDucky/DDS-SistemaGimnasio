@@ -13,12 +13,14 @@ import javax.swing.JOptionPane;
  */
 public class MostrarInfoCliente extends javax.swing.JFrame {
 
+    private static ControlNavegacionCompraMembresia control;
     private ClienteRegistradoDTO cliente;
 
     /**
      * Creates new form MostrarInfoCliente
      */
-    public MostrarInfoCliente(ClienteRegistradoDTO cliente) {
+    public MostrarInfoCliente(ClienteRegistradoDTO cliente, ControlNavegacionCompraMembresia control) {
+        this.control = control;
         this.cliente = cliente;
         initComponents();
         iniciarComponentes(this.cliente);
@@ -144,22 +146,22 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if (btnEliminar.getText().equals("Cancelar")) {
-        iniciarComponentes(cliente);
-    } else {
-        // Mostrar diálogo de confirmación
-        int opcion = JOptionPane.showConfirmDialog(
-            null,
-            "¿Seguro que deseas eliminar a " + cliente.getNombre() + "?", 
-            "Confirmar eliminación",
-            JOptionPane.YES_NO_OPTION, 
-            JOptionPane.WARNING_MESSAGE 
-        );
-        
-        if (opcion == JOptionPane.YES_OPTION) {
+            iniciarComponentes(cliente);
+        } else {
+            // Mostrar diálogo de confirmación
+            int opcion = JOptionPane.showConfirmDialog(
+                    null,
+                    "¿Seguro que deseas eliminar a " + cliente.getNombre() + "?",
+                    "Confirmar eliminación",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+            );
 
-            //eliminarCliente(cliente); 
-            JOptionPane.showMessageDialog(null, "Cliente eliminado exitosamente");
-        }
+            if (opcion == JOptionPane.YES_OPTION) {
+
+                control.eliminarCliente(cliente);
+                JOptionPane.showMessageDialog(null, "Cliente eliminado exitosamente");
+            }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 

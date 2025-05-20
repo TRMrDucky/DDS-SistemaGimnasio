@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -36,6 +37,10 @@ public class ClienteMapper {
             listaCLientesDTO.add(new ClienteRegistradoDTO(cliente.getNombres(), cliente.getApellidos(), cliente.getEmail(), cliente.getNumeroTelefono(), cliente.getId().toString()));
         }
         return listaCLientesDTO;
+    }
+    
+    public static Cliente toEntityCompleto(ClienteRegistradoDTO cliente){
+        return new Cliente(cliente.getNombre(), cliente.getApellidos(), cliente.getEmail(), cliente.getNumeroTelefono(), new ObjectId(cliente.getId()));
     }
     
     /**

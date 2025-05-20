@@ -5,11 +5,12 @@
 package Interfaz;
 
 import dtos.ClienteRegistradoDTO;
+import excepciones.ModificarClienteException;
 
 /**
  *
  * @author 52644
  */
 public interface ISubsistemaModificarCliente {
-    public abstract ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente);
+    public abstract ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente) throws ModificarClienteException;
 }

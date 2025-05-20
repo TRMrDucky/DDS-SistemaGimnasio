@@ -24,6 +24,7 @@ import excepciones.DuracionException;
 import excepciones.EditarServicioExtraSubsitemaException;
 import excepciones.FiltroVacioException;
 import excepciones.IdEquipoVacioException;
+import excepciones.ModificarClienteException;
 import excepciones.NegocioException;
 import excepciones.NombreEquipoVacioException;
 import excepciones.NombreVacioException;
@@ -57,7 +58,7 @@ public class ControlNavegacionCompraMembresia {
     private IManejadorMantenimientoEquipos subsistemaMantenimientoEquipos;
     private ISubsistemaModificarCliente subsistemaModificarCliente;
 
-    public ControlNavegacionCompraMembresia(IManejadorComprasMembresias subsistema, IManejadorServiciosExtra subsistema2, 
+    public ControlNavegacionCompraMembresia(IManejadorComprasMembresias subsistema, IManejadorServiciosExtra subsistema2,
             IManejadorMembresia subsistemaMembresias, IManejadorMantenimientoEquipos subsistemaMantenimientoEquipos,
             ISubsistemaModificarCliente subsistemaModificarCliente) {
         this.subsistema = subsistema;
@@ -196,7 +197,6 @@ public class ControlNavegacionCompraMembresia {
      *
      * @return una lista con objetos del tipo Cliente
      */
-
     //MODIFICADO
     public List<ClienteRegistradoDTO> getListaClientes() {
         return subsistema.getListaClientes();
@@ -554,11 +554,15 @@ public class ControlNavegacionCompraMembresia {
     }
 
     public void openFormMostrarInfoCliente(ClienteRegistradoDTO cliente) {
-        new MostrarInfoCliente(cliente);
+        new MostrarInfoCliente(cliente, this);
     }
-    
-    public void eliminarCliente(ClienteRegistradoDTO cliente){
-        subsistemaModificarCliente.eliminarCliente(cliente);
+
+    public void eliminarCliente(ClienteRegistradoDTO cliente) {
+        try {
+            subsistemaModificarCliente.eliminarCliente(cliente);
+        } catch (ModificarClienteException e) {
+            JOptionPane.showMessageDialog(null, "No ha sido posible la eliminación", "Error en la eliminación", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
 }

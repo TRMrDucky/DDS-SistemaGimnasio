@@ -9,6 +9,7 @@ import dtos.ClienteRegConMemYServDTO;
 import dtos.ClienteRegistradoConMembListaDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.MembresiaDTO;
+import excepciones.ModificarClienteException;
 import excepciones.NegocioException;
 import excepciones.RegistroClienteException;
 import java.util.List;
@@ -25,5 +26,5 @@ public interface IRegistrarClienteBO {
     public abstract MembresiaDTO agregarMembresia(MembresiaDTO membresia, String id);
     public abstract ClienteRegistradoConMembListaDTO obtenerClienteCompleto(String id) throws NegocioException;
     public abstract MembresiaDTO agregarMembresiaCliente(MembresiaDTO membresa, String id);
-    public abstract ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente);
+    public abstract ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente) throws ModificarClienteException;
 }

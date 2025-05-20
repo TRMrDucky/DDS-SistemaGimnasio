@@ -7,6 +7,7 @@ package Implementacion;
 import Interfaz.ISubsistemaModificarCliente;
 import bos.FabricaBOs;
 import dtos.ClienteRegistradoDTO;
+import excepciones.ModificarClienteException;
 import interfaces.bo.IRegistrarClienteBO;
 
 /**
@@ -22,9 +23,9 @@ public class SubsistemaModificarCliente implements ISubsistemaModificarCliente {
     }
     
     @Override 
-    public ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente){
-        this.registrarClienteBO.eliminarCliente(cliente);
-        return cliente;
+    public ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente)throws ModificarClienteException{
+        return this.registrarClienteBO.eliminarCliente(cliente);
+        
     }
-    
+        
 }

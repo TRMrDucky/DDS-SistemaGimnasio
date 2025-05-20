@@ -12,6 +12,7 @@ import dtos.ClienteRegistradoDTO;
 import dtos.MembresiaDTO;
 import dtos.MembresiaPagadaDTO;
 import excepciones.ConsultaDatosClienteException;
+import excepciones.ModificarClienteException;
 import excepciones.NegocioException;
 import excepciones.RegistroClienteException;
 import interfaces.bo.IRegistrarClienteBO;
@@ -99,7 +100,15 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
     }
     
     @Override
-    public ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente){
-        return null;
+    public ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente)throws ModificarClienteException{
+  
+            Cliente clieente = ClienteMapper.toEntityCompleto(cliente);
+            Cliente cEliminar = clienteDAO.eliminarCliente(clieente);
+            if(cEliminar==null){
+                throw new ModificarClienteException("No ha sido posible eliminar el cliente");
+            }
+            return ClienteMapper.toDTO(cEliminar);
+             
+        
     }
 }

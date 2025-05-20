@@ -3,6 +3,8 @@
  */
 package presentacion;
 
+import Implementacion.SubsistemaModificarCliente;
+import Interfaz.ISubsistemaModificarCliente;
 import implementaciones.ManejadorComprasMembresias;
 import implementaciones.ManejadorMantenimientoEquipos;
 import implementaciones.ManejadorMembresias;
@@ -25,7 +27,8 @@ public class SistemaGimnasioPresentacion {
         IManejadorServiciosExtra subsistema2 = new ManejadorServicioExtra();
         IManejadorMembresia subsistemaMembresias= new ManejadorMembresias();
         IManejadorMantenimientoEquipos subsistemaMantenimientoEquipos=new ManejadorMantenimientoEquipos();
-        ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia(subsistema,subsistema2, subsistemaMembresias, subsistemaMantenimientoEquipos);
+        ISubsistemaModificarCliente subsistemaModicarCliente = new SubsistemaModificarCliente();
+        ControlNavegacionCompraMembresia control = new ControlNavegacionCompraMembresia(subsistema,subsistema2, subsistemaMembresias, subsistemaMantenimientoEquipos, subsistemaModicarCliente);
         control.openFormPantallaPrincipal();
     }
 }

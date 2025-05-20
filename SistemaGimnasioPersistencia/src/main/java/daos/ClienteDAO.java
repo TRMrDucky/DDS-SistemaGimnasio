@@ -154,6 +154,13 @@ public class ClienteDAO implements IClienteDAO {
         return false;
     }
 
+    @Override
+    public Cliente eliminarCliente(Cliente cliente){
+         MongoCollection<Cliente> coleccion = crearConexion();
+         Cliente clieente = coleccion.findOneAndDelete(new Document("_Id", cliente.getId()));
+         return clieente;
+    }
+     
     private boolean verificarCorreo(String correo) {
         MongoCollection<Cliente> coleccion = crearConexion();
 
