@@ -23,6 +23,7 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
         this.control = control;
         this.cliente = cliente;
         initComponents();
+        setLocationRelativeTo(null);
         iniciarComponentes(this.cliente);
     }
 

@@ -22,6 +22,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
      */
     public PantallaPrincipal(ControlNavegacionCompraMembresia control) {
         initComponents();
+        setLocationRelativeTo(null);
         this.control=control;
     }
 

@@ -15,6 +15,7 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
      */
     public RegistrarAsistencia() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
