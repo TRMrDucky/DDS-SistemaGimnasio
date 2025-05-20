@@ -87,11 +87,10 @@ public class MembresiaBO implements IMembresiaBO {
         
     }
     
-    public MembresiaDTO actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws NegocioException{
-        System.out.println("en bo "+idMembresia);
-        System.out.println("en bo "+cambios);
+    public MembresiaDTO actualizarMembresia(String idMembresia, MembresiaDTO membresiaActualizada) throws NegocioException{
+      
         try{
-            return MembresiaMapper.toDTO(membresiaDAO.actualizarMembresia(idMembresia, cambios));
+            return MembresiaMapper.toDTO(membresiaDAO.actualizarMembresia(idMembresia, MembresiaMapper.toEntity(membresiaActualizada)));
         } catch(ActualizarMembresiaException e){
             throw new NegocioException("Error al actualizar membresia" +e.getMessage());
         }

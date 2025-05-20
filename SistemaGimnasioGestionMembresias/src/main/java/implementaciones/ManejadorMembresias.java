@@ -90,7 +90,7 @@ public class ManejadorMembresias implements IManejadorMembresia{
          
     }
     
-    public MembresiaDTO actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws SubsistemaMembresiaException{
+    public MembresiaDTO actualizarMembresia(String idMembresia, MembresiaDTO membresiaActualizada) throws SubsistemaMembresiaException{
         try {
             if (validarIdNulo(idMembresia)){
                 try {
@@ -99,9 +99,8 @@ public class ManejadorMembresias implements IManejadorMembresia{
                     Logger.getLogger(ManejadorMembresias.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            System.out.println("en manejador "+idMembresia);
-            System.out.println("en manejador "+cambios);
-            return membresiaBO.actualizarMembresia(idMembresia, cambios);
+           
+            return membresiaBO.actualizarMembresia(idMembresia, membresiaActualizada);
         } catch (NegocioException ex) {
          //   Logger.getLogger(ManejadorMembresias.class.getName()).log(Level.SEVERE, null, ex);
         }

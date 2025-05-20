@@ -154,32 +154,20 @@ public class MembresiaDAO implements IMembresiaDAO {
         
     }
     
-    public Membresia actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws ActualizarMembresiaException{
+    public Membresia actualizarMembresia(String idMembresia, Membresia membresiaActualizada) throws ActualizarMembresiaException{
         
-        try{
-            System.out.println("en pers"+idMembresia);
-            System.out.println("en pers"+cambios);
-            
+        try{ 
             MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
-            Map<String, Object> cambiosString = new HashMap<>();
-            for (Map.Entry<String, Object> entry : cambios.entrySet()) {
-                Object val = entry.getValue();
-                if (val instanceof Enum) {
-                    cambiosString.put(entry.getKey(), ((Enum<?>) val).name());
-                } else{
-                    cambiosString.put(entry.getKey(), val);
-                }
-            }
+            
            Document filtro= new Document("_id", new ObjectId(idMembresia));
-            Document update = new Document("$set", new Document(cambiosString));
+           Membresia membresia = coleccion.find(filtro).first();
+           membresia.setNombre(membresiaActualizada.getNombre());
+           membresia.setDuracion(membresiaActualizada.getDuracion());
+           
+           Document update = new Document("$set", membresia);
 
             UpdateResult result = coleccion.updateOne(filtro, update);
-             System.out.println("documentos modificados " + result.getModifiedCount());
-            Membresia membresiaActualizada = coleccion.find(filtro).first();
-            System.out.println(idMembresia);
-            System.out.println(cambios);
-            System.out.println("memb act"+membresiaActualizada);
-           
+            
             return membresiaActualizada;
   
         } catch(Exception e){

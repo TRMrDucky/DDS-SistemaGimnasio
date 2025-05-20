@@ -31,7 +31,7 @@ public interface IMembresiaDAO {
      public List<Membresia> consultarMembresias();
      public boolean eliminarMembresia(String id) throws EliminarMembresiaException;
      public Membresia actualizarMembresia(Membresia membresia) throws ActualizarMembresiaException;
-     public Membresia actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws ActualizarMembresiaException;
+    public Membresia actualizarMembresia(String idMembresia, Membresia membresiaActualizada) throws ActualizarMembresiaException;
      public boolean eliminarServicioDeMembresias(String idServicio) throws EliminarServicioDeMembresiasException;
      public boolean editarServicioEnMembresias(String idServicio, ServicioExtra servicioActualizado) throws EditarServicioEnMembresiaException;
       public List<Membresia> consultarMembresiasPorEstado(EnumEstadoMembresia estado);

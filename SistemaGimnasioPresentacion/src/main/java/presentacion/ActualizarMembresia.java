@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -60,6 +61,11 @@ public class ActualizarMembresia extends javax.swing.JFrame {
          
     }
     
+    private void cargarMembresia(){
+        panelEscribirNombre.add(new JTextField(membresia.getNombre()));
+        
+        
+    }
     
     
     private void serviciosSeleccionados(){
@@ -305,10 +311,9 @@ public class ActualizarMembresia extends javax.swing.JFrame {
         panelEscribirNombre.setLayout(panelEscribirNombreLayout);
         panelEscribirNombreLayout.setHorizontalGroup(
             panelEscribirNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEscribirNombreLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelEscribirNombreLayout.createSequentialGroup()
                 .addComponent(campoNuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         panelEscribirNombreLayout.setVerticalGroup(
             panelEscribirNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
