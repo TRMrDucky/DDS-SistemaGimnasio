@@ -5,6 +5,7 @@
 package presentacion;
 
 import dtos.ClienteRegistradoDTO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,15 +13,20 @@ import dtos.ClienteRegistradoDTO;
  */
 public class MostrarInfoCliente extends javax.swing.JFrame {
 
+    private ClienteRegistradoDTO cliente;
+
     /**
      * Creates new form MostrarInfoCliente
      */
     public MostrarInfoCliente(ClienteRegistradoDTO cliente) {
+        this.cliente = cliente;
         initComponents();
-        iniciarComponentes(cliente);
+        iniciarComponentes(this.cliente);
     }
 
-    public MostrarInfoCliente(){}
+    public MostrarInfoCliente() {
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,8 +58,18 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
         });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nombres");
 
@@ -122,6 +138,31 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        editar(this.cliente);
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (btnEliminar.getText().equals("Cancelar")) {
+            iniciarComponentes(cliente);
+        } else {
+            // Mostrar diálogo de confirmación
+            int opcion = JOptionPane.showConfirmDialog(
+                    null,
+                    "¿Seguro que deseas eliminar a " + cliente.getNombre() + "?",
+                    "Confirmar eliminación",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+            );
+
+            if (opcion == JOptionPane.YES_OPTION) {
+
+                //eliminarCliente(cliente); // Método hipotético para eliminar
+                JOptionPane.showMessageDialog(null, "Cliente eliminado exitosamente");
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -156,13 +197,27 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void iniciarComponentes(ClienteRegistradoDTO cliente){
+
+    private void iniciarComponentes(ClienteRegistradoDTO cliente) {
+        this.btnEliminar.setText("Eliminar");
         this.lblNombre.setText(cliente.getNombre());
         this.lblApellido.setText(cliente.getApellidos());
         this.lblCorreo.setText(cliente.getEmail());
         this.lblTelefono.setText(cliente.getNumeroTelefono());
         this.setVisible(true);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.lblNombre.setEditable(false);
+        this.lblApellido.setEditable(false);
+        this.lblCorreo.setEditable(false);
+        this.lblTelefono.setEditable(false);
+    }
+
+    private void editar(ClienteRegistradoDTO cliente) {
+        this.lblNombre.setEditable(true);
+        this.lblApellido.setEditable(true);
+        this.lblCorreo.setEditable(true);
+        this.lblTelefono.setEditable(true);
+        this.btnEliminar.setText("Cancelar");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
