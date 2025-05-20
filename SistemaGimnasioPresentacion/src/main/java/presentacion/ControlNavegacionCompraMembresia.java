@@ -178,17 +178,10 @@ public class ControlNavegacionCompraMembresia {
         new ActualizarMembresia(this, membresia).setVisible(true);
     }
 
-    public MembresiaDTO actualizarMembresia(String idMembresia, Map<String, Object> cambios) throws SubsistemaMembresiaException {
-        try {
-            MembresiaDTO membresiaActualizada = subsistemaMembresias.actualizarMembresia(idMembresia, cambios);
-            System.out.println("en contol " + idMembresia);
-            System.out.println("en control " + cambios);
-            JOptionPane.showMessageDialog(null, "Membresía desactivada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            return membresiaActualizada;
-        } catch (NegocioException ex) {
-            Logger.getLogger(ControlNavegacionCompraMembresia.class.getName()).log(Level.SEVERE, null, ex);
-            throw new SubsistemaMembresiaException("Error a actualizar la membresia " + ex.getMessage());
-        }
+    public MembresiaDTO actualizarMembresia(String idMembresia, MembresiaDTO membresiaActualizada) throws SubsistemaMembresiaException {
+        return subsistemaMembresias.actualizarMembresia(idMembresia, membresiaActualizada);
+       
+
 
     }
 

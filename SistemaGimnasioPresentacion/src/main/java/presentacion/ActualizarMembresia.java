@@ -131,20 +131,20 @@ public class ActualizarMembresia extends javax.swing.JFrame {
               
          
          
-         if (!cambios.isEmpty()) {
-             try{
-                  control.actualizarMembresia(membresia.getId(), cambios);
-                  labelNombreOriginal.setText(nuevoNombre);
-                   labelDuracionOriginal.setText(nuevaDuracion);
-                   labelCostoOriginal.setText(nuevoCosto);
-                   JOptionPane.showMessageDialog(this, "membresía actualizada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            } catch(SubsistemaMembresiaException e){
-                JOptionPane.showMessageDialog(this, "error al actualizar membresia" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                  
-                  
-                  
-             }
-         }
+//         if (!cambios.isEmpty()) {
+//             try{
+//                  control.actualizarMembresia(membresia.getId(), cambios);
+//                  labelNombreOriginal.setText(nuevoNombre);
+//                   labelDuracionOriginal.setText(nuevaDuracion);
+//                   labelCostoOriginal.setText(nuevoCosto);
+//                   JOptionPane.showMessageDialog(this, "membresía actualizada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+//            } catch(SubsistemaMembresiaException e){
+//                JOptionPane.showMessageDialog(this, "error al actualizar membresia" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//                  
+//                  
+//                  
+//             }
+//         }
          
          }
         

@@ -135,7 +135,7 @@ public class ConsultarMembresias extends javax.swing.JFrame {
        
            
     }
-    private void accion(String accion, String idMembresia, MembresiaDTO membresia, Map<String, Object> cambios) throws SubsistemaMembresiaException{
+    private void accion(String accion, String idMembresia, MembresiaDTO membresia) throws SubsistemaMembresiaException{
         boolean resultado= false;
         switch(accion){
             case "Eliminar":
@@ -167,37 +167,37 @@ public class ConsultarMembresias extends javax.swing.JFrame {
 //                control.openFormServiciosExtra(clienteConMemb);
                 
                 break;
-                
-            case "Activar":
-                cambios.put("estado", EnumEstadoMembresia.ACTIVA);
-                MembresiaDTO membresiaActualizada= control.actualizarMembresia(idMembresia, cambios);
-                
-                if(membresiaActualizada!=null){
-                    JOptionPane.showMessageDialog(null, "Membresía activada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                }else{
-                    System.out.println(membresiaActualizada);
-                    JOptionPane.showMessageDialog(null, "Error al activar membresia", "Error", JOptionPane.INFORMATION_MESSAGE);
-                   
-                }
-                break;
-                
-                case "Desactivar":
-                cambios.put("estado", EnumEstadoMembresia.INACTIVA);
-                    System.out.println(idMembresia);
-                    System.out.println(accion);
-                    System.out.println(cambios);
-                    try{
-                MembresiaDTO membresiaDesactualizada= control.actualizarMembresia(idMembresia, cambios);
-                //if(membresiaDesactualizada!=null){
-                    JOptionPane.showMessageDialog(null, "Membresía desacactivada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                } catch(SubsistemaMembresiaException e){
-                    
-                
-                 //   System.out.println(membresiaDesactualizada);
-                    JOptionPane.showMessageDialog(null, "Error al desactivar membresía: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    
-                }
-                break;
+//                
+//            case "Activar":
+//                cambios.put("estado", EnumEstadoMembresia.ACTIVA);
+//                MembresiaDTO membresiaActualizada= control.actualizarMembresia(idMembresia, cambios);
+//                
+//                if(membresiaActualizada!=null){
+//                    JOptionPane.showMessageDialog(null, "Membresía activada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+//                }else{
+//                    System.out.println(membresiaActualizada);
+//                    JOptionPane.showMessageDialog(null, "Error al activar membresia", "Error", JOptionPane.INFORMATION_MESSAGE);
+//                   
+//                }
+//                break;
+//                
+//                case "Desactivar":
+//                cambios.put("estado", EnumEstadoMembresia.INACTIVA);
+//                    System.out.println(idMembresia);
+//                    System.out.println(accion);
+//                    System.out.println(cambios);
+//                    try{
+//                MembresiaDTO membresiaDesactualizada= control.actualizarMembresia(idMembresia, cambios);
+//                //if(membresiaDesactualizada!=null){
+//                    JOptionPane.showMessageDialog(null, "Membresía desacactivada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+//                } catch(SubsistemaMembresiaException e){
+//                    
+//                
+//                 //   System.out.println(membresiaDesactualizada);
+//                    JOptionPane.showMessageDialog(null, "Error al desactivar membresía: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//    
+//                }
+//                break;
                 
 
         }
@@ -324,16 +324,16 @@ public class ConsultarMembresias extends javax.swing.JFrame {
            System.out.println(membresia.getId());
        
            try {
-               if (accionSeleccionada.equals("Actualizar")) {
-                   System.out.println(membresia);
-                   control.openFormActualizarMembresia(membresia);
-                   Map<String, Object> cambios = new HashMap<>();
-                   cambios.put("nombre", membresia.getNombre());
-                    cambios.put("precio", membresia.getPrecio());
-                    cambios.put("duracion", membresia.getDuracion());
-                     cambios.put("serviciosExtra", membresia.getServiciosExtra()); 
-                     accion(accionSeleccionada, membresia.getId(), membresia, cambios);
-               }
+//               if (accionSeleccionada.equals("Actualizar")) {
+//                   System.out.println(membresia);
+//                   control.openFormActualizarMembresia(membresia);
+//                   Map<String, Object> cambios = new HashMap<>();
+//                   cambios.put("nombre", membresia.getNombre());
+//                    cambios.put("precio", membresia.getPrecio());
+//                    cambios.put("duracion", membresia.getDuracion());
+//                     cambios.put("serviciosExtra", membresia.getServiciosExtra()); 
+//                     accion(accionSeleccionada, membresia.getId(), membresia, cambios);
+            //   }
               if(accionSeleccionada.equals("Eliminar")){
                    boolean eliminada = control.eliminarMembresia(membresia.getId());
                    if(eliminada){
@@ -345,24 +345,25 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                   ClienteRegConMembDTO clienteConMemb = new ClienteRegConMembDTO(cliente, membresiaSeleccionada);
                    control.openFormServiciosExtra(clienteConMemb);
                   
-              } if(accionSeleccionada.equals("Activar")){
-                  Map<String, Object> cambios = new HashMap<>();
-                  cambios.put("estado", EnumEstadoMembresia.ACTIVA);
-                   accion(accionSeleccionada, membresia.getId(), membresia, cambios);
-                  
-              } if(accionSeleccionada.equals("Desactivar")){
-                  Map<String, Object> cambios = new HashMap<>();
-                  cambios.put("estado", EnumEstadoMembresia.INACTIVA);
-                   accion(accionSeleccionada, membresia.getId(), membresia, cambios);
-                  
+//              } if(accionSeleccionada.equals("Activar")){
+//                  Map<String, Object> cambios = new HashMap<>();
+//                  cambios.put("estado", EnumEstadoMembresia.ACTIVA);
+//                   accion(accionSeleccionada, membresia.getId(), membresia, cambios);
+//                  
+//              } if(accionSeleccionada.equals("Desactivar")){
+//                  Map<String, Object> cambios = new HashMap<>();
+//                  cambios.put("estado", EnumEstadoMembresia.INACTIVA);
+//                   accion(accionSeleccionada, membresia.getId(), membresia, cambios);
+//                  
+//              }
+//            
               }
-              
                
            } catch (SubsistemaMembresiaException ex) {
-             //  Logger.getLogger(ConsultarMembresias.class.getName()).log(Level.SEVERE, null, ex);
+               Logger.getLogger(ConsultarMembresias.class.getName()).log(Level.SEVERE, null, ex);
            }
                
-       }
+       }  
     }//GEN-LAST:event_botonSiguienteActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
