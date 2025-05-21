@@ -244,11 +244,9 @@ public class ManejadorComprasMembresias implements IManejadorComprasMembresias {
                 throw new IllegalArgumentException("La duración debe ser mayor a 0.");
             }
             return registrarClienteBO.agregarMembresia(membresia, id);
-        } catch (NegocioException ex) {
+        } catch (Exception ex) {
             System.err.println("Error de negocio: " + ex.getMessage());
-        } catch (IllegalArgumentException ex) {
-            System.err.println("Error de validación: " + ex.getMessage());
-        }
+        } 
         return null;
     }
 

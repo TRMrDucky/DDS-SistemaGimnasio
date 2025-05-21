@@ -8,6 +8,7 @@ import Conexion.ConexionBD;
 import clases.mock.Cliente;
 import clases.mock.Membresia;
 import clases.mock.ServicioExtra;
+import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -18,9 +19,9 @@ import excepciones.ConsultaDatosClienteException;
 import excepciones.RegistroClienteException;
 import interfaces.dao.IClienteDAO;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 /**
@@ -37,7 +38,7 @@ public class ClienteDAO implements IClienteDAO {
     private final String CAMPO_MEMBRESIAS = "Membresias";
 
     private static ClienteDAO instancia;
-    
+
     public static ClienteDAO getInstance() {
         if (instancia == null) {
             instancia = new ClienteDAO();
@@ -53,15 +54,15 @@ public class ClienteDAO implements IClienteDAO {
         if (verificarTelefono(cliente.getNumeroTelefono())) {
             throw new RegistroClienteException("Numero de teléfono ya registrado");
         }
-        
+
         MongoCollection coleccion = crearConexion();
         Cliente c = new Cliente(cliente.getNombres(), cliente.getApellidos(), cliente.getEmail(), cliente.getNumeroTelefono());
         coleccion.insertOne(c);
         return c;
     }
-    
+
     //todo
-        @Override
+    @Override
     public List<Cliente> obtenerListaClientes() {
         MongoCollection<Cliente> coleccion = crearConexion();
         List<Cliente> clientes = new ArrayList<>();
@@ -69,60 +70,59 @@ public class ClienteDAO implements IClienteDAO {
         return clientes;
     }
 
+    @Override
+    public String obtenerNombreCliente(String id) throws ConsultaDatosClienteException {
+        ObjectId oid = new ObjectId(id);
+        MongoCollection<Cliente> coleccion = crearConexion();
+        Cliente cliente = coleccion.find(Filters.eq("_id", oid)).first();
 
-        @Override
-     public String obtenerNombreCliente(String id) throws ConsultaDatosClienteException {
-         ObjectId oid = new ObjectId(id);
-         MongoCollection<Cliente> coleccion = crearConexion();
-         Cliente cliente = coleccion.find(Filters.eq("_id", oid)).first();
+        if (cliente != null) {
+            return cliente.getNombres() + "\n" + cliente.getApellidos();
+        }
 
-         if (cliente != null) {
-             return cliente.getNombres() + "\n" + cliente.getApellidos();
-         }
-
-         throw new ConsultaDatosClienteException("No se pudo cargar el nombre del cliente porque el ID no fue encontrado");
-     }
-
-     @Override
-     public String obtenerNumeroCliente(String id) throws ConsultaDatosClienteException {
-         ObjectId oid = new ObjectId(id);
-         MongoCollection<Cliente> coleccion = crearConexion();
-         Cliente cliente = coleccion.find(Filters.eq("_id", oid)).first();
-
-         if (cliente != null) {
-             return cliente.getNumeroTelefono();
-         }
-
-         throw new ConsultaDatosClienteException("No se pudo cargar el número telefónico del cliente porque el ID no fue encontrado");
-     }
-
-         @Override
-     public Cliente obtenerClienteCompleto(String id) throws ConsultaDatosClienteException {
-         ObjectId oid = new ObjectId(id);
-         MongoCollection<Cliente> coleccion = crearConexion();
-         Cliente cliente = coleccion.find(Filters.eq("_id", oid)).first();
-
-         if (cliente != null) {
-             return cliente;
-         }
-
-         throw new ConsultaDatosClienteException("No se pudo cargar los datos del cliente porque el ID no fue encontrado: " + id);
-     }
+        throw new ConsultaDatosClienteException("No se pudo cargar el nombre del cliente porque el ID no fue encontrado");
+    }
 
     @Override
-   public Membresia agregarSiNoTiene(String id, Membresia membresia) throws AgregarMembresiaClienteException {
-        try{
+    public String obtenerNumeroCliente(String id) throws ConsultaDatosClienteException {
+        ObjectId oid = new ObjectId(id);
+        MongoCollection<Cliente> coleccion = crearConexion();
+        Cliente cliente = coleccion.find(Filters.eq("_id", oid)).first();
+
+        if (cliente != null) {
+            return cliente.getNumeroTelefono();
+        }
+
+        throw new ConsultaDatosClienteException("No se pudo cargar el número telefónico del cliente porque el ID no fue encontrado");
+    }
+
+    @Override
+    public Cliente obtenerClienteCompleto(String id) throws ConsultaDatosClienteException {
+        ObjectId oid = new ObjectId(id);
+        MongoCollection<Cliente> coleccion = crearConexion();
+        Cliente cliente = coleccion.find(Filters.eq("_id", oid)).first();
+
+        if (cliente != null) {
+            return cliente;
+        }
+
+        throw new ConsultaDatosClienteException("No se pudo cargar los datos del cliente porque el ID no fue encontrado: " + id);
+    }
+
+    @Override
+    public Membresia agregarSiNoTiene(String id, Membresia membresia) throws AgregarMembresiaClienteException {
+        try {
             ObjectId idCliente = new ObjectId(id);
             MongoCollection<Document> coleccionClientes = crearConexion();
 
             Document docMembresia = new Document()
-                .append("id", membresia.getId())  
-                .append("nombre", membresia.getNombre())
-                .append("precio", membresia.getPrecio())
-                .append("estado", membresia.getEstado().toString())
-                .append("inicio", membresia.getInicio())
-                .append("fin", membresia.getFin())
-                .append("duracion", membresia.getDuracion());
+                    .append("id", membresia.getId())
+                    .append("nombre", membresia.getNombre())
+                    .append("precio", membresia.getPrecio())
+                    .append("estado", membresia.getEstado().toString())
+                    .append("inicio", membresia.getInicio())
+                    .append("fin", membresia.getFin())
+                    .append("duracion", membresia.getDuracion());
 
             if (membresia.getServiciosExtra() != null) {
                 List<Document> servicios = new ArrayList<>();
@@ -133,51 +133,50 @@ public class ClienteDAO implements IClienteDAO {
             }
 
             coleccionClientes.updateOne(
-                Filters.eq("_id", idCliente),
-                Updates.push("membresias", docMembresia)
+                    Filters.eq("_id", idCliente),
+                    Updates.push("membresias", docMembresia)
             );
 
             return membresia;
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new AgregarMembresiaClienteException("Error al agregar la membresia al cliente", e);
         }
     }
 
-    
     @Override
-    public Membresia actualizarSiTiene(Membresia membresia, String idCliente)throws AgregarMembresiaClienteException {
-        try{
+    public Membresia actualizarSiTiene(Membresia membresia, String idCliente) throws AgregarMembresiaClienteException {
+        try {
             MongoCollection<Document> coleccionClientes = crearConexion();
             ObjectId clienteId = new ObjectId(idCliente);
             ObjectId membresiaId = membresia.getId();
             Document nuevaMembresia = new Document()
-             .append("id", membresiaId)
-             .append("nombre", membresia.getNombre())
-             .append("precio", membresia.getPrecio())
-             .append("estado", membresia.getEstado().toString())
-             .append("inicio", membresia.getInicio())
-             .append("fin", membresia.getFin())
-             .append("duracion", membresia.getDuracion());
+                    .append("id", membresiaId)
+                    .append("nombre", membresia.getNombre())
+                    .append("precio", membresia.getPrecio())
+                    .append("estado", membresia.getEstado().toString())
+                    .append("inicio", membresia.getInicio())
+                    .append("fin", membresia.getFin())
+                    .append("duracion", membresia.getDuracion());
             if (membresia.getServiciosExtra() != null) {
-             List<Document> extras = new ArrayList<>();
-             for (ServicioExtra s : membresia.getServiciosExtra()) {
-                 extras.add(new Document("nombre", s.getNombreServicio()).append("precio", s.getPrecio()).append("Deescripcion", s.getDescripcion()));
-             }
-             nuevaMembresia.append("serviciosExtra", extras);
+                List<Document> extras = new ArrayList<>();
+                for (ServicioExtra s : membresia.getServiciosExtra()) {
+                    extras.add(new Document("nombre", s.getNombreServicio()).append("precio", s.getPrecio()).append("Deescripcion", s.getDescripcion()));
+                }
+                nuevaMembresia.append("serviciosExtra", extras);
             }
             coleccionClientes.updateOne(
-             Filters.and(
-                 Filters.eq("_id", clienteId),
-                 Filters.eq("membresias.id", membresiaId)
-             ),
-             Updates.set("membresias.$", nuevaMembresia)
+                    Filters.and(
+                            Filters.eq("_id", clienteId),
+                            Filters.eq("membresias.id", membresiaId)
+                    ),
+                    Updates.set("membresias.$", nuevaMembresia)
             );
             return membresia;
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new AgregarMembresiaClienteException("Error al agregar la membresia al cliente", e);
         }
     }
-    
+
     @Override
     public boolean validarSiTieneMem(Membresia membresia, String id) {
         ObjectId oidCliente = new ObjectId(id);
@@ -185,21 +184,35 @@ public class ClienteDAO implements IClienteDAO {
 
         MongoCollection<Document> coleccion = crearConexion();
         Document cliente = coleccion.find(
-            Filters.and(
-                Filters.eq("_id", oidCliente),
-                Filters.elemMatch("membresias", Filters.eq("id", oidMembresia))
-            )
+                Filters.and(
+                        Filters.eq("_id", oidCliente),
+                        Filters.elemMatch("membresias", Filters.eq("id", oidMembresia))
+                )
         ).first();
         return cliente != null;
     }
 
     @Override
-    public Cliente eliminarCliente(Cliente cliente){
-         MongoCollection<Cliente> coleccion = crearConexion();
-         Cliente clieente = coleccion.findOneAndDelete(new Document("_Id", cliente.getId()));
-         return clieente;
+    public Cliente eliminarCliente(Cliente cliente) {
+        try {
+            MongoCollection<Cliente> coleccion = crearConexion();
+
+            Bson filtro = Filters.eq("_id", cliente.getId());
+
+            Cliente clienteEliminado = coleccion.findOneAndDelete(filtro);
+
+            if (clienteEliminado == null) {
+                throw new RuntimeException("No se encontró el cliente con ID: " + cliente.getId());
+            }
+
+            return clienteEliminado;
+
+        } catch (MongoException e) {
+            System.err.println("Error al eliminar cliente: " + e.getMessage());
+            throw new RuntimeException("Error de base de datos", e);
+        }
     }
-     
+
     private boolean verificarCorreo(String correo) {
         MongoCollection<Cliente> coleccion = crearConexion();
 
