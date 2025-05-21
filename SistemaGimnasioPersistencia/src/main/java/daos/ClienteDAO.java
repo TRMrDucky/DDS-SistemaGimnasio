@@ -37,19 +37,7 @@ public class ClienteDAO implements IClienteDAO {
     private final String CAMPO_MEMBRESIAS = "Membresias";
 
     private static ClienteDAO instancia;
-    private int keyCliente = 4;
-    private List<Cliente> listaClientes;
-
-    private ClienteDAO() {
-        listaClientes = new LinkedList<>();
-        listaClientes.add(new Cliente("Pedro", "Sola Meza",
-                "pedro.sola@hotmail.com", "6441348130", new ObjectId("68110d3cb41a0ec85044152e")));
-        listaClientes.add(new Cliente("Vanessa Paola", "Solano Lopez",
-                "vapo23@gmail.com", "6441385760",new ObjectId( "68110d3cb41a0ec85043152e")));
-        listaClientes.add(new Cliente("Alondra Lizeth", "Aviles",
-                "pedro.sola@hotmail.com", "6442878593", new ObjectId("68110d3cb41a0ec85044142e")));
-    }
-
+    
     public static ClienteDAO getInstance() {
         if (instancia == null) {
             instancia = new ClienteDAO();
@@ -73,46 +61,53 @@ public class ClienteDAO implements IClienteDAO {
     }
     
     //todo
-    @Override
+        @Override
     public List<Cliente> obtenerListaClientes() {
-        return this.listaClientes;
+        MongoCollection<Cliente> coleccion = crearConexion();
+        List<Cliente> clientes = new ArrayList<>();
+        coleccion.find().into(clientes);
+        return clientes;
     }
 
-    @Override
-    public String obtenerNombreCliente(String id) throws ConsultaDatosClienteException {
-        ObjectId oid = new ObjectId(id);
-        for (Cliente c : listaClientes) {
-            if (c.getId() == oid) {
-                return c.getNombres() + "\n" + c.getApellidos();
-            }
-        }
-        throw new ConsultaDatosClienteException("No se pudo cargar el nombre del cliente porque el ID no fue encontrado");
-    }
 
-    @Override
-    public String obtenerNumeroCliente(String id) throws ConsultaDatosClienteException {
-        ObjectId oid = new ObjectId(id);
-        for (Cliente c : listaClientes) {
-            if (c.getId() == oid) {
-                return c.getNumeroTelefono();
-            }
-        }
-        throw new ConsultaDatosClienteException("No se pudo cargar el número telefónico del cliente porque el ID no fue encontrado");
-    }
-    
-    //todo
-    @Override
-    public Cliente obtenerClienteCompleto(String id) throws ConsultaDatosClienteException {
-        ObjectId oid = new ObjectId(id);
-        for (Cliente c : listaClientes) {
-            if (c.getId() == oid) {
-                return c;
-            }
-        }
-        throw new ConsultaDatosClienteException(
-                "No se pudo cargar los datos del cliente porque el ID no fue encontrado: " + id
-        );
-    }
+        @Override
+     public String obtenerNombreCliente(String id) throws ConsultaDatosClienteException {
+         ObjectId oid = new ObjectId(id);
+         MongoCollection<Cliente> coleccion = crearConexion();
+         Cliente cliente = coleccion.find(Filters.eq("_id", oid)).first();
+
+         if (cliente != null) {
+             return cliente.getNombres() + "\n" + cliente.getApellidos();
+         }
+
+         throw new ConsultaDatosClienteException("No se pudo cargar el nombre del cliente porque el ID no fue encontrado");
+     }
+
+     @Override
+     public String obtenerNumeroCliente(String id) throws ConsultaDatosClienteException {
+         ObjectId oid = new ObjectId(id);
+         MongoCollection<Cliente> coleccion = crearConexion();
+         Cliente cliente = coleccion.find(Filters.eq("_id", oid)).first();
+
+         if (cliente != null) {
+             return cliente.getNumeroTelefono();
+         }
+
+         throw new ConsultaDatosClienteException("No se pudo cargar el número telefónico del cliente porque el ID no fue encontrado");
+     }
+
+         @Override
+     public Cliente obtenerClienteCompleto(String id) throws ConsultaDatosClienteException {
+         ObjectId oid = new ObjectId(id);
+         MongoCollection<Cliente> coleccion = crearConexion();
+         Cliente cliente = coleccion.find(Filters.eq("_id", oid)).first();
+
+         if (cliente != null) {
+             return cliente;
+         }
+
+         throw new ConsultaDatosClienteException("No se pudo cargar los datos del cliente porque el ID no fue encontrado: " + id);
+     }
 
     @Override
    public Membresia agregarSiNoTiene(String id, Membresia membresia) throws AgregarMembresiaClienteException {
