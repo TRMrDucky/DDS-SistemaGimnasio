@@ -550,12 +550,13 @@ public class ControlNavegacionCompraMembresia {
         new MostrarInfoCliente(cliente, this);
     }
 
-    public void eliminarCliente(ClienteRegistradoDTO cliente) {
+    public ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente) {
         try {
-            subsistemaModificarCliente.eliminarCliente(cliente);
+            return subsistemaModificarCliente.eliminarCliente(cliente);
         } catch (ModificarClienteException e) {
             JOptionPane.showMessageDialog(null, "No ha sido posible la eliminación", "Error en la eliminación", JOptionPane.ERROR_MESSAGE);
         }
+        return null;
     }
 
 }

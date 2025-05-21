@@ -149,7 +149,6 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
         if (btnEliminar.getText().equals("Cancelar")) {
             iniciarComponentes(cliente);
         } else {
-            // Mostrar diálogo de confirmación
             int opcion = JOptionPane.showConfirmDialog(
                     null,
                     "¿Seguro que deseas eliminar a " + cliente.getNombre() + "?",
@@ -160,8 +159,8 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
 
             if (opcion == JOptionPane.YES_OPTION) {
 
-                control.eliminarCliente(cliente);
-                JOptionPane.showMessageDialog(null, "Cliente eliminado exitosamente");
+                ClienteRegistradoDTO clienteEliminado = control.eliminarCliente(cliente);
+                JOptionPane.showMessageDialog(null, "Cliente eliminado exitosamente"+clienteEliminado.toString());
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
