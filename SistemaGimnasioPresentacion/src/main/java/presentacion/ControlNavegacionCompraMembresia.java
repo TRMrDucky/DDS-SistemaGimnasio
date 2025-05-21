@@ -150,16 +150,16 @@ public class ControlNavegacionCompraMembresia {
      */
     public void openFormOpcionesMembresia(ClienteRegistradoDTO cliente) {
         OpcionesMemb em = new OpcionesMemb(this, cliente);
-        em.setVisible(true);
+        em.setVisible(true);//
 //
     }
 
     public void openFormAgregarMembresia() {
-        new AgregarMembresia(this).setVisible(true);
+        new AgregarMembresia(this).setVisible(true);//
     }
 
     public void openFormConsultarMembresias(String accion, ClienteRegistradoDTO cliente) {
-        new ConsultarMembresias(this, accion, cliente).setVisible(true);
+        new ConsultarMembresias(this, accion, cliente).setVisible(true);//
     }
 
     public MembresiaDTO agregarMembresia(MembresiaDTO membresia) throws SubsistemaMembresiaException, NombreVacioException, PrecioVacioException, DuracionException {

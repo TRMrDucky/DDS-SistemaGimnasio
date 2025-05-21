@@ -228,14 +228,17 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
        control.openFormPantallaPrincipal();
+       dispose();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void botonDesactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDesactivarActionPerformed
          control.openFormConsultarMembresias("Desactivar", null);
+         dispose();
     }//GEN-LAST:event_botonDesactivarActionPerformed
 
     private void botonActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActivarActionPerformed
          control.openFormConsultarMembresias("Activar", null);
+         dispose();
     }//GEN-LAST:event_botonActivarActionPerformed
 
     /**
