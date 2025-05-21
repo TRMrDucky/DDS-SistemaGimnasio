@@ -24,5 +24,5 @@ public interface IManejadorMembresia {
      public List<MembresiaDTO> consultarMembresias();
      public MembresiaDTO actualizarMembresia(MembresiaDTO membresiaActualizada) throws SubsistemaMembresiaException;
      public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado);
-             
+            
 }

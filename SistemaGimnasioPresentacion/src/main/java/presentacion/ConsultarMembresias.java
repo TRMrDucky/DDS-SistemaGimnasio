@@ -151,20 +151,20 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                     break;
                     
             
-           // case "Actualizar":
-                //if (membresia != null && cambios != null){
-                //MembresiaDTO membresiaActualizada= control.actualizarMembresia(membresia, cambios);
-//                if(membresiaActualizada!= null){
-//                    JOptionPane.showMessageDialog(null, "Membresía actualizada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-//                }
-            //   else{
-             //        JOptionPane.showMessageDialog(null, "No se pudo actualizar la membresía.", "Error", JOptionPane.ERROR_MESSAGE);
-            //    }
-            //    }
+            case "Actualizar":
+                if (membresia != null){
+                MembresiaDTO membresiaActualizada= control.actualizarMembresia(membresia);
+                if(membresiaActualizada!= null){
+                    JOptionPane.showMessageDialog(null, "Membresía actualizada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                }
+               else{
+                     JOptionPane.showMessageDialog(null, "No se pudo actualizar la membresía.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                }
                     
             case "Compra" :
-//                ClienteRegConMembDTO clienteConMemb = new ClienteRegConMembDTO(cliente, membresia);
-//                control.openFormServiciosExtra(clienteConMemb);
+                ClienteRegConMembDTO clienteConMemb = new ClienteRegConMembDTO(cliente, membresia);
+                control.openFormServiciosExtra(clienteConMemb);
                 
                 break;
 //                
@@ -324,9 +324,9 @@ public class ConsultarMembresias extends javax.swing.JFrame {
            System.out.println(membresia.getId());
        
            try {
-//               if (accionSeleccionada.equals("Actualizar")) {
+              // if (accionSeleccionada.equals("Actualizar")) {
 //                  
-//                   MembresiaDTO membresia
+           //        MembresiaDTO membresia= control.
 //               }
               if(accionSeleccionada.equals("Eliminar")){
                    boolean eliminada = control.eliminarMembresia(membresia.getId());
@@ -339,7 +339,10 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                   ClienteRegConMembDTO clienteConMemb = new ClienteRegConMembDTO(cliente, membresiaSeleccionada);
                    control.openFormServiciosExtra(clienteConMemb);
                   
-//              } if(accionSeleccionada.equals("Activar")){
+              } if(accionSeleccionada.equals("Actualizar")){
+                  
+                  
+                  control.openFormActualizarMembresia(membresiaSeleccionada);
 //                  Map<String, Object> cambios = new HashMap<>();
 //                  cambios.put("estado", EnumEstadoMembresia.ACTIVA);
 //                   accion(accionSeleccionada, membresia.getId(), membresia, cambios);

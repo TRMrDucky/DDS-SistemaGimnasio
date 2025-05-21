@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -55,9 +57,9 @@ public class ActualizarMembresia extends javax.swing.JFrame {
         }
         panelServicios.revalidate();
         panelServicios.repaint();
-        panelEscribirNombre.setVisible(false);
-         panelEscribirCosto.setVisible(false);
-         panelEscribirDuracion.setVisible(false);
+//        panelEscribirNombre.setVisible(false);
+//         panelEscribirCosto.setVisible(false);
+//         panelEscribirDuracion.setVisible(false);
          
     }
     
@@ -84,53 +86,58 @@ public class ActualizarMembresia extends javax.swing.JFrame {
     }
     
     private void actualizarMembresia(){
-        String nuevoNombre = campoNuevoNombre.getText().trim();
-        String nuevaDuracion = campoEditarDuracion.getText().trim();
-        String nuevoCosto = campoEscribirCosto.getText().trim();
-        
-         Map<String, Object> cambios = new HashMap<>();
-         if (!nuevoNombre.isBlank()&& !nuevoNombre.isEmpty() && !nuevoNombre.equals("Escribir nombre...") ) {
-             membresia.setNombre(nuevoNombre);
-             cambios.put("nombre", nuevoNombre);
-         }
-         if (!nuevaDuracion.isBlank() && !nuevaDuracion.equals("Escribir duracion..." )) {
-             long nuevaDuracionMilisegundos = Long.parseLong(nuevaDuracion) * 86400000L;
-             membresia.setDuracion(nuevaDuracionMilisegundos);
-             cambios.put("duracion", nuevaDuracionMilisegundos);
+         try {
+             String nuevoNombre = campoNuevoNombre.getText().trim();
+             String nuevaDuracion = campoEditarDuracion.getText().trim();
+             String nuevoCosto = campoEscribirCosto.getText().trim();
              
-         }
-         
-         if (!nuevoCosto.isBlank() && !nuevoCosto.equals("Escribir costo...")) {
-             double nuevoPrecio = Double.parseDouble(nuevoCosto);
-              membresia.setPrecio(nuevoPrecio);
-              cambios.put("precio", nuevoPrecio);
-              
-         }
-         List<ServicioExtraDTO> nuevosServicios = new ArrayList<>();
-          List<ServicioExtraDTO> serviciosDisponibles = control.obtenerServiciosExtrasDTO();
+//         Map<String, Object> cambios = new HashMap<>();
+//         if (!nuevoNombre.isBlank()&& !nuevoNombre.isEmpty() && !nuevoNombre.equals("Escribir nombre...") ) {
+//             membresia.setNombre(nuevoNombre);
+//             cambios.put("nombre", nuevoNombre);
+//         }
+//         if (!nuevaDuracion.isBlank() && !nuevaDuracion.equals("Escribir duracion..." )) {
+//             long nuevaDuracionMilisegundos = Long.parseLong(nuevaDuracion) * 86400000L;
+//             membresia.setDuracion(nuevaDuracionMilisegundos);
+//             cambios.put("duracion", nuevaDuracionMilisegundos);
+//             
+//         }
+//         
+//         if (!nuevoCosto.isBlank() && !nuevoCosto.equals("Escribir costo...")) {
+//             double nuevoPrecio = Double.parseDouble(nuevoCosto);
+//              membresia.setPrecio(nuevoPrecio);
+//              cambios.put("precio", nuevoPrecio);
+//              
+//         }
 
-         for (Component comp : panelServicios.getComponents()) {
-              if (comp instanceof JCheckBox checkBox && checkBox.isSelected()) {
-                  for (ServicioExtraDTO servicio : serviciosDisponibles) {
-                       if (servicio.getNombreServicio().equals(checkBox.getText())) {
-                       servicio.setId(membresia.getServiciosExtra().stream()
-                               .filter(s -> s.getNombreServicio().equals(servicio.getNombreServicio()))
-                               .map(ServicioExtraDTO::getId)
-                               .findFirst()
-                               .orElse(servicio.getId()));
-                       nuevosServicios.add(servicio);
-                       break;
-                       
-                  }
-              }
-             
-         }
+// MembresiaDTO nuevaMembresia= new MembresiaDTO(nuevoNombre, ERROR, serviciosExtra, nuevaDuracion);
+List<ServicioExtraDTO> nuevosServicios = new ArrayList<>();
+List<ServicioExtraDTO> serviciosDisponibles = control.obtenerServiciosExtrasDTO();
+
+for (Component comp : panelServicios.getComponents()) {
+    if (comp instanceof JCheckBox checkBox && checkBox.isSelected()) {
+        for (ServicioExtraDTO servicio : serviciosDisponibles) {
+            if (servicio.getNombreServicio().equals(checkBox.getText())) {
+                servicio.setId(membresia.getServiciosExtra().stream()
+                        .filter(s -> s.getNombreServicio().equals(servicio.getNombreServicio()))
+                        .map(ServicioExtraDTO::getId)
+                        .findFirst()
+                        .orElse(servicio.getId()));
+                nuevosServicios.add(servicio);
+                break;
+                
+            }
+        }
+        
+    }
 }
-              membresia.setServiciosExtra(nuevosServicios);
-              cambios.put("serviciosExtra", nuevosServicios);
-              
-         
-         
+MembresiaDTO nuevaMembresia= new MembresiaDTO(membresia.getId(), nuevoNombre, Double.parseDouble(nuevoCosto), nuevosServicios, Long.valueOf(nuevaDuracion));
+control.actualizarMembresia(nuevaMembresia);
+//              membresia.setServiciosExtra(nuevosServicios);
+//              cambios.put("serviciosExtra", nuevosServicios);
+
+
+
 //         if (!cambios.isEmpty()) {
 //             try{
 //                  control.actualizarMembresia(membresia.getId(), cambios);
@@ -140,11 +147,14 @@ public class ActualizarMembresia extends javax.swing.JFrame {
 //                   JOptionPane.showMessageDialog(this, "membresía actualizada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 //            } catch(SubsistemaMembresiaException e){
 //                JOptionPane.showMessageDialog(this, "error al actualizar membresia" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//                  
-//                  
+//
+//
 //                  
 //             }
 //         }
+         } catch (SubsistemaMembresiaException ex) {
+             Logger.getLogger(ActualizarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+         }
          
          }
         
@@ -532,7 +542,7 @@ public class ActualizarMembresia extends javax.swing.JFrame {
     }//GEN-LAST:event_botonNombre1ActionPerformed
 
     private void campoNuevoNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoNuevoNombreMouseClicked
-        campoNuevoNombre.setText("");
+       // campoNuevoNombre.setText("");
     }//GEN-LAST:event_campoNuevoNombreMouseClicked
 
     private void campoEscribirCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEscribirCostoActionPerformed
@@ -540,7 +550,7 @@ public class ActualizarMembresia extends javax.swing.JFrame {
     }//GEN-LAST:event_campoEscribirCostoActionPerformed
 
     private void campoEscribirCostoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoEscribirCostoMouseClicked
-        campoEscribirCosto.setText("");
+       // campoEscribirCosto.setText("");
     }//GEN-LAST:event_campoEscribirCostoMouseClicked
 
     private void campoEditarDuracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEditarDuracionActionPerformed
@@ -548,7 +558,7 @@ public class ActualizarMembresia extends javax.swing.JFrame {
     }//GEN-LAST:event_campoEditarDuracionActionPerformed
 
     private void campoEditarDuracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoEditarDuracionMouseClicked
-        campoEditarDuracion.setText("");
+     //   campoEditarDuracion.setText("");
     }//GEN-LAST:event_campoEditarDuracionMouseClicked
 
     private void campoNuevoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNuevoNombreActionPerformed
@@ -560,7 +570,7 @@ public class ActualizarMembresia extends javax.swing.JFrame {
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
-        control.openFormOpcionesModuloMembresia();
+     //   control.openFormOpcionesModuloMembresia();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     /**
