@@ -110,6 +110,7 @@ public class AgregarServicioExtra extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
@@ -118,7 +119,6 @@ public class AgregarServicioExtra extends javax.swing.JFrame {
             servicioNuevo = new ServicioExtraDTO(textNombre.getText(), Double.parseDouble(textPrecio.getText()), textDesc.getText());
             if(control.agregarServicio(servicioNuevo)!=null){
                 control.mostrarMensajeServiciosExtra("agregar");
-                control.openFormPantallaPrincipal();
                 dispose();
             }
         } catch (AgregarServicioExtraSubsistemaException | NumberFormatException ex) {

@@ -43,7 +43,10 @@ public class SeleccionarServicioExtra extends javax.swing.JFrame {
             btnServicio.setVerticalAlignment(SwingConstants.CENTER); 
             btnServicio.setAlignmentX(Component.CENTER_ALIGNMENT);
             
-            btnServicio.addActionListener(e->{control.openFormMostrarServiciosExtras(origen, se);});
+            btnServicio.addActionListener(e->{
+                control.openFormMostrarServiciosExtras(origen, se);
+                dispose();
+            });
             jPanel1.add(btnServicio);
         }
         jPanel1.revalidate();
@@ -106,6 +109,7 @@ public class SeleccionarServicioExtra extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

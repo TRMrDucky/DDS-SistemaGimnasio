@@ -162,6 +162,7 @@ public class MostrarServiciosExtras extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -175,7 +176,6 @@ public class MostrarServiciosExtras extends javax.swing.JFrame {
                 servicio.setPrecio(Double.valueOf(textPrecio.getText()));
                 control.editarServicio(servicio);
                 control.mostrarMensajeServiciosExtra("editar");
-                control.openFormPantallaPrincipal();
                 dispose();
             }catch(Exception e){
                 control.mostrarMensajeErrorServiciosExtra("editar");
@@ -187,7 +187,6 @@ public class MostrarServiciosExtras extends javax.swing.JFrame {
                 control.mostrarMensajeErrorServiciosExtra("eliminar");
             }
             control.mostrarMensajeServiciosExtra("eliminar");
-            control.openFormPantallaPrincipal();
             dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
