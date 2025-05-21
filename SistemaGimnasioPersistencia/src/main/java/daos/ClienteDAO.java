@@ -49,10 +49,10 @@ public class ClienteDAO implements IClienteDAO {
 
     @Override
     public Cliente registrarClienteMongo(Cliente cliente) throws RegistroClienteException {
-        if (verificarCorreo(cliente.getEmail())) {
+        if (!verificarCorreo(cliente.getEmail())) {
             throw new RegistroClienteException("Correo ya registrado");
         }
-        if (verificarTelefono(cliente.getNumeroTelefono())) {
+        if (!verificarTelefono(cliente.getNumeroTelefono())) {
             throw new RegistroClienteException("Numero de teléfono ya registrado");
         }
 
@@ -224,10 +224,11 @@ public class ClienteDAO implements IClienteDAO {
             if (!verificarTelefonoActualizacion(cliente.getNumeroTelefono())) {
                 throw new Exception("Verificar teléfono");
             }
-  
+
             FindOneAndUpdateOptions opciones = new FindOneAndUpdateOptions()
-                .upsert(false);
-                    
+                    .upsert(false)
+                    .returnDocument(ReturnDocument.AFTER);
+
             Document updateSet = new Document();
             updateSet.append(CAMPO_NOMBRES, cliente.getNombres());
             updateSet.append(CAMPO_APELLIDO, cliente.getApellidos());
@@ -235,7 +236,7 @@ public class ClienteDAO implements IClienteDAO {
             updateSet.append(CAMPO_TELEFONO, cliente.getNumeroTelefono());
 
             Document update = new Document("$set", updateSet);
-            
+
             MongoCollection<Cliente> coleccion = crearConexion();
 
             Bson filtro = Filters.eq("_id", cliente.getId());
@@ -261,7 +262,7 @@ public class ClienteDAO implements IClienteDAO {
 
         Cliente cliente = resultado.first();
 
-        return cliente != null;
+        return cliente == null;
 
     }
 
@@ -273,7 +274,7 @@ public class ClienteDAO implements IClienteDAO {
 
         Cliente cliente = resultado.first();
 
-        return cliente != null;
+        return cliente == null;
     }
 
     private boolean verificarCorreoActualizacion(String correo) {
