@@ -133,6 +133,7 @@ public class ActualizarMembresia extends javax.swing.JFrame {
     }
     MembresiaDTO nuevaMembresia= new MembresiaDTO(nuevoNombre, membresia.getId(), Double.parseDouble(nuevoCosto), nuevosServicios, membresia.getEstado(), Long.valueOf(nuevaDuracion));
     control.actualizarMembresia(nuevaMembresia);
+    dispose();
 //              membresia.setServiciosExtra(nuevosServicios);
 //              cambios.put("serviciosExtra", nuevosServicios);
 
@@ -516,6 +517,7 @@ public class ActualizarMembresia extends javax.swing.JFrame {
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         control.openFormOpcionesModuloMembresia();
+        dispose();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     /**

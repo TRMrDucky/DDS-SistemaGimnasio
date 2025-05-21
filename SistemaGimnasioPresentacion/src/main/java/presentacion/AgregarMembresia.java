@@ -122,6 +122,7 @@ public class AgregarMembresia extends javax.swing.JFrame {
             // try {
             control.agregarMembresia(membresia);
             JOptionPane.showMessageDialog(this, "Membresia guardada", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
            
 //        } catch (SubsistemaMembresiaException ex) {
 //            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
@@ -361,10 +362,12 @@ public class AgregarMembresia extends javax.swing.JFrame {
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
        agregarMembresia();
+       
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
          control.openFormOpcionesModuloMembresia();
+         dispose();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     /**
