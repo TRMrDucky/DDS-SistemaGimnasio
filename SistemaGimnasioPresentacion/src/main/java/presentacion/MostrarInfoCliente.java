@@ -158,9 +158,10 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
             );
 
             if (opcion == JOptionPane.YES_OPTION) {
-
                 ClienteRegistradoDTO clienteEliminado = control.eliminarCliente(cliente);
                 JOptionPane.showMessageDialog(null, "Cliente eliminado exitosamente"+clienteEliminado.toString());
+                control.openFormBuscarCliente();
+                dispose();
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
