@@ -27,11 +27,16 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblNumeroTelefono1 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         btnRegistrarAsistencia = new javax.swing.JButton();
         btnGenerarReporte = new javax.swing.JButton();
         txtNumeroTelefono = new javax.swing.JTextField();
         lblNumeroTelefono = new javax.swing.JLabel();
+        lblNumeroTelefono2 = new javax.swing.JLabel();
+
+        lblNumeroTelefono1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblNumeroTelefono1.setText("Identificador:");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,15 +65,19 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
         lblNumeroTelefono.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNumeroTelefono.setText("Identificador:");
 
+        lblNumeroTelefono2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblNumeroTelefono2.setText("Telefono / correo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblNumeroTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNumeroTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNumeroTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNumeroTelefono)
@@ -82,9 +91,12 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNumeroTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNumeroTelefono))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblNumeroTelefono)
+                        .addGap(2, 2, 2)
+                        .addComponent(lblNumeroTelefono2))
+                    .addComponent(txtNumeroTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
@@ -148,6 +160,8 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
     private javax.swing.JButton btnGenerarReporte;
     private javax.swing.JButton btnRegistrarAsistencia;
     private javax.swing.JLabel lblNumeroTelefono;
+    private javax.swing.JLabel lblNumeroTelefono1;
+    private javax.swing.JLabel lblNumeroTelefono2;
     private javax.swing.JTextField txtNumeroTelefono;
     // End of variables declaration//GEN-END:variables
 }

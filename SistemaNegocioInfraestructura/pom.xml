@@ -12,4 +12,11 @@
         <exec.mainClass>com.sistemanegocioinfraestructura.SistemaNegocioInfraestructura</exec.mainClass>
     </properties>
     <name>SistemaGimnasioInfraestructura</name>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>SistemaGimnasioNegocio</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>
