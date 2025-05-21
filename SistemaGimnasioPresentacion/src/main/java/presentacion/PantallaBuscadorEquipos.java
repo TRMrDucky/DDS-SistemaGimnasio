@@ -8,6 +8,7 @@ import dtos.EquipoDTO;
 import enums.ModoUso;
 import excepciones.IdEquipoVacioException;
 import java.awt.BorderLayout;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -24,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 
  
 public class PantallaBuscadorEquipos extends JDialog{
-private final ControlNavegacionCompraMembresia control;
+ private final ControlNavegacionCompraMembresia control;
     private JTextField campoBusqueda;
     private JTable tablaResultados;
     private JButton btnSeleccionar;
@@ -45,7 +46,6 @@ private final ControlNavegacionCompraMembresia control;
         setModal(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        
         String[] columnas = {"ID", "Nombre", "Número de Serie", "Marca", "Modelo", "Fecha Adquisicion"};
         modeloTabla = new DefaultTableModel(columnas, 0) {
             @Override
@@ -54,24 +54,20 @@ private final ControlNavegacionCompraMembresia control;
             }
         };
 
-        
         campoBusqueda = new JTextField(30);
         JButton btnBuscar = new JButton("Buscar");
         btnSeleccionar = new JButton("Seleccionar");
         tablaResultados = new JTable(modeloTabla);
         tablaResultados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        
         tablaResultados.getColumnModel().getColumn(0).setMinWidth(0);
         tablaResultados.getColumnModel().getColumn(0).setMaxWidth(0);
         tablaResultados.getColumnModel().getColumn(0).setWidth(0);
 
-    
         btnBuscar.addActionListener(e -> buscarEquipos());
         btnSeleccionar.addActionListener(e -> seleccionarEquipo());
         campoBusqueda.addActionListener(e -> buscarEquipos());
 
-  
         JPanel panelBusqueda = new JPanel();
         panelBusqueda.add(new JLabel("Buscar:"));
         panelBusqueda.add(campoBusqueda);
@@ -86,7 +82,6 @@ private final ControlNavegacionCompraMembresia control;
     }
 
     private void cargarEquiposIniciales() {
-        
         List<EquipoDTO> equipos = control.obtenerTodosEquipos();
         actualizarTabla(equipos);
     }
@@ -99,14 +94,20 @@ private final ControlNavegacionCompraMembresia control;
 
     private void actualizarTabla(List<EquipoDTO> equipos) {
         modeloTabla.setRowCount(0);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
         for (EquipoDTO equipo : equipos) {
+            String fechaFormateada = equipo.getFechaAdquisicion() != null
+                    ? sdf.format(equipo.getFechaAdquisicion())
+                    : "-";
+
             modeloTabla.addRow(new Object[]{
                 equipo.getId(),
                 equipo.getNombre(),
                 equipo.getNumeroSerie(),
                 equipo.getMarca(),
                 equipo.getModelo(),
-                equipo.getFechaAdquisicion()
+                fechaFormateada
             });
         }
     }
@@ -133,7 +134,7 @@ private final ControlNavegacionCompraMembresia control;
         }
     }
 
-        private void abrirRegistroMantenimiento(EquipoDTO equipo) {
+    private void abrirRegistroMantenimiento(EquipoDTO equipo) {
         control.mostrarPantallaRegistroMantenimiento(equipo);
         dispose();
     }
@@ -168,10 +169,3 @@ private final ControlNavegacionCompraMembresia control;
         }
     }
 }
-
-
-   
-
-
-    
-

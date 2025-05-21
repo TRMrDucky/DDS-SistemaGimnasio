@@ -57,16 +57,16 @@ public class PantallaRegistroMantenimiento extends JFrame {
         panel.add(labelNombreEquipo);
         panel.add(valorNombreEquipo);
 
-        JLabel labelFechaMantenimiento = new JLabel("Fecha de Mantenimiento: (Obligatorio)");
+        JLabel labelFechaMantenimiento = new JLabel("Fecha de Mantenimiento:");
         datePickerMantenimiento = new DatePicker();
 
-        JLabel labelTipo = new JLabel("Nombre del Mantenimiento: (Obligatorio)");
+        JLabel labelTipo = new JLabel("Nombre del Mantenimiento:");
         textTipoMantenimiento = new JTextField();
 
-        JLabel labelCosto = new JLabel("Costo: (Obligatorio)");
+        JLabel labelCosto = new JLabel("Costo: ");
         textCosto = new JTextField();
 
-        JLabel labelObservaciones = new JLabel("Observaciones:");
+        JLabel labelObservaciones = new JLabel("Observaciones: (opcional)");
         textObservaciones = new JTextArea(3, 20);
         JScrollPane scrollObs = new JScrollPane(textObservaciones);
 
