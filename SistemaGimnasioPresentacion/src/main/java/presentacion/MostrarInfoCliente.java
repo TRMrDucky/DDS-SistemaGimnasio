@@ -138,7 +138,8 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        // TODO add your handling code here:
+        control.openFormBuscarCliente();
+        dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -203,6 +204,7 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
 
     private void iniciarComponentes(ClienteRegistradoDTO cliente) {
         this.btnEliminar.setText("Eliminar");
+        this.btnVolver.setVisible(true);
         this.lblNombre.setText(cliente.getNombre());
         this.lblApellido.setText(cliente.getApellidos());
         this.lblCorreo.setText(cliente.getEmail());
@@ -221,6 +223,8 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
         this.lblCorreo.setEditable(true);
         this.lblTelefono.setEditable(true);
         this.btnEliminar.setText("Cancelar");
+        this.btnEditar.setText("Guardar");
+        this.btnVolver.setVisible(false);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
