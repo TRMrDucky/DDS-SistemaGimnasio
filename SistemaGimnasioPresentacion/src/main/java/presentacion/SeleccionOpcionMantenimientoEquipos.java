@@ -5,6 +5,7 @@
 package presentacion;
 
 import enums.ModoUso;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -18,6 +19,7 @@ public class SeleccionOpcionMantenimientoEquipos extends javax.swing.JFrame {
      */
     public SeleccionOpcionMantenimientoEquipos(ControlNavegacionCompraMembresia control) {
         initComponents();
+        setLocationRelativeTo(null);
         this.control= control;
     }
 
@@ -127,20 +129,33 @@ public class SeleccionOpcionMantenimientoEquipos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         control.openFormPantallaBuscadorEquipos(ModoUso.REGISTRO_MANTENIMIENTO);
+            this.setVisible(false);
+    SwingUtilities.invokeLater(() -> {
+        control.openFormPantallaBuscadorEquipos(ModoUso.REGISTRO_MANTENIMIENTO);
+});
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       control.openFormPantallaBuscadorEquipos(ModoUso.CONSULTA_HISTORIAL);
+      
+        control.openFormPantallaBuscadorEquipos(ModoUso.CONSULTA_HISTORIAL);
+         this.setVisible(false);
+  
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       control.openFormRegistrarEquipo();
+          this.setVisible(false);
+    SwingUtilities.invokeLater(() -> {
+        control.openFormRegistrarEquipo();
+       });
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+             this.setVisible(false);
+    SwingUtilities.invokeLater(() -> {
         control.openFormPantallaBuscadorEquipos(ModoUso.ELIMINAR_EQUIPO);
-
+        
+  });
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
