@@ -131,7 +131,7 @@ for (Component comp : panelServicios.getComponents()) {
         
     }
 }
-MembresiaDTO nuevaMembresia= new MembresiaDTO(membresia.getId(), nuevoNombre, Double.parseDouble(nuevoCosto), nuevosServicios, Long.valueOf(nuevaDuracion));
+MembresiaDTO nuevaMembresia= new MembresiaDTO(nuevoNombre, membresia.getId(), Double.parseDouble(nuevoCosto), nuevosServicios, Long.valueOf(nuevaDuracion));
 control.actualizarMembresia(nuevaMembresia);
 //              membresia.setServiciosExtra(nuevosServicios);
 //              cambios.put("serviciosExtra", nuevosServicios);
@@ -168,21 +168,21 @@ control.actualizarMembresia(nuevaMembresia);
         
     }
     
-    private void rellenarNombre(){
-        panelEscribirNombre.setVisible(true);
-       // String nombre= campoNuevoNombre.getText();
-    }
-    
-    private void rellenarCosto(){
-        panelEscribirCosto.setVisible(true);
-      //  String costo= campoEscribirCosto.getText();
-    }
-    
-    private void rellenarDuracion(){
-        panelEscribirDuracion.setVisible(true);
-      //  String duracion= campoEditarDuracion.getText();
-    }
-            
+//    private void rellenarNombre(){
+//        panelEscribirNombre.setVisible(true);
+//       // String nombre= campoNuevoNombre.getText();
+//    }
+//    
+//    private void rellenarCosto(){
+//        panelEscribirCosto.setVisible(true);
+//      //  String costo= campoEscribirCosto.getText();
+//    }
+//    
+//    private void rellenarDuracion(){
+//        panelEscribirDuracion.setVisible(true);
+//      //  String duracion= campoEditarDuracion.getText();
+//    }
+//            
             
     
 
@@ -203,14 +203,10 @@ control.actualizarMembresia(nuevaMembresia);
         labelDias = new javax.swing.JLabel();
         labelCosto = new javax.swing.JLabel();
         labelNombre = new javax.swing.JLabel();
-        labelNombreOriginal = new javax.swing.JLabel();
-        labelDuracionOriginal = new javax.swing.JLabel();
-        labelCostoOriginal = new javax.swing.JLabel();
         panelEscribirNombre = new javax.swing.JPanel();
         campoNuevoNombre = new javax.swing.JTextField();
         panelEscribirCosto = new javax.swing.JPanel();
         campoEscribirCosto = new javax.swing.JTextField();
-        panelEscribirDuracion = new javax.swing.JPanel();
         campoEditarDuracion = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         labelTiulo = new javax.swing.JLabel();
@@ -237,7 +233,7 @@ control.actualizarMembresia(nuevaMembresia);
         panelServicios.setLayout(panelServiciosLayout);
         panelServiciosLayout.setHorizontalGroup(
             panelServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 158, Short.MAX_VALUE)
+            .addGap(0, 198, Short.MAX_VALUE)
         );
         panelServiciosLayout.setVerticalGroup(
             panelServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,26 +249,17 @@ control.actualizarMembresia(nuevaMembresia);
             }
         });
 
-        labelDias.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        labelDias.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelDias.setForeground(new java.awt.Color(51, 51, 51));
         labelDias.setText(" DURACION");
 
-        labelCosto.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        labelCosto.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelCosto.setForeground(new java.awt.Color(51, 51, 51));
         labelCosto.setText(" COSTO");
 
-        labelNombre.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        labelNombre.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         labelNombre.setForeground(new java.awt.Color(51, 51, 51));
         labelNombre.setText("NOMBRE DE LA MEMBRESIA");
-
-        labelNombreOriginal.setForeground(new java.awt.Color(0, 0, 0));
-        labelNombreOriginal.setText("jLabel1");
-
-        labelDuracionOriginal.setForeground(new java.awt.Color(0, 0, 0));
-        labelDuracionOriginal.setText("jLabel1");
-
-        labelCostoOriginal.setForeground(new java.awt.Color(51, 51, 51));
-        labelCostoOriginal.setText("jLabel1");
 
         panelEscribirNombre.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -337,8 +324,6 @@ control.actualizarMembresia(nuevaMembresia);
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelEscribirDuracion.setBackground(new java.awt.Color(255, 255, 255));
-
         campoEditarDuracion.setBackground(new java.awt.Color(255, 255, 255));
         campoEditarDuracion.setForeground(new java.awt.Color(102, 102, 102));
         campoEditarDuracion.setText("Escribir duracion...");
@@ -353,21 +338,6 @@ control.actualizarMembresia(nuevaMembresia);
             }
         });
 
-        javax.swing.GroupLayout panelEscribirDuracionLayout = new javax.swing.GroupLayout(panelEscribirDuracion);
-        panelEscribirDuracion.setLayout(panelEscribirDuracionLayout);
-        panelEscribirDuracionLayout.setHorizontalGroup(
-            panelEscribirDuracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelEscribirDuracionLayout.createSequentialGroup()
-                .addComponent(campoEditarDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        panelEscribirDuracionLayout.setVerticalGroup(
-            panelEscribirDuracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEscribirDuracionLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(campoEditarDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -375,35 +345,17 @@ control.actualizarMembresia(nuevaMembresia);
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(labelCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(406, 406, 406))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(0, 0, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(labelCostoOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(231, 231, 231))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                            .addComponent(labelCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(177, 177, 177))))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                            .addGap(8, 8, 8)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(labelNombreOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addComponent(panelEscribirDuracion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                            .addGap(6, 6, 6)
-                                            .addComponent(labelDuracionOriginal)))
-                                    .addGap(0, 0, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(labelDias, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(panelEscribirNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(campoEditarDuracion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelDias, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panelEscribirNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelNombre, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(panelServicios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(71, 71, 71))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -415,30 +367,23 @@ control.actualizarMembresia(nuevaMembresia);
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelNombre)
-                .addGap(5, 5, 5)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelServicios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelNombreOriginal)
-                        .addGap(7, 7, 7)
+                        .addGap(24, 24, 24)
+                        .addComponent(panelServicios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 63, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(labelNombre)
+                        .addGap(18, 18, 18)
                         .addComponent(panelEscribirNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(labelDias, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(71, 71, 71))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelDuracionOriginal)
-                                .addGap(18, 18, 18)
-                                .addComponent(panelEscribirDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelDias, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(campoEditarDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(labelCosto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                        .addComponent(labelCostoOriginal)))
-                .addGap(18, 18, 18)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelEscribirCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -570,7 +515,7 @@ control.actualizarMembresia(nuevaMembresia);
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
-     //   control.openFormOpcionesModuloMembresia();
+        control.openFormOpcionesModuloMembresia();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     /**
@@ -588,14 +533,10 @@ control.actualizarMembresia(nuevaMembresia);
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelCosto;
-    private javax.swing.JLabel labelCostoOriginal;
     private javax.swing.JLabel labelDias;
-    private javax.swing.JLabel labelDuracionOriginal;
     private javax.swing.JLabel labelNombre;
-    private javax.swing.JLabel labelNombreOriginal;
     private javax.swing.JLabel labelTiulo;
     private javax.swing.JPanel panelEscribirCosto;
-    private javax.swing.JPanel panelEscribirDuracion;
     private javax.swing.JPanel panelEscribirNombre;
     private javax.swing.JPanel panelInfo;
     private javax.swing.JPanel panelPrincipal;

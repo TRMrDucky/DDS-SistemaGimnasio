@@ -5,6 +5,7 @@
 package presentacion;
 
 import Enumeradores.EnumEstadoMembresia;
+import static Enumeradores.EnumEstadoMembresia.ACTIVA;
 import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.MembresiaDTO;
@@ -153,6 +154,7 @@ public class ConsultarMembresias extends javax.swing.JFrame {
             
             case "Actualizar":
                 if (membresia != null){
+                    
                 MembresiaDTO membresiaActualizada= control.actualizarMembresia(membresia);
                 if(membresiaActualizada!= null){
                     JOptionPane.showMessageDialog(null, "Membresía actualizada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -168,9 +170,16 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                 
                 break;
 //                
-//            case "Activar":
+            case "Activar":
+                membresia.setEstado(EnumEstadoMembresia.ACTIVA);
+                
 //                cambios.put("estado", EnumEstadoMembresia.ACTIVA);
-//                MembresiaDTO membresiaActualizada= control.actualizarMembresia(idMembresia, cambios);
+                MembresiaDTO membresiaActivada= control.actualizarMembresia(membresia);
+                if(membresiaActivada.getEstado()==EnumEstadoMembresia.ACTIVA){
+                    JOptionPane.showMessageDialog(null, "Membresía activada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                } else{
+                    JOptionPane.showMessageDialog(null, "Error al activar membresia", "Error", JOptionPane.INFORMATION_MESSAGE);
+                }
 //                
 //                if(membresiaActualizada!=null){
 //                    JOptionPane.showMessageDialog(null, "Membresía activada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -179,15 +188,23 @@ public class ConsultarMembresias extends javax.swing.JFrame {
 //                    JOptionPane.showMessageDialog(null, "Error al activar membresia", "Error", JOptionPane.INFORMATION_MESSAGE);
 //                   
 //                }
-//                break;
+                break;
 //                
-//                case "Desactivar":
+                case "Desactivar":
+                    membresia.setEstado(EnumEstadoMembresia.INACTIVA);
+                    MembresiaDTO membresiaDesactivada= control.actualizarMembresia(membresia);
 //                cambios.put("estado", EnumEstadoMembresia.INACTIVA);
 //                    System.out.println(idMembresia);
 //                    System.out.println(accion);
 //                    System.out.println(cambios);
 //                    try{
-//                MembresiaDTO membresiaDesactualizada= control.actualizarMembresia(idMembresia, cambios);
+                     if(membresiaDesactivada.getEstado()==EnumEstadoMembresia.INACTIVA){
+                    JOptionPane.showMessageDialog(null, "Membresía desactivada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    } else{
+                    JOptionPane.showMessageDialog(null, "Error al desactivar membresia", "Error", JOptionPane.INFORMATION_MESSAGE);
+                }
+                     
+                     
 //                //if(membresiaDesactualizada!=null){
 //                    JOptionPane.showMessageDialog(null, "Membresía desacactivada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 //                } catch(SubsistemaMembresiaException e){

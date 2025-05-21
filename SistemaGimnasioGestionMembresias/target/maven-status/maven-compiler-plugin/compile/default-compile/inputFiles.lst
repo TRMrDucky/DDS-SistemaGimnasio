@@ -1,6 +1,6 @@
-C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SistemaGimnasioGestionMembresias\src\main\java\excepciones\SubsistemaMembresiaException.java
-C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SistemaGimnasioGestionMembresias\src\main\java\excepciones\DuracionException.java
-C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SistemaGimnasioGestionMembresias\src\main\java\interfaz\IManejadorMembresia.java
-C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SistemaGimnasioGestionMembresias\src\main\java\excepciones\NombreVacioException.java
-C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SistemaGimnasioGestionMembresias\src\main\java\implementaciones\ManejadorMembresias.java
-C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SistemaGimnasioGestionMembresias\src\main\java\excepciones\PrecioVacioException.java
+/Users/janethcristinagalvanquinonez/Downloads/disenioGym/DDS-SistemaGimnasio/SistemaGimnasioGestionMembresias/src/main/java/interfaz/IManejadorMembresia.java
+/Users/janethcristinagalvanquinonez/Downloads/disenioGym/DDS-SistemaGimnasio/SistemaGimnasioGestionMembresias/src/main/java/excepciones/NombreVacioException.java
+/Users/janethcristinagalvanquinonez/Downloads/disenioGym/DDS-SistemaGimnasio/SistemaGimnasioGestionMembresias/src/main/java/implementaciones/ManejadorMembresias.java
+/Users/janethcristinagalvanquinonez/Downloads/disenioGym/DDS-SistemaGimnasio/SistemaGimnasioGestionMembresias/src/main/java/excepciones/PrecioVacioException.java
+/Users/janethcristinagalvanquinonez/Downloads/disenioGym/DDS-SistemaGimnasio/SistemaGimnasioGestionMembresias/src/main/java/excepciones/DuracionException.java
+/Users/janethcristinagalvanquinonez/Downloads/disenioGym/DDS-SistemaGimnasio/SistemaGimnasioGestionMembresias/src/main/java/excepciones/SubsistemaMembresiaException.java

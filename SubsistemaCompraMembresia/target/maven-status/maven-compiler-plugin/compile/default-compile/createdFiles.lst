@@ -1,2 +1,2 @@
-interfaces\IManejadorComprasMembresias.class
-implementaciones\ManejadorComprasMembresias.class
+implementaciones/ManejadorComprasMembresias.class
+interfaces/IManejadorComprasMembresias.class
