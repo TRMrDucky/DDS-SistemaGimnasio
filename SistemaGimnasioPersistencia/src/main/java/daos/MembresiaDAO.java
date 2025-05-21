@@ -164,7 +164,7 @@ public class MembresiaDAO implements IMembresiaDAO {
                             Updates.set("nombre", membresiaActualizada.getNombre()),
                             Updates.set("duracion", membresiaActualizada.getDuracion()),
                             Updates.set("precio", membresiaActualizada.getPrecio()),
-                            Updates.set("estado", membresiaActualizada.getEstado()),
+                            Updates.set("estado", membresiaActualizada.getEstado().name()),
                             Updates.set("serviciosExtra", membresiaActualizada.getServiciosExtra())
                     )
             );

@@ -40,8 +40,7 @@ public class MembresiaBO implements IMembresiaBO {
 
     public MembresiaDTO agregarMembresia(MembresiaDTO membresia) throws NegocioException {
         try {
-            System.out.println("lllegbo");
-            System.out.println(membresia);
+           
             return MembresiaMapper.toDTO(membresiaDAO.agregarMembresia(MembresiaMapper.toEntity(membresia)));
         } catch (AgregarMembresiaException e) {
             throw new NegocioException("Error al agregar membresia " + e);

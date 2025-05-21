@@ -171,7 +171,7 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                 break;
 //                
             case "Activar":
-                membresia.setEstado(EnumEstadoMembresia.ACTIVA);
+                  membresia.setEstado(EnumEstadoMembresia.ACTIVA);
                 
 //                cambios.put("estado", EnumEstadoMembresia.ACTIVA);
                 MembresiaDTO membresiaActivada= control.actualizarMembresia(membresia);
@@ -371,7 +371,29 @@ public class ConsultarMembresias extends javax.swing.JFrame {
 //                  
 //              }
 //            
+              } if(accionSeleccionada.equals("Activar")){
+                  membresiaSeleccionada.setEstado(EnumEstadoMembresia.ACTIVA);
+                  MembresiaDTO membresiaActualizada = control.actualizarMembresia(membresiaSeleccionada);
+                  if(membresiaActualizada != null && membresiaActualizada.getEstado() == EnumEstadoMembresia.ACTIVA) { 
+                      JOptionPane.showMessageDialog(null, "membresía activada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                  }
+                  else{
+                      JOptionPane.showMessageDialog(null, "error al activar la membresía", "Error", JOptionPane.ERROR_MESSAGE);
+                  }
               }
+              
+              if(accionSeleccionada.equals("Desactivar")){
+                  membresiaSeleccionada.setEstado(EnumEstadoMembresia.INACTIVA);
+                  MembresiaDTO membresiaActualizada = control.actualizarMembresia(membresiaSeleccionada);
+                  if(membresiaActualizada != null && membresiaActualizada.getEstado() == EnumEstadoMembresia.INACTIVA) { 
+                      JOptionPane.showMessageDialog(null, "membresía desactivada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                  }
+                  else{
+                      JOptionPane.showMessageDialog(null, "error al desactivar la membresía", "Error", JOptionPane.ERROR_MESSAGE);
+                  }
+              }
+              
+              
                
            } catch (SubsistemaMembresiaException ex) {
                Logger.getLogger(ConsultarMembresias.class.getName()).log(Level.SEVERE, null, ex);
