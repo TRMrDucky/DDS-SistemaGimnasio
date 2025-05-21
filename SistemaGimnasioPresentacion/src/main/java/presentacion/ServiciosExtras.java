@@ -152,7 +152,7 @@ public class ServiciosExtras extends JFrame {
         List<ServicioExtraDTO> seleccionados = new LinkedList<>();
         for (JCheckBox checkBox : checkBoxes) {
             if (checkBox.isSelected()) {
-                long id = Long.parseLong(checkBox.getActionCommand());
+                String id = checkBox.getActionCommand();
                 seleccionados.add(serviciosExtras.stream()
                         .filter(servicio -> servicio.getId().equals(id))
                         .findFirst()
