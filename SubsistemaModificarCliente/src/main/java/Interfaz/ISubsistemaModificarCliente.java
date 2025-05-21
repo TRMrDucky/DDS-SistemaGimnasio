@@ -13,4 +13,5 @@ import excepciones.ModificarClienteException;
  */
 public interface ISubsistemaModificarCliente {
     public abstract ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente) throws ModificarClienteException;
+    public abstract ClienteRegistradoDTO actualizarCliente(ClienteRegistradoDTO cliente) throws ModificarClienteException;
 }

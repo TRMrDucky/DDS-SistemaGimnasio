@@ -26,4 +26,5 @@ public interface IClienteDAO {
     public boolean validarSiTieneMem(Membresia membresia, String id);
     public abstract Cliente registrarClienteMongo(Cliente clienteRegistrar)throws RegistroClienteException;
     public abstract Cliente eliminarCliente(Cliente cliente);
+    public abstract Cliente actualizarCliente(Cliente cliente);  
 }

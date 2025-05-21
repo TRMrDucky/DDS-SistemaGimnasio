@@ -27,4 +27,5 @@ public interface IRegistrarClienteBO {
     public abstract MembresiaDTO agregarMembresia(MembresiaDTO membresia, String id) throws NegocioException;
     public abstract ClienteRegistradoConMembListaDTO obtenerClienteCompleto(String id) throws NegocioException;
     public abstract ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente) throws ModificarClienteException;
+    public abstract ClienteRegistradoDTO actualizarCliente(ClienteRegistradoDTO cliente) throws ModificarClienteException;
 }

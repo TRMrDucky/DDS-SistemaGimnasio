@@ -8,11 +8,12 @@ import Conexion.ConexionBD;
 import clases.mock.Cliente;
 import clases.mock.Membresia;
 import clases.mock.ServicioExtra;
-import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.FindOneAndUpdateOptions;
+import com.mongodb.client.model.ReturnDocument;
 import com.mongodb.client.model.Updates;
 import excepciones.AgregarMembresiaClienteException;
 import excepciones.ConsultaDatosClienteException;
@@ -31,11 +32,11 @@ import org.bson.types.ObjectId;
 public class ClienteDAO implements IClienteDAO {
 
     private final String NOMBRE_COLECCION = "Clientes";
-    private final String CAMPO_NOMBRES = "Nombres";
-    private final String CAMPO_APELLIDO = "Apellidos";
-    private final String CAMPO_CORREO = "Correo";
-    private final String CAMPO_TELEFONO = "Telefono";
-    private final String CAMPO_MEMBRESIAS = "Membresias";
+    private final String CAMPO_NOMBRES = "nombres";
+    private final String CAMPO_APELLIDO = "apellidos";
+    private final String CAMPO_CORREO = "email";
+    private final String CAMPO_TELEFONO = "numeroTelefono";
+    private final String CAMPO_MEMBRESIAS = "membresias";
 
     private static ClienteDAO instancia;
 
@@ -207,7 +208,47 @@ public class ClienteDAO implements IClienteDAO {
 
             return clienteEliminado;
 
-        } catch (MongoException e) {
+        } catch (Exception e) {
+            System.err.println("Error al eliminar cliente: " + e.getMessage());
+            throw new RuntimeException("Error de base de datos", e);
+        }
+    }
+
+    @Override
+    public Cliente actualizarCliente(Cliente cliente) {
+
+        try {
+            if (!verificarCorreoActualizacion(cliente.getEmail())) {
+                throw new Exception("Verificar correo");
+            }
+            if (!verificarTelefonoActualizacion(cliente.getNumeroTelefono())) {
+                throw new Exception("Verificar teléfono");
+            }
+  
+            FindOneAndUpdateOptions opciones = new FindOneAndUpdateOptions()
+                .upsert(false);
+                    
+            Document updateSet = new Document();
+            updateSet.append(CAMPO_NOMBRES, cliente.getNombres());
+            updateSet.append(CAMPO_APELLIDO, cliente.getApellidos());
+            updateSet.append(CAMPO_CORREO, cliente.getEmail());
+            updateSet.append(CAMPO_TELEFONO, cliente.getNumeroTelefono());
+
+            Document update = new Document("$set", updateSet);
+            
+            MongoCollection<Cliente> coleccion = crearConexion();
+
+            Bson filtro = Filters.eq("_id", cliente.getId());
+
+            Cliente clienteActualizado = coleccion.findOneAndUpdate(filtro, update, opciones);
+
+            if (clienteActualizado == null) {
+                throw new RuntimeException("No se encontró el cliente con ID: " + cliente.getId());
+            }
+
+            return clienteActualizado;
+
+        } catch (Exception e) {
             System.err.println("Error al eliminar cliente: " + e.getMessage());
             throw new RuntimeException("Error de base de datos", e);
         }
@@ -233,6 +274,46 @@ public class ClienteDAO implements IClienteDAO {
         Cliente cliente = resultado.first();
 
         return cliente != null;
+    }
+
+    private boolean verificarCorreoActualizacion(String correo) {
+        int encontrados = 0;
+        MongoCollection<Cliente> coleccion = crearConexion();
+
+        FindIterable<Cliente> resultado = coleccion.find(new Document(CAMPO_CORREO, correo));
+        Cliente c = resultado.first();
+        if (c == null) {
+            return true;
+        }
+
+        for (Cliente cl : resultado) {
+            encontrados += 1;
+            if (encontrados >= 2) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean verificarTelefonoActualizacion(String telefono) {
+        int encontrados = 0;
+        MongoCollection<Cliente> coleccion = crearConexion();
+
+        FindIterable<Cliente> resultado = coleccion.find(new Document(CAMPO_TELEFONO, telefono));
+        Cliente c = resultado.first();
+        if (c == null) {
+            return true;
+        }
+
+        for (Cliente cl : resultado) {
+            encontrados += 1;
+            if (encontrados >= 2) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private MongoCollection crearConexion() {

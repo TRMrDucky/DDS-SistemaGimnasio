@@ -27,5 +27,10 @@ public class SubsistemaModificarCliente implements ISubsistemaModificarCliente {
         return this.registrarClienteBO.eliminarCliente(cliente);
         
     }
+    
+    @Override
+    public ClienteRegistradoDTO actualizarCliente(ClienteRegistradoDTO cliente) throws ModificarClienteException{
+        return this.registrarClienteBO.actualizarCliente(cliente);
+    }
         
 }

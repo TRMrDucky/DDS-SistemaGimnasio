@@ -50,6 +50,7 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        btnCompraMembresia = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,20 +83,19 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
 
         jLabel4.setText("Teléfono");
 
+        btnCompraMembresia.setText("Comprar nueva membresía");
+        btnCompraMembresia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompraMembresiaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnVolver)
-                .addGap(78, 78, 78)
-                .addComponent(btnEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                .addComponent(btnEditar)
-                .addGap(14, 14, 14))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(117, 117, 117)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -105,12 +105,23 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(114, 114, 114))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCompraMembresia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnVolver)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEditar)))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -126,12 +137,14 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(7, 7, 7)
                 .addComponent(lblTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVolver)
                     .addComponent(btnEliminar)
+                    .addComponent(btnVolver)
                     .addComponent(btnEditar))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCompraMembresia)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -143,7 +156,34 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        editar(this.cliente);
+        if (btnEditar.getText().equals("Editar"))
+            editar(this.cliente);
+        else {
+            int opcion = JOptionPane.showConfirmDialog(
+                    null,
+                    "¿Seguro que deseas actualizar este cliente?",
+                    "Confirmar Actualización",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+            );
+
+            if (opcion == JOptionPane.YES_OPTION) {
+
+                ClienteRegistradoDTO clienteActualizado = control.actualizarCliente(
+                        new ClienteRegistradoDTO(
+                                lblNombre.getText(),
+                                lblApellido.getText(),
+                                lblCorreo.getText(),
+                                lblTelefono.getText(),
+                                cliente.getId()
+                        )
+                );
+                JOptionPane.showMessageDialog(null, "Cliente actualizado exitosamente" + clienteActualizado.toString());
+                control.openFormMostrarInfoCliente(clienteActualizado);
+                dispose();
+            }
+
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -160,12 +200,17 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
 
             if (opcion == JOptionPane.YES_OPTION) {
                 ClienteRegistradoDTO clienteEliminado = control.eliminarCliente(cliente);
-                JOptionPane.showMessageDialog(null, "Cliente eliminado exitosamente"+clienteEliminado.toString());
+                JOptionPane.showMessageDialog(null, "Cliente eliminado exitosamente" + clienteEliminado.toString());
                 control.openFormBuscarCliente();
                 dispose();
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnCompraMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraMembresiaActionPerformed
+        control.openFormConsultarMembresias("Compra", cliente);
+        dispose();
+    }//GEN-LAST:event_btnCompraMembresiaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,7 +249,9 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
 
     private void iniciarComponentes(ClienteRegistradoDTO cliente) {
         this.btnEliminar.setText("Eliminar");
+        this.btnEditar.setText("Editar");
         this.btnVolver.setVisible(true);
+        this.btnCompraMembresia.setVisible(true);
         this.lblNombre.setText(cliente.getNombre());
         this.lblApellido.setText(cliente.getApellidos());
         this.lblCorreo.setText(cliente.getEmail());
@@ -225,8 +272,10 @@ public class MostrarInfoCliente extends javax.swing.JFrame {
         this.btnEliminar.setText("Cancelar");
         this.btnEditar.setText("Guardar");
         this.btnVolver.setVisible(false);
+        this.btnCompraMembresia.setVisible(false);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCompraMembresia;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnVolver;

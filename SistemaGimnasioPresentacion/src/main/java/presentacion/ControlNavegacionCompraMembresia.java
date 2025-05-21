@@ -575,6 +575,15 @@ public class ControlNavegacionCompraMembresia {
         return null;
     }
     
+    public ClienteRegistradoDTO actualizarCliente(ClienteRegistradoDTO cliente){
+        try{
+            return subsistemaModificarCliente.actualizarCliente(cliente);
+        }catch(ModificarClienteException e){
+            JOptionPane.showMessageDialog(null, "No ha sido posible la actualización", "Error en la actualización", JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
+    }
+    
         public void mostrarPantallaRegistroMantenimiento(EquipoDTO equipo) {
         PantallaRegistroMantenimiento pantalla = new PantallaRegistroMantenimiento(this, equipo);
         pantalla.setVisible(true);

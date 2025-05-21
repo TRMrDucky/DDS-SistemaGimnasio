@@ -35,7 +35,7 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
     }
 
     @Override
-    public ClienteRegistradoDTO registrarCliente(ClienteDTO cliente) throws RegistroClienteException{
+    public ClienteRegistradoDTO registrarCliente(ClienteDTO cliente) throws RegistroClienteException {
         Cliente clienteRegistrar = ClienteMapper.toEntity(cliente);
         Cliente clienteRegistrado = clienteDAO.registrarClienteMongo(clienteRegistrar);
         ClienteRegistradoDTO clienteRegistradoDTO = ClienteMapper.ClienteRegistradoToDTO(clienteRegistrado);
@@ -48,6 +48,7 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
         List<ClienteRegistradoDTO> listaClientesDTO = ClienteMapper.toListDTO(listaClientes);
         return listaClientesDTO;
     }
+
     @Override
     public String obtenerNombreCliente(String id) throws NegocioException {
 
@@ -69,39 +70,47 @@ public class RegistrarClienteBO implements IRegistrarClienteBO {
 
     @Override
     public MembresiaDTO agregarMembresia(MembresiaDTO membresia, String id) throws NegocioException {
-        try{
-        if(!clienteDAO.validarSiTieneMem(MembresiaMapper.toEntity(membresia), id)){
-            return MembresiaMapper.toDTO(clienteDAO.agregarSiNoTiene(id,MembresiaMapper.toEntity(membresia)));
-        }
-        return MembresiaMapper.toDTO(clienteDAO.actualizarSiTiene(MembresiaMapper.toEntity(membresia), id));
-        }catch(AgregarMembresiaClienteException e){
+        try {
+            if (!clienteDAO.validarSiTieneMem(MembresiaMapper.toEntity(membresia), id)) {
+                return MembresiaMapper.toDTO(clienteDAO.agregarSiNoTiene(id, MembresiaMapper.toEntity(membresia)));
+            }
+            return MembresiaMapper.toDTO(clienteDAO.actualizarSiTiene(MembresiaMapper.toEntity(membresia), id));
+        } catch (AgregarMembresiaClienteException e) {
             throw new NegocioException("Error al agregar la membresia al cliete", e);
         }
     }
-    
-        @Override
-  public ClienteRegistradoConMembListaDTO obtenerClienteCompleto(String id) throws NegocioException {
-      try {
-          Cliente cliente = clienteDAO.obtenerClienteCompleto(id);
-          return ClienteMapper.toCompletoDTO(cliente);
-      } catch (ConsultaDatosClienteException e) {
-          throw new NegocioException(
-              "No se pudo cargar los datos completos del cliente porque el ID no fue encontrado: " + id,
-              e
-          );
-      }
-  }
-    
+
     @Override
-    public ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente)throws ModificarClienteException{
-  
-            Cliente clieente = ClienteMapper.toEntityCompleto(cliente);
-            Cliente cEliminar = clienteDAO.eliminarCliente(clieente);
-            if(cEliminar==null){
-                throw new ModificarClienteException("No ha sido posible eliminar el cliente");
-            }
-            return ClienteMapper.toDTO(cEliminar);
-             
-        
+    public ClienteRegistradoConMembListaDTO obtenerClienteCompleto(String id) throws NegocioException {
+        try {
+            Cliente cliente = clienteDAO.obtenerClienteCompleto(id);
+            return ClienteMapper.toCompletoDTO(cliente);
+        } catch (ConsultaDatosClienteException e) {
+            throw new NegocioException(
+                    "No se pudo cargar los datos completos del cliente porque el ID no fue encontrado: " + id,
+                    e
+            );
+        }
+    }
+
+    @Override
+    public ClienteRegistradoDTO eliminarCliente(ClienteRegistradoDTO cliente) throws ModificarClienteException {
+        Cliente clieente = ClienteMapper.toEntityCompleto(cliente);
+        Cliente cEliminar = clienteDAO.eliminarCliente(clieente);
+        if (cEliminar == null) {
+            throw new ModificarClienteException("No ha sido posible eliminar el cliente");
+        }
+        return ClienteMapper.toDTO(cEliminar);
+
+    }
+
+    @Override
+    public ClienteRegistradoDTO actualizarCliente(ClienteRegistradoDTO cliente) throws ModificarClienteException {
+        Cliente clieente = ClienteMapper.toEntityCompleto(cliente);
+        Cliente cActualizar = clienteDAO.actualizarCliente(clieente);
+        if (cActualizar == null) {
+            throw new ModificarClienteException("No ha sido posible eliminar el cliente");
+        }
+        return ClienteMapper.toDTO(cActualizar);
     }
 }
