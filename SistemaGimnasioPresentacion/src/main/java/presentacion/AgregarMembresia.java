@@ -74,10 +74,41 @@ public class AgregarMembresia extends javax.swing.JFrame {
 }
 
         String nombre= campoNombre.getText();
-        long duracionDias = Long.parseLong(campoDias.getText());
+        String diasString= campoDias.getText().trim();
+        String costoString = campoCosto.getText().trim();
+//        long duracionDias = Long.parseLong(campoDias.getText());
+//        long duracionMilisegundos = duracionDias * 86400000L;
+//        double precio= Double.parseDouble(campoCosto.getText());
+        
+        if(nombre.isEmpty() || diasString.isEmpty() || costoString.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+//         long duracionDias = Long.parseLong(campoDias.getText());
+//        long duracionMilisegundos = duracionDias * 86400000L;
+//        double precio= Double.parseDouble(campoCosto.getText());
+
+        long duracionDias;
+        double precio;
+        
+        try{
+            duracionDias = Long.parseLong(campoDias.getText());
+            precio= Double.parseDouble(campoCosto.getText());
+            
+            if(duracionDias<=0){
+                JOptionPane.showMessageDialog(this, "La duración debe ser mayor a 0 días", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if(precio<0){
+                JOptionPane.showMessageDialog(this, "El precio no puede ser negativo.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Duración y precio deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         long duracionMilisegundos = duracionDias * 86400000L;
-                
-        double precio= Double.parseDouble(campoCosto.getText());
         
          List<ServicioExtraDTO> serviciosSeleccionados = serviciosSeleccionados(); 
          MembresiaDTO membresia= new MembresiaDTO(nombre, precio, serviciosSeleccionados, EnumEstadoMembresia.ACTIVA, duracionMilisegundos);

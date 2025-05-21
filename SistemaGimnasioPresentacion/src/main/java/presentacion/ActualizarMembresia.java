@@ -111,28 +111,28 @@ public class ActualizarMembresia extends javax.swing.JFrame {
 //         }
 
 // MembresiaDTO nuevaMembresia= new MembresiaDTO(nuevoNombre, ERROR, serviciosExtra, nuevaDuracion);
-List<ServicioExtraDTO> nuevosServicios = new ArrayList<>();
-List<ServicioExtraDTO> serviciosDisponibles = control.obtenerServiciosExtrasDTO();
+    List<ServicioExtraDTO> nuevosServicios = new ArrayList<>();
+    List<ServicioExtraDTO> serviciosDisponibles = control.obtenerServiciosExtrasDTO();
 
-for (Component comp : panelServicios.getComponents()) {
-    if (comp instanceof JCheckBox checkBox && checkBox.isSelected()) {
-        for (ServicioExtraDTO servicio : serviciosDisponibles) {
-            if (servicio.getNombreServicio().equals(checkBox.getText())) {
-                servicio.setId(membresia.getServiciosExtra().stream()
-                        .filter(s -> s.getNombreServicio().equals(servicio.getNombreServicio()))
-                        .map(ServicioExtraDTO::getId)
-                        .findFirst()
-                        .orElse(servicio.getId()));
-                nuevosServicios.add(servicio);
-                break;
-                
+    for (Component comp : panelServicios.getComponents()) {
+        if (comp instanceof JCheckBox checkBox && checkBox.isSelected()) {
+            for (ServicioExtraDTO servicio : serviciosDisponibles) {
+                if (servicio.getNombreServicio().equals(checkBox.getText())) {
+                    servicio.setId(membresia.getServiciosExtra().stream()
+                            .filter(s -> s.getNombreServicio().equals(servicio.getNombreServicio()))
+                            .map(ServicioExtraDTO::getId)
+                            .findFirst()
+                            .orElse(servicio.getId()));
+                    nuevosServicios.add(servicio);
+                    break;
+
+                }
             }
+
         }
-        
     }
-}
-MembresiaDTO nuevaMembresia= new MembresiaDTO(nuevoNombre, membresia.getId(), Double.parseDouble(nuevoCosto), nuevosServicios, Long.valueOf(nuevaDuracion));
-control.actualizarMembresia(nuevaMembresia);
+    MembresiaDTO nuevaMembresia= new MembresiaDTO(nuevoNombre, membresia.getId(), Double.parseDouble(nuevoCosto), nuevosServicios, membresia.getEstado(), Long.valueOf(nuevaDuracion));
+    control.actualizarMembresia(nuevaMembresia);
 //              membresia.setServiciosExtra(nuevosServicios);
 //              cambios.put("serviciosExtra", nuevosServicios);
 
