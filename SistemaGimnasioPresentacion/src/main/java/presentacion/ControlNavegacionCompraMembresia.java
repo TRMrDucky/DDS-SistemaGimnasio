@@ -99,9 +99,25 @@ public class ControlNavegacionCompraMembresia {
         bc.setVisible(true);
     }
 
-    public void openFormRegistrarEquipo() {
-        RegistrarEquipoForm form = new RegistrarEquipoForm(this);
-        form.setVisible(true);
+  //  public void openFormRegistrarEquipo() {
+       // RegistrarEquipoForm form = new RegistrarEquipoForm(this);
+        //form.setVisible(true);
+    //}
+    
+
+
+        private RegistrarEquipoForm ventanaRegistroEquipo = null;
+
+
+
+       public void openFormRegistrarEquipo() {
+        if (ventanaRegistroEquipo == null || !ventanaRegistroEquipo.isDisplayable()) {
+            ventanaRegistroEquipo = new RegistrarEquipoForm(this);
+            ventanaRegistroEquipo.setVisible(true);
+        } else {
+            ventanaRegistroEquipo.toFront();
+            ventanaRegistroEquipo.requestFocus();
+        }
     }
 
     public void openFormPantallaRegistroMantenimiento(EquipoDTO equipoSeleccionado) {
@@ -568,6 +584,7 @@ public class ControlNavegacionCompraMembresia {
         PantallaHistorialMantenimiento pantalla = new PantallaHistorialMantenimiento(this, equipo);
         pantalla.setVisible(true);
     }
-
+    
+     
 
 }
