@@ -54,52 +54,55 @@ public class MantenimientoDAO implements IMantenimientoDAO {
     }
 
 
-        @Override
-  public List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) throws ConsultarMantenimientoException {
-      List<HistorialEquipoDTO> historial = new ArrayList<>();
+@Override
+public List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) throws ConsultarMantenimientoException {
+    List<HistorialEquipoDTO> historial = new ArrayList<>();
 
-      try {
-          MongoCollection<Document> coleccion = ConexionBD.getInstance().getCollection("mantenimientos", Document.class);
+    try {
+        MongoCollection<Mantenimiento> coleccion = ConexionBD.getInstance()
+            
+                .getCollection("mantenimientos", Mantenimiento.class);
 
-          ObjectId objectIdEquipo = new ObjectId(idEquipo);
+        ObjectId objectIdEquipo = new ObjectId(idEquipo);
 
-          List<Bson> pipeline = Arrays.asList(
-              Aggregates.match(Filters.eq("idEquipo", objectIdEquipo)),
-              Aggregates.lookup("equipos", "idEquipo", "_id", "equipoData"),
-              Aggregates.unwind("$equipoData")
-          );
+        List<Bson> pipeline = Arrays.asList(
+            Aggregates.match(Filters.eq("idEquipo", objectIdEquipo)),
+            Aggregates.lookup("equipos", "idEquipo", "_id", "equipoData"),
+            Aggregates.unwind("$equipoData")
+        );
 
-          AggregateIterable<Document> resultados = coleccion.aggregate(pipeline);
+                AggregateIterable<Document> resultados = coleccion.aggregate(pipeline, Document.class);
 
-          for (Document doc : resultados) {
-              String nombreMantenimiento = doc.getString("nombreMantenimiento");
-              Date fechaMantenimiento = doc.getDate("fechaMantenimiento");
-              float costo = doc.getDouble("costo").floatValue();
-              String observaciones = doc.getString("observaciones");
-              Date fechaSeguimiento = doc.getDate("fechaSeguimiento");
+        for (Document doc : resultados) {
+            
+            String nombreMantenimiento = doc.getString("nombreMantenimiento");
+            Date fechaMantenimiento = doc.getDate("fechaMantenimiento");
+            Double costoDouble = doc.getDouble("costo");
+            float costo = (costoDouble != null) ? costoDouble.floatValue() : 0f;
+            String observaciones = doc.getString("observaciones");
+            Date fechaSeguimiento = doc.getDate("fechaSeguimiento");
 
-              Document equipoData = (Document) doc.get("equipoData");
-              String nombreEquipo = equipoData != null ? equipoData.getString("nombre") : "Desconocido";
+            Document equipoData = doc.get("equipoData", Document.class);
+            String nombreEquipo = (equipoData != null) ? equipoData.getString("nombre") : "Desconocido";
 
+            HistorialEquipoDTO dto = new HistorialEquipoDTO(
+                nombreMantenimiento,
+                fechaMantenimiento,
+                nombreEquipo,
+                costo,
+                observaciones,
+                fechaSeguimiento
+            );
 
-              HistorialEquipoDTO dto = new HistorialEquipoDTO(
-                  nombreMantenimiento,
-                  fechaMantenimiento,
-                  nombreEquipo,
-                  costo,
-                  observaciones,
-                  fechaSeguimiento
-              );
+            historial.add(dto);
+        }
 
-              historial.add(dto);
-          }
+    } catch (Exception e) {
+        throw new ConsultarMantenimientoException("Error al consultar el historial de mantenimientos del equipo.", e);
+    }
 
-      } catch (Exception e) {
-          throw new ConsultarMantenimientoException("Error al consultar el historial de mantenimientos del equipo.", e);
-      }
-
-      return historial;
-  }
+    return historial;
+}
 
 
 
