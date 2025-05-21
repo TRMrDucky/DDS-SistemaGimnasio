@@ -325,15 +325,9 @@ public class ConsultarMembresias extends javax.swing.JFrame {
        
            try {
 //               if (accionSeleccionada.equals("Actualizar")) {
-//                   System.out.println(membresia);
-//                   control.openFormActualizarMembresia(membresia);
-//                   Map<String, Object> cambios = new HashMap<>();
-//                   cambios.put("nombre", membresia.getNombre());
-//                    cambios.put("precio", membresia.getPrecio());
-//                    cambios.put("duracion", membresia.getDuracion());
-//                     cambios.put("serviciosExtra", membresia.getServiciosExtra()); 
-//                     accion(accionSeleccionada, membresia.getId(), membresia, cambios);
-            //   }
+//                  
+//                   MembresiaDTO membresia
+//               }
               if(accionSeleccionada.equals("Eliminar")){
                    boolean eliminada = control.eliminarMembresia(membresia.getId());
                    if(eliminada){

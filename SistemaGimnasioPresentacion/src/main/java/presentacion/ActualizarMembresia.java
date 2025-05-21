@@ -152,9 +152,9 @@ public class ActualizarMembresia extends javax.swing.JFrame {
 
     
     private void llenarCampos(){
-        labelNombreOriginal.setText(membresia.getNombre());
-        labelDuracionOriginal.setText(String.valueOf(membresia.getDuracion() / 86400000L));
-        labelCostoOriginal.setText(String.valueOf(membresia.getPrecio()));
+        campoNuevoNombre.setText(membresia.getNombre());
+        campoEditarDuracion.setText(String.valueOf(membresia.getDuracion() / 86400000L));
+        campoEscribirCosto.setText(String.valueOf(membresia.getPrecio()));
         
     }
     
@@ -192,10 +192,7 @@ public class ActualizarMembresia extends javax.swing.JFrame {
         botonActualizar = new javax.swing.JButton();
         labelDias = new javax.swing.JLabel();
         labelCosto = new javax.swing.JLabel();
-        botonDuracion = new javax.swing.JButton();
         labelNombre = new javax.swing.JLabel();
-        botonCosto = new javax.swing.JButton();
-        botonNombre = new javax.swing.JButton();
         labelNombreOriginal = new javax.swing.JLabel();
         labelDuracionOriginal = new javax.swing.JLabel();
         labelCostoOriginal = new javax.swing.JLabel();
@@ -254,33 +251,9 @@ public class ActualizarMembresia extends javax.swing.JFrame {
         labelCosto.setForeground(new java.awt.Color(51, 51, 51));
         labelCosto.setText(" COSTO");
 
-        botonDuracion.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
-        botonDuracion.setText("EDITAR ");
-        botonDuracion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonDuracionActionPerformed(evt);
-            }
-        });
-
         labelNombre.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         labelNombre.setForeground(new java.awt.Color(51, 51, 51));
         labelNombre.setText("NOMBRE DE LA MEMBRESIA");
-
-        botonCosto.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
-        botonCosto.setText("EDITAR ");
-        botonCosto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCostoActionPerformed(evt);
-            }
-        });
-
-        botonNombre.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
-        botonNombre.setText("EDITAR ");
-        botonNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonNombreActionPerformed(evt);
-            }
-        });
 
         labelNombreOriginal.setForeground(new java.awt.Color(0, 0, 0));
         labelNombreOriginal.setText("jLabel1");
@@ -394,36 +367,28 @@ public class ActualizarMembresia extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(labelCostoOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(103, 103, 103))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(labelCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                        .addComponent(botonCosto))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(labelCostoOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(231, 231, 231))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                            .addComponent(labelCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(177, 177, 177))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                            .addGap(8, 8, 8)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(labelNombreOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(botonNombre))))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(panelEscribirDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addComponent(labelDuracionOriginal)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(botonDuracion)))
-                                .addGap(52, 52, 52))
+                                                .addComponent(labelNombreOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(panelEscribirDuracion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                            .addGap(6, 6, 6)
+                                            .addComponent(labelDuracionOriginal)))
+                                    .addGap(0, 0, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(labelDias, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -446,30 +411,23 @@ public class ActualizarMembresia extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelServicios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonNombre)
-                            .addComponent(labelNombreOriginal))
-                        .addGap(3, 3, 3)
+                        .addComponent(labelNombreOriginal)
+                        .addGap(7, 7, 7)
                         .addComponent(panelEscribirNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
                                 .addComponent(labelDias, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonDuracion)
-                                .addGap(36, 36, 36))
+                                .addGap(71, 71, 71))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(labelDuracionOriginal)
                                 .addGap(18, 18, 18)
-                                .addComponent(panelEscribirDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelCosto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                                .addComponent(labelCostoOriginal)))))
+                                .addComponent(panelEscribirDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(labelCosto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addComponent(labelCostoOriginal)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelEscribirCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -573,19 +531,6 @@ public class ActualizarMembresia extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonNombre1ActionPerformed
 
-    private void botonNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNombreActionPerformed
-        rellenarNombre();
-       
-    }//GEN-LAST:event_botonNombreActionPerformed
-
-    private void botonDuracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDuracionActionPerformed
-       rellenarDuracion();
-    }//GEN-LAST:event_botonDuracionActionPerformed
-
-    private void botonCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCostoActionPerformed
-         rellenarCosto();
-    }//GEN-LAST:event_botonCostoActionPerformed
-
     private void campoNuevoNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoNuevoNombreMouseClicked
         campoNuevoNombre.setText("");
     }//GEN-LAST:event_campoNuevoNombreMouseClicked
@@ -626,9 +571,6 @@ public class ActualizarMembresia extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizar;
     private javax.swing.JButton botonAtras;
-    private javax.swing.JButton botonCosto;
-    private javax.swing.JButton botonDuracion;
-    private javax.swing.JButton botonNombre;
     private javax.swing.JButton botonNombre1;
     private javax.swing.JTextField campoEditarDuracion;
     private javax.swing.JTextField campoEscribirCosto;
