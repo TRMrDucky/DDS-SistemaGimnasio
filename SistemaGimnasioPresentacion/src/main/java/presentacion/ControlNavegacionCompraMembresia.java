@@ -558,5 +558,16 @@ public class ControlNavegacionCompraMembresia {
         }
         return null;
     }
+    
+        public void mostrarPantallaRegistroMantenimiento(EquipoDTO equipo) {
+        PantallaRegistroMantenimiento pantalla = new PantallaRegistroMantenimiento(this, equipo);
+        pantalla.setVisible(true);
+    }
+
+    public void mostrarPantallaHistorialMantenimiento(EquipoDTO equipo) {
+        PantallaHistorialMantenimiento pantalla = new PantallaHistorialMantenimiento(this, equipo);
+        pantalla.setVisible(true);
+    }
+
 
 }

@@ -133,13 +133,13 @@ private final ControlNavegacionCompraMembresia control;
         }
     }
 
-    private void abrirRegistroMantenimiento(EquipoDTO equipo) {
-        new PantallaRegistroMantenimiento(control, equipo).setVisible(true);
+        private void abrirRegistroMantenimiento(EquipoDTO equipo) {
+        control.mostrarPantallaRegistroMantenimiento(equipo);
         dispose();
     }
 
     private void abrirHistorialMantenimiento(EquipoDTO equipo) {
-        new PantallaHistorialMantenimiento(control, equipo).setVisible(true);
+        control.mostrarPantallaHistorialMantenimiento(equipo);
         dispose();
     }
 
