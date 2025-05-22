@@ -21,7 +21,7 @@ import java.util.Map;
 public interface IManejadorMembresia {
      public MembresiaDTO agregarMembresia(MembresiaDTO membresia) throws SubsistemaMembresiaException, NombreVacioException, PrecioVacioException, DuracionException;
      public boolean eliminarMembresia(String id) throws SubsistemaMembresiaException;
-     public List<MembresiaDTO> consultarMembresias();
+     public List<MembresiaDTO> consultarMembresias() throws SubsistemaMembresiaException;
      public MembresiaDTO actualizarMembresia(MembresiaDTO membresiaActualizada) throws SubsistemaMembresiaException;
      public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado);
             

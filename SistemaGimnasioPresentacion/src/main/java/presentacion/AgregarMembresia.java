@@ -36,6 +36,7 @@ public class AgregarMembresia extends javax.swing.JFrame {
         initComponents();
         this.control= control;
         cargarServiciosExtras();
+        setLocationRelativeTo(null);
         
     }
     
@@ -111,7 +112,7 @@ public class AgregarMembresia extends javax.swing.JFrame {
         long duracionMilisegundos = duracionDias * 86400000L;
         
          List<ServicioExtraDTO> serviciosSeleccionados = serviciosSeleccionados(); 
-         MembresiaDTO membresia= new MembresiaDTO(nombre, precio, serviciosSeleccionados, EnumEstadoMembresia.ACTIVA, duracionMilisegundos);
+         MembresiaDTO membresia= new MembresiaDTO(nombre, precio, serviciosSeleccionados, EnumEstadoMembresia.ACTIVA, duracionDias);
           System.out.println(membresia);
           System.out.println("Nombre: " + membresia.getNombre());
             System.out.println("Precio: " + membresia.getPrecio());
@@ -135,13 +136,13 @@ public class AgregarMembresia extends javax.swing.JFrame {
 //        }
 //         
         } catch (SubsistemaMembresiaException ex) {
-            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+           JOptionPane.showMessageDialog(this, "Ha ocurrido un error en el sistema al registrar la membresía", "Error del sistema", JOptionPane.ERROR_MESSAGE);
         } catch (NombreVacioException ex) {
-            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "El nombre de la membresía no puede estar vacío", "Error de validación", JOptionPane.ERROR_MESSAGE);
         } catch (PrecioVacioException ex) {
-            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "El precio de la membresía no puede estar vacío", "Error de validación", JOptionPane.ERROR_MESSAGE);
         } catch (DuracionException ex) {
-            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "La duración proporcionada no es válida", "Error de validación", JOptionPane.ERROR_MESSAGE);
         }
     }
 

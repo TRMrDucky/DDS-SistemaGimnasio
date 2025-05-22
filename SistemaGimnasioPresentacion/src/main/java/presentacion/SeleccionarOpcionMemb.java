@@ -17,6 +17,7 @@ public class SeleccionarOpcionMemb extends javax.swing.JFrame {
     public SeleccionarOpcionMemb(ControlNavegacionCompraMembresia control) {
         initComponents();
         this.control= control;
+        setLocationRelativeTo(null);
     }
     
    
