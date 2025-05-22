@@ -35,6 +35,9 @@ import excepciones.RegistroClienteException;
 import excepciones.SubsistemaMantenimientoEquiposException;
 import excepciones.SubsistemaMembresiaException;
 import excepciones.SubsistemaServicioExtraException;
+import excepciones.TamañoNombreEquipoExcedidoException;
+import excepciones.TamañoNumeroSerieExcedidoException;
+import excepciones.TamañoObservacionesExcedidoException;
 import interfaces.IManejadorComprasMembresias;
 import interfaz.IManejadorMantenimientoEquipos;
 import interfaz.IManejadorMembresia;
@@ -69,7 +72,7 @@ public class ControlNavegacionCompraMembresia {
 
     }
 
-    public EquipoDTO registrarEquipo(EquipoDTO equipo) throws NombreEquipoVacioException, NumeroSerieVacioException {
+    public EquipoDTO registrarEquipo(EquipoDTO equipo) throws NombreEquipoVacioException, NumeroSerieVacioException, TamañoNumeroSerieExcedidoException, TamañoNombreEquipoExcedidoException {
         try {
             return subsistemaMantenimientoEquipos.agregarEquipo(equipo);
         } catch (SubsistemaMantenimientoEquiposException e) {
@@ -544,7 +547,7 @@ public class ControlNavegacionCompraMembresia {
         }
     }
 
-    public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) throws IdEquipoVacioException {
+    public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) throws IdEquipoVacioException, TamañoObservacionesExcedidoException {
         try {
             return subsistemaMantenimientoEquipos.registrarMantenimiento(mantenimiento);
         } catch (ObservacionesVaciasException | SubsistemaMantenimientoEquiposException e) {
