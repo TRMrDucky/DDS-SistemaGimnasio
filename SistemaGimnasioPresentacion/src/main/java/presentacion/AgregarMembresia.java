@@ -26,27 +26,28 @@ import javax.swing.JOptionPane;
  * @author janethcristinagalvanquinonez
  */
 public class AgregarMembresia extends javax.swing.JFrame {
-    
+
     private ControlNavegacionCompraMembresia control;
     private List<JCheckBox> listaCheckBoxes = new ArrayList<>();
+
     /**
      * Creates new form AgregarMembresia
      */
     public AgregarMembresia(ControlNavegacionCompraMembresia control) {
         initComponents();
-        this.control= control;
+        this.control = control;
         cargarServiciosExtras();
         setLocationRelativeTo(null);
-        
+
     }
-    
-    private void cargarServiciosExtras(){
+
+    private void cargarServiciosExtras() {
         panelServicios.setLayout(new GridLayout(0, 1));
         panelServicios.removeAll();
-        List<ServicioExtraDTO> servicios= control.obtenerServiciosExtrasDTO();
-    
-        for(ServicioExtraDTO servicio: servicios){
-            JCheckBox serv= new JCheckBox(servicio.getNombreServicio());
+        List<ServicioExtraDTO> servicios = control.obtenerServiciosExtrasDTO();
+
+        for (ServicioExtraDTO servicio : servicios) {
+            JCheckBox serv = new JCheckBox(servicio.getNombreServicio());
             panelServicios.add(serv);
             listaCheckBoxes.add(serv);
             System.out.println(serv);
@@ -54,89 +55,73 @@ public class AgregarMembresia extends javax.swing.JFrame {
         panelServicios.revalidate();
         panelServicios.repaint();
     }
-    
-    private List<ServicioExtraDTO> serviciosSeleccionados(){
+
+    private List<ServicioExtraDTO> serviciosSeleccionados() {
         List<ServicioExtraDTO> serviciosDisponibles = control.obtenerServiciosExtrasDTO();
         return listaCheckBoxes.stream()
                 .filter(JCheckBox::isSelected)
                 .map(check -> serviciosDisponibles.stream()
-                        .filter(serv -> serv.getNombreServicio().equals(check.getText()))
-                        .findFirst().get())
+                .filter(serv -> serv.getNombreServicio().equals(check.getText()))
+                .findFirst().get())
                 .collect(Collectors.toList());
-                        
-                
-    }
-    
-    private void agregarMembresia(){
-        
-        if (control == null) {
-        System.err.println("Error: `control` está NULL antes de agregar la membresía.");
-        return;
-}
 
-        String nombre= campoNombre.getText();
-        String diasString= campoDias.getText().trim();
+    }
+
+    private void agregarMembresia() {
+
+        if (control == null) {
+            System.err.println("Error: `control` está NULL antes de agregar la membresía.");
+            return;
+        }
+
+        String nombre = campoNombre.getText();
+        String diasString = campoDias.getText().trim();
         String costoString = campoCosto.getText().trim();
-//        long duracionDias = Long.parseLong(campoDias.getText());
-//        long duracionMilisegundos = duracionDias * 86400000L;
-//        double precio= Double.parseDouble(campoCosto.getText());
-        
-        if(nombre.isEmpty() || diasString.isEmpty() || costoString.isEmpty()){
+
+        if (nombre.isEmpty() || diasString.isEmpty() || costoString.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-//         long duracionDias = Long.parseLong(campoDias.getText());
-//        long duracionMilisegundos = duracionDias * 86400000L;
-//        double precio= Double.parseDouble(campoCosto.getText());
 
         long duracionDias;
         double precio;
-        
-        try{
+
+        try {
             duracionDias = Long.parseLong(campoDias.getText());
-            precio= Double.parseDouble(campoCosto.getText());
-            
-            if(duracionDias<=0){
+            precio = Double.parseDouble(campoCosto.getText());
+
+            if (duracionDias <= 0) {
                 JOptionPane.showMessageDialog(this, "La duración debe ser mayor a 0 días", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            if(precio<0){
+            if (precio < 0) {
                 JOptionPane.showMessageDialog(this, "El precio no puede ser negativo.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Duración y precio deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         long duracionMilisegundos = duracionDias * 86400000L;
-        
-         List<ServicioExtraDTO> serviciosSeleccionados = serviciosSeleccionados(); 
-         MembresiaDTO membresia= new MembresiaDTO(nombre, precio, serviciosSeleccionados, EnumEstadoMembresia.ACTIVA, duracionDias);
-          System.out.println(membresia);
-          System.out.println("Nombre: " + membresia.getNombre());
-            System.out.println("Precio: " + membresia.getPrecio());
-            System.out.println("Servicios: " + membresia.getServiciosExtra());
-            System.out.println("Duración en milisegundos: " + membresia.getDuracion());
+
+        List<ServicioExtraDTO> serviciosSeleccionados = serviciosSeleccionados();
+        MembresiaDTO membresia = new MembresiaDTO(nombre, precio, serviciosSeleccionados, EnumEstadoMembresia.ACTIVA, duracionDias);
+        System.out.println(membresia);
+        System.out.println("Nombre: " + membresia.getNombre());
+        System.out.println("Precio: " + membresia.getPrecio());
+        System.out.println("Servicios: " + membresia.getServiciosExtra());
+        System.out.println("Duración en milisegundos: " + membresia.getDuracion());
 
         try {
             // try {
             control.agregarMembresia(membresia);
             JOptionPane.showMessageDialog(this, "Membresia guardada", "Exito", JOptionPane.INFORMATION_MESSAGE);
             dispose();
-           
-//        } catch (SubsistemaMembresiaException ex) {
-//            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (NombreVacioException ex) {
-//            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (PrecioVacioException ex) {
-//            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (DuracionException ex) {
-//            Logger.getLogger(AgregarMembresia.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
+//        
 //         
         } catch (SubsistemaMembresiaException ex) {
-           JOptionPane.showMessageDialog(this, "Ha ocurrido un error en el sistema al registrar la membresía", "Error del sistema", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error en el sistema al registrar la membresía", "Error del sistema", JOptionPane.ERROR_MESSAGE);
         } catch (NombreVacioException ex) {
             JOptionPane.showMessageDialog(this, "El nombre de la membresía no puede estar vacío", "Error de validación", JOptionPane.ERROR_MESSAGE);
         } catch (PrecioVacioException ex) {
@@ -362,19 +347,18 @@ public class AgregarMembresia extends javax.swing.JFrame {
     }//GEN-END:initComponents
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-       agregarMembresia();
-       
+        agregarMembresia();
+
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
-         control.openFormOpcionesModuloMembresia();
-         dispose();
+        control.openFormOpcionesModuloMembresia();
+        dispose();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregar;

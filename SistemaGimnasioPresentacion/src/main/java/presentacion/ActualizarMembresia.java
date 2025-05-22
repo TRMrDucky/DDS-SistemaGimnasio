@@ -27,173 +27,104 @@ import javax.swing.JTextField;
  */
 public class ActualizarMembresia extends javax.swing.JFrame {
 
-     private ControlNavegacionCompraMembresia control;
-     private MembresiaDTO membresia;
+    private ControlNavegacionCompraMembresia control;
+    private MembresiaDTO membresia;
+
     /**
      * Creates new form ActualizarMembresia
      */
     public ActualizarMembresia(ControlNavegacionCompraMembresia control, MembresiaDTO membresia) {
         initComponents();
-        this.control= control;
-        this.membresia= membresia;
+        this.control = control;
+        this.membresia = membresia;
         cargarServiciosExtras();
         serviciosSeleccionados();
         llenarCampos();
         setLocationRelativeTo(null);
     }
-    
-    private void cargarServiciosExtras(){
+
+    private void cargarServiciosExtras() {
         panelServicios.setLayout(new GridLayout(0, 1));
         panelServicios.removeAll();
-        List<ServicioExtraDTO> servicios= control.obtenerServiciosExtrasDTO();
-//        List<String> serviciosActuales = membresia.getServiciosExtra().stream()
-//                .map(ServicioExtraDTO::getNombreServicio)
-//                .toList();
-        
-        for(ServicioExtraDTO servicio: servicios){
-            JCheckBox serv= new JCheckBox(servicio.getNombreServicio());
-          ///  serv.setSelected(serviciosActuales.contains(servicio.getNombreServicio()));
-            
+        List<ServicioExtraDTO> servicios = control.obtenerServiciosExtrasDTO();
+
+        for (ServicioExtraDTO servicio : servicios) {
+            JCheckBox serv = new JCheckBox(servicio.getNombreServicio());
+
             panelServicios.add(serv);
-//            listaCheckBoxes.add(serv);
-           // System.out.println(serv);
+
         }
         panelServicios.revalidate();
         panelServicios.repaint();
-//        panelEscribirNombre.setVisible(false);
-//         panelEscribirCosto.setVisible(false);
-//         panelEscribirDuracion.setVisible(false);
-         
+
     }
-    
-    private void cargarMembresia(){
+
+    private void cargarMembresia() {
         panelEscribirNombre.add(new JTextField(membresia.getNombre()));
-        
-        
+
     }
-    
-    
-    private void serviciosSeleccionados(){
-       List<String> serviciosMemb = membresia.getServiciosExtra().stream()
-                                          .map(ServicioExtraDTO::getNombreServicio)
-                                          .toList();
-       for (Component comp : panelServicios.getComponents()) {
-           
-           if (comp instanceof JCheckBox checkBox) {
+
+    private void serviciosSeleccionados() {
+        List<String> serviciosMemb = membresia.getServiciosExtra().stream()
+                .map(ServicioExtraDTO::getNombreServicio)
+                .toList();
+        for (Component comp : panelServicios.getComponents()) {
+
+            if (comp instanceof JCheckBox checkBox) {
                 checkBox.setSelected(serviciosMemb.contains(checkBox.getText()));
-           }
-           
-
-        }
-        
-    }
-    
-    private void actualizarMembresia(){
-         try {
-             String nuevoNombre = campoNuevoNombre.getText().trim();
-             String nuevaDuracion = campoEditarDuracion.getText().trim();
-             String nuevoCosto = campoEscribirCosto.getText().trim();
-             
-//         Map<String, Object> cambios = new HashMap<>();
-//         if (!nuevoNombre.isBlank()&& !nuevoNombre.isEmpty() && !nuevoNombre.equals("Escribir nombre...") ) {
-//             membresia.setNombre(nuevoNombre);
-//             cambios.put("nombre", nuevoNombre);
-//         }
-//         if (!nuevaDuracion.isBlank() && !nuevaDuracion.equals("Escribir duracion..." )) {
-//             long nuevaDuracionMilisegundos = Long.parseLong(nuevaDuracion) * 86400000L;
-//             membresia.setDuracion(nuevaDuracionMilisegundos);
-//             cambios.put("duracion", nuevaDuracionMilisegundos);
-//             
-//         }
-//         
-//         if (!nuevoCosto.isBlank() && !nuevoCosto.equals("Escribir costo...")) {
-//             double nuevoPrecio = Double.parseDouble(nuevoCosto);
-//              membresia.setPrecio(nuevoPrecio);
-//              cambios.put("precio", nuevoPrecio);
-//              
-//         }
-
-// MembresiaDTO nuevaMembresia= new MembresiaDTO(nuevoNombre, ERROR, serviciosExtra, nuevaDuracion);
-    List<ServicioExtraDTO> nuevosServicios = new ArrayList<>();
-    List<ServicioExtraDTO> serviciosDisponibles = control.obtenerServiciosExtrasDTO();
-
-    for (Component comp : panelServicios.getComponents()) {
-        if (comp instanceof JCheckBox checkBox && checkBox.isSelected()) {
-            for (ServicioExtraDTO servicio : serviciosDisponibles) {
-                if (servicio.getNombreServicio().equals(checkBox.getText())) {
-                    servicio.setId(membresia.getServiciosExtra().stream()
-                            .filter(s -> s.getNombreServicio().equals(servicio.getNombreServicio()))
-                            .map(ServicioExtraDTO::getId)
-                            .findFirst()
-                            .orElse(servicio.getId()));
-                    nuevosServicios.add(servicio);
-                    break;
-
-                }
             }
 
         }
+
     }
-    MembresiaDTO nuevaMembresia= new MembresiaDTO(nuevoNombre, membresia.getId(), Double.parseDouble(nuevoCosto), nuevosServicios, membresia.getEstado(), Long.valueOf(nuevaDuracion));
-    control.actualizarMembresia(nuevaMembresia);
-     JOptionPane.showMessageDialog(this, "Membresia actualizada", "Exito", JOptionPane.INFORMATION_MESSAGE);
-    dispose();
-//              membresia.setServiciosExtra(nuevosServicios);
-//              cambios.put("serviciosExtra", nuevosServicios);
 
+    private void actualizarMembresia() {
+        try {
+            String nuevoNombre = campoNuevoNombre.getText().trim();
+            String nuevaDuracion = campoEditarDuracion.getText().trim();
+            String nuevoCosto = campoEscribirCosto.getText().trim();
 
+            List<ServicioExtraDTO> nuevosServicios = new ArrayList<>();
+            List<ServicioExtraDTO> serviciosDisponibles = control.obtenerServiciosExtrasDTO();
 
-//         if (!cambios.isEmpty()) {
-//             try{
-//                  control.actualizarMembresia(membresia.getId(), cambios);
-//                  labelNombreOriginal.setText(nuevoNombre);
-//                   labelDuracionOriginal.setText(nuevaDuracion);
-//                   labelCostoOriginal.setText(nuevoCosto);
-//                   JOptionPane.showMessageDialog(this, "membresía actualizada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-//            } catch(SubsistemaMembresiaException e){
-//                JOptionPane.showMessageDialog(this, "error al actualizar membresia" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//
-//
-//                  
-//             }
-//         }
-         } catch (SubsistemaMembresiaException ex) {
-              JOptionPane.showMessageDialog(this, "Ha ocurrido un error en el sistema al actualizar la membresía", "Error del sistema", JOptionPane.ERROR_MESSAGE);
-         } catch (PrecioVacioException ex) {
-             JOptionPane.showMessageDialog(this, "El precio de la membresía no puede ser menor a 0", "Error de validación", JOptionPane.ERROR_MESSAGE);
-         } catch (DuracionException ex) {
-             JOptionPane.showMessageDialog(this, "La duración debe ser de minimo 1 dia", "Error de validación", JOptionPane.ERROR_MESSAGE);
-         }
-         
-         }
-        
-    
+            for (Component comp : panelServicios.getComponents()) {
+                if (comp instanceof JCheckBox checkBox && checkBox.isSelected()) {
+                    for (ServicioExtraDTO servicio : serviciosDisponibles) {
+                        if (servicio.getNombreServicio().equals(checkBox.getText())) {
+                            servicio.setId(membresia.getServiciosExtra().stream()
+                                    .filter(s -> s.getNombreServicio().equals(servicio.getNombreServicio()))
+                                    .map(ServicioExtraDTO::getId)
+                                    .findFirst()
+                                    .orElse(servicio.getId()));
+                            nuevosServicios.add(servicio);
+                            break;
 
-    
-    private void llenarCampos(){
+                        }
+                    }
+
+                }
+            }
+            MembresiaDTO nuevaMembresia = new MembresiaDTO(nuevoNombre, membresia.getId(), Double.parseDouble(nuevoCosto), nuevosServicios, membresia.getEstado(), Long.valueOf(nuevaDuracion));
+            control.actualizarMembresia(nuevaMembresia);
+            JOptionPane.showMessageDialog(this, "Membresia actualizada", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+
+        } catch (SubsistemaMembresiaException ex) {
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error en el sistema al actualizar la membresía", "Error del sistema", JOptionPane.ERROR_MESSAGE);
+        } catch (PrecioVacioException ex) {
+            JOptionPane.showMessageDialog(this, "El precio de la membresía no puede ser menor a 0", "Error de validación", JOptionPane.ERROR_MESSAGE);
+        } catch (DuracionException ex) {
+            JOptionPane.showMessageDialog(this, "La duración debe ser de minimo 1 dia", "Error de validación", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+
+    private void llenarCampos() {
         campoNuevoNombre.setText(membresia.getNombre());
-        campoEditarDuracion.setText(String.valueOf(membresia.getDuracion() ));
+        campoEditarDuracion.setText(String.valueOf(membresia.getDuracion()));
         campoEscribirCosto.setText(String.valueOf(membresia.getPrecio()));
-        
+
     }
-    
-//    private void rellenarNombre(){
-//        panelEscribirNombre.setVisible(true);
-//       // String nombre= campoNuevoNombre.getText();
-//    }
-//    
-//    private void rellenarCosto(){
-//        panelEscribirCosto.setVisible(true);
-//      //  String costo= campoEscribirCosto.getText();
-//    }
-//    
-//    private void rellenarDuracion(){
-//        panelEscribirDuracion.setVisible(true);
-//      //  String duracion= campoEditarDuracion.getText();
-//    }
-//            
-            
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -496,31 +427,31 @@ public class ActualizarMembresia extends javax.swing.JFrame {
     }//GEN-LAST:event_botonNombre1ActionPerformed
 
     private void campoNuevoNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoNuevoNombreMouseClicked
-       // campoNuevoNombre.setText("");
+
     }//GEN-LAST:event_campoNuevoNombreMouseClicked
 
     private void campoEscribirCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEscribirCostoActionPerformed
-      
+
     }//GEN-LAST:event_campoEscribirCostoActionPerformed
 
     private void campoEscribirCostoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoEscribirCostoMouseClicked
-       // campoEscribirCosto.setText("");
+
     }//GEN-LAST:event_campoEscribirCostoMouseClicked
 
     private void campoEditarDuracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEditarDuracionActionPerformed
-       
+
     }//GEN-LAST:event_campoEditarDuracionActionPerformed
 
     private void campoEditarDuracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoEditarDuracionMouseClicked
-     //   campoEditarDuracion.setText("");
+
     }//GEN-LAST:event_campoEditarDuracionMouseClicked
 
     private void campoNuevoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNuevoNombreActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_campoNuevoNombreActionPerformed
 
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
-       actualizarMembresia();
+        actualizarMembresia();
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
@@ -531,7 +462,6 @@ public class ActualizarMembresia extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizar;
