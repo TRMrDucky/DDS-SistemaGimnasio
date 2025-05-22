@@ -551,7 +551,8 @@ public class ControlNavegacionCompraMembresia {
                FechaMantenimientoNulaException,
                TipoMantenimientoVacioException,
                FechaSeguimientoNulaException,
-               CostoInvalidoException {
+               CostoInvalidoException,
+               ObservacionesVaciasException {
     try {
         return subsistemaMantenimientoEquipos.registrarMantenimiento(mantenimiento);
     } catch (SubsistemaMantenimientoEquiposException e) {
