@@ -6,6 +6,8 @@ package presentacion;
 
 import dtos.MembresiaDTO;
 import dtos.ServicioExtraDTO;
+import excepciones.DuracionException;
+import excepciones.PrecioVacioException;
 import excepciones.SubsistemaMembresiaException;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -155,6 +157,10 @@ public class ActualizarMembresia extends javax.swing.JFrame {
 //             }
 //         }
          } catch (SubsistemaMembresiaException ex) {
+             Logger.getLogger(ActualizarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (PrecioVacioException ex) {
+             Logger.getLogger(ActualizarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (DuracionException ex) {
              Logger.getLogger(ActualizarMembresia.class.getName()).log(Level.SEVERE, null, ex);
          }
          

@@ -10,6 +10,8 @@ import dtos.ClienteRegConMembDTO;
 import dtos.ClienteRegistradoDTO;
 import dtos.MembresiaDTO;
 import dtos.ServicioExtraDTO;
+import excepciones.DuracionException;
+import excepciones.PrecioVacioException;
 import excepciones.SubsistemaMembresiaException;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -237,6 +239,10 @@ public class ConsultarMembresias extends javax.swing.JFrame {
         } catch(SubsistemaMembresiaException e){
             JOptionPane.showMessageDialog(null, "Error en el sistema de membresías: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
+        } catch (PrecioVacioException ex) {
+            Logger.getLogger(ConsultarMembresias.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DuracionException ex) {
+            Logger.getLogger(ConsultarMembresias.class.getName()).log(Level.SEVERE, null, ex);
         } 
             
         }
@@ -425,6 +431,10 @@ public class ConsultarMembresias extends javax.swing.JFrame {
               
                
            } catch (SubsistemaMembresiaException ex) {
+               Logger.getLogger(ConsultarMembresias.class.getName()).log(Level.SEVERE, null, ex);
+           } catch (PrecioVacioException ex) {
+               Logger.getLogger(ConsultarMembresias.class.getName()).log(Level.SEVERE, null, ex);
+           } catch (DuracionException ex) {
                Logger.getLogger(ConsultarMembresias.class.getName()).log(Level.SEVERE, null, ex);
            }
                
