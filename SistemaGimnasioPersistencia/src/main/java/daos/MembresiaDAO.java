@@ -41,6 +41,15 @@ import java.util.Map;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+
+/** clase DAO que se comunica con la base de datos, implementa la interfaz 
+ * IMembresiaDAO para asegurar el desacoplamientoe incluye metodos 
+ * que se necesitan para realizar las operaciones que se le ofrecen al usuario como agregar membresias,
+ * eliminarlas, actualizarlas
+ * 
+ */
+
+
 /**
  *
  * @author janethcristinagalvanquinonez
