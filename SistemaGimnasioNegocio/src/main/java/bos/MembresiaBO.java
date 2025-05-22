@@ -10,6 +10,7 @@ import dtos.MembresiaDTO;
 import dtos.ServicioExtraDTO;
 import excepciones.ActualizarMembresiaException;
 import excepciones.AgregarMembresiaException;
+import excepciones.ConsultarMembPorEstadoException;
 import excepciones.ConsultarMembresiasDesactivadasException;
 import excepciones.ConsultarMembresiasException;
 import excepciones.EditarServicioEnMembresiaException;
@@ -75,19 +76,24 @@ public class MembresiaBO implements IMembresiaBO {
     }
     
     
-     public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado){
+     public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado) throws NegocioException{
+         try{
         return membresiaDAO.consultarMembresiasPorEstado(estado)
                 .stream()
                 .map(MembresiaMapper::toDTO)
                 .collect(Collectors.toList());
+         } catch(ConsultarMembPorEstadoException e){
+             throw new NegocioException("Error al consultar membresias por estados", e.getCause());
+         }
     }
     
     @Override
     public boolean eliminarMembresia(String id) throws NegocioException{
         try {
             return membresiaDAO.eliminarMembresia(id);
-        } catch (EliminarMembresiaException ex) {
-            return false;
+        } catch (EliminarMembresiaException e) {
+            throw new NegocioException("Error al eliminar membresia", e.getCause());
+           
         }
         
     }
@@ -101,20 +107,20 @@ public class MembresiaBO implements IMembresiaBO {
         }
     }
     
-    public boolean eliminarServicioDeMembresias(String idServicio)throws  EliminarServicioDeMembresiasException{
+    public boolean eliminarServicioDeMembresias(String idServicio)throws NegocioException{
         try{
             return membresiaDAO.eliminarServicioDeMembresias(idServicio);
         } catch(EliminarServicioDeMembresiasException e){
-            throw new EliminarServicioDeMembresiasException("Error al eliminar servicio de membresia");
+            throw new NegocioException("Error al eliminar servicio de membresia");
         }
     }
     
-    public boolean editarServicioDeMembresias(String idServicio, ServicioExtraDTO servicioActualizado) throws EditarServicioEnMembresiaException{
+    public boolean editarServicioDeMembresias(String idServicio, ServicioExtraDTO servicioActualizado) throws NegocioException{
         try{
             return membresiaDAO.editarServicioEnMembresias(idServicio, ServicioExtraMapper.toEntity(servicioActualizado));
             
         } catch(EditarServicioEnMembresiaException e){
-            throw new EditarServicioEnMembresiaException("error al editar servicio en membresia");
+            throw new NegocioException("error al editar servicio en membresia");
         }
     }
 

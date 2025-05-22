@@ -56,6 +56,7 @@ public class ConsultarMembresias extends javax.swing.JFrame {
     private List<JCheckBox> listaCheckBoxes = new ArrayList<>();
     
     public void cargarMembresias(){
+        try{
         List<MembresiaDTO> membresias= control.consultarMembresias();
         switch (accionSeleccionada) {
             case "Activar":
@@ -122,6 +123,10 @@ public class ConsultarMembresias extends javax.swing.JFrame {
 
        panelPrincipal.revalidate();
        panelPrincipal.repaint();
+    } catch(Exception e){
+        JOptionPane.showMessageDialog(this, "Error al consultar membresías: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
+    }
     }
     
     private List<MembresiaDTO> membresiasSeleccionadas(){
@@ -138,6 +143,7 @@ public class ConsultarMembresias extends javax.swing.JFrame {
            
     }
     private void accion(String accion, String idMembresia, MembresiaDTO membresia) throws SubsistemaMembresiaException{
+        try{
         boolean resultado= false;
         switch(accion){
             case "Eliminar":
@@ -228,8 +234,13 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                 
 
         }
-        
-    }
+        } catch(SubsistemaMembresiaException e){
+            JOptionPane.showMessageDialog(null, "Error en el sistema de membresías: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        } 
+            
+        }
+    
     
 
     /**

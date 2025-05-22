@@ -20,7 +20,7 @@ public interface IMembresiaBO {
      public List<MembresiaDTO> consultarMembresias() throws NegocioException;
      public boolean eliminarMembresia(String id) throws NegocioException;
      public MembresiaDTO actualizarMembresia(MembresiaDTO membresiaActualizada) throws NegocioException;
-     public boolean eliminarServicioDeMembresias(String idServicio)throws  EliminarServicioDeMembresiasException;
-      public boolean editarServicioDeMembresias(String idServicio, ServicioExtraDTO servicioActualizado) throws EditarServicioEnMembresiaException;
-      public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado);
+     public boolean eliminarServicioDeMembresias(String idServicio)throws  NegocioException;
+      public boolean editarServicioDeMembresias(String idServicio, ServicioExtraDTO servicioActualizado) throws NegocioException;
+      public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado) throws NegocioException;
 }

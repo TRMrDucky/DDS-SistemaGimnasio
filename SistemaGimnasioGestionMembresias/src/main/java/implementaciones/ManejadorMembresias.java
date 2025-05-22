@@ -8,6 +8,7 @@ import Enumeradores.EnumEstadoMembresia;
 import bos.FabricaBOs;
 import clases.mock.Membresia;
 import dtos.MembresiaDTO;
+import excepciones.ActualizarMembresiaException;
 import excepciones.DuracionException;
 import excepciones.NegocioException;
 import excepciones.NombreVacioException;
@@ -77,8 +78,12 @@ public class ManejadorMembresias implements IManejadorMembresia{
         }
     }
     
-    public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado){
+    public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado) throws SubsistemaMembresiaException{
+        try{
         return membresiaBO.consultarMembresiasPorEstado(estado);
+        } catch (NegocioException e){
+            throw new SubsistemaMembresiaException("error al consultar membresias por estado", e.getCause());
+        }
     }
     
     
@@ -89,7 +94,7 @@ public class ManejadorMembresias implements IManejadorMembresia{
          }
          return membresiaBO.eliminarMembresia(id);
         } catch(NegocioException e){
-            return false;
+            throw new SubsistemaMembresiaException("error al eliminar membresias", e.getCause()); 
         }
          
     }
@@ -105,10 +110,10 @@ public class ManejadorMembresias implements IManejadorMembresia{
             }
            
             return membresiaBO.actualizarMembresia(membresiaActualizada);
-        } catch (NegocioException ex) {
-         //   Logger.getLogger(ManejadorMembresias.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NegocioException e) {
+           throw new SubsistemaMembresiaException("error al actualizar membresias", e.getCause());
         }
-        return null;
+      
         
     }
     

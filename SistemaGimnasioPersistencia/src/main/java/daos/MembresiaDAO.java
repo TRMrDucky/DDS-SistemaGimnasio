@@ -24,6 +24,7 @@ import excepciones.ActualizarMembresiaException;
 
 import excepciones.ConsultarServiciosExtraException;
 import excepciones.AgregarMembresiaException;
+import excepciones.ConsultarMembPorEstadoException;
 import excepciones.ConsultarMembresiasDesactivadasException;
 import excepciones.ConsultarMembresiasException;
 import excepciones.EditarServicioEnMembresiaException;
@@ -102,26 +103,27 @@ public class MembresiaDAO implements IMembresiaDAO {
         MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
         return coleccion.find().into(new ArrayList<>()); 
        } catch(Exception e){
-           throw new ConsultarMembresiasException("Error al consultar membresias, e");
+           throw new ConsultarMembresiasException("Error al consultar membresias", e);
        }
         
     }
     
-    public List<Membresia> consultarMembresiasPorEstado(EnumEstadoMembresia estado){
+    public List<Membresia> consultarMembresiasPorEstado(EnumEstadoMembresia estado) throws ConsultarMembPorEstadoException{
+        try{
         MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
         return coleccion.find(Filters.eq("estado", estado.name())).into(new ArrayList<>());
+        } catch(Exception e){
+            throw new ConsultarMembPorEstadoException("Error al consultar membresias por estado", e);
+        }
     }
-    
+   
     public boolean eliminarMembresia(String id) throws EliminarMembresiaException{
         try{
-            
         MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
         ObjectId objectId = new ObjectId(id);
         DeleteResult resultado = coleccion.deleteOne(Filters.eq("_id", objectId));
         return resultado.getDeletedCount() > 0;
-        
         } catch(Exception e){
-            
             throw new EliminarMembresiaException("Error al eliminar membresia", e);
         }
        

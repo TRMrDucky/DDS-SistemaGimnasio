@@ -9,6 +9,7 @@ import clases.mock.Membresia;
 import clases.mock.ServicioExtra;
 import excepciones.ActualizarMembresiaException;
 import excepciones.AgregarMembresiaException;
+import excepciones.ConsultarMembPorEstadoException;
 import excepciones.ConsultarMembresiasDesactivadasException;
 import excepciones.ConsultarMembresiasException;
 import excepciones.ConsultarServiciosExtraException;
@@ -34,6 +35,6 @@ public interface IMembresiaDAO {
      public Membresia actualizarMembresia(Membresia membresiaActualizada) throws ActualizarMembresiaException;
      public boolean eliminarServicioDeMembresias(String idServicio) throws EliminarServicioDeMembresiasException;
      public boolean editarServicioEnMembresias(String idServicio, ServicioExtra servicioActualizado) throws EditarServicioEnMembresiaException;
-      public List<Membresia> consultarMembresiasPorEstado(EnumEstadoMembresia estado);
+      public List<Membresia> consultarMembresiasPorEstado(EnumEstadoMembresia estado) throws ConsultarMembPorEstadoException;
      
 }
