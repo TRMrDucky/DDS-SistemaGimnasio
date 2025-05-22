@@ -12,25 +12,32 @@ import excepciones.ConsultarServicioExtraNegocioException;
 import excepciones.ConsultarServicioExtraSubsistemaException;
 import excepciones.EditarServicioExtraNegocioException;
 import excepciones.EditarServicioExtraSubsitemaException;
-import excepciones.NegocioException;
 import excepciones.SubsistemaServicioExtraException;
 import interfaces.bo.IServicioExtraBO;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import interfaz.IManejadorServiciosExtra;
 
 /**
- *
+ * Clase encargada de manejar las operaciones del subsistema relacionadas con los servicios extra.
+ * Implementa la interfaz IManejadorServiciosExtra y realiza validaciones antes de delegar a la capa de negocio.
  * @author Ramón Zamudio
  */
 public class ManejadorServicioExtra implements IManejadorServiciosExtra{
     private IServicioExtraBO servicioExtraBO;
-
+    /**
+     * Constructor por defecto. Obtiene la instancia del BO de servicios extra desde la fábrica.
+     */
     public ManejadorServicioExtra() {
         this.servicioExtraBO = FabricaBOs.getInstanceServicioExtraBO();
     }
     
+    /**
+     * Obtiene un servicio extra por su ID.
+     *
+     * @param id ID del servicio
+     * @return ServicioExtraDTO correspondiente
+     * @throws ConsultarServicioExtraSubsistemaException si ocurre un error al consultar
+     */
     @Override
     public ServicioExtraDTO obtenerServicioExtra(String id)throws ConsultarServicioExtraSubsistemaException {
         try {
@@ -40,6 +47,13 @@ public class ManejadorServicioExtra implements IManejadorServiciosExtra{
         }
     }
 
+    /**
+     * Agrega un nuevo servicio extra después de validar los datos.
+     *
+     * @param servicio el objeto a agregar
+     * @return ServicioExtraDTO agregado
+     * @throws AgregarServicioExtraSubsistemaException si hay errores en validación o en la lógica de negocio
+     */
     @Override
     public ServicioExtraDTO agregarServicio(ServicioExtraDTO servicio)throws AgregarServicioExtraSubsistemaException{
         try {
@@ -61,6 +75,13 @@ public class ManejadorServicioExtra implements IManejadorServiciosExtra{
         }
     }
 
+    /**
+     * Edita un servicio extra existente tras realizar validaciones.
+     *
+     * @param servicio el servicio actualizado
+     * @return ServicioExtraDTO editado
+     * @throws EditarServicioExtraSubsitemaException si ocurre un error en validaciones o negocio
+     */
     @Override
     public ServicioExtraDTO editarServicio(ServicioExtraDTO servicio) throws EditarServicioExtraSubsitemaException{
         if(validarServicioNulo(servicio)){
@@ -82,6 +103,13 @@ public class ManejadorServicioExtra implements IManejadorServiciosExtra{
         }
     }
 
+    /**
+     * Elimina un servicio extra por su ID tras validarlo.
+     *
+     * @param id ID del servicio a eliminar
+     * @return true si se eliminó correctamente, false en caso contrario
+     * @throws SubsistemaServicioExtraException si el ID es inválido
+     */
     @Override
     public boolean eliminarServicioExtra(String id)throws SubsistemaServicioExtraException {
         try {
@@ -94,6 +122,12 @@ public class ManejadorServicioExtra implements IManejadorServiciosExtra{
         }
     }
 
+    /**
+     * Obtiene una lista de todos los servicios extra.
+     *
+     * @return lista de objetos ServicioExtraDTO
+     * @throws ConsultarServicioExtraSubsistemaException si ocurre un error al consultar
+     */
     @Override
     public List<ServicioExtraDTO> obtenerServiciosExtrasDTO() throws ConsultarServicioExtraSubsistemaException{
         try {
@@ -102,23 +136,37 @@ public class ManejadorServicioExtra implements IManejadorServiciosExtra{
             throw new ConsultarServicioExtraSubsistemaException("", ex);
         }
     }
-    
+    /**
+     * Valida si el servicio recibido es nulo.
+     */
     public boolean validarServicioNulo(ServicioExtraDTO servicio){
         return servicio == null;
     }
-    
+    /**
+     * Valida si el nombre del servicio es vacío.
+     */
     public boolean validarNombreVacio(String nombre){
         return nombre.isEmpty();
     }
-    
+    /**
+     * Valida si el precio del servicio es negativo.
+     */
     public boolean validarPrecioNulo(double precio){
         return precio<0;
     }
-    
+    /**
+     * Valida si el ID del servicio es vacío.
+     */
     public boolean validarIdNulo(String id){
         return id.isEmpty();
     }
-    
+    /**
+     * Verifica si el nombre de un servicio ya está en uso.
+     *
+     * @param nombre nombre del servicio a verificar
+     * @return true si el nombre ya existe, false en caso contrario
+     * @throws ConsultarServicioExtraSubsistemaException si ocurre un error en la obtención de datos
+     */
     public boolean validarNombreServicioRepetido(String nombre)throws ConsultarServicioExtraSubsistemaException{
         List<ServicioExtraDTO> servicios;
         try {

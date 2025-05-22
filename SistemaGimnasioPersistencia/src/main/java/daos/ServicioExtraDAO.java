@@ -30,7 +30,10 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
     
     private ServicioExtraDAO() {
     }
-    
+    /**
+     * Obtiene la instancia única de ServicioExtraDAO.
+     * @return instancia única de ServicioExtraDAO
+     */
     public static ServicioExtraDAO getInstance() {
         if (instancia == null) {
             instancia = new ServicioExtraDAO();
@@ -39,7 +42,11 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
     }
     
     
-    
+    /**
+     * Consulta todos los servicios extra almacenados en la base de datos.
+     * @return lista de servicios extra
+     * @throws ConsultarServiciosExtraException si ocurre un error al consultar
+     */
     @Override
     public List<ServicioExtra> obtenerServiciosExtras()throws ConsultarServiciosExtraException{
         try {
@@ -50,7 +57,12 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
             throw new ConsultarServiciosExtraException("Error al consultar los servicios extra", e);
         }
     }
-
+    /**
+     * Consulta un servicio extra por su ID.
+     * @param id ID del servicio extra
+     * @return servicio extra encontrado o null si no existe
+     * @throws ConsultarServiciosExtraException si ocurre un error durante la consulta
+     */
     @Override
     public ServicioExtra obtenerServicioExtra(String id)throws ConsultarServiciosExtraException{
         try{
@@ -62,6 +74,12 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
         }
     }
     
+    /**
+     * Agrega un nuevo servicio extra a la base de datos.
+     * @param servicio objeto ServicioExtra a agregar
+     * @return el mismo objeto ServicioExtra agregado
+     * @throws AgregarServicioExtraException si ocurre un error al insertar
+     */
     @Override
     public ServicioExtra agregarServicio(ServicioExtra servicio)throws AgregarServicioExtraException{
         try{
@@ -73,6 +91,12 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
         }
     }
 
+    /**
+     * Edita un servicio extra existente en la base de datos.
+     * @param servicio objeto ServicioExtra con la información actualizada
+     * @return el objeto ServicioExtra editado
+     * @throws EditarServicioExtraException si ocurre un error durante la actualización
+     */
     @Override
     public ServicioExtra editarServicio(ServicioExtra servicio)throws EditarServicioExtraException {
         try{
@@ -94,6 +118,12 @@ public class ServicioExtraDAO implements IServicioExtraDAO {
         }
     }
 
+    /**
+     * Elimina un servicio extra de la base de datos por su ID.
+     * @param id ID del servicio a eliminar
+     * @return true si fue eliminado correctamente
+     * @throws EliminarServicioExtraException si ocurre un error durante la eliminación
+     */
     @Override
     public boolean eliminarServicioExtra(String id) throws EliminarServicioExtraException{
         try{
