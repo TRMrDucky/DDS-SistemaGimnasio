@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import DTOs.ReporteAsistenciaDTO;
 import Enumeradores.EnumEstadoMembresia;
 import Enums.MetodosPagoEnum;
 import Interfaz.ISubsistemaModificarCliente;
@@ -51,7 +52,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import interfaz.IManejadorServiciosExtra;
-import java.util.Map;
 
 /**
  *
@@ -625,6 +625,8 @@ public class ControlNavegacionCompraMembresia {
         registro.setVisible(true);
     }
     
-     
+    public void openFormReporteAsistencia (ReporteAsistenciaDTO cliente){
+        ReporteAsistencia reporte = new ReporteAsistencia(cliente, this);
+    }
 
 }

@@ -4,7 +4,6 @@
  */
 package presentacion;
 
-import dtos.ClienteDTO;
 import dtos.ClienteRegistradoDTO;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
@@ -57,7 +56,7 @@ public class BuscarCliente extends JFrame {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
-            }
+            }   
         };
 
         tablaClientes = new JTable(modeloTabla);

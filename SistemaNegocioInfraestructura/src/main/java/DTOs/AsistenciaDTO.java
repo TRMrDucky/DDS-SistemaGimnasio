@@ -22,6 +22,11 @@ public class AsistenciaDTO {
         this.fecha = fecha;
     }
 
+    public AsistenciaDTO(String nombres, String apellidos) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+    }
+
     public AsistenciaDTO() {
     }
 

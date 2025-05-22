@@ -4,20 +4,31 @@
  */
 package presentacion;
 
+import DTOs.AsistenciaDTO;
 import Entidad.Asistencia;
 import interfaces.infraestructura.IAsistencia;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author 52644
  */
 public class RegistrarAsistencia extends javax.swing.JFrame {
-
-    IAsistencia asistencia;
+    
+    private ControlNavegacionCompraMembresia control;
+    private IAsistencia asistencia;
     
     /**
      * Creates new form RegistrarAsistencia
      */
+    public RegistrarAsistencia(ControlNavegacionCompraMembresia control){
+        this.control = control;
+        initComponents();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.asistencia = Asistencia.getInstance();
+    }
+    
     public RegistrarAsistencia() {
         initComponents();
         setLocationRelativeTo(null);
@@ -62,6 +73,11 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
         });
 
         btnGenerarReporte.setText("Generar reporte");
+        btnGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarReporteActionPerformed(evt);
+            }
+        });
 
         txtFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,8 +140,18 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegistrarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAsistenciaActionPerformed
-        asistencia.registrarAsistencia(txtFiltro.getText());
+        if(txtFiltro.getText()==null){
+            JOptionPane.showMessageDialog(null, "El campo no puede permanecer vacío0", "Advertencia", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        AsistenciaDTO asis = asistencia.registrarAsistencia(txtFiltro.getText());
+        JOptionPane.showMessageDialog(null, asis.toString(), "Registro de Asistencia", JOptionPane.INFORMATION_MESSAGE);
+        txtFiltro.setText(null);
     }//GEN-LAST:event_btnRegistrarAsistenciaActionPerformed
+
+    private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
+       control.openFormReporteAsistencia(asistencia.generarReporteAsistencia(txtFiltro.getText()));
+    }//GEN-LAST:event_btnGenerarReporteActionPerformed
 
     /**
      * @param args the command line arguments

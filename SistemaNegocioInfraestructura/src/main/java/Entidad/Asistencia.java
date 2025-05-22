@@ -8,15 +8,11 @@ import Conexion.ConexionBD;
 import DTOs.AsistenciaDTO;
 import DTOs.ReporteAsistenciaDTO;
 import Excepciones.AsistenciaException;
-import bos.FabricaBOs;
 import clases.mock.Cliente;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import dtos.ClienteRegistradoDTO;
-import interfaces.bo.IRegistrarClienteBO;
 import interfaces.infraestructura.IAsistencia;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -65,6 +61,12 @@ public class Asistencia implements IAsistencia {
                 System.out.println(asis);
                 return asis;
 
+            }else{
+                asistencias.get(id).addLast(new Date());
+
+                AsistenciaDTO asis = obtenerCliente(id);
+                asis.setFecha(asistencias.get(id).getLast());
+                return asis;
             }
         } catch (AsistenciaException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error al registr la asistencia", JOptionPane.ERROR_MESSAGE);
@@ -75,7 +77,15 @@ public class Asistencia implements IAsistencia {
 
     @Override
     public ReporteAsistenciaDTO generarReporteAsistencia(String identificador) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        AsistenciaDTO asistencia;
+        try {
+            asistencia = obtenerCliente(identificador);
+            ReporteAsistenciaDTO reporte = new ReporteAsistenciaDTO(asistencia.getNombres(), asistencia.getApellidos(), asistencias.get(identificador));
+        return reporte;
+        } catch (AsistenciaException ex) {
+            Logger.getLogger(Asistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     private String verificarUsuario(String identificador) throws AsistenciaException {
@@ -86,7 +96,7 @@ public class Asistencia implements IAsistencia {
             filtro.append(CAMPO_CORREO, identificador);
         } else {
             filtro.append(CAMPO_TELEFONO, identificador);
-            ;
+            
         }
 
         FindIterable<Cliente> resultado = coleccion.find(filtro);
@@ -97,22 +107,23 @@ public class Asistencia implements IAsistencia {
             throw new AsistenciaException("Cliente no encontrado");
         }
 
-        return cliente.getId().toString();
+        return cliente.getId().toHexString();
     }
 
-    private boolean verificarMembresia(String id) {
+//    private boolean verificarMembresia(String id) {
+//
+//        return false;
+//    }
 
-        return false;
-    }
-
-    private AsistenciaDTO obtenerCliente(String ide) {
+    private AsistenciaDTO obtenerCliente(String ide) throws AsistenciaException {
         MongoCollection<Cliente> coleccion = crearConexion();
-        ObjectId id = new ObjectId(ide);
+        
+        ObjectId id = new ObjectId((ide));
         FindIterable<Cliente> resultado = coleccion.find(new Document("_id", id));
 
         Cliente cliente = resultado.first();
 
-        AsistenciaDTO asistencia = new AsistenciaDTO(cliente.getNombres(), cliente.getApellidos(), new Date());
+        AsistenciaDTO asistencia = new AsistenciaDTO(cliente.getNombres(), cliente.getApellidos());
 
         return asistencia;
     }
