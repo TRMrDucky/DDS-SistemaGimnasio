@@ -206,7 +206,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdministracionUsuariosActionPerformed
 
     private void btnRegistroAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroAsistenciaActionPerformed
-        //control.openformRe
+        control.openFormRegistrarAsistencia();
     }//GEN-LAST:event_btnRegistroAsistenciaActionPerformed
 
     /**

@@ -4,18 +4,25 @@
  */
 package presentacion;
 
+import Entidad.Asistencia;
+import interfaces.infraestructura.IAsistencia;
+
 /**
  *
  * @author 52644
  */
 public class RegistrarAsistencia extends javax.swing.JFrame {
 
+    IAsistencia asistencia;
+    
     /**
      * Creates new form RegistrarAsistencia
      */
     public RegistrarAsistencia() {
         initComponents();
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.asistencia = Asistencia.getInstance();
     }
 
     /**
@@ -31,7 +38,7 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         btnRegistrarAsistencia = new javax.swing.JButton();
         btnGenerarReporte = new javax.swing.JButton();
-        txtNumeroTelefono = new javax.swing.JTextField();
+        txtFiltro = new javax.swing.JTextField();
         lblNumeroTelefono = new javax.swing.JLabel();
         lblNumeroTelefono2 = new javax.swing.JLabel();
 
@@ -56,9 +63,9 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
 
         btnGenerarReporte.setText("Generar reporte");
 
-        txtNumeroTelefono.addActionListener(new java.awt.event.ActionListener() {
+        txtFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumeroTelefonoActionPerformed(evt);
+                txtFiltroActionPerformed(evt);
             }
         });
 
@@ -80,7 +87,7 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
                     .addComponent(lblNumeroTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNumeroTelefono)
+                    .addComponent(txtFiltro)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -96,7 +103,7 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
                         .addComponent(lblNumeroTelefono)
                         .addGap(2, 2, 2)
                         .addComponent(lblNumeroTelefono2))
-                    .addComponent(txtNumeroTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
@@ -108,16 +115,16 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNumeroTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroTelefonoActionPerformed
+    private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumeroTelefonoActionPerformed
+    }//GEN-LAST:event_txtFiltroActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegistrarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAsistenciaActionPerformed
-        
+        asistencia.registrarAsistencia(txtFiltro.getText());
     }//GEN-LAST:event_btnRegistrarAsistenciaActionPerformed
 
     /**
@@ -162,6 +169,6 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
     private javax.swing.JLabel lblNumeroTelefono;
     private javax.swing.JLabel lblNumeroTelefono1;
     private javax.swing.JLabel lblNumeroTelefono2;
-    private javax.swing.JTextField txtNumeroTelefono;
+    private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }

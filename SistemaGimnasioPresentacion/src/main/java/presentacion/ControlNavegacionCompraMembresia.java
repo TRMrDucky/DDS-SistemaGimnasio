@@ -620,6 +620,11 @@ public class ControlNavegacionCompraMembresia {
         pantalla.setVisible(true);
     }
     
+    public void openFormRegistrarAsistencia(){
+        RegistrarAsistencia registro = new RegistrarAsistencia();
+        registro.setVisible(true);
+    }
+    
      
 
 }

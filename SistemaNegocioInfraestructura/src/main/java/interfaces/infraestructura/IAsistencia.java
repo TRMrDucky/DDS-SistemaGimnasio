@@ -4,13 +4,14 @@
  */
 package interfaces.infraestructura;
 
-import dtos.ClienteRegistradoDTO;
+import DTOs.AsistenciaDTO;
+import DTOs.ReporteAsistenciaDTO;
 
 /**
  *
  * @author 52644
  */
 public interface IAsistencia {
-    public abstract ClienteRegistradoDTO registrarAsistencia(String identificador);
-    public abstract void generarReporteAsistencia(String identificador);
+    public abstract AsistenciaDTO registrarAsistencia(String identificador);
+    public abstract ReporteAsistenciaDTO generarReporteAsistencia(String identificador);
 }

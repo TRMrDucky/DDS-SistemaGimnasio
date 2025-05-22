@@ -1,6 +1,6 @@
-interfaz/IManejadorMembresia.class
-excepciones/DuracionException.class
-excepciones/NombreVacioException.class
-excepciones/PrecioVacioException.class
-implementaciones/ManejadorMembresias.class
-excepciones/SubsistemaMembresiaException.class
+excepciones\PrecioVacioException.class
+implementaciones\ManejadorMembresias.class
+excepciones\DuracionException.class
+excepciones\NombreVacioException.class
+excepciones\SubsistemaMembresiaException.class
+interfaz\IManejadorMembresia.class

@@ -42,7 +42,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtNumeroTelefono" max="32767" attributes="0"/>
+                  <Component id="txtFiltro" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="btnGenerarReporte" min="-2" pref="125" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -63,7 +63,7 @@
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Component id="lblNumeroTelefono2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="txtNumeroTelefono" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtFiltro" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -98,9 +98,9 @@
         <Property name="text" type="java.lang.String" value="Generar reporte"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNumeroTelefono">
+    <Component class="javax.swing.JTextField" name="txtFiltro">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumeroTelefonoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFiltroActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblNumeroTelefono">
