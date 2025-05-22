@@ -22,16 +22,31 @@ import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 /**
- *
+ * Clase de acceso a datos (DAO) para la entidad {@link Equipo}.
+ * Implementa la interfaz {@link IEquipoDAO} y sigue el patrón Singleton para 
+ * garantizar una única instancia durante la ejecución.
+ * 
+ * Esta clase se encarga de realizar operaciones CRUD (crear, leer, eliminar) 
+ * sobre la colección "equipos" en la base de datos MongoDB.
+ * 
  * @author Cricri
  */
 public class EquipoDAO implements IEquipoDAO {
     
-   private static EquipoDAO instancia;
+    /** Instancia única de la clase para implementar Singleton. */
+    private static EquipoDAO instancia;
 
+    /**
+     * Constructor privado para evitar instanciación externa.
+     */
     private EquipoDAO() {
     }
 
+    /**
+     * Obtiene la instancia única de {@code EquipoDAO}.
+     * 
+     * @return instancia única de {@code EquipoDAO}.
+     */
     public static EquipoDAO getInstance() {
         if (instancia == null) {
             instancia = new EquipoDAO();
@@ -39,6 +54,12 @@ public class EquipoDAO implements IEquipoDAO {
         return instancia;
     }
 
+    /**
+     * Obtiene la lista completa de equipos almacenados en la base de datos.
+     * 
+     * @return Lista de objetos {@link Equipo} existentes.
+     * @throws ConsultarEquipoException Si ocurre algún error durante la consulta.
+     */
     @Override
     public List<Equipo> obtenerEquipos() throws ConsultarEquipoException {
         try {
@@ -49,6 +70,14 @@ public class EquipoDAO implements IEquipoDAO {
         }
     }
 
+    /**
+     * Busca equipos que coincidan con un filtro en los campos nombre, número de serie o marca.
+     * La búsqueda es insensible a mayúsculas y minúsculas.
+     * 
+     * @param filtro Cadena con el patrón a buscar.
+     * @return Lista de equipos que coinciden con el filtro.
+     * @throws ConsultarEquipoException Si ocurre algún error durante la consulta.
+     */
     @Override
     public List<Equipo> buscarEquiposPorFiltro(String filtro) throws ConsultarEquipoException {
         try {
@@ -67,6 +96,13 @@ public class EquipoDAO implements IEquipoDAO {
         }
     }
 
+    /**
+     * Obtiene un equipo específico dado su ID.
+     * 
+     * @param id ID del equipo en formato String (hexadecimal).
+     * @return Objeto {@link Equipo} correspondiente al ID, o {@code null} si no existe.
+     * @throws ConsultarEquipoException Si ocurre algún error durante la consulta.
+     */
     @Override
     public Equipo obtenerEquipo(String id) throws ConsultarEquipoException {
         try {
@@ -78,6 +114,13 @@ public class EquipoDAO implements IEquipoDAO {
         }
     }
 
+    /**
+     * Agrega un nuevo equipo a la base de datos.
+     * 
+     * @param equipo Objeto {@link Equipo} a insertar.
+     * @return El mismo objeto {@code equipo} insertado.
+     * @throws AgregarEquipoException Si ocurre algún error durante la inserción.
+     */
     @Override
     public Equipo agregarEquipo(Equipo equipo) throws AgregarEquipoException {
         try {
@@ -89,6 +132,13 @@ public class EquipoDAO implements IEquipoDAO {
         }
     }
 
+    /**
+     * Elimina un equipo dado su ID.
+     * 
+     * @param id ID del equipo en formato String (hexadecimal).
+     * @return {@code true} si la eliminación fue exitosa y reconocida por el servidor.
+     * @throws EliminarEquipoException Si ocurre algún error durante la eliminación o no fue reconocida.
+     */
     @Override
     public boolean eliminarEquipo(String id) throws EliminarEquipoException {
         try {
@@ -104,4 +154,3 @@ public class EquipoDAO implements IEquipoDAO {
         }
     }
 }
-
