@@ -136,6 +136,7 @@ public class ActualizarMembresia extends javax.swing.JFrame {
     }
     MembresiaDTO nuevaMembresia= new MembresiaDTO(nuevoNombre, membresia.getId(), Double.parseDouble(nuevoCosto), nuevosServicios, membresia.getEstado(), Long.valueOf(nuevaDuracion));
     control.actualizarMembresia(nuevaMembresia);
+     JOptionPane.showMessageDialog(this, "Membresia actualizada", "Exito", JOptionPane.INFORMATION_MESSAGE);
     dispose();
 //              membresia.setServiciosExtra(nuevosServicios);
 //              cambios.put("serviciosExtra", nuevosServicios);
@@ -157,11 +158,11 @@ public class ActualizarMembresia extends javax.swing.JFrame {
 //             }
 //         }
          } catch (SubsistemaMembresiaException ex) {
-             Logger.getLogger(ActualizarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+              JOptionPane.showMessageDialog(this, "Ha ocurrido un error en el sistema al actualizar la membresía", "Error del sistema", JOptionPane.ERROR_MESSAGE);
          } catch (PrecioVacioException ex) {
-             Logger.getLogger(ActualizarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(this, "El precio de la membresía no puede ser menor a 0", "Error de validación", JOptionPane.ERROR_MESSAGE);
          } catch (DuracionException ex) {
-             Logger.getLogger(ActualizarMembresia.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(this, "La duración debe ser de minimo 1 dia", "Error de validación", JOptionPane.ERROR_MESSAGE);
          }
          
          }
@@ -171,7 +172,7 @@ public class ActualizarMembresia extends javax.swing.JFrame {
     
     private void llenarCampos(){
         campoNuevoNombre.setText(membresia.getNombre());
-        campoEditarDuracion.setText(String.valueOf(membresia.getDuracion() / 86400000L));
+        campoEditarDuracion.setText(String.valueOf(membresia.getDuracion() ));
         campoEscribirCosto.setText(String.valueOf(membresia.getPrecio()));
         
     }
