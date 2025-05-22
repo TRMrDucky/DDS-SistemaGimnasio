@@ -99,23 +99,25 @@ public class ManejadorMembresias implements IManejadorMembresia{
          
     }
     
-    public MembresiaDTO actualizarMembresia(MembresiaDTO membresiaActualizada) throws SubsistemaMembresiaException{
-        try {
-            if (validarIdNulo(membresiaActualizada.getId())){
+    public MembresiaDTO actualizarMembresia(MembresiaDTO membresiaActualizada) throws SubsistemaMembresiaException, PrecioVacioException, DuracionException{
+        if(!validarPrecio(membresiaActualizada.getPrecio())){
+            throw new PrecioVacioException("El costo de la membresia no puede estar vacio");
+        } if(!validarDuracion(membresiaActualizada.getDuracion())){
+            throw new DuracionException("La duracion de la membresia debe ser minimo de 1 dia");
+        }
+        
+           
                 try {
-                    throw new NegocioException("error, membresia con ID nulo");
+                   return membresiaBO.actualizarMembresia(membresiaActualizada);
                 } catch (NegocioException ex) {
-                    Logger.getLogger(ManejadorMembresias.class.getName()).log(Level.SEVERE, null, ex);
+                    throw new SubsistemaMembresiaException("Error al actualizar la membresia "+ex.getMessage());
                 }
             }
            
-            return membresiaBO.actualizarMembresia(membresiaActualizada);
-        } catch (NegocioException e) {
-           throw new SubsistemaMembresiaException("error al actualizar membresias", e.getCause());
-        }
+           
       
         
-    }
+    
     
      public boolean validarIdNulo(String id){
         return id.isEmpty();

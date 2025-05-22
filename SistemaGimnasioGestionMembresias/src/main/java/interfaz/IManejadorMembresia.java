@@ -22,7 +22,7 @@ public interface IManejadorMembresia {
      public MembresiaDTO agregarMembresia(MembresiaDTO membresia) throws SubsistemaMembresiaException, NombreVacioException, PrecioVacioException, DuracionException;
      public boolean eliminarMembresia(String id) throws SubsistemaMembresiaException;
      public List<MembresiaDTO> consultarMembresias() throws SubsistemaMembresiaException;
-     public MembresiaDTO actualizarMembresia(MembresiaDTO membresiaActualizada) throws SubsistemaMembresiaException;
+    public MembresiaDTO actualizarMembresia(MembresiaDTO membresiaActualizada) throws SubsistemaMembresiaException, PrecioVacioException, DuracionException;
      public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado) throws SubsistemaMembresiaException;
             
 }
