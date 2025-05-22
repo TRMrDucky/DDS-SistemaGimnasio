@@ -41,7 +41,6 @@ public class Asistencia implements IAsistencia {
     private Map<String, List<Date>> asistencias;
     private static Asistencia instance;
 
-
     private Asistencia() {
         this.asistencias = new LinkedHashMap<>();
     }
@@ -61,7 +60,7 @@ public class Asistencia implements IAsistencia {
             if (!asistencias.containsKey(id)) {
                 asistencias.put(id, new LinkedList<>());
                 asistencias.get(id).add(new Date());
-                
+
                 AsistenciaDTO asis = obtenerCliente(id);
                 System.out.println(asis);
                 return asis;
@@ -82,12 +81,13 @@ public class Asistencia implements IAsistencia {
     private String verificarUsuario(String identificador) throws AsistenciaException {
 
         MongoCollection<Cliente> coleccion = crearConexion();
-
-        List<Document> filtros = new ArrayList<>();
-        filtros.add(new Document(CAMPO_CORREO, identificador));
-        filtros.add(new Document(CAMPO_TELEFONO, identificador));
-
-        Document filtro = new Document("$or", filtros);
+        Document filtro = new Document();
+        if (identificador.contains("@")) {
+            filtro.append(CAMPO_CORREO, identificador);
+        } else {
+            filtro.append(CAMPO_TELEFONO, identificador);
+            ;
+        }
 
         FindIterable<Cliente> resultado = coleccion.find(filtro);
 
