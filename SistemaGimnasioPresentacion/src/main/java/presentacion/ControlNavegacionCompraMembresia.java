@@ -72,7 +72,9 @@ public class ControlNavegacionCompraMembresia {
 
     }
 
-    public EquipoDTO registrarEquipo(EquipoDTO equipo) throws NombreEquipoVacioException, NumeroSerieVacioException, TamañoNumeroSerieExcedidoException, TamañoNombreEquipoExcedidoException {
+    public EquipoDTO registrarEquipo(EquipoDTO equipo) 
+            throws NombreEquipoVacioException, NumeroSerieVacioException, 
+                   TamañoNumeroSerieExcedidoException, TamañoNombreEquipoExcedidoException {
         try {
             return subsistemaMantenimientoEquipos.agregarEquipo(equipo);
         } catch (SubsistemaMantenimientoEquiposException e) {
@@ -80,6 +82,7 @@ public class ControlNavegacionCompraMembresia {
             return null;
         }
     }
+
 
     /**
      * Genera una nueva instancia de registrarCliente
@@ -521,49 +524,47 @@ public class ControlNavegacionCompraMembresia {
     }
 
     public List<EquipoDTO> obtenerTodosEquipos() {
-        try {
-            return subsistemaMantenimientoEquipos.obtenerTodosEquipos();
-        } catch (SubsistemaMantenimientoEquiposException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error al obtener equipos", JOptionPane.ERROR_MESSAGE);
-            return new ArrayList<>();
-        }
-    }
+      try {
+          return subsistemaMantenimientoEquipos.obtenerTodosEquipos();
+      } catch (SubsistemaMantenimientoEquiposException e) {
+          e.printStackTrace(); 
+          return new ArrayList<>();
+      }
+  }
 
-    public EquipoDTO obtenerEquipoPorId(String id) {
-        try {
-            return subsistemaMantenimientoEquipos.obtenerEquipoPorId(id);
-        } catch (IdEquipoVacioException | SubsistemaMantenimientoEquiposException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error al obtener equipo por ID", JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
-    }
+
+
+  public EquipoDTO obtenerEquipoPorId(String id) {
+      try {
+          return subsistemaMantenimientoEquipos.obtenerEquipoPorId(id);
+      } catch (IdEquipoVacioException | SubsistemaMantenimientoEquiposException e) {
+          e.printStackTrace(); 
+          return null;
+      }
+  }
 
     public boolean eliminarEquipoYAsociados(String id) {
-        try {
-            return subsistemaMantenimientoEquipos.eliminarEquipoYAsociados(id);
-        } catch (IdEquipoVacioException | SubsistemaMantenimientoEquiposException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error al eliminar equipo", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
+    try {
+        return subsistemaMantenimientoEquipos.eliminarEquipoYAsociados(id);
+    } catch (IdEquipoVacioException | SubsistemaMantenimientoEquiposException e) {
+        e.printStackTrace(); 
+        return false;
+    }
+}
+    public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento)
+            throws IdEquipoVacioException, ObservacionesVaciasException, 
+                   TamañoObservacionesExcedidoException, SubsistemaMantenimientoEquiposException {
+        return subsistemaMantenimientoEquipos.registrarMantenimiento(mantenimiento);
     }
 
-    public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) throws IdEquipoVacioException, TamañoObservacionesExcedidoException {
-        try {
-            return subsistemaMantenimientoEquipos.registrarMantenimiento(mantenimiento);
-        } catch (ObservacionesVaciasException | SubsistemaMantenimientoEquiposException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error al registrar mantenimiento", JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
+   public List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) {
+    try {
+        return subsistemaMantenimientoEquipos.obtenerHistorialPorEquipo(idEquipo);
+    } catch (IdEquipoVacioException | SubsistemaMantenimientoEquiposException e) {
+        e.printStackTrace();
+        return new ArrayList<>();
     }
-
-    public List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) {
-        try {
-            return subsistemaMantenimientoEquipos.obtenerHistorialPorEquipo(idEquipo);
-        } catch (IdEquipoVacioException | SubsistemaMantenimientoEquiposException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error al obtener historial", JOptionPane.ERROR_MESSAGE);
-            return new ArrayList<>();
-        }
-    }
+}
 
     public void openFormMostrarInfoCliente(ClienteRegistradoDTO cliente) {
         new MostrarInfoCliente(cliente, this);

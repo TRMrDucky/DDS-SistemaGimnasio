@@ -12,6 +12,9 @@ package presentacion;
 import com.github.lgooddatepicker.components.DatePicker;
 import dtos.EquipoDTO;
 import excepciones.NombreEquipoVacioException;
+import excepciones.NumeroSerieVacioException;
+import excepciones.TamañoNombreEquipoExcedidoException;
+import excepciones.TamañoNumeroSerieExcedidoException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -84,34 +87,35 @@ public class RegistrarEquipoForm extends JFrame {
         return row;
     }
 
-    private void registrarEquipo(ActionEvent evt) {
-        try {
-            String nombre = textNombre.getText().trim();
-            String marca = textMarca.getText().trim();
-            String modelo = textModelo.getText().trim();
-            String numeroSerie = textNumeroSerie.getText().trim();
-            LocalDate fecha = datePicker.getDate();
+   private void registrarEquipo(ActionEvent evt) {
+    try {
+        String nombre = textNombre.getText().trim();
+        String marca = textMarca.getText().trim();
+        String modelo = textModelo.getText().trim();
+        String numeroSerie = textNumeroSerie.getText().trim();
+        LocalDate fecha = datePicker.getDate();
 
-            if (fecha == null) {
-                JOptionPane.showMessageDialog(this, "Por favor seleccione una fecha de adquisición.", "Fecha requerida", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-
-            Date fechaAdquisicion = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            EquipoDTO equipo = new EquipoDTO(nombre, marca, modelo, numeroSerie, fechaAdquisicion);
-
-            EquipoDTO registrado = control.registrarEquipo(equipo);
-
-            if (registrado != null) {
-                JOptionPane.showMessageDialog(this, "Equipo registrado exitosamente.");
-                dispose();
-            }
-
-        } catch (NombreEquipoVacioException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error inesperado al registrar el equipo.", "Error", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
+        if (fecha == null) {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione una fecha de adquisición.", "Fecha requerida", JOptionPane.WARNING_MESSAGE);
+            return;
         }
+
+        Date fechaAdquisicion = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        EquipoDTO equipo = new EquipoDTO(nombre, marca, modelo, numeroSerie, fechaAdquisicion);
+
+        EquipoDTO registrado = control.registrarEquipo(equipo);
+
+        if (registrado != null) {
+            JOptionPane.showMessageDialog(this, "Equipo registrado exitosamente.");
+            dispose();
+        }
+
+    } catch (NombreEquipoVacioException | NumeroSerieVacioException | 
+             TamañoNombreEquipoExcedidoException | TamañoNumeroSerieExcedidoException ex) {
+        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Error inesperado al registrar el equipo.", "Error", JOptionPane.ERROR_MESSAGE);
+        ex.printStackTrace();
     }
+}
 }
