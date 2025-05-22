@@ -1,4 +1,4 @@
-excepciones\TamaÃ±oObservacionesExcedidoException.class
+excepciones\TamañoObservacionesExcedidoException.class
 excepciones\NombreEquipoVacioException.class
 interfaz\IValidador.class
 excepciones\FechaSeguimientoNulaException.class
@@ -11,8 +11,8 @@ excepciones\FechaMantenimientoNulaException.class
 excepciones\ObservacionesVaciasException.class
 excepciones\NumeroSerieVacioException.class
 implementaciones\Validador.class
-excepciones\TamaÃ±oNombreEquipoExcedidoException.class
+excepciones\TamañoNombreEquipoExcedidoException.class
 excepciones\CostoInvalidoException.class
 excepciones\IdEquipoVacioException.class
-excepciones\TamaÃ±oNumeroSerieExcedidoException.class
+excepciones\TamañoNumeroSerieExcedidoException.class
 pruebas\SubsistemaGimnasioMantenimientoEquipos.class

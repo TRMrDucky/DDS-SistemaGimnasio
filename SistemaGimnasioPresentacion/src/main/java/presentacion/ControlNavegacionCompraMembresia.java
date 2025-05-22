@@ -527,6 +527,7 @@ public class ControlNavegacionCompraMembresia {
           return subsistemaMantenimientoEquipos.obtenerTodosEquipos();
       } catch (SubsistemaMantenimientoEquiposException e) {
           e.printStackTrace(); 
+           JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
           return new ArrayList<>();
       }
   }
