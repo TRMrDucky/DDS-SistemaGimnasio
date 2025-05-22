@@ -6,6 +6,9 @@ package implementaciones;
 
 import dtos.EquipoDTO;
 import dtos.MantenimientoDTO;
+import excepciones.CostoInvalidoException;
+import excepciones.FechaMantenimientoNulaException;
+import excepciones.FechaSeguimientoNulaException;
 import excepciones.IdEquipoVacioException;
 import excepciones.NombreEquipoVacioException;
 import excepciones.NumeroSerieVacioException;
@@ -13,6 +16,7 @@ import excepciones.ObservacionesVaciasException;
 import excepciones.TamañoNombreEquipoExcedidoException;
 import excepciones.TamañoNumeroSerieExcedidoException;
 import excepciones.TamañoObservacionesExcedidoException;
+import excepciones.TipoMantenimientoVacioException;
 import interfaz.IValidador;
 
 /**
@@ -50,22 +54,38 @@ public class Validador implements IValidador  {
     }
 
     @Override
-    public void validarMantenimiento(MantenimientoDTO mantenimiento) throws IdEquipoVacioException, 
-                                                                            ObservacionesVaciasException, 
-                                                                            TamañoObservacionesExcedidoException {
-        if (mantenimiento == null) {
-            throw new NullPointerException("El mantenimiento no puede ser nulo");
-        }
-        if (mantenimiento.getIdEquipo() == null || mantenimiento.getIdEquipo().trim().isEmpty()) {
-            throw new IdEquipoVacioException("El ID del equipo no puede ser nulo o vacío");
-        }
-        if (mantenimiento.getObservaciones() == null || mantenimiento.getObservaciones().trim().isEmpty()) {
-            throw new ObservacionesVaciasException("Las observaciones no pueden ser nulas o vacías");
-        }
-        if (mantenimiento.getObservaciones().length() > MAX_OBSERVACIONES_LENGTH) {
-            throw new TamañoObservacionesExcedidoException("Las observaciones exceden el tamaño permitido.");
-        }
+public void validarMantenimiento(MantenimientoDTO mantenimiento) throws IdEquipoVacioException,
+                                                                       TamañoObservacionesExcedidoException,
+                                                                       FechaMantenimientoNulaException,
+                                                                       TipoMantenimientoVacioException,
+                                                                       FechaSeguimientoNulaException,
+                                                                       CostoInvalidoException {
+    if (mantenimiento == null) {
+        throw new NullPointerException("El mantenimiento no puede ser nulo");
+    }
+    if (mantenimiento.getIdEquipo() == null || mantenimiento.getIdEquipo().trim().isEmpty()) {
+        throw new IdEquipoVacioException("El ID del equipo no puede ser nulo o vacío");
+    }
+
+    if (mantenimiento.getFechaMantenimiento() == null) {
+        throw new FechaMantenimientoNulaException("La fecha de mantenimiento no puede ser nula");
+    }
+    
+    if (mantenimiento.getTipoMantenimiento() == null || mantenimiento.getTipoMantenimiento().trim().isEmpty()) {
+        throw new TipoMantenimientoVacioException("El nombre del mantenimiento no puede ser nulo o vacío");
+    }
+
+    if (mantenimiento.getCosto() < 0) {
+        throw new CostoInvalidoException("El costo no puede ser negativo");
+    }
+
+    if (mantenimiento.getFechaSeguimiento() == null) {
+        throw new FechaSeguimientoNulaException("La fecha de seguimiento no puede ser nula");
+    }
+
+    if (mantenimiento.getObservaciones() != null && mantenimiento.getObservaciones().length() > MAX_OBSERVACIONES_LENGTH) {
+        throw new TamañoObservacionesExcedidoException("Las observaciones exceden el tamaño permitido.");
     }
 }
 
-
+}

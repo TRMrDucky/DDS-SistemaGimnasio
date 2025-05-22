@@ -6,13 +6,17 @@ package interfaz;
 
 import dtos.EquipoDTO;
 import dtos.MantenimientoDTO;
+import excepciones.CostoInvalidoException;
+import excepciones.FechaMantenimientoNulaException;
+import excepciones.FechaSeguimientoNulaException;
 import excepciones.IdEquipoVacioException;
 import excepciones.NombreEquipoVacioException;
 import excepciones.NumeroSerieVacioException;
-import excepciones.ObservacionesVaciasException;
+
 import excepciones.TamañoNombreEquipoExcedidoException;
 import excepciones.TamañoNumeroSerieExcedidoException;
 import excepciones.TamañoObservacionesExcedidoException;
+import excepciones.TipoMantenimientoVacioException;
 
 /**
  *
@@ -24,8 +28,11 @@ public interface IValidador {
                                                  NumeroSerieVacioException, 
                                                  TamañoNumeroSerieExcedidoException;
 
-    void validarMantenimiento(MantenimientoDTO mantenimiento) throws IdEquipoVacioException, 
-                                                                     ObservacionesVaciasException, 
-                                                                     TamañoObservacionesExcedidoException;
+    void validarMantenimiento(MantenimientoDTO mantenimiento) throws IdEquipoVacioException,
+                                                                       TamañoObservacionesExcedidoException,
+                                                                       FechaMantenimientoNulaException,
+                                                                       TipoMantenimientoVacioException,
+                                                                       FechaSeguimientoNulaException,
+                                                                       CostoInvalidoException;
 }
 

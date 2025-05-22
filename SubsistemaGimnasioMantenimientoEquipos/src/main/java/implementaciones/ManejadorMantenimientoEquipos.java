@@ -8,16 +8,20 @@ import bos.FabricaBOs;
 import dtos.EquipoDTO;
 import dtos.HistorialEquipoDTO;
 import dtos.MantenimientoDTO;
+import excepciones.CostoInvalidoException;
+import excepciones.FechaMantenimientoNulaException;
+import excepciones.FechaSeguimientoNulaException;
 import excepciones.FiltroVacioException;
 import excepciones.IdEquipoVacioException;
 import excepciones.NegocioException;
 import excepciones.NombreEquipoVacioException;
 import excepciones.NumeroSerieVacioException;
-import excepciones.ObservacionesVaciasException;
+
 import excepciones.SubsistemaMantenimientoEquiposException;
 import excepciones.TamañoNombreEquipoExcedidoException;
 import excepciones.TamañoNumeroSerieExcedidoException;
 import excepciones.TamañoObservacionesExcedidoException;
+import excepciones.TipoMantenimientoVacioException;
 import interfaces.bo.IEquipoBO;
 import interfaces.bo.IMantenimientoBO;
 import interfaz.IManejadorMantenimientoEquipos;
@@ -107,24 +111,23 @@ public EquipoDTO agregarEquipo(EquipoDTO equipo) throws SubsistemaMantenimientoE
     }
 
   
-        @Override
-    public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) 
-            throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException, 
-                   ObservacionesVaciasException, TamañoObservacionesExcedidoException { 
+@Override
+public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento)
+        throws  SubsistemaMantenimientoEquiposException,IdEquipoVacioException,
+                                                                       TamañoObservacionesExcedidoException,
+                                                                       FechaMantenimientoNulaException,
+                                                                       TipoMantenimientoVacioException,
+                                                                       FechaSeguimientoNulaException,
+                                                                       CostoInvalidoException{
 
-        try {
-            validador.validarMantenimiento(mantenimiento);
-        } catch (IdEquipoVacioException | ObservacionesVaciasException | TamañoObservacionesExcedidoException ex) {
-            Logger.getLogger(ManejadorMantenimientoEquipos.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex; 
-        }
+    validador.validarMantenimiento(mantenimiento);
 
-        try {
-            return mantenimientoBO.registrarMantenimiento(mantenimiento);
-        } catch (NegocioException ex) {
-            throw new SubsistemaMantenimientoEquiposException("Error al registrar el mantenimiento", ex.getCause());
-        }
+    try {
+        return mantenimientoBO.registrarMantenimiento(mantenimiento);
+    } catch (NegocioException ex) {
+        throw new SubsistemaMantenimientoEquiposException("Error al registrar el mantenimiento", ex.getCause());
     }
+}
 
 
     @Override

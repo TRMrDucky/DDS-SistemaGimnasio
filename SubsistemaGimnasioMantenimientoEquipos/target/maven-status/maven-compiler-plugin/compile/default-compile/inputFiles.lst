@@ -2,9 +2,13 @@ C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SubsistemaGimnasi
 C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SubsistemaGimnasioMantenimientoEquipos\src\main\java\excepciones\ObservacionesVaciasException.java
 C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SubsistemaGimnasioMantenimientoEquipos\src\main\java\implementaciones\ManejadorMantenimientoEquipos.java
 C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SubsistemaGimnasioMantenimientoEquipos\src\main\java\excepciones\TamañoNombreEquipoExcedidoException.java
+C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SubsistemaGimnasioMantenimientoEquipos\src\main\java\excepciones\FechaMantenimientoNulaException.java
+C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SubsistemaGimnasioMantenimientoEquipos\src\main\java\excepciones\FechaSeguimientoNulaException.java
 C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SubsistemaGimnasioMantenimientoEquipos\src\main\java\excepciones\IdEquipoVacioException.java
 C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SubsistemaGimnasioMantenimientoEquipos\src\main\java\interfaz\IManejadorMantenimientoEquipos.java
+C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SubsistemaGimnasioMantenimientoEquipos\src\main\java\excepciones\CostoInvalidoException.java
 C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SubsistemaGimnasioMantenimientoEquipos\src\main\java\excepciones\TamañoNumeroSerieExcedidoException.java
+C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SubsistemaGimnasioMantenimientoEquipos\src\main\java\excepciones\TipoMantenimientoVacioException.java
 C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SubsistemaGimnasioMantenimientoEquipos\src\main\java\excepciones\TamañoObservacionesExcedidoException.java
 C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SubsistemaGimnasioMantenimientoEquipos\src\main\java\excepciones\NumeroSerieVacioException.java
 C:\Users\Cricri\OneDrive\Documentos\GitHub\DDS-SistemaGimnasio\SubsistemaGimnasioMantenimientoEquipos\src\main\java\pruebas\SubsistemaGimnasioMantenimientoEquipos.java

@@ -7,6 +7,9 @@ package interfaz;
 import dtos.EquipoDTO;
 import dtos.HistorialEquipoDTO;
 import dtos.MantenimientoDTO;
+import excepciones.CostoInvalidoException;
+import excepciones.FechaMantenimientoNulaException;
+import excepciones.FechaSeguimientoNulaException;
 import excepciones.FiltroVacioException;
 import excepciones.IdEquipoVacioException;
 import excepciones.NombreEquipoVacioException;
@@ -16,6 +19,7 @@ import excepciones.SubsistemaMantenimientoEquiposException;
 import excepciones.TamañoNombreEquipoExcedidoException;
 import excepciones.TamañoNumeroSerieExcedidoException;
 import excepciones.TamañoObservacionesExcedidoException;
+import excepciones.TipoMantenimientoVacioException;
 import java.util.List;
 
 /**
@@ -36,7 +40,12 @@ public interface IManejadorMantenimientoEquipos {
 
     boolean eliminarEquipoYAsociados(String id) throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException;
 
-    MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) throws SubsistemaMantenimientoEquiposException,TamañoObservacionesExcedidoException ,ObservacionesVaciasException, TamañoObservacionesExcedidoException, IdEquipoVacioException;
+    MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) throws  SubsistemaMantenimientoEquiposException,IdEquipoVacioException,
+                                                                       TamañoObservacionesExcedidoException,
+                                                                       FechaMantenimientoNulaException,
+                                                                       TipoMantenimientoVacioException,
+                                                                       FechaSeguimientoNulaException,
+                                                                       CostoInvalidoException;
 
     List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException;
 }

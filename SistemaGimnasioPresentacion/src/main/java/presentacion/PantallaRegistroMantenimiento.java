@@ -7,10 +7,14 @@ package presentacion;
 import com.github.lgooddatepicker.components.DatePicker;
 import dtos.EquipoDTO;
 import dtos.MantenimientoDTO;
+import excepciones.CostoInvalidoException;
+import excepciones.FechaMantenimientoNulaException;
+import excepciones.FechaSeguimientoNulaException;
 import excepciones.IdEquipoVacioException;
 import excepciones.ObservacionesVaciasException;
 import excepciones.SubsistemaMantenimientoEquiposException;
 import excepciones.TamañoObservacionesExcedidoException;
+import excepciones.TipoMantenimientoVacioException;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.time.LocalDate;
@@ -95,21 +99,27 @@ public class PantallaRegistroMantenimiento extends JFrame {
 
         add(panel);
     }
-
-    private void registrarMantenimiento(ActionEvent evt) {
+private void registrarMantenimiento(ActionEvent evt) {
     try {
         String idEquipo = equipoSeleccionado.getId(); 
+
         LocalDate fechaMant = datePickerMantenimiento.getDate();
+        if (fechaMant == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una fecha de mantenimiento.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         String tipo = textTipoMantenimiento.getText().trim();
         String costoStr = textCosto.getText().trim();
         String observaciones = textObservaciones.getText().trim();
+
         LocalDate fechaSeg = datePickerSeguimiento.getDate();
 
         float costo = Float.parseFloat(costoStr);
         Date fechaMantenimiento = Date.from(fechaMant.atStartOfDay(ZoneId.systemDefault()).toInstant());
         Date fechaSeguimiento = (fechaSeg != null) ? Date.from(fechaSeg.atStartOfDay(ZoneId.systemDefault()).toInstant()) : null;
 
-        MantenimientoDTO mantenimiento = new MantenimientoDTO(idEquipo, fechaMantenimiento, tipo, costo, observaciones, fechaSeguimiento);
+       MantenimientoDTO mantenimiento = new MantenimientoDTO(idEquipo, fechaMantenimiento, tipo, costo, observaciones, fechaSeguimiento);
 
         MantenimientoDTO registrado = control.registrarMantenimiento(mantenimiento);
 
@@ -120,15 +130,14 @@ public class PantallaRegistroMantenimiento extends JFrame {
 
     } catch (NumberFormatException ex) {
         JOptionPane.showMessageDialog(this, "El costo debe ser un número válido.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
-    } catch (IdEquipoVacioException | ObservacionesVaciasException | TamañoObservacionesExcedidoException ex) {
+    } catch (IdEquipoVacioException | TamañoObservacionesExcedidoException |
+             FechaMantenimientoNulaException | TipoMantenimientoVacioException |
+             FechaSeguimientoNulaException | CostoInvalidoException ex) {
         JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
-    } catch (SubsistemaMantenimientoEquiposException ex) {
-        JOptionPane.showMessageDialog(this, "Ocurrió un error en el sistema al registrar el mantenimiento.", "Error del Sistema", JOptionPane.ERROR_MESSAGE);
-        ex.printStackTrace(); 
+    
     } catch (Exception ex) {
         JOptionPane.showMessageDialog(this, "Error inesperado al registrar el mantenimiento.", "Error", JOptionPane.ERROR_MESSAGE);
         ex.printStackTrace();
     }
-
-    }
+}
 }

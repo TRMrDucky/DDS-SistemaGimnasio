@@ -20,8 +20,11 @@ import dtos.ServicioExtraDTO;
 import dtos.MembresiaDTO;
 import enums.ModoUso;
 import excepciones.AgregarServicioExtraSubsistemaException;
+import excepciones.CostoInvalidoException;
 import excepciones.DuracionException;
 import excepciones.EditarServicioExtraSubsitemaException;
+import excepciones.FechaMantenimientoNulaException;
+import excepciones.FechaSeguimientoNulaException;
 import excepciones.FiltroVacioException;
 import excepciones.IdEquipoVacioException;
 import excepciones.ModificarClienteException;
@@ -38,6 +41,7 @@ import excepciones.SubsistemaServicioExtraException;
 import excepciones.TamañoNombreEquipoExcedidoException;
 import excepciones.TamañoNumeroSerieExcedidoException;
 import excepciones.TamañoObservacionesExcedidoException;
+import excepciones.TipoMantenimientoVacioException;
 import interfaces.IManejadorComprasMembresias;
 import interfaz.IManejadorMantenimientoEquipos;
 import interfaz.IManejadorMembresia;
@@ -72,17 +76,7 @@ public class ControlNavegacionCompraMembresia {
 
     }
 
-    public EquipoDTO registrarEquipo(EquipoDTO equipo) 
-            throws NombreEquipoVacioException, NumeroSerieVacioException, 
-                   TamañoNumeroSerieExcedidoException, TamañoNombreEquipoExcedidoException {
-        try {
-            return subsistemaMantenimientoEquipos.agregarEquipo(equipo);
-        } catch (SubsistemaMantenimientoEquiposException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error al registrar equipo", JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
-    }
-
+    
 
     /**
      * Genera una nueva instancia de registrarCliente
@@ -551,11 +545,21 @@ public class ControlNavegacionCompraMembresia {
         return false;
     }
 }
-    public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento)
-            throws IdEquipoVacioException, ObservacionesVaciasException, 
-                   TamañoObservacionesExcedidoException, SubsistemaMantenimientoEquiposException {
+   public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) 
+        throws IdEquipoVacioException,
+               TamañoObservacionesExcedidoException,
+               FechaMantenimientoNulaException,
+               TipoMantenimientoVacioException,
+               FechaSeguimientoNulaException,
+               CostoInvalidoException {
+    try {
         return subsistemaMantenimientoEquipos.registrarMantenimiento(mantenimiento);
+    } catch (SubsistemaMantenimientoEquiposException e) {
+        JOptionPane.showMessageDialog(null, e.getMessage(), "Error al registrar mantenimiento", JOptionPane.ERROR_MESSAGE);
+        return null;
     }
+}
+
 
    public List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) {
     try {
@@ -578,6 +582,18 @@ public class ControlNavegacionCompraMembresia {
         }
         return null;
     }
+    
+    public EquipoDTO registrarEquipo(EquipoDTO equipo) 
+            throws NombreEquipoVacioException, NumeroSerieVacioException, 
+                   TamañoNumeroSerieExcedidoException, TamañoNombreEquipoExcedidoException {
+        try {
+            return subsistemaMantenimientoEquipos.agregarEquipo(equipo);
+        } catch (SubsistemaMantenimientoEquiposException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error al registrar equipo", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    }
+
     
     public ClienteRegistradoDTO actualizarCliente(ClienteRegistradoDTO cliente){
         try{
