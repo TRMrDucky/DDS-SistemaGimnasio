@@ -69,8 +69,12 @@ public class ManejadorMembresias implements IManejadorMembresia{
     
     
    
-    public List<MembresiaDTO> consultarMembresias(){
+    public List<MembresiaDTO> consultarMembresias() throws SubsistemaMembresiaException{
+        try{
         return membresiaBO.consultarMembresias();
+        } catch(NegocioException e){
+            throw new SubsistemaMembresiaException("error al consultar las membresias", e.getCause());
+        }
     }
     
     public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado){

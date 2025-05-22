@@ -11,6 +11,7 @@ import dtos.ServicioExtraDTO;
 import excepciones.ActualizarMembresiaException;
 import excepciones.AgregarMembresiaException;
 import excepciones.ConsultarMembresiasDesactivadasException;
+import excepciones.ConsultarMembresiasException;
 import excepciones.EditarServicioEnMembresiaException;
 import excepciones.EliminarMembresiaException;
 import excepciones.EliminarServicioDeMembresiasException;
@@ -62,12 +63,17 @@ public class MembresiaBO implements IMembresiaBO {
     }
 
     @Override
-    public List<MembresiaDTO> consultarMembresias() {
+    public List<MembresiaDTO> consultarMembresias() throws NegocioException{
+        try{
         return membresiaDAO.consultarMembresias()
                 .stream()
                 .map(MembresiaMapper::toDTO)
                 .collect(Collectors.toList());
+    } catch(ConsultarMembresiasException e){
+        throw new NegocioException("Error al consultar membresias", e.getCause());
     }
+    }
+    
     
      public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado){
         return membresiaDAO.consultarMembresiasPorEstado(estado)

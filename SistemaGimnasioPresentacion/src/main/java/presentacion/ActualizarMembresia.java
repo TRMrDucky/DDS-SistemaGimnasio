@@ -37,6 +37,7 @@ public class ActualizarMembresia extends javax.swing.JFrame {
         cargarServiciosExtras();
         serviciosSeleccionados();
         llenarCampos();
+        setLocationRelativeTo(null);
     }
     
     private void cargarServiciosExtras(){

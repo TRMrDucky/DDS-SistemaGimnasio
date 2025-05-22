@@ -50,6 +50,7 @@ public class ConsultarMembresias extends javax.swing.JFrame {
         this.accionSeleccionada= accion;
         this.cliente= cliente;
         cargarMembresias();
+        setLocationRelativeTo(null);
     }
     
     private List<JCheckBox> listaCheckBoxes = new ArrayList<>();

@@ -169,7 +169,12 @@ public class ControlNavegacionCompraMembresia {
     }
 
     public List<MembresiaDTO> consultarMembresias() {
+        try{
         return subsistemaMembresias.consultarMembresias();
+        } catch(SubsistemaMembresiaException e){
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 
     public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado) {

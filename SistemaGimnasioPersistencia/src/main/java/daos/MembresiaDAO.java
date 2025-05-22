@@ -25,6 +25,7 @@ import excepciones.ActualizarMembresiaException;
 import excepciones.ConsultarServiciosExtraException;
 import excepciones.AgregarMembresiaException;
 import excepciones.ConsultarMembresiasDesactivadasException;
+import excepciones.ConsultarMembresiasException;
 import excepciones.EditarServicioEnMembresiaException;
 import excepciones.EliminarMembresiaException;
 import excepciones.EliminarServicioDeMembresiasException;
@@ -46,13 +47,11 @@ import org.bson.types.ObjectId;
 public class MembresiaDAO implements IMembresiaDAO {
 
     private static MembresiaDAO instancia = new MembresiaDAO();
-   // private final MongoCollection<Membresia> coleccion;
-  //  private List<Membresia> listaMembresias;
     Long DURACION_DIA = 86400000L;
         
 
     private MembresiaDAO(){
-     //   this.coleccion = ConexionBD.getInstance().getCollection("membresias",Membresia.class);
+    
         
      
         
@@ -84,10 +83,9 @@ public class MembresiaDAO implements IMembresiaDAO {
     @Override
     public Membresia agregarMembresia(Membresia membresia) throws AgregarMembresiaException{
             try{
-                System.out.println("llegaper");
-                System.out.println(membresia);
+              
             MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
-                System.out.println("a pers llega como "+membresia);
+              
             coleccion.insertOne(membresia);
             
          
@@ -99,9 +97,13 @@ public class MembresiaDAO implements IMembresiaDAO {
  
     }
     
-    public List<Membresia> consultarMembresias(){
+    public List<Membresia> consultarMembresias() throws ConsultarMembresiasException{
+       try{
         MongoCollection<Membresia> coleccion= ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
         return coleccion.find().into(new ArrayList<>()); 
+       } catch(Exception e){
+           throw new ConsultarMembresiasException("Error al consultar membresias, e");
+       }
         
     }
     
@@ -120,7 +122,7 @@ public class MembresiaDAO implements IMembresiaDAO {
         
         } catch(Exception e){
             
-            throw new EliminarMembresiaException("Error al eliminar membresia");
+            throw new EliminarMembresiaException("Error al eliminar membresia", e);
         }
        
     }
@@ -134,7 +136,7 @@ public class MembresiaDAO implements IMembresiaDAO {
             );
             return result.getModifiedCount() > 0;
         } catch(Exception e){
-            throw new EliminarServicioDeMembresiasException("Error al eliminar servicio de membresia asociada");
+            throw new EliminarServicioDeMembresiasException("Error al eliminar servicio de membresia asociada", e);
         }
     }
     
@@ -149,7 +151,7 @@ public class MembresiaDAO implements IMembresiaDAO {
             return resultado.getModifiedCount() > 0;
 
         } catch(Exception e){
-            throw new EditarServicioEnMembresiaException("Error al editar servicio en membresia");
+            throw new EditarServicioEnMembresiaException("Error al editar servicio en membresia", e);
         }
         
     }
