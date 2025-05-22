@@ -177,7 +177,7 @@ public class ControlNavegacionCompraMembresia {
         }
     }
 
-    public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado) {
+    public List<MembresiaDTO> consultarMembresiasPorEstado(EnumEstadoMembresia estado) throws SubsistemaMembresiaException {
         return subsistemaMembresias.consultarMembresiasPorEstado(estado);
     }
 
