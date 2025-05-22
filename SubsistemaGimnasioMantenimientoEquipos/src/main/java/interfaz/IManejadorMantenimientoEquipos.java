@@ -13,6 +13,9 @@ import excepciones.NombreEquipoVacioException;
 import excepciones.NumeroSerieVacioException;
 import excepciones.ObservacionesVaciasException;
 import excepciones.SubsistemaMantenimientoEquiposException;
+import excepciones.TamañoNombreEquipoExcedidoException;
+import excepciones.TamañoNumeroSerieExcedidoException;
+import excepciones.TamañoObservacionesExcedidoException;
 import java.util.List;
 
 /**
@@ -21,13 +24,22 @@ import java.util.List;
  */
 public interface IManejadorMantenimientoEquipos {
     
-   public List<EquipoDTO> obtenerTodosEquipos() throws SubsistemaMantenimientoEquiposException;
-   public List<EquipoDTO> buscarEquiposPorFiltro(String filtro) throws SubsistemaMantenimientoEquiposException, FiltroVacioException;
-   public EquipoDTO obtenerEquipoPorId(String id) throws SubsistemaMantenimientoEquiposException,IdEquipoVacioException;
-   public EquipoDTO agregarEquipo(EquipoDTO equipo) throws SubsistemaMantenimientoEquiposException,NombreEquipoVacioException,NumeroSerieVacioException ;
-   public boolean eliminarEquipoYAsociados(String id) throws SubsistemaMantenimientoEquiposException,IdEquipoVacioException;
-   public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException,ObservacionesVaciasException ;
-   public List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) throws SubsistemaMantenimientoEquiposException,IdEquipoVacioException;
+    
+    List<EquipoDTO> obtenerTodosEquipos() throws SubsistemaMantenimientoEquiposException;
+
+    List<EquipoDTO> buscarEquiposPorFiltro(String filtro) throws SubsistemaMantenimientoEquiposException, FiltroVacioException;
+
+    EquipoDTO obtenerEquipoPorId(String id) throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException;
+
+    EquipoDTO agregarEquipo(EquipoDTO equipo) throws SubsistemaMantenimientoEquiposException, NombreEquipoVacioException,NumeroSerieVacioException,TamañoNumeroSerieExcedidoException, TamañoNombreEquipoExcedidoException ;
+;
+
+    boolean eliminarEquipoYAsociados(String id) throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException;
+
+    MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) throws SubsistemaMantenimientoEquiposException,TamañoObservacionesExcedidoException ,ObservacionesVaciasException, TamañoObservacionesExcedidoException, IdEquipoVacioException;
+
+    List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException;
 }
+
 
 

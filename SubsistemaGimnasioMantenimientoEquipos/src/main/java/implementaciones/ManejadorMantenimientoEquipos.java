@@ -15,10 +15,16 @@ import excepciones.NombreEquipoVacioException;
 import excepciones.NumeroSerieVacioException;
 import excepciones.ObservacionesVaciasException;
 import excepciones.SubsistemaMantenimientoEquiposException;
+import excepciones.TamañoNombreEquipoExcedidoException;
+import excepciones.TamañoNumeroSerieExcedidoException;
+import excepciones.TamañoObservacionesExcedidoException;
 import interfaces.bo.IEquipoBO;
 import interfaces.bo.IMantenimientoBO;
 import interfaz.IManejadorMantenimientoEquipos;
+import interfaz.IValidador;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,14 +32,17 @@ import java.util.List;
  */
 public class ManejadorMantenimientoEquipos implements IManejadorMantenimientoEquipos {
 
- private final IEquipoBO equipoBO;
+
+    private final IEquipoBO equipoBO;
     private final IMantenimientoBO mantenimientoBO;
+    private final IValidador validador;
 
     public ManejadorMantenimientoEquipos() {
         this.equipoBO = FabricaBOs.getInstanceEquipoBO();
         this.mantenimientoBO = FabricaBOs.getInstanceMantenimientoBO();
+        this.validador = new Validador();
     }
-    
+
     @Override
     public List<EquipoDTO> obtenerTodosEquipos() throws SubsistemaMantenimientoEquiposException {
         try {
@@ -44,8 +53,7 @@ public class ManejadorMantenimientoEquipos implements IManejadorMantenimientoEqu
     }
 
     @Override
-    public List<EquipoDTO> buscarEquiposPorFiltro(String filtro) 
-            throws SubsistemaMantenimientoEquiposException, FiltroVacioException {
+    public List<EquipoDTO> buscarEquiposPorFiltro(String filtro) throws SubsistemaMantenimientoEquiposException, FiltroVacioException {
         if (filtro == null || filtro.trim().isEmpty()) {
             throw new FiltroVacioException("El filtro no puede ser nulo o vacío");
         }
@@ -57,8 +65,7 @@ public class ManejadorMantenimientoEquipos implements IManejadorMantenimientoEqu
     }
 
     @Override
-    public EquipoDTO obtenerEquipoPorId(String id) 
-            throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException {
+    public EquipoDTO obtenerEquipoPorId(String id) throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException {
         if (id == null || id.trim().isEmpty()) {
             throw new IdEquipoVacioException("El ID del equipo no puede ser nulo o vacío");
         }
@@ -70,27 +77,25 @@ public class ManejadorMantenimientoEquipos implements IManejadorMantenimientoEqu
     }
 
     @Override
-    public EquipoDTO agregarEquipo(EquipoDTO equipo) 
-            throws SubsistemaMantenimientoEquiposException, NombreEquipoVacioException,NumeroSerieVacioException  {
-        if (equipo == null) {
-            throw new NullPointerException("El equipo no puede ser nulo");
-        }
-        if (equipo.getNombre() == null || equipo.getNombre().trim().isEmpty()) {
-            throw new NombreEquipoVacioException("El nombre del equipo no puede ser nulo o vacío");
-        }
-      
-        if (equipo.getNumeroSerie() == null || equipo.getNumeroSerie().trim().isEmpty()) {
-            throw new NumeroSerieVacioException ("El número de serie no puede ser nulo o vacío");
-        }
-        try {
-            return equipoBO.agregarEquipo(equipo);
-        } catch (NegocioException ex) {
-            throw new SubsistemaMantenimientoEquiposException("Error al agregar equipo", ex.getCause());
-        }
+public EquipoDTO agregarEquipo(EquipoDTO equipo) throws SubsistemaMantenimientoEquiposException, 
+                                                         NombreEquipoVacioException, 
+                                                         TamañoNombreEquipoExcedidoException, 
+                                                         NumeroSerieVacioException, 
+                                                         TamañoNumeroSerieExcedidoException { 
+
+    validador.validarEquipo(equipo); 
+
+    try {
+        return equipoBO.agregarEquipo(equipo);
+    } catch (NegocioException ex) {
+        throw new SubsistemaMantenimientoEquiposException("Error al agregar equipo", ex.getCause());
     }
+}
+
+    
+    
     @Override
-    public boolean eliminarEquipoYAsociados(String id) 
-            throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException {
+    public boolean eliminarEquipoYAsociados(String id) throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException {
         if (id == null || id.trim().isEmpty()) {
             throw new IdEquipoVacioException("El ID del equipo no puede ser nulo o vacío");
         }
@@ -101,18 +106,19 @@ public class ManejadorMantenimientoEquipos implements IManejadorMantenimientoEqu
         }
     }
 
-    @Override
+  
+        @Override
     public MantenimientoDTO registrarMantenimiento(MantenimientoDTO mantenimiento) 
-            throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException, ObservacionesVaciasException {
-        if (mantenimiento == null) {
-            throw new NullPointerException("El mantenimiento no puede ser nulo");
+            throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException, 
+                   ObservacionesVaciasException, TamañoObservacionesExcedidoException { 
+
+        try {
+            validador.validarMantenimiento(mantenimiento);
+        } catch (IdEquipoVacioException | ObservacionesVaciasException | TamañoObservacionesExcedidoException ex) {
+            Logger.getLogger(ManejadorMantenimientoEquipos.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex; 
         }
-        if (mantenimiento.getIdEquipo() == null || mantenimiento.getIdEquipo().trim().isEmpty()) {
-            throw new IdEquipoVacioException("El ID del equipo no puede ser nulo o vacío");
-        }
-        if (mantenimiento.getObservaciones() == null || mantenimiento.getObservaciones().trim().isEmpty()) {
-            throw new ObservacionesVaciasException("Las observaciones no pueden ser nulas o vacías");
-        }
+
         try {
             return mantenimientoBO.registrarMantenimiento(mantenimiento);
         } catch (NegocioException ex) {
@@ -120,9 +126,9 @@ public class ManejadorMantenimientoEquipos implements IManejadorMantenimientoEqu
         }
     }
 
+
     @Override
-    public List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) 
-            throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException {
+    public List<HistorialEquipoDTO> obtenerHistorialPorEquipo(String idEquipo) throws SubsistemaMantenimientoEquiposException, IdEquipoVacioException {
         if (idEquipo == null || idEquipo.trim().isEmpty()) {
             throw new IdEquipoVacioException("El ID del equipo no puede ser nulo o vacío");
         }
@@ -133,4 +139,3 @@ public class ManejadorMantenimientoEquipos implements IManejadorMantenimientoEqu
         }
     }
 }
-
