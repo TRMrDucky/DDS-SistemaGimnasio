@@ -41,7 +41,7 @@ public class ReporteAsistencia extends JFrame {
     }
 
     private void iniciarComponentes(ReporteAsistenciaDTO cliente) {
-        setTitle("Búsqueda de Cliente");
+        setTitle("Reporte Asistencia");
         setSize(600, 350);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
