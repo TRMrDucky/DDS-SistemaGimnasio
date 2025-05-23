@@ -62,7 +62,7 @@ public class Asistencia implements IAsistencia {
                 System.out.println(asis);
                 return asis;
 
-            }else{
+            } else {
                 asistencias.get(id).addLast(new Date());
 
                 AsistenciaDTO asis = obtenerCliente(id);
@@ -83,10 +83,12 @@ public class Asistencia implements IAsistencia {
         try {
             id = verificarUsuario(identificador);
             asistencia = obtenerCliente(id);
-                ReporteAsistenciaDTO reporte = new ReporteAsistenciaDTO(asistencia.getNombres(), asistencia.getApellidos(), asistencias.get(id));
-        return reporte;
-        } catch (AsistenciaException ex) {
-            Logger.getLogger(Asistencia.class.getName()).log(Level.SEVERE, null, ex);
+            ReporteAsistenciaDTO reporte = new ReporteAsistenciaDTO(asistencia.getNombres(), asistencia.getApellidos(), asistencias.get(id));
+            if(reporte.getAsistencia()==null)
+                throw new AsistenciaException("Sin asistencias para mostrar");
+            return reporte;
+        } catch (AsistenciaException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error al registr la asistencia", JOptionPane.ERROR_MESSAGE);
         }
         return null;
     }
@@ -99,7 +101,7 @@ public class Asistencia implements IAsistencia {
             filtro.append(CAMPO_CORREO, identificador);
         } else {
             filtro.append(CAMPO_TELEFONO, identificador);
-            
+
         }
 
         FindIterable<Cliente> resultado = coleccion.find(filtro);
@@ -117,10 +119,9 @@ public class Asistencia implements IAsistencia {
 //
 //        return false;
 //    }
-
     private AsistenciaDTO obtenerCliente(String ide) throws AsistenciaException {
         MongoCollection<Cliente> coleccion = crearConexion();
-        
+
         ObjectId id = new ObjectId((ide));
         FindIterable<Cliente> resultado = coleccion.find(new Document("_id", id));
 

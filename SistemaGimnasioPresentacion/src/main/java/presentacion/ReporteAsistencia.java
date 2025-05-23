@@ -6,6 +6,8 @@ package presentacion;
 
 import DTOs.ReporteAsistenciaDTO;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.List;
 
@@ -61,10 +63,19 @@ public class ReporteAsistencia extends JFrame {
         tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         add(new JScrollPane(tabla), BorderLayout.CENTER);
         btnVolver = new JButton("Volver");
+        btnVolver.addActionListener((e) -> {
+            control.openFormRegistrarAsistencia();
+            dispose();
+        });
         add(btnVolver, BorderLayout.SOUTH);
     }
 
+    
+    
     private void rellenarTabla(ReporteAsistenciaDTO cliente) {
+        if(cliente.getAsistencia() == null){
+            
+        }
         modelo.setRowCount(0);
         List<Date> la = cliente.getAsistencia();
         int i = la.size();

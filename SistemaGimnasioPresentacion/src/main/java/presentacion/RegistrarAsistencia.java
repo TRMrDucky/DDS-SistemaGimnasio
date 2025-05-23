@@ -14,21 +14,21 @@ import javax.swing.JOptionPane;
  * @author 52644
  */
 public class RegistrarAsistencia extends javax.swing.JFrame {
-    
+
     private ControlNavegacionCompraMembresia control;
     private IAsistencia asistencia;
-    
+
     /**
      * Creates new form RegistrarAsistencia
      */
-    public RegistrarAsistencia(ControlNavegacionCompraMembresia control){
+    public RegistrarAsistencia(ControlNavegacionCompraMembresia control) {
         this.control = control;
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.asistencia = Asistencia.getInstance();
     }
-    
+
     public RegistrarAsistencia() {
         initComponents();
         setLocationRelativeTo(null);
@@ -140,7 +140,7 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegistrarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAsistenciaActionPerformed
-        if(txtFiltro.getText()==null){
+        if (txtFiltro.getText() == null) {
             JOptionPane.showMessageDialog(null, "El campo no puede permanecer vacío", "Advertencia", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -150,7 +150,15 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarAsistenciaActionPerformed
 
     private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
-       control.openFormReporteAsistencia(asistencia.generarReporteAsistencia(txtFiltro.getText()));
+
+        if (txtFiltro.getText() == null) {
+            JOptionPane.showMessageDialog(null, "No se puede generar un reporte sin identificador", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+            control.openFormReporteAsistencia(asistencia.generarReporteAsistencia(txtFiltro.getText()));
+            txtFiltro.setText(null);
+            dispose();
+        }
     }//GEN-LAST:event_btnGenerarReporteActionPerformed
 
     /**
