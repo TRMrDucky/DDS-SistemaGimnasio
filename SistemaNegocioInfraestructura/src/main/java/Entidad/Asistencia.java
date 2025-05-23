@@ -58,6 +58,7 @@ public class Asistencia implements IAsistencia {
                 asistencias.get(id).add(new Date());
 
                 AsistenciaDTO asis = obtenerCliente(id);
+                asis.setFecha(asistencias.get(id).getLast());
                 System.out.println(asis);
                 return asis;
 
@@ -78,9 +79,11 @@ public class Asistencia implements IAsistencia {
     @Override
     public ReporteAsistenciaDTO generarReporteAsistencia(String identificador) {
         AsistenciaDTO asistencia;
+        String id;
         try {
-            asistencia = obtenerCliente(identificador);
-            ReporteAsistenciaDTO reporte = new ReporteAsistenciaDTO(asistencia.getNombres(), asistencia.getApellidos(), asistencias.get(identificador));
+            id = verificarUsuario(identificador);
+            asistencia = obtenerCliente(id);
+                ReporteAsistenciaDTO reporte = new ReporteAsistenciaDTO(asistencia.getNombres(), asistencia.getApellidos(), asistencias.get(id));
         return reporte;
         } catch (AsistenciaException ex) {
             Logger.getLogger(Asistencia.class.getName()).log(Level.SEVERE, null, ex);

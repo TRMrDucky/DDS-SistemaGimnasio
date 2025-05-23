@@ -141,7 +141,7 @@ public class RegistrarAsistencia extends javax.swing.JFrame {
 
     private void btnRegistrarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAsistenciaActionPerformed
         if(txtFiltro.getText()==null){
-            JOptionPane.showMessageDialog(null, "El campo no puede permanecer vacío0", "Advertencia", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El campo no puede permanecer vacío", "Advertencia", JOptionPane.ERROR_MESSAGE);
             return;
         }
         AsistenciaDTO asis = asistencia.registrarAsistencia(txtFiltro.getText());

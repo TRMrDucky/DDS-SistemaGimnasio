@@ -34,6 +34,12 @@ public class ReporteAsistencia extends JFrame {
 
     }
 
+    public ReporteAsistencia(ReporteAsistenciaDTO cliente) {
+        this.control = control;
+        iniciarComponentes(cliente);
+        rellenarTabla(cliente);
+    }
+
     private void iniciarComponentes(ReporteAsistenciaDTO cliente) {
         setTitle("Búsqueda de Cliente");
         setSize(600, 350);
@@ -62,7 +68,7 @@ public class ReporteAsistencia extends JFrame {
         modelo.setRowCount(0);
         List<Date> la = cliente.getAsistencia();
         int i = la.size();
-        for (int j = 0; j< i; j++)  {
+        for (int j = 0; j < i; j++) {
             modelo.addRow(new String[]{
                 cliente.getNombre(),
                 cliente.getApellido(),
@@ -71,4 +77,3 @@ public class ReporteAsistencia extends JFrame {
 
     }
 }
-

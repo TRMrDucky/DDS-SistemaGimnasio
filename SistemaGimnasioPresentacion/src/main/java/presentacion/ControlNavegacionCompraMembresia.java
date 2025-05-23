@@ -622,12 +622,13 @@ public class ControlNavegacionCompraMembresia {
     }
     
     public void openFormRegistrarAsistencia(){
-        RegistrarAsistencia registro = new RegistrarAsistencia();
+        RegistrarAsistencia registro = new RegistrarAsistencia(this);
         registro.setVisible(true);
     }
     
     public void openFormReporteAsistencia (ReporteAsistenciaDTO cliente){
         ReporteAsistencia reporte = new ReporteAsistencia(cliente, this);
+        reporte.setVisible(true);
     }
 
 }
