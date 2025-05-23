@@ -146,13 +146,13 @@ public class ConsultarMembresias extends javax.swing.JFrame {
                 case "Eliminar":
 
                     resultado = control.eliminarMembresia(idMembresia);
-                    if (resultado) {
-                        JOptionPane.showMessageDialog(null, "Membresía eliminada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                        dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo eliminar la membresía.", "Error", JOptionPane.ERROR_MESSAGE);
-
-                    }
+//                    if (resultado) {
+//                        JOptionPane.showMessageDialog(null, "Membresía eliminada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+//                        dispose();
+//                    } else {
+//                        JOptionPane.showMessageDialog(null, "No se pudo eliminar la membresía.", "Error", JOptionPane.ERROR_MESSAGE);
+//
+//                    }
                     break;
 
                 case "Actualizar":
@@ -334,15 +334,21 @@ public class ConsultarMembresias extends javax.swing.JFrame {
             try {
 
                 if (accionSeleccionada.equals("Eliminar")) {
-                    boolean eliminada = control.eliminarMembresia(membresia.getId());
-                    if (eliminada) {
-                        JOptionPane.showMessageDialog(null, "Membresía eliminada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    try{
+                    accion(accionSeleccionada, membresia.getId(), membresia);
+                     JOptionPane.showMessageDialog(null, "Membresía eliminada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    } catch(SubsistemaMembresiaException e){
+                         JOptionPane.showMessageDialog(null, "No se pudo eliminar la membresía con ID: " + membresia.getId(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                        
+                   
+                       
                         dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo eliminar la membresía con ID: " + membresia.getId(), "Error", JOptionPane.ERROR_MESSAGE);
+                   
+                        //JOptionPane.showMessageDialog(null, "No se pudo eliminar la membresía con ID: " + membresia.getId(), "Error", JOptionPane.ERROR_MESSAGE);
 
                     }
-                }
+                
                 if (accionSeleccionada.equals("Compra")) {
                     ClienteRegConMembDTO clienteConMemb = new ClienteRegConMembDTO(cliente, membresiaSeleccionada);
                     control.openFormServiciosExtra(clienteConMemb);

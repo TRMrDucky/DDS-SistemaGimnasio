@@ -165,7 +165,9 @@ public class MembresiaDAO implements IMembresiaDAO {
             MongoCollection<Membresia> coleccion = ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
             UpdateResult result = coleccion.updateMany(
                     Filters.elemMatch("serviciosExtra", Filters.eq("_id", new ObjectId(idServicio))),
-                    new Document("$pull", new Document("serviciosExtra", new Document("_id", new ObjectId(idServicio))))
+                    new Document("$pull",
+                            new Document("serviciosExtra", 
+                                    new Document("_id", new ObjectId(idServicio))))
             );
             return result.getModifiedCount() > 0;
         } catch (Exception e) {
@@ -184,7 +186,8 @@ public class MembresiaDAO implements IMembresiaDAO {
             MongoCollection<Membresia> coleccion = ConexionBD.getInstance().getCollection("Membresias", Membresia.class);
             UpdateResult resultado = coleccion.updateMany(
                     Filters.elemMatch("serviciosExtra", Filters.eq("_id", new ObjectId(idServicio))),
-                    new Document("$set", new Document("serviciosExtra.$", servicioActualizado))
+                    new Document("$set",
+                            new Document("serviciosExtra.$", servicioActualizado))
             );
 
             return resultado.getModifiedCount() > 0;
